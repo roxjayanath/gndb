@@ -101,7 +101,7 @@ require_once("includes/initialize.php");
     
  </div>
  
- <center><div  class="logo2"><br/></div></center>
+ <center><div  ><br/></div></center>
 
 </body>
 </html>
