@@ -1,8 +1,17 @@
 <?php
 require_once("includes/initialize.php");
-//if (!$session->is_logged_in()) {
-  //  redirect_to("index.php");
-//}
+if (!$session->is_logged_in()) {
+   redirect_to("index.php"); 
+} else if(!empty($session->user_id)){
+	$user = User::find_by_id($session->user_id);
+	if(empty($user)){
+		redirect_to("index.php");
+	} else if(!$user->isAuthorized(RIGHT_INSERT_DOC)){
+		redirect_to("admin_home.php");
+	}
+} else {
+	redirect_to("index.php");
+}
 ?>
 
 <?php
@@ -99,7 +108,9 @@ require_once('layouts/header1.php');
         clear: right;
     }*/
 </style>
-<script src="javascripts/jquery-1.8.3.min.js" ></script>
+<link rel="stylesheet" href="css/jquery-ui.css"></link>
+<script src="javascrpits/jquery-1.8.3.min.js" ></script>
+<script src="javascrpits/jquery-ui.js" ></script>
 
 <script>
     $(function() {
@@ -108,6 +119,8 @@ require_once('layouts/header1.php');
         $("select[name=category]").change(function() {
             showCategoryOptions();
         });
+
+        $(".datepicker").datepicker();
     });
 
     function showCategoryOptions() {
@@ -124,28 +137,28 @@ require_once('layouts/header1.php');
         
         
         
-        <p>Core / NonCore : <input type="text" id="datepicker" /></p>
-        <p> CR/BRD/REPORT : <input type="text" id="datepicker" /></p>
-        <p>Referance : <input type="text" id="datepicker" /></p>
-        <p>Requester : <input type="text" id="datepicker" /></p>
-        <p>Unit : <input type="text" id="datepicker" /></p>
-        <p>Contact Person : <input type="text" id="datepicker" /></p>
-        <p>Date Submit : <input type="text" id="datepicker" /></p>
+        <p>Core / NonCore : <input type="text"  /></p>
+        <p> CR/BRD/REPORT : <input type="text"  /></p>
+        <p>Referance : <input type="text"  /></p>
+        <p>Requester : <input type="text"  /></p>
+        <p>Unit : <input type="text"  /></p>
+        <p>Contact Person : <input type="text"  /></p>
+        <p>Date Submit : <input type="text" class="datepicker" /></p>
         <p>Description : <textarea></textarea></p>
-        <p>Date Recived (IT): <input type="text" id="datepicker" /></p>
-        <p>SMRC Reviewed Date : <input type="text" id="datepicker" /></p>
-        <p>SMRC Status : <input type="text" id="datepicker" /></p>
-        <p>Prority : <input type="text" id="datepicker" /></p>
-        <p>Date Hand Over To Development : <input type="text" id="datepicker" /></p>
-        <p>Date Hand Over To Temonors/FLS : <input type="text" id="datepicker" /></p>
+        <p>Date Recived (IT): <input type="text" class="datepicker" /></p>
+        <p>SMRC Reviewed Date : <input type="text" class="datepicker" /></p>
+        <p>SMRC Status : <input type="text"  /></p>
+        <p>Prority : <input type="text"  /></p>
+        <p>Date Hand Over To Development : <input type="text" class="datepicker"  /></p>
+        <p>Date Hand Over To Temonors/FLS : <input type="text" class="datepicker" /></p>
         <p>Remarks : <textarea></textarea></p>
-        <p>Development Reviewed Date : <input type="text" id="datepicker" /></p>
-        <p>Documantation Complete/not : <input type="text" id="datepicker" /></p>
-        <p>Date Hand Over TO QA : <input type="text" id="datepicker" /></p>
-        <p>QA Testing Competed ON : <input type="text" id="datepicker" /></p>
-        <p>Date Hand Over To IT Ops: <input type="text" id="datepicker" /></p>
-        <p>Release Date: <input type="text" id="datepicker" /></p>
-        <p>Status: <input type="text" id="datepicker" /></p>
+        <p>Development Reviewed Date : <input type="text" class="datepicker" /></p>
+        <p>Documantation Complete/not : <input type="text"  /></p>
+        <p>Date Hand Over TO QA : <input type="text" class="datepicker" /></p>
+        <p>QA Testing Competed ON : <input type="text" class="datepicker" /></p>
+        <p>Date Hand Over To IT Ops: <input type="text" class="datepicker" /></p>
+        <p>Release Date: <input type="text" class="datepicker" /></p>
+        <p>Status: <input type="text"  /></p>
         <p>Scan Document : <input type="file" class="box"  /></p>
         
        

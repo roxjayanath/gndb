@@ -1,7 +1,8 @@
-<?php require_once("includes/initialize.php"); 
+<?php 
+require_once("includes/initialize.php"); 
 //var_dump($session);
 if (!empty($session)) {
-   // $user = User::find_by_id($session->user_id);
+    $user = User::find_by_id($session->user_id);
 }
 ?>
 <!DOCTYPE html>
@@ -17,6 +18,7 @@ if (!empty($session)) {
  <div id="wrap">
  		<br/>
         <p class="para">Hello <?php 
-       // $user = User::find_by_id($session->user_id);
-        //echo $user->username;
+        //$user = User::find_by_id($session->user_id);
+        
+        echo !empty($user) ? $user->us_name : "";
  ?> <a href="logout.php" class="logout">Logout</a></p>

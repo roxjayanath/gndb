@@ -2,16 +2,23 @@
 
 require_once(LIB_PATH . DS . 'database.php');
 
-class User extends DatabaseObject {
+class User {
 
     protected static $table_name = "ndb_users";
-    protected static $db_fields = array('us_id', 'us_name', 'us_pass');
+    protected static $db_fields = array('us_id', 'us_name', 'us_pass', 'us_level');
     public $us_id;
     public $us_name;
     public $us_pass;
+    public $us_level;
     public $errors = array();
     public $extra = array();
-
+	public $rights = array(
+		RIGHT_INSERT_DOC => false,
+			RIGHT_EDIT_DOC => false,
+			RIGHT_DELETE_DOC => false,
+			RIGHT_VIEW_DOC => false,
+			RIGHT_USER_CONTROL => false
+	);
     //public $first_name;
     // public $last_name;
     //public function full_name(){
@@ -64,6 +71,7 @@ class User extends DatabaseObject {
         $object_array = array();
         while ($row = $database->fetch_array($result_set)) {
             $object_array[] = self::instantiate($row);
+            
         }
         return $object_array;
     }
@@ -89,11 +97,35 @@ class User extends DatabaseObject {
             if ($object->has_attribute($attribute)) {
                 $object->$attribute = $value;
             }
+            
         }
-
-
+		
+        if($object->has_attribute("us_level")){
+        	$object->assignRights($object);
+        }
+		
         return $object;
     }
+    
+    private function assignRights($user) {
+		switch ($user->us_level) {
+			case USER_LEVEL_1 :
+				$user->rights [RIGHT_INSERT_DOC] = true;
+				$user->rights [RIGHT_EDIT_DOC] = true;
+				$user->rights [RIGHT_DELETE_DOC] = true;
+				$user->rights [RIGHT_VIEW_DOC] = true;
+				$user->rights [RIGHT_USER_CONTROL] = true;
+				break;
+			case USER_LEVEL_2 :
+				$user->rights [RIGHT_EDIT_DOC] = true;
+				$user->rights [RIGHT_DELETE_DOC] = true;
+				$user->rights [RIGHT_VIEW_DOC] = true;
+				break;
+			case USER_LEVEL_3 :
+				$user->rights [RIGHT_VIEW_DOC] = true;
+				break;
+		}
+	}
 
     private function has_attribute($attribute) {
         $object_vars = $this->attributes();
@@ -250,6 +282,10 @@ class User extends DatabaseObject {
                 $this->errors['conf_password'] = "New password and confirm password does not match";
             }
         }
+    }
+    
+    public function isAuthorized($right){
+    	return ($this->rights[$right]);
     }
 
 }
