@@ -2,7 +2,12 @@
       
       	<div id="control_set">
         	<p class="toc_control">Document Controls</p>
-        </div>        
+        </div>
+	
+	<div id="my_profile" class="my_style">
+        	<a href="admin_page.php" class="profile_link"><p class="toc">Insert Document</p></a>
+        
+        </div>
         
         <div id="my_profile" class="my_style">
         	<a href="viwe_document.php" class="profile_link"><p class="toc">View Document</p></a>
