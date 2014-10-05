@@ -2,12 +2,12 @@
 require_once("includes/initialize.php");
 
 //if(!$session->is_logged_in()){
-    /redirect_to("login.php");}
+    //redirect_to("login.php");}
 ?>
 
 <?php
    
-    $page=!empty($_GET['page'])?(int)$_GET['page'] : 1;
+  /*  $page=!empty($_GET['page'])?(int)$_GET['page'] : 1;
     
     $per_page= 10;
     
@@ -25,7 +25,7 @@ require_once("includes/initialize.php");
   $sql .= "OFFSET {$pagination->offset()}";
   
   $photos = Customers::find_by_sql($sql);
- 
+ */
  
  ?>
 
@@ -33,7 +33,7 @@ require_once("includes/initialize.php");
 
 <?php //include_layout_template('header.php');
  //var_dump($_SERVER);
- require_once('../layouts/header1.php');
+ require_once('layouts/header1.php');
  ?>
  <center><h1 class="main_toc">View Documets</h1></center>
  <?php require_once('layouts/header2.php'); ?>
