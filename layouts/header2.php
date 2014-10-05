@@ -5,7 +5,7 @@
         </div>        
         
         <div id="my_profile" class="my_style">
-        	<a href="editadmin.php" class="profile_link"><p class="toc">View Document</p></a>
+        	<a href="viwe_document.php" class="profile_link"><p class="toc">View Document</p></a>
         
         </div>
         
