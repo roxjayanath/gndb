@@ -48,30 +48,30 @@ if (isset($_POST['submit'])) {
     
     $product->cor_non= $_POST['core'];
     $product->cr_brd= $_POST['crr'];
-    $product->reference= $_POST['product_name'];
-    $product->requester= $_POST['product_name'];
-    $product->unit= $_POST['product_name'];
-    $product->contact_p= $_POST['product_name'];
+    $product->reference= $_POST['reference'];
+    $product->requester= $_POST['requester'];
+    $product->unit= $_POST['unit'];
+    $product->contact_p= $_POST['contact_p'];
     
-    $product->date_sub= $_POST['product_name'];
-    $product->description= $_POST['product_name'];
-    $product->date_reciv_it= $_POST['product_name'];
-    $product->smrc_date= $_POST['product_name'];
-    $product->smrc_status= $_POST['product_name'];
-    $product->priority= $_POST['product_name'];
+    $product->date_sub= $_POST['date_sub'];
+    $product->description= $_POST['description'];
+    $product->date_reciv_it= $_POST['date_reciv_it'];
+    $product->smrc_date= $_POST['smrc_date'];
+    $product->smrc_status= $_POST['smrc_status'];
+    $product->priority= $_POST['priority'];
     
-     $product->date_develop= $_POST['product_name'];
-     $product->date_temo= $_POST['product_name'];
-     $product->remarks= $_POST['product_name'];
-    $product->develop_r_date= $_POST['product_name'];
-    $product->document_complet= $_POST['product_name'];
-     $product->date_hand_qa= $_POST['product_name'];
+     $product->date_develop= $_POST['date_develop'];
+     $product->date_temo= $_POST['date_temo'];
+     $product->remarks= $_POST['remarks'];
+    $product->develop_r_date= $_POST['develop_r_date'];
+    $product->document_complet= $_POST['document_complet'];
+     $product->date_hand_qa= $_POST['date_hand_qa'];
      
      
-     $product->qa_complete= $_POST['product_name'];
-     $product->date_back_it= $_POST['product_name'];
-    $product->release_datev= $_POST['product_name'];
-    $product->statusv= $_POST['product_name'];
+     $product->qa_complete= $_POST['qa_complete'];
+     $product->date_back_it= $_POST['date_back_it'];
+    $product->release_date= $_POST['release_date'];
+    $product->status= $_POST['status'];
      
     
     
@@ -87,11 +87,11 @@ if (isset($_POST['submit'])) {
    // $product->quan = $_POST['quan'];
 
     if ($product->save()) {
-        $session->message("Photograph upload successfully. by {$user->us_name}");
+        $session->message("Document {$product->reference} Upload Successfully  by {$user->us_name}");
         echo $product->reference;
         redirect_to('admin_page.php');
     } else {
-        $message = join("<br/>", $photo->errors);
+       // $message = join("<br/>", $photo->errors);
         echo $message;
     }
 
@@ -181,26 +181,26 @@ require_once('layouts/header1.php');
              <option value="REPORT">REPORT</option>
   
            </select></p>
-        <p>Reference : <input type="text" name="" /></p>
-        <p>Requester : <input type="text" name=""  /></p>
-        <p>Unit : <input type="text" name=""  /></p>
-        <p>Contact Person : <input type="text" name="" /></p>
-        <p>Date Submit : <input type="text" class="datepicker"name="" /></p>
-        <p>Description : <textarea name=""></textarea></p>
-        <p>Date Recived (IT): <input type="text" class="datepicker" name=""/></p>
-        <p>SMRC Reviewed Date : <input type="text" class="datepicker" name=""/></p>
-        <p>SMRC Status : <input type="text" name="" /></p>
-        <p>Priority : <input type="text"  name=""/></p>
-        <p>Date Hand Over To Development : <input type="text" class="datepicker" name="" /></p>
-        <p>Date Hand Over To Temonors/FLS : <input type="text" class="datepicker"name="" /></p>
-        <p>Remarks : <textarea name=""></textarea></p>
-        <p>Development Reviewed Date : <input type="text" class="datepicker" name="" /></p>
-        <p>Documantation Complete/not : <input type="text" name="" /></p>
-        <p>Date Hand Over TO QA : <input type="text" class="datepicker" name=""/></p>
-        <p>QA Testing Competed ON : <input type="text" class="datepicker" name=""/></p>
-        <p>Date Hand Over To IT Ops : <input type="text" class="datepicker" name="" /></p>
-        <p>Release Date : <input type="text" class="datepicker" name="" /></p>
-        <p>Status : <input type="text"  name=""/></p>
+        <p>Reference : <input type="text" name="reference" /></p>
+        <p>Requester : <input type="text" name="requester"  /></p>
+        <p>Unit : <input type="text" name="unit"  /></p>
+        <p>Contact Person : <input type="text" name="contact_p" /></p>
+        <p>Date Submit : <input type="text" class="datepicker"name="date_sub" /></p>
+        <p>Description : <textarea name="description"></textarea></p>
+        <p>Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it"/></p>
+        <p>SMRC Reviewed Date : <input type="text" class="datepicker" name="smrc_date"/></p>
+        <p>SMRC Status : <input type="text" name="smrc_status" /></p>
+        <p>Priority : <input type="text"  name="priority"/></p>
+        <p>Date Hand Over To Development : <input type="text" class="datepicker" name="date_develop" /></p>
+        <p>Date Hand Over To Temonors/FLS : <input type="text" class="datepicker"name="date_temo" /></p>
+        <p>Remarks : <textarea name="remarks"></textarea></p>
+        <p>Development Reviewed Date : <input type="text" class="datepicker" name="develop_r_date" /></p>
+        <p>Documantation Complete/not : <input type="text" name="document_complet" /></p>
+        <p>Date Hand Over TO QA : <input type="text" class="datepicker" name="date_hand_qa"/></p>
+        <p>QA Testing Competed ON : <input type="text" class="datepicker" name="qa_complete"/></p>
+        <p>Date Hand Over To IT Ops : <input type="text" class="datepicker" name="date_back_it" /></p>
+        <p>Release Date : <input type="text" class="datepicker" name="release_date" /></p>
+        <p>Status : <input type="text"  name="status"/></p>
         <p>Scan Document 1 : <input type="file" class="box" name="pdf1" /></p>
         <p>Scan Document 2 : <input type="file" class="box"  name="pdf2"/></p>
         <p>Scan Document 3 : <input type="file" class="box" name="pdf3" /></p>
