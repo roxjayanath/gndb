@@ -61,7 +61,7 @@ if (!empty($session)) {
         </div>
         <?php } ?>
         <div id="edit_product" class="my_style">
-        	<a href="edit_product.php" class="profile_link">
+        	<a href="log_histry.php" class="profile_link">
             <p class="toc2">Log Hisotry</p></a>
         
         </div>

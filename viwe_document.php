@@ -3,9 +3,9 @@ require_once("includes/initialize.php");
 
 
 
-//if (!$session->is_logged_in()) {
-    //redirect_to("login.php");
-//}
+if (!$session->is_logged_in()) {
+    redirect_to("login.php");
+}
 
 
 
@@ -32,7 +32,7 @@ require_once("includes/initialize.php");
         array_unshift($cat_type[$cat->id], $cat_type_all);
     }
     
-}
+}*/
 
 ?>
 
@@ -44,34 +44,35 @@ $per_page = 3;
 
 
 
+//$prod_name->reference= $_POST['reference'];
+//$prod_cat->cr_brd= $_POST['crr'];
 
+//$prod_name = !empty($_REQUEST['prod_name']) ? $_REQUEST['prod_name'] : '';
+//$prod_cat = !empty($_REQUEST['prod_cat']) ? $_REQUEST['prod_cat'] : '';
+//$prod_typ = !empty($_REQUEST['prod_typ']) ? $_REQUEST['prod_typ'] : '';
 
-$prod_name = !empty($_REQUEST['prod_name']) ? $_REQUEST['prod_name'] : '';
-$prod_cat = !empty($_REQUEST['prod_cat']) ? $_REQUEST['prod_cat'] : '';
-$prod_typ = !empty($_REQUEST['prod_typ']) ? $_REQUEST['prod_typ'] : '';
-
-$searchString = Product::get_search_string($prod_name, $prod_cat,$prod_typ);
+//$searchString = Product::get_search_string($prod_name, $prod_cat);
 //var_dump($searchString);
 
-$total_count = Product::count_all($searchString);
+//$total_count = Product::count_all($searchString);
 
 
 
 
 //  $photos= Photograph::find_all();
 
-$pagination = new Pagination($page, $per_page, $total_count);
+//$pagination = new Pagination($page, $per_page, $total_count);
 
-$sql = "SELECT * FROM product ";
+$sql = "SELECT * FROM ndb_doc ";
 //search
-$sql .= $searchString;
-$sql .= "LIMIT {$per_page} ";
-$sql .= "OFFSET {$pagination->offset()}";
+//$sql .= $searchString;
+//$sql .= "LIMIT {$per_page} ";
+//$sql .= "OFFSET {$pagination->offset()}";
 
 //echo $sql;
 
 
-$photos = Product::find_by_sql($sql); */
+$photos = Product::find_by_sql($sql); 
 ?>
 
 
@@ -114,7 +115,7 @@ $photos = Product::find_by_sql($sql); */
             }
 </style>
  
- <center><h1 class="main_toc">Delete Document</h1></center>
+ <center><h1 class="main_toc">View Document</h1></center>
  <?php require_once('layouts/header2.php'); ?>
       
       
@@ -128,53 +129,16 @@ $photos = Product::find_by_sql($sql); */
 		<input type="hidden" name="page" value="1" />	      
       	<table class="search_tabel" cellpadding="5px">
             <tr>
-            <th>Product Name</th>
+            <th>Reference Name</th>
             <th><input type="text" name="prod_name" value="<?php //echo $prod_name ?>" /></th>
-            <th>Catagorey</th>
-            <th><select name="prod_cat">
-            <?php
-            foreach ($prod_cat_array as $cat) {
-                $selected = ($cat->id == $prod_cat) ? 'selected' : '';
-                echo "<option value='$cat->id' $selected>$cat->category</option>";
-            }
-            ?>
-            <!--                    <option value="0">All</option>
-                                <option value="Men">Men</option>
-                                <option value="Kids">Kids</option>-->
-        </select></th>
-            <th>Type</th>
-            <th><?php
-//                    foreach($prod_typ_array as $val => $name){
-//                        $selected = ($val == $prod_typ) ? 'selected' : '';
-//                        echo "<option value='$val' $selected>$name</option>";                        
-//                    }                    
-        ?>
-            <option value="0">All</option>
-            <option value="Men">Men</option>
-            <option value="Kids">Kids</option>
-        </select>
-        <?php
-        if (!empty($cat_type)) {
-            $i = 0;
-            foreach ($cat_type as $key => $value) {
-                $i++;
-                $style = $i > 1 ? 'style="display:none"' : '';
-                ?>
-                <select name="prod_typ_<?php echo $key ?>" <?php echo $style ?>> 
-                    <?php
-                    if (!empty($value)) {
-                        foreach ($value as $val) {
-                            ?>
-                            <option value="<?php echo $val->id ?>"><?php echo $val->type ?></option>
-                            <?php
-                        }
-                    }
-                    ?>
-                </select>
-                <?php
-            }
-        }
-        ?></th>
+            <th>CR/BRD/REPORT : <select name="crr">
+	    <option value="All">All</option>
+             <option value="CR">CR</option>
+             <option value="BRD">BRD</option>
+             <option value="REPORT">REPORT</option>
+  
+           </select></th>
+            
             <th ><input type="button" name="submit" value="Search" onclick="getProductList()" /></th>
             </tr>
             </table>
