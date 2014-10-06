@@ -114,7 +114,7 @@ $photos = Product::find_by_sql($sql); */
             }
 </style>
  
- <center><h1 class="main_toc">Delete Product</h1></center>
+ <center><h1 class="main_toc">Delete Document</h1></center>
  <?php require_once('layouts/header2.php'); ?>
       
       

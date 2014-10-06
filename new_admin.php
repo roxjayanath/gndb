@@ -47,7 +47,7 @@ if(isset($_POST['commit'])){
  //var_dump($_SERVER);
  require_once('layouts/header1.php');
  ?>
- <center><h1 class="main_toc">Create New Admin</h1></center>
+ <center><h1 class="main_toc">Create New User</h1></center>
  <?php require_once('layouts/headeruser.php'); ?>
       
       <div id="admin_content">
@@ -61,12 +61,14 @@ if(isset($_POST['commit'])){
         <p class="line"><p class="detail">Password </p><p class="about_user2"><input class="box" type="password" name="password" /></p></p>
         
         <p class="line"><p class="detail">Confirm Password </p><p class="about_user2"><input class="box" type="password" name="cpassword" /></p></p><br/>
-	<p class="line"><p class="detail">User Level </p><p class="about_user2"><select name="ulevel">
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
+	<p class="line"><p class="detail">User Level </p><p class="about_user2">
+	<select name="ulevel">
+             <option value="1">1</option>
+             <option value="2">2</option>
+             <option value="3">3</option>
   
-</select></p></p><br/>
+           </select>
+	</p></p><br/>
         
         <p class="line"><p class="detail"><input type="submit" value="Create" name="commit" class="create_button" onclick="return confirm('Are you shure you want to Create');"></p></p>
       	

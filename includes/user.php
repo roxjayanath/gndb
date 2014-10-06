@@ -221,7 +221,7 @@ class User {
         global $database;
 
         $sql = "DELETE FROM " . self::$table_name . " ";
-        $sql .= "WHERE id=" . $database->escape_value($this->id);
+        $sql .= "WHERE us_id=" . $database->escape_value($this->us_id);
         $sql .= " LIMIT 1";
 
         $database->query($sql);
@@ -255,10 +255,10 @@ class User {
         $validation = new Validation();
         //var_dump($fields);
         if (in_array('username', $fields)) {
-            if ($validation->isEmpty($this->username)) {
+            if ($validation->isEmpty($this->us_name)) {
                 $this->errors['username'] = "Username cannot be empty";
             } else {
-                $existName = self::find_by_username($this->username);
+                $existName = self::find_by_username($this->us_name);
                 if ($existName) {
                     $this->errors['username'] = "Username already exists";
                 }
@@ -269,7 +269,7 @@ class User {
             $encOldPassword = self::get_encrypted_password($this->extra['old_password']);
             if ($validation->isEmpty($this->extra['old_password'])) {
                 $this->errors['old_password'] = "Current password cannot be empty";
-            } else if ($validation->isNotEqual($this->password, $encOldPassword)) {
+            } else if ($validation->isNotEqual($this->us_pass, $encOldPassword)) {
                 $this->errors['old_password'] = "Current password is incorrect";
             }
             if ($validation->isEmpty($this->extra['new_password'])) {

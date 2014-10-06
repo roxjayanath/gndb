@@ -23,7 +23,7 @@ if(!$session->is_logged_in()){
   
   $pagination = new Pagination($page,$per_page,$total_count);
   
-  $sql = "SELECT * FROM users ";
+  $sql = "SELECT * FROM ndb_users ";
   $sql .= "LIMIT {$per_page} ";
   $sql .= "OFFSET {$pagination->offset()}";
   
@@ -37,7 +37,7 @@ if(!$session->is_logged_in()){
  //var_dump($_SERVER);
  require_once('layouts/header1.php');
  ?>
- <center><h1 class="main_toc">Edit Admin Profiles</h1></center>
+ <center><h1 class="main_toc">Edit User Profiles</h1></center>
  <?php require_once('layouts/headeruser.php'); ?>
  
  
@@ -58,16 +58,16 @@ if(!$session->is_logged_in()){
             
             <tr>
                 
-                <td><?php echo $photo->id;?></td>
-                <td><?php echo $photo->username;?></td>
-                <td><?php echo $photo->password;?></td>
+                <td><?php echo $photo->us_id;?></td>
+                <td><?php echo $photo->us_name;?></td>
+                <td><?php echo $photo->us_pass;?></td>
                 
                 <td>
                 <!--<a href="comments.php?id=<?php echo $photo->id;?>"> -->
                 <?php //echo count($photo->comments());?></td>
                 </a>
-               <!-- <td><a href="edit_admin.php?id=<?php echo $photo->id;?>" onclick="return confirm('Are you shure you want to Edit');">Edit</a></td>
-                --><td><a href="delete_admin.php?id=<?php echo $photo->id;?>" onclick="return confirm('Are you shure you want to Delete');">Delete</a></td>
+               <!-- <td><a href="edit_admin.php?id=<?php echo $photo->us_id;?>" onclick="return confirm('Are you shure you want to Edit');">Edit</a></td>
+                --><td><a href="delete_admin.php?id=<?php echo $photo->us_id;?>" onclick="return confirm('Are you shure you want to Delete');">Delete</a></td>
                 
             </tr>
             

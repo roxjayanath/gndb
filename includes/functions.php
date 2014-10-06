@@ -26,7 +26,7 @@ function __autoload($class_name) {
 
 function include_layout_template($template = "") {
     //var_dump(SITE_ROOT.DS.'public'.DS.'layouts'.DS.$template);
-    include(SITE_ROOT . DS . 'public' . DS . 'layouts' . DS . $template);
+   // include(SITE_ROOT . DS . 'public' . DS . 'layouts' . DS . $template);
     //require_once '../../public/layouts/'.$template;
 }
 

@@ -93,7 +93,7 @@ $max_file_size = 1048576;
 //var_dump($_SERVER);
 require_once('layouts/header1.php');
 ?>
-<center><h1 class="main_toc5">Add Product</h1></center>
+<center><h1 class="main_toc5">Add New Document</h1></center>
  <?php echo output_message($message); ?>
 <?php require_once('layouts/header2.php'); ?>
 
@@ -137,8 +137,18 @@ require_once('layouts/header1.php');
         
         
         
-        <p>Core / NonCore : <input type="text"  /></p>
-        <p> CR/BRD/REPORT : <input type="text"  /></p>
+        <p>Core / NonCore : <select name="core">
+             <option value="Core">Core</option>
+             <option value="NonCore">NonCore</option>
+             
+  
+           </select></p>
+        <p> CR/BRD/REPORT : <select name="crr">
+             <option value="CR">CR</option>
+             <option value="BRD">BRD</option>
+             <option value="REPORT">REPORT</option>
+  
+           </select></p>
         <p>Referance : <input type="text"  /></p>
         <p>Requester : <input type="text"  /></p>
         <p>Unit : <input type="text"  /></p>

@@ -19,7 +19,7 @@ if (!empty($session)) {
 <body>
  <div id="wrap">
        <center><img src="images/ndbl.jpg" /></center><br/>
-       <p class="para"><a href="logout.php" style="color:#069;">Logout</a></p>
+       <p class="para"><?php echo $user->us_name; ?><a href="logout.php" style="color:#069;"> Logout</a></p>
    
       <div id="tile_wrap">
       <?php if(!empty($user->rights)){ ?>

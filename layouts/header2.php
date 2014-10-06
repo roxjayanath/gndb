@@ -15,14 +15,14 @@
         </div>
         
         <div id="edit_profile" class="my_style">
-        	<a href="admin_my_profile.php" class="profile_link"><p class="toc">Edit Document</p></a>
+        	<a href="edit_document.php" class="profile_link"><p class="toc">Edit Document</p></a>
         
         </div>
         
        
         
         <div id="new_admin" class="my_style">
-        	<a href="new_admin.php" class="profile_link"><p class="toc">Delete Document</p></a>
+        	<a href="delete_document.php" class="profile_link"><p class="toc">Delete Document</p></a>
         
         </div>
         
