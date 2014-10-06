@@ -13,7 +13,7 @@ if (!empty($session)) {
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>NDB Bank</title>
-<link rel="stylesheet"  type="text/css" href="css/style_admin_home.css" />
+<link rel="stylesheet"  type="text/css" href="css/style_user_home.css" />
 </head>
 
 <body>
@@ -27,7 +27,7 @@ if (!empty($session)) {
       	<?php if($user->rights[RIGHT_INSERT_DOC]){ ?>
       	<div id="my_profile" class="my_style">
         	<a href="admin_page.php" class="profile_link">
-            <p class="toc">Insert New Document</p></a>
+            <p class="toc">Edit My Profile</p></a>
         
         </div>
         <?php } ?>
@@ -35,34 +35,34 @@ if (!empty($session)) {
         <?php if($user->rights[RIGHT_EDIT_DOC]){ ?>
         <div id="password" class="my_style">
         	<a href="edit_document.php" class="profile_link">
-            <p class="toc2">Edit Document</p></a>
+            <p class="toc2">New User</p></a>
         
         </div>
         <?php } ?>
         <?php if($user->rights[RIGHT_VIEW_DOC]){ ?>
         <div id="new_admin" class="my_style">
         	<a href="viwe_document.php" class="profile_link">
-            <p class="toc3">View Document</p></a>
+            <p class="toc3">Edit User Profiles</p></a>
         
         </div>
         <?php } ?>
         <?php if($user->rights[RIGHT_DELETE_DOC]){ ?>
         <div id="invoice" class="my_style">
-        	<a href="delete_document.php" class="profile_link">
-            <p class="toc3">Delete Document</p></a>
+        	<a href="#" class="profile_link">
+            <p class="toc3"></p></a>
         
         </div>
         <?php } ?>
         <?php if($user->rights[RIGHT_USER_CONTROL]){ ?>
         <div id="add_product" class="my_style">
-        	<a href="user_control.php" class="profile_link">
-            <p class="toc">User Control</p></a>
+        	<a href="#" class="profile_link">
+            <p class="toc"></p></a>
         
         </div>
         <?php } ?>
         <div id="edit_product" class="my_style">
-        	<a href="edit_product.php" class="profile_link">
-            <p class="toc2">Log Hisotry</p></a>
+        	<a href="e#" class="profile_link">
+            <p class="toc2"></p></a>
         
         </div>
         
