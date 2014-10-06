@@ -7,7 +7,7 @@ if (!$session->is_logged_in()) {
 ?>
 
 <?php
-if (empty($_GET['id'])) {
+/*if (empty($_GET['id'])) {
     $session->message("No product ID was provided");
 }
 
@@ -67,20 +67,22 @@ if (isset($_POST['submit'])) {
         $message = "there is error updating product";
     }
 } else {
-    //$message="there is error updating product";
-}
+    //$message="there is error updating product"; */
+//}
 ?>
 
 
 <?php
 //include_layout_template('header.php');
 //var_dump($_SERVER);
-require_once('../layouts/header1.php');
+require_once('layouts/header1.php');
 ?>
 <center><h1 class="main_toc">Edit Product</h1></center>
-<?php require_once('../layouts/header2.php'); ?>
+<?php require_once('layouts/header2.php'); ?>
 
+<link rel="stylesheet" href="css/jquery-ui.css"></link>
 <script src="../javascripts/jquery-1.8.3.min.js" ></script>
+<script src="javascrpits/jquery-ui.js" ></script>
 <script>
     $(function() {
         showCategoryOptions();
@@ -119,15 +121,15 @@ require_once('../layouts/header1.php');
     }
 </style>
 
-<a href="edit_product.php">&laquo; Back</a><br/>
+<a href="edit_document.php">&laquo; Back</a><br/>
 <br/>
 <div style="margin-left: 20px;">
     <div style="height:225px">
         <div class="large_img_container">
-            <img src="../<?php echo $photo->image_path(); ?>" width="300"/>
+            <img src="../<?php// echo $photo->image_path(); ?>" width="300"/>
         </div>
 
-        <div class="small_img_container">
+        <!--<div class="small_img_container">
             <?php if (!empty($photo->image_2)) {
                 ?>
                 <img src="../<?php echo $photo->image_path(2); ?>" width="100"/>
@@ -141,7 +143,7 @@ require_once('../layouts/header1.php');
         </div>
 
 
-        <div class="small_img_container">
+      <!--  <div class="small_img_container">
             <?php if (!empty($photo->image_3)) {
                 ?>
                 <img src="../<?php echo $photo->image_path(3); ?>" width="100"/>
@@ -166,19 +168,31 @@ require_once('../layouts/header1.php');
                 <?php
             }
             ?>
-        </div>
+        </div> -->
 
 
     </div>
     <div>
-        <br/>Product Name :<?php echo $photo->title; ?>
-        <br/>Product Code :<?php echo $photo->i_code; ?>
-        <br>Product Category :<?php echo $product_cat->category; ?>
-        <br>Size :<?php echo !empty($product_size) ? $product_size->size : ''; ?>
-        <br>Colour :<?php echo !empty($product_color) ? $product_color->color : ''; ?>
-        <br>Price :<?php echo $photo->price; ?>
-        <br>Type :<?php echo !empty($product_type) ? $product_type->type : ''; ?>
-        <br>Quantity :<?php echo $photo->quan; ?>
+         <br/>ID : <?php echo $photo->title; ?>
+        <br/>Core / NonCore : <?php echo $photo->title; ?>
+        <br/>CR/BRD/REPORT :<?php echo $photo->i_code; ?>
+        <br>Date Submit :<?php echo $product_cat->category; ?>
+        <br>Description :<?php echo !empty($product_size) ? $product_size->size : ''; ?>
+        <br>Date Recived (IT):<?php echo !empty($product_color) ? $product_color->color : ''; ?>
+        <br>SMRC Reviewed Date :<?php echo $photo->price; ?>
+        <br>SMRC Status :<?php echo !empty($product_type) ? $product_type->type : ''; ?>
+        <br>Prority :<?php echo $photo->quan; ?>
+        <br>Date Hand Over To Development :
+        <br>Date Hand Over To Temonors/FLS :
+        <br>Remarks :
+        <br>Development Reviewed Date :
+        <br>Documantation Complete/not :
+        <br>Date Hand Over TO QA :
+        <br>QA Testing Competed ON :
+        <br>Date Hand Over To IT Ops :
+        <br>Release Date :
+        <br>Status :
+            
     </div>
 </div>
 
@@ -187,115 +201,61 @@ require_once('../layouts/header1.php');
         <input type="hidden" name="id" value="<?php echo $_REQUEST['id']; ?>" /><!--
         <p class="title">Chose your Image : <input type="file" name="file_upload" /> </p> -->
 
-        <p class="title">
-            Image 1 : <input type="file" name="image_1" class="box" />
-        </p>
-        <p class="title">
-            Image 2 : <input type="file" name="image_2" class="box" />
-        </p>
-        <p class="title">
-            Image 3 : <input type="file" name="image_3" class="box" />
-        </p>
-        <p class="title">
-            Image 4 : <input type="file" name="image_4" class="box" />
-        </p>
+        
 
-        <p class="title">Product Name :  <input type="text" name="title" value="<?php echo $photo->title; ?>"/> </p>
-         <p class="title">Product Name :  <input type="text" name="i_code" value="<?php echo $photo->i_code; ?>"/> </p> 
-        <p class="title">Catogery: 
-            <select name="cat_id" >
-                <?php
-                if (!empty($categories)) {
-                    foreach ($categories as $cat) {
-                        $selected = ($photo->cat_id == $cat->id) ? 'selected' : '';
-                        ?>
-                        <option value="<?php echo $cat->id ?>" <?php echo $selected ?>><?php echo $cat->category ?></option>
-                        <?php
-                    }
-                }
-                ?>
-            </select>
+        <p class="title">Core / NonCore :  <select name="core">
+             <option value="Core">Core</option>
+             <option value="NonCore">NonCore</option>
+             
+  
+           </select> </p>
+         <p class="title">CR/BRD/REPORT : <select name="crr">
+             <option value="CR">CR</option>
+             <option value="BRD">BRD</option>
+             <option value="REPORT">REPORT</option>
+  
+           </select> </p>
+         <p class="title">Referance :  <input type="text" name="i_code" value="<?php echo $photo->i_code; ?>"/> </p>
+         <p class="title">Requester :  <input type="text" name="i_code" value="<?php echo $photo->i_code; ?>"/> </p>
+         <p class="title">Unit :  <input type="text" name="i_code" value="<?php echo $photo->i_code; ?>"/> </p>
+         <p class="title">Contact Person :  <input type="text" name="i_code" value="<?php echo $photo->i_code; ?>"/> </p>
+         <p class="title">Date Submit : <input type="text" class="datepicker" /> </p>
+         <p class="title">Description : <textarea></textarea> </p>
+         <p class="title">Date Recived (IT): <input type="text" class="datepicker" /> </p>
+         <p class="title">SMRC Reviewed Date : <input type="text" class="datepicker" /> </p>
+         <p class="title">SMRC Status : <input type="text" name="i_code" value="<?php echo $photo->i_code; ?>"/> </p>
+         <p class="title">Prority :  <input type="text" name="i_code" value="<?php echo $photo->i_code; ?>"/> </p>
+         <p class="title">Date Hand Over To Development : <input type="text" class="datepicker"  /> </p>
+          <p class="title">Date Hand Over To Temonors/FLS : <input type="text" class="datepicker" /> </p>
+           <p class="title">Remarks : <textarea></textarea> </p>
+            <p class="title">Development Reviewed Date :  <input type="text" name="i_code" value="<?php echo $photo->i_code; ?>"/> </p>
+             <p class="title">Documantation Complete/not :  <input type="text" name="i_code" value="<?php echo $photo->i_code; ?>"/> </p>
+              <p class="title">Date Hand Over TO QA : <input type="text" class="datepicker" /> </p>
+               <p class="title">QA Testing Competed ON : <input type="text" class="datepicker" /> </p>
+               <p class="title">Date Hand Over To IT Ops : <input type="text" class="datepicker" /> </p>
+               <p class="title">Release Date : <input type="text" class="datepicker" /> </p>
+               <p class="title">Status :  <input type="text" name="i_code" value="<?php echo $photo->i_code; ?>"/> </p>
+               
+               
+               
+        
+        
+        
+        
+        
+      
+    <p class="title">
+            Scan Document 1 : <input type="file" name="image_1" class="box" />
         </p>
-        <p class="title">Size : 
-            <?php
-            if (!empty($cat_size)) {
-                $i = 0;
-                foreach ($cat_size as $key => $value) {
-                    $i++;
-                    $style = $i > 1 ? 'style="display:none"' : '';
-                    ?>
-                    <select name="size_<?php echo $key ?>" <?php echo $style ?>> 
-                        <?php
-                        if (!empty($value)) {
-                            foreach ($value as $val) {
-                                $selected = ($photo->size_id == $val->id) ? 'selected' : '';
-                                ?>
-                                <option value="<?php echo $val->id ?>" <?php echo $selected ?>><?php echo $val->size ?></option>
-                                <?php
-                            }
-                        }
-                        ?>
-                    </select>
-                    <?php
-                }
-            }
-            ?>
+        <p class="title">
+            Scan Document 2 : <input type="file" name="image_2" class="box" />
         </p>
-        <p class="title">Color : 
-            <?php
-            if (!empty($cat_color)) {
-                $i = 0;
-                foreach ($cat_color as $key => $value) {
-                    $i++;
-                    $style = $i > 1 ? 'style="display:none"' : '';
-                    ?>
-                    <select name="color_<?php echo $key ?>"  <?php echo $style ?>> 
-                        <?php
-                        if (!empty($value)) {
-                            foreach ($value as $val) {
-                                $selected = ($photo->color_id == $val->id) ? 'selected' : '';
-                                ?>
-                                <option value="<?php echo $val->id ?>" <?php echo $selected ?>><?php echo $val->color ?></option>
-                                <?php
-                            }
-                        }
-                        ?>
-                    </select>
-                    <?php
-                }
-            }
-            ?>
+        <p class="title">
+            Scan Document 3 : <input type="file" name="image_3" class="box" />
         </p>
-        <p class="title">Price : 
-            <input type="text" name="product_price" value="<?php echo $photo->price; ?>" /> 
+        <p class="title">
+            Scan Document 4 : <input type="file" name="image_4" class="box" />
         </p>
-        <p class="title">Type : 
-            <?php
-            if (!empty($cat_type)) {
-                $i = 0;
-                foreach ($cat_type as $key => $value) {
-                    $i++;
-                    $style = $i > 1 ? 'style="display:none"' : '';
-                    ?>
-                    <select name="type_<?php echo $key ?>"  <?php echo $style ?>> 
-                        <?php
-                        if (!empty($value)) {
-                            foreach ($value as $val) {
-                                $selected = ($photo->type_id == $val->id) ? 'selected' : '';
-                                ?>
-                                <option value="<?php echo $val->id ?>" <?php echo $selected ?>><?php echo $val->type ?></option>
-                                <?php
-                            }
-                        }
-                        ?>
-                    </select>
-                    <?php
-                }
-            }
-            ?>
-        </p>
-
-    <p class="title">Quantity :  <input type="text" name="quan" value="<?php echo $photo->quan; ?>"/> </p>
 
         <br/>
         <input type="submit" value="Edit" name="submit"><input type="reset" value="Cancel" name="cancel">

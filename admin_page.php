@@ -18,7 +18,7 @@ if (!$session->is_logged_in()) {
 $max_file_size = 1048576;
 
 //$message="";
-/*if (isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 //    $photo = new Photograph();
 //    $photo->attach_file($_FILES['file_upload']);
 //    $photo->product_name = $_POST['product_name'];
@@ -38,26 +38,58 @@ $max_file_size = 1048576;
 //        $message = join("<br/>", $photo->errors);
 //        echo $message;
 //    }
-  /*  $user = User::find_by_id($session->user_id);
+    $user = User::find_by_id($session->user_id);
     
     $product = new Product();
-    $product->attach_file($_FILES['image_1'], 1, TRUE);
-    $product->attach_file($_FILES['image_2'], 2);
-    $product->attach_file($_FILES['image_3'], 3);
-    $product->attach_file($_FILES['image_4'], 4);
-    $product->title = $_POST['product_name'];
-    $product->i_code = $_POST['i_code'];
-    $product->cat_id = $_POST['category'];
-    $product->size_id = isset($_POST['size_' . $product->cat_id]) ? $_POST['size_' . $product->cat_id] : 0;
-    $product->color_id = isset($_POST['color_' . $product->cat_id]) ? $_POST['color_' . $product->cat_id] : 0;
-    $product->type_id = isset($_POST['type_' . $product->cat_id]) ? $_POST['type_' . $product->cat_id] : 0;
-    $product->price = $_POST['product_price'];
-    $product->quan = $_POST['quan'];
+    $product->attach_file($_FILES['pdf1'], 1);
+    $product->attach_file($_FILES['pdf2'], 2);
+    $product->attach_file($_FILES['pdf3'], 3);
+    
+    
+    $product->cor_non= $_POST['core'];
+    $product->cr_brd= $_POST['crr'];
+    $product->reference= $_POST['product_name'];
+    $product->requester= $_POST['product_name'];
+    $product->unit= $_POST['product_name'];
+    $product->contact_p= $_POST['product_name'];
+    
+    $product->date_sub= $_POST['product_name'];
+    $product->description= $_POST['product_name'];
+    $product->date_reciv_it= $_POST['product_name'];
+    $product->smrc_date= $_POST['product_name'];
+    $product->smrc_status= $_POST['product_name'];
+    $product->priority= $_POST['product_name'];
+    
+     $product->date_develop= $_POST['product_name'];
+     $product->date_temo= $_POST['product_name'];
+     $product->remarks= $_POST['product_name'];
+    $product->develop_r_date= $_POST['product_name'];
+    $product->document_complet= $_POST['product_name'];
+     $product->date_hand_qa= $_POST['product_name'];
+     
+     
+     $product->qa_complete= $_POST['product_name'];
+     $product->date_back_it= $_POST['product_name'];
+    $product->release_datev= $_POST['product_name'];
+    $product->statusv= $_POST['product_name'];
+     
+    
+    
+    
+    
+    //$product->title = $_POST['product_name'];
+  //  $product->i_code = $_POST['i_code'];
+  //  $product->cat_id = $_POST['category'];
+  //  $product->size_id = isset($_POST['size_' . $product->cat_id]) ? $_POST['size_' . $product->cat_id] : 0;
+   // $product->color_id = isset($_POST['color_' . $product->cat_id]) ? $_POST['color_' . $product->cat_id] : 0;
+   // $product->type_id = isset($_POST['type_' . $product->cat_id]) ? $_POST['type_' . $product->cat_id] : 0;
+  //  $product->price = $_POST['product_price'];
+   // $product->quan = $_POST['quan'];
 
     if ($product->save()) {
-        //$session->message("Photograph upload successfully. by {$user->username}");
-       // echo $product->title;
-       // redirect_to('admin_page.php');
+        $session->message("Photograph upload successfully. by {$user->us_name}");
+        echo $product->reference;
+        redirect_to('admin_page.php');
     } else {
         $message = join("<br/>", $photo->errors);
         echo $message;
@@ -79,7 +111,7 @@ $max_file_size = 1048576;
        // $cat_type[$cat->id] = CategoryType::find_all_by_cat_id($cat->id);
        // $cat_size[$cat->id] = CategorySize::find_all_by_cat_id($cat->id);
    // }
-//}*/
+//}
 ?>
 
 
@@ -149,27 +181,30 @@ require_once('layouts/header1.php');
              <option value="REPORT">REPORT</option>
   
            </select></p>
-        <p>Referance : <input type="text"  /></p>
-        <p>Requester : <input type="text"  /></p>
-        <p>Unit : <input type="text"  /></p>
-        <p>Contact Person : <input type="text"  /></p>
-        <p>Date Submit : <input type="text" class="datepicker" /></p>
-        <p>Description : <textarea></textarea></p>
-        <p>Date Recived (IT): <input type="text" class="datepicker" /></p>
-        <p>SMRC Reviewed Date : <input type="text" class="datepicker" /></p>
-        <p>SMRC Status : <input type="text"  /></p>
-        <p>Prority : <input type="text"  /></p>
-        <p>Date Hand Over To Development : <input type="text" class="datepicker"  /></p>
-        <p>Date Hand Over To Temonors/FLS : <input type="text" class="datepicker" /></p>
-        <p>Remarks : <textarea></textarea></p>
-        <p>Development Reviewed Date : <input type="text" class="datepicker" /></p>
-        <p>Documantation Complete/not : <input type="text"  /></p>
-        <p>Date Hand Over TO QA : <input type="text" class="datepicker" /></p>
-        <p>QA Testing Competed ON : <input type="text" class="datepicker" /></p>
-        <p>Date Hand Over To IT Ops: <input type="text" class="datepicker" /></p>
-        <p>Release Date: <input type="text" class="datepicker" /></p>
-        <p>Status: <input type="text"  /></p>
-        <p>Scan Document : <input type="file" class="box"  /></p>
+        <p>Reference : <input type="text" name="" /></p>
+        <p>Requester : <input type="text" name=""  /></p>
+        <p>Unit : <input type="text" name=""  /></p>
+        <p>Contact Person : <input type="text" name="" /></p>
+        <p>Date Submit : <input type="text" class="datepicker"name="" /></p>
+        <p>Description : <textarea name=""></textarea></p>
+        <p>Date Recived (IT): <input type="text" class="datepicker" name=""/></p>
+        <p>SMRC Reviewed Date : <input type="text" class="datepicker" name=""/></p>
+        <p>SMRC Status : <input type="text" name="" /></p>
+        <p>Priority : <input type="text"  name=""/></p>
+        <p>Date Hand Over To Development : <input type="text" class="datepicker" name="" /></p>
+        <p>Date Hand Over To Temonors/FLS : <input type="text" class="datepicker"name="" /></p>
+        <p>Remarks : <textarea name=""></textarea></p>
+        <p>Development Reviewed Date : <input type="text" class="datepicker" name="" /></p>
+        <p>Documantation Complete/not : <input type="text" name="" /></p>
+        <p>Date Hand Over TO QA : <input type="text" class="datepicker" name=""/></p>
+        <p>QA Testing Competed ON : <input type="text" class="datepicker" name=""/></p>
+        <p>Date Hand Over To IT Ops : <input type="text" class="datepicker" name="" /></p>
+        <p>Release Date : <input type="text" class="datepicker" name="" /></p>
+        <p>Status : <input type="text"  name=""/></p>
+        <p>Scan Document 1 : <input type="file" class="box" name="pdf1" /></p>
+        <p>Scan Document 2 : <input type="file" class="box"  name="pdf2"/></p>
+        <p>Scan Document 3 : <input type="file" class="box" name="pdf3" /></p>
+        
         
        
         
