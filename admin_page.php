@@ -169,41 +169,41 @@ require_once('layouts/header1.php');
         
         
         
-        <p>Core / NonCore : <select name="core">
+        <p class="detailll" >Core / NonCore : <select name="core" class="about_userrrr">
              <option value="Core">Core</option>
              <option value="NonCore">NonCore</option>
              
   
            </select></p>
-        <p> CR/BRD/REPORT : <select name="crr">
+        <p class="detailll"> CR/BRD/REPORT : <select name="crr" class="about_userrrr">
              <option value="CR">CR</option>
              <option value="BRD">BRD</option>
              <option value="REPORT">REPORT</option>
   
            </select></p>
-        <p>Reference : <input type="text" name="reference" /></p>
-        <p>Requester : <input type="text" name="requester"  /></p>
-        <p>Unit : <input type="text" name="unit"  /></p>
-        <p>Contact Person : <input type="text" name="contact_p" /></p>
-        <p>Date Submit : <input type="text" class="datepicker"name="date_sub" /></p>
-        <p>Description : <textarea name="description"></textarea></p>
-        <p>Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it"/></p>
-        <p>SMRC Reviewed Date : <input type="text" class="datepicker" name="smrc_date"/></p>
-        <p>SMRC Status : <input type="text" name="smrc_status" /></p>
-        <p>Priority : <input type="text"  name="priority"/></p>
-        <p>Date Hand Over To Development : <input type="text" class="datepicker" name="date_develop" /></p>
-        <p>Date Hand Over To Temonors/FLS : <input type="text" class="datepicker"name="date_temo" /></p>
-        <p>Remarks : <textarea name="remarks"></textarea></p>
-        <p>Development Reviewed Date : <input type="text" class="datepicker" name="develop_r_date" /></p>
-        <p>Documantation Complete/not : <input type="text" name="document_complet" /></p>
-        <p>Date Hand Over TO QA : <input type="text" class="datepicker" name="date_hand_qa"/></p>
-        <p>QA Testing Competed ON : <input type="text" class="datepicker" name="qa_complete"/></p>
-        <p>Date Hand Over To IT Ops : <input type="text" class="datepicker" name="date_back_it" /></p>
-        <p>Release Date : <input type="text" class="datepicker" name="release_date" /></p>
-        <p>Status : <input type="text"  name="status"/></p>
-        <p>Scan Document 1 : <input type="file" class="box" name="pdf1" /></p>
-        <p>Scan Document 2 : <input type="file" class="box"  name="pdf2"/></p>
-        <p>Scan Document 3 : <input type="file" class="box" name="pdf3" /></p>
+        <p class="detailll">Reference : <input type="text" name="reference" class="about_userrrr" /></p>
+        <p class="detailll">Requester : <input type="text" name="requester" class="about_userrrr" /></p>
+        <p class="detailll">Unit : <input type="text" name="unit"  class="about_userrrr"/></p>
+        <p class="detailll">Contact Person : <input type="text" name="contact_p" class="about_userrrr"/></p>
+        <p class="detailll">Date Submit : <input type="text" class="datepicker"name="date_sub" /></p>
+        <p class="detailll">Description : <textarea name="description" class="about_userrrr"></textarea></p>
+        <p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" /></p>
+        <p class="detailll">SMRC Reviewed Date : <input type="text" class="datepicker" name="smrc_date" /></p>
+        <p class="detailll">SMRC Status : <input type="text" name="smrc_status" class="about_userrrr"/></p>
+        <p class="detailll">Priority : <input type="text"  name="priority" class="about_userrrr"/></p>
+        <p class="detailll">Date Hand Over To Development : <input type="text" class="datepicker" name="date_develop" /></p>
+        <p class="detailll">Date Hand Over To Temonors/FLS : <input type="text" class="datepicker"name="date_temo" /></p>
+        <p class="detailll">Remarks : <textarea name="remarks" class="about_userrrr"></textarea></p>
+        <p class="detailll">Development Reviewed Date : <input type="text" class="datepicker" name="develop_r_date" /></p>
+        <p class="detailll">Documantation Complete/not : <input type="text" name="document_complet" class="about_userrrr"/></p>
+        <p class="detailll">Date Hand Over TO QA : <input type="text" class="datepicker" name="date_hand_qa" /></p>
+        <p class="detailll">QA Testing Competed ON : <input type="text" class="datepicker" name="qa_complete" /></p>
+        <p class="detailll">Date Hand Over To IT Ops : <input type="text" class="datepicker" name="date_back_it" /></p>
+        <p class="detailll">Release Date : <input type="text" class="datepicker" name="release_date" /></p>
+        <p class="detailll">Status : <input type="text"  name="status" class="about_userrrr"/></p>
+        <p class="detailll">Scan Document 1 : <input type="file" class="box" name="pdf1" /></p>
+        <p class="detailll">Scan Document 2 : <input type="file" class="box"  name="pdf2" /></p>
+        <p class="detailll">Scan Document 3 : <input type="file" class="box" name="pdf3"  /></p>
         
         
        
