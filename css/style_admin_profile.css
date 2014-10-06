@@ -43,7 +43,7 @@ body{
 	font-weight:400;
 	margin-top:30px;
 	letter-spacing:5px;
-	background-color:#2D2D2D;
+	background-color:#CC0000;
 	width:500px;
 	border-radius:8px;
 }
@@ -357,7 +357,7 @@ body{
 	float:left;
 	width:150px;
 	margin-left:5px;
-	background-color:#FEF9F5;
+	background-color:#E68080;
 	padding:8px;
 }
 
@@ -452,7 +452,7 @@ body{
 	font-family:"DIN"
 	color:#333;
 	float:left;
-	width:50px;
+	width:100px;
 	margin-left:5px;
 	background-color:#B20000;
 	padding:8px;

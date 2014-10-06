@@ -26,7 +26,7 @@ if (!empty($session)) {
       
       	<?php if($user->rights[RIGHT_INSERT_DOC]){ ?>
       	<div id="my_profile" class="my_style">
-        	<a href="admin_page.php" class="profile_link">
+        	<a href="admin_my_profile.php" class="profile_link">
             <p class="toc">Edit My Profile</p></a>
         
         </div>
@@ -34,14 +34,14 @@ if (!empty($session)) {
         
         <?php if($user->rights[RIGHT_EDIT_DOC]){ ?>
         <div id="password" class="my_style">
-        	<a href="edit_document.php" class="profile_link">
+        	<a href="new_admin.php" class="profile_link">
             <p class="toc2">New User</p></a>
         
         </div>
         <?php } ?>
         <?php if($user->rights[RIGHT_VIEW_DOC]){ ?>
         <div id="new_admin" class="my_style">
-        	<a href="viwe_document.php" class="profile_link">
+        	<a href="editadmin.php" class="profile_link">
             <p class="toc3">Edit User Profiles</p></a>
         
         </div>
