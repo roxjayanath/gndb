@@ -5,11 +5,12 @@ require_once(LIB_PATH . DS . 'database.php');
 class User {
 
     protected static $table_name = "ndb_users";
-    protected static $db_fields = array('us_id', 'us_name', 'us_pass', 'us_level');
+    protected static $db_fields = array('us_id', 'us_name', 'us_pass', 'us_level', 'us_salt');
     public $us_id;
     public $us_name;
     public $us_pass;
     public $us_level;
+    public $us_salt;
     public $errors = array();
     public $extra = array();
 	public $rights = array(
@@ -17,7 +18,8 @@ class User {
 			RIGHT_EDIT_DOC => false,
 			RIGHT_DELETE_DOC => false,
 			RIGHT_VIEW_DOC => false,
-			RIGHT_USER_CONTROL => false
+			RIGHT_USER_CONTROL => false,
+			RIGHT_LOG_HISTORY => false
 	);
     //public $first_name;
     // public $last_name;
@@ -35,6 +37,10 @@ class User {
         $us_name = $database->escape_value($us_name);
         $us_pass = $database->escape_value($us_pass);
         //$us_pass = self::get_encrypted_password($us_pass);
+        $check = self::find_by_username($us_name);
+        if(empty($check)) return fasle;
+        
+        $us_pass = self::get_encrypted_password($us_pass, $check->us_salt);
 
         $sql = "SELECT * FROM ndb_users ";
         $sql .= "WHERE us_name = '{$us_name}' ";
@@ -55,13 +61,13 @@ class User {
 
     public static function find_by_id($id = 0) {
         global $database;
-        $result_array = self::find_by_sql("SELECT * FROM " . self::$table_name . " WHERE us_id=1 LIMIT 1");
+        $result_array = self::find_by_sql("SELECT * FROM " . self::$table_name . " WHERE us_id={$id} LIMIT 1");
         return !empty($result_array) ? array_shift($result_array) : false;
     }
 
     public static function find_by_username($username = "") {
         global $database;
-        $result_array = self::find_by_sql("SELECT * FROM " . self::$table_name . " WHERE us_name='{$us_name}' LIMIT 1");
+        $result_array = self::find_by_sql("SELECT * FROM " . self::$table_name . " WHERE us_name='{$username}' LIMIT 1");
         return !empty($result_array) ? array_shift($result_array) : false;
     }
 
@@ -115,13 +121,17 @@ class User {
 				$user->rights [RIGHT_DELETE_DOC] = true;
 				$user->rights [RIGHT_VIEW_DOC] = true;
 				$user->rights [RIGHT_USER_CONTROL] = true;
+				$user->rights [RIGHT_LOG_HISTORY] = true;
 				break;
 			case USER_LEVEL_2 :
+				$user->rights [RIGHT_INSERT_DOC] = true;
 				$user->rights [RIGHT_EDIT_DOC] = true;
 				$user->rights [RIGHT_DELETE_DOC] = true;
 				$user->rights [RIGHT_VIEW_DOC] = true;
 				break;
 			case USER_LEVEL_3 :
+				$user->rights [RIGHT_INSERT_DOC] = true;
+				$user->rights [RIGHT_EDIT_DOC] = true;
 				$user->rights [RIGHT_VIEW_DOC] = true;
 				break;
 		}
@@ -160,7 +170,8 @@ class User {
     public function create_user() {
         global $database;
         //create hash before insert
-        $this->password = self::get_encrypted_password($this->password);
+        $this->us_salt = base64_encode(mcrypt_create_iv(16));
+        $this->us_pass = self::get_encrypted_password($this->us_pass, $this->us_salt);
 
         $attributes = $this->attributes();
 
@@ -228,9 +239,15 @@ class User {
         return($database->affected_rows() == 1) ? true : false;
     }
 
-    static function get_encrypted_password($password) {
-        return md5($password);
+    static function get_encrypted_password($password, $salt) {
+        //return sha1($password+$salt);
+        return hash("sha512", $password+$salt);
     }
+    
+//     static function set_encrypted_password($password) {
+//     	$salt = mcrypt_create_iv(16);
+//     	return sha1($password+$salt);
+//     }
 
     function update_username() {
         $this->validate_user(array('username'));
@@ -287,7 +304,8 @@ class User {
     public function isAuthorized($right){
     	return ($this->rights[$right]);
     }
-
+	
+    
 }
 
 ?>

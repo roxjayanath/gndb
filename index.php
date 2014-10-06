@@ -7,6 +7,8 @@ if ($session->is_logged_in ()) {
 	redirect_to ( "admin_home.php" );
 	$message = "Login Success wrong with admin page";
 }
+
+//echo hash("sha512", "1");
 ?>
 
 <!DOCTYPE html>

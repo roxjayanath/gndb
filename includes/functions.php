@@ -131,4 +131,20 @@ function createRandomCode($string) {
 
 } 
 
+function checkAuthorized($right){
+	global $session;
+	if (!$session->is_logged_in()) {
+		redirect_to("index.php");
+	} else if(!empty($session->user_id)){
+		$user = User::find_by_id($session->user_id);
+		if(empty($user)){
+			redirect_to("index.php");
+		} else if(!$user->isAuthorized($right)){
+			redirect_to("admin_home.php");
+		}
+	} else {
+		redirect_to("index.php");
+	}
+}
+
 ?>

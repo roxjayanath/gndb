@@ -7,6 +7,7 @@ if(!$session->is_logged_in()){
 if (!empty($session)) {
 	$user = User::find_by_id($session->user_id);
 }
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -60,12 +61,13 @@ if (!empty($session)) {
         
         </div>
         <?php } ?>
+        <?php if($user->rights[RIGHT_LOG_HISTORY]){ ?>
         <div id="edit_product" class="my_style">
         	<a href="log_histry.php" class="profile_link">
             <p class="toc2">Log Hisotry</p></a>
         
         </div>
-        
+        <?php } ?>
        <!-- <div id="remove_product" class="my_style">
         	<a href="list_photos.php" class="profile_link">
             <p class="toc2">Remove Product</p></a>

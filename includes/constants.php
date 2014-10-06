@@ -21,4 +21,5 @@ define("RIGHT_EDIT_DOC", "edit_document");
 define("RIGHT_VIEW_DOC", "view_document");
 define("RIGHT_DELETE_DOC", "delete_document");
 define("RIGHT_USER_CONTROL", "user_control");
+define("RIGHT_LOG_HISTORY", "log_history");
 
