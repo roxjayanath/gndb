@@ -17,27 +17,35 @@ class Product extends DatabaseObject {
     public $d_id;
     public $cor_non;
     public $cr_brd;
+    
     public $reference;
     public $requester;
     public $unit;
+    
     public $contact_p;
     public $date_sub;
     public $description;
+    
     public $date_reciv_it;
     public $smrc_date;
     public $smrc_status;
+    
      public $priority;
      public $date_develop;
      public $date_temo;
+     
      public $remarks;
     public $develop_r_date;
     public $document_complet;
+    
      public $date_hand_qa;
      public $qa_complete;
      public $date_back_it;
+     
     public $release_date;
     public $status;
      public $scan_doc1;
+     
      public $scan_doc2;
      public $scan_doc3;
      

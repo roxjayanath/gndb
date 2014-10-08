@@ -3,9 +3,9 @@ require_once("includes/initialize.php");
 
 
 
-//if (!$session->is_logged_in()) {
-    //redirect_to("login.php");
-//}
+if (!$session->is_logged_in()) {
+    redirect_to("login.php");
+}
 
 
 
@@ -32,46 +32,35 @@ require_once("includes/initialize.php");
         array_unshift($cat_type[$cat->id], $cat_type_all);
     }
     
-}
+}*/
 
 ?>
 
 <?php
-$page = !empty($_GET['page']) ? (int) $_GET['page'] : 1;
 
-$per_page = 3;
-
-
-
-
-
-
-$prod_name = !empty($_REQUEST['prod_name']) ? $_REQUEST['prod_name'] : '';
-$prod_cat = !empty($_REQUEST['prod_cat']) ? $_REQUEST['prod_cat'] : '';
-$prod_typ = !empty($_REQUEST['prod_typ']) ? $_REQUEST['prod_typ'] : '';
-
-$searchString = Product::get_search_string($prod_name, $prod_cat,$prod_typ);
-//var_dump($searchString);
-
-$total_count = Product::count_all($searchString);
+ $page=!empty($_GET['page'])?(int)$_GET['page'] : 1;
+    
+    $per_page= 10;
+    
+    $total_count= Product::count_all();
+    
 
 
 
-
-//  $photos= Photograph::find_all();
-
-$pagination = new Pagination($page, $per_page, $total_count);
-
-$sql = "SELECT * FROM product ";
-//search
-$sql .= $searchString;
-$sql .= "LIMIT {$per_page} ";
-$sql .= "OFFSET {$pagination->offset()}";
-
-//echo $sql;
+  //  $photos= Photograph::find_all();
+  
+  $pagination = new Pagination($page,$per_page,$total_count);
+  
+  $sql = "SELECT * FROM ndb_doc ";
+  $sql .= "LIMIT {$per_page} ";
+  $sql .= "OFFSET {$pagination->offset()}";
+  
+  $photos = Product::find_by_sql($sql);
 
 
-$photos = Product::find_by_sql($sql); */
+
+
+
 ?>
 
 
@@ -114,7 +103,7 @@ $photos = Product::find_by_sql($sql); */
             }
 </style>
  
- <center><h1 class="main_toc">Delete Product</h1></center>
+ <center><h1 class="main_toc">View Document</h1></center>
  <?php require_once('layouts/header2.php'); ?>
       
       
@@ -128,56 +117,137 @@ $photos = Product::find_by_sql($sql); */
 		<input type="hidden" name="page" value="1" />	      
       	<table class="search_tabel" cellpadding="5px">
             <tr>
-            <th>Product Name</th>
+            <th>Reference Name</th>
             <th><input type="text" name="prod_name" value="<?php //echo $prod_name ?>" /></th>
-            <th>Catagorey</th>
-            <th><select name="prod_cat">
-            <?php
-            foreach ($prod_cat_array as $cat) {
-                $selected = ($cat->id == $prod_cat) ? 'selected' : '';
-                echo "<option value='$cat->id' $selected>$cat->category</option>";
-            }
-            ?>
-            <!--                    <option value="0">All</option>
-                                <option value="Men">Men</option>
-                                <option value="Kids">Kids</option>-->
-        </select></th>
-            <th>Type</th>
-            <th><?php
-//                    foreach($prod_typ_array as $val => $name){
-//                        $selected = ($val == $prod_typ) ? 'selected' : '';
-//                        echo "<option value='$val' $selected>$name</option>";                        
-//                    }                    
-        ?>
-            <option value="0">All</option>
-            <option value="Men">Men</option>
-            <option value="Kids">Kids</option>
-        </select>
-        <?php
-        if (!empty($cat_type)) {
-            $i = 0;
-            foreach ($cat_type as $key => $value) {
-                $i++;
-                $style = $i > 1 ? 'style="display:none"' : '';
-                ?>
-                <select name="prod_typ_<?php echo $key ?>" <?php echo $style ?>> 
-                    <?php
-                    if (!empty($value)) {
-                        foreach ($value as $val) {
-                            ?>
-                            <option value="<?php echo $val->id ?>"><?php echo $val->type ?></option>
-                            <?php
-                        }
-                    }
-                    ?>
-                </select>
-                <?php
-            }
-        }
-        ?></th>
+            <th>CR/BRD/REPORT : <select name="crr">
+	    <option value="All">All</option>
+             <option value="CR">CR</option>
+             <option value="BRD">BRD</option>
+             <option value="REPORT">REPORT</option>
+  
+           </select></th>
+            
             <th ><input type="button" name="submit" value="Search" onclick="getProductList()" /></th>
             </tr>
             </table>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 <?php echo output_message($message);?>
+	   
+	   
+	 <center>  <table class="customer" cellpadding="6px" cellspacing="10px">
+            <tr class="head_row">
+                <th class="head_toc">ID</th>
+                <th class="head_toc">Core / NonCore</th>
+                <th class="head_toc">CR/BRD/REPORT</th>
+                <th class="head_toc">Date Submit</th>
+                <th class="head_toc">Description</th>
+		<th class="head_toc">Date Recived (IT)</th>
+                <th class="head_toc">SMRC Reviewed Date</th>
+                <th class="head_toc">SMRC Status</th>		
+                <th class="head_toc">Prority</th>		
+                <th class="head_toc">Date Hand Over To Development</th>
+		<th class="head_toc">Date Hand Over To Temonors/FLS</th>
+                <th class="head_toc">Remarks</th>
+                <th class="head_toc">Development Reviewed Date</th>
+                <th class="head_toc">Documantation Complete/not</th>		
+                <th class="head_toc">Date Hand Over TO QA</th>
+		<th class="head_toc">QA Testing Competed ON</th>
+                <th class="head_toc">Date Hand Over To IT Ops </th>
+                <th class="head_toc">Release Date</th>		
+                <th class="head_toc">Status</th>
+		
+		
+                
+                
+                
+                <th>&nbsp;</th>
+            </tr>
+            <?php foreach($photos as $photo): ?>
+            
+            <tr>
+                
+                <td><?php echo $photo->d_id;?></td>
+                <td><?php echo $photo->cor_non;?></td>
+		<td><?php echo $photo->cr_brd;?></td>
+		
+		<td><?php echo $photo->reference;?></td>
+                <td><?php echo $photo->requester;?></td>
+		<td><?php echo $photo->unit;?></td>
+		
+		<td><?php echo $photo->contact_p;?></td>
+                <td><?php echo $photo->date_sub;?></td>
+		<td><?php echo $photo->description;?></td>
+		
+		<td><?php echo $photo->date_reciv_it;?></td>
+                <td><?php echo $photo->smrc_date;?></td>
+		<td><?php echo $photo->smrc_status;?></td>
+		
+		<td><?php echo $photo->priority;?></td>
+                <td><?php echo $photo->date_develop;?></td>
+		<td><?php echo $photo->date_temo;?></td>
+		
+		<td><?php echo $photo->remarks;?></td>
+                <td><?php echo $photo->develop_r_date;?></td>
+		<td><?php echo $photo->document_complet;?></td>
+		
+		<td><?php echo $photo->date_hand_qa;?></td>
+                <td><?php echo $photo->qa_complete;?></td>
+		<td><?php echo $photo->date_back_it;?></td>
+		
+		<td><?php echo $photo->release_date;?></td>
+                <td><?php echo $photo->status;?></td>
+		<td><?php echo $photo->scan_doc1;?></td>
+		
+		<td><?php echo $photo->scan_doc2;?></td>
+		<td><?php echo $photo->scan_doc3;?></td>
+		
+		
+		
+	
+		
+                
+                <td>
+                <!--<a href="comments.php?id=<?php echo $photo->id;?>"> -->
+                <?php //echo count($photo->comments());?></td>
+                </a>
+                <td><!--<a href="viewcusmore.php?id=<?php //echo $photo->id;?>">View</a>--><a href=#>Edit</a> </td>
+               <!-- <td><a href="delete_admin.php?id=<?php //echo $photo->id;?>">Delete</a></td>
+                 -->
+            </tr>
+            
+            <?php endforeach;?>
+            
+            
+            
+           </table></center>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
             
            
            

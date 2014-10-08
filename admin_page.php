@@ -1,18 +1,17 @@
 <?php
 require_once("includes/initialize.php");
-// if (!$session->is_logged_in()) {
-//    redirect_to("index.php"); 
-// } else if(!empty($session->user_id)){
-// 	$user = User::find_by_id($session->user_id);
-// 	if(empty($user)){
-// 		redirect_to("index.php");
-// 	} else if(!$user->isAuthorized(RIGHT_INSERT_DOC)){
-// 		redirect_to("admin_home.php");
-// 	}
-// } else {
-// 	redirect_to("index.php");
-// }
-checkAuthorized(RIGHT_INSERT_DOC);
+if (!$session->is_logged_in()) {
+   redirect_to("index.php"); 
+} else if(!empty($session->user_id)){
+	$user = User::find_by_id($session->user_id);
+	if(empty($user)){
+		redirect_to("index.php");
+	} else if(!$user->isAuthorized(RIGHT_INSERT_DOC)){
+		redirect_to("admin_home.php");
+	}
+} else {
+	redirect_to("index.php");
+}
 ?>
 
 <?php

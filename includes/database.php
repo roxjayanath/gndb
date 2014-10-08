@@ -20,14 +20,14 @@ class MySQLDatabase {
    }
    
    public function open_connection(){
-        $this->connection = mysql_connect(DB_SERVER,DB_USER,DB_PASS);
+        $this->connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASS);
         if(!$this->connection){
-            die("Database connection failed :".mysql_error());
+            die("Database connection failed :".mysqli_error());
             
         }else{
-            $db_select = mysql_select_db(DB_NAME,$this->connection);
+            $db_select = mysqli_select_db($this->connection,DB_NAME);
             if(!$db_select){
-                die("Database selection failed ".mysql_error());
+                die("Database selection failed ".mysqli_error());
             }
             
         }
@@ -35,7 +35,7 @@ class MySQLDatabase {
    public function close_connection(){
     
     if(isset($this->connection)){
-        mysql_close($this->connection);
+        mysqli_close($this->connection);
         unset($this->connection);
     }
     
@@ -43,7 +43,7 @@ class MySQLDatabase {
    
    public function query($sql){
     $this->last_query=$sql;
-    $result = mysql_query($sql,$this->connection);
+    $result = mysqli_query($this->connection,$sql);
     $this->comfirm_query($result);
     return $result;
    }
@@ -64,16 +64,16 @@ class MySQLDatabase {
         }  
    
    public function num_rows($result_set){
-    return mysql_num_rows($result_set);
+    return mysqli_num_rows($result_set);
    }
    
    public function insert_id(){
-    return mysql_insert_id($this->connection);
+    return mysqli_insert_id($this->connection);
     
    }
    
    public function affected_rows(){
-    return mysql_affected_rows($this->connection);
+    return mysqli_affected_rows($this->connection);
    }
    
    
@@ -81,12 +81,12 @@ class MySQLDatabase {
    
    
    public function fetch_array($result_set){
-    return mysql_fetch_array($result_set);
+    return mysqli_fetch_array($result_set);
    }
    
   private function comfirm_query($result){
     if(!$result){
-        $output = "Database query failed: ".mysql_error()."<br/><br/>";
+        $output = "Database query failed: ".mysqli_error()."<br/><br/>";
         $output .="Last SQL query: ".$this->last_query;
         die($output);
     }

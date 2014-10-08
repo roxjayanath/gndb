@@ -4,28 +4,36 @@
         	<p class="toc_control">Document Controls</p>
         </div>
 	
+	<?php if(!empty($user->rights)){ ?>
+	<?php if($user->rights[RIGHT_INSERT_DOC]){ ?>
+	
 	<div id="my_profile" class="my_style">
         	<a href="admin_page.php" class="profile_link"><p class="toc">Insert Document</p></a>
         
         </div>
-        
+        <?php } ?>
+	
+	<?php if($user->rights[RIGHT_EDIT_DOC]){ ?>
         <div id="my_profile" class="my_style">
         	<a href="viwe_document.php" class="profile_link"><p class="toc">View Document</p></a>
         
         </div>
-        
+        <?php } ?>
+	 <?php if($user->rights[RIGHT_VIEW_DOC]){ ?>
         <div id="edit_profile" class="my_style">
         	<a href="edit_document.php" class="profile_link"><p class="toc">Edit Document</p></a>
         
         </div>
-        
+        <?php } ?>
+        <?php if($user->rights[RIGHT_DELETE_DOC]){ ?>
        
         
         <div id="new_admin" class="my_style">
         	<a href="delete_document.php" class="profile_link"><p class="toc">Delete Document</p></a>
         
         </div>
-        
+        <?php } ?>
+	<?php } ?>
        <!-- <div id="invoice" class="my_style">
         	<a href="wive_invoice.php" class="profile_link"><p class="toc">Viwe Invoice</p></a>
         
