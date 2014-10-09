@@ -54,7 +54,7 @@ class MySQLDatabase {
             if($this->magic_quotes_active){
                 $value=stripcslashes($value);
             }
-            $value=mysql_real_escape_string($value);
+            $value=mysqli_real_escape_string($this->connection,$value);
         }else{
             if(!$this->magic_quotes_active){
                 $value=addcslashes($value);
@@ -86,7 +86,7 @@ class MySQLDatabase {
    
   private function comfirm_query($result){
     if(!$result){
-        $output = "Database query failed: ".mysqli_error()."<br/><br/>";
+        $output = "Database query failed: ".mysqli_error($this->connection)."<br/><br/>";
         $output .="Last SQL query: ".$this->last_query;
         die($output);
     }

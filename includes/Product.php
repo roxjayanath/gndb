@@ -149,7 +149,7 @@ class Product extends DatabaseObject {
 
     public static function find_by_id($id = 0) {
         global $database;
-        $result_array = self::find_by_sql("SELECT * FROM " . self::$table_name . " WHERE id=" . $database->escape_value($id) . " LIMIT 1");
+        $result_array = self::find_by_sql("SELECT * FROM " . self::$table_name . " WHERE d_id=" . $database->escape_value($id) . " LIMIT 1");
         return !empty($result_array) ? array_shift($result_array) : false;
     }
 
@@ -257,7 +257,7 @@ class Product extends DatabaseObject {
         //var_dump($attributes);
         $sql = "UPDATE " . self::$table_name . " SET ";
         $sql .= join(", ", $attribute_pairs);
-        $sql .= " WHERE id=" . $database->escape_value($this->id);
+        $sql .= " WHERE d_id =". $database->escape_value($this->d_id);
 
 //        if ($this->uploadFile()) {
 //            $database->query($sql);
@@ -272,6 +272,17 @@ class Product extends DatabaseObject {
 
         return FALSE;
     }
+	
+	function update_document() {
+        //$this->validate_user(array('username'));
+        if (empty($this->errors)) {
+            return $this->update();
+        } else {
+            return false;
+        }
+    }
+	
+	
     
     public function delete_one($potoid){
          global $database;

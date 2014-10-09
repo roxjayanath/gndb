@@ -17,7 +17,7 @@ if(!$session->is_logged_in()){
    
    $photo=User::find_by_id($_GET['id']);
    
-   if($photo->id==1){
+   if($photo->us_id==1){
     $session->message("The admin {$photo->us_name} cant delete");
     redirect_to('editadmin.php');
    }

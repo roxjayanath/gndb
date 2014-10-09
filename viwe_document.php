@@ -108,6 +108,8 @@ a {
 				<th>Reference Name</th>
 				<th><input type="text" name="prod_name"
 					value="<?php echo $reference ?>" /></th>
+					<th><input type="submit" name="sub" value="Search"
+					onclick="submitSearch()" /></th>
 				<th>CR/BRD/REPORT : <select name="crr" onchange="submitSearch()">
 						<?php foreach ($allCats as $key => $value){
 							$selected = ($selectedCrr == $key) ? "selected" : "";
@@ -118,8 +120,7 @@ a {
 
 				</select></th>
 
-				<th><input type="submit" name="sub" value="Search"
-					onclick="submitSearch()" /></th>
+				
 			</tr>
 		</table>
 	
@@ -142,8 +143,8 @@ a {
 	
 	 <?php echo output_message($message);?>
 	   
-	   
-<<<<<<< HEAD
+	    
+<!--  <<<<<<< HEAD  -->
 	 <center>  <table class="customer" cellpadding="6px" cellspacing="10px">
             <tr class="head_row">
                 <th class="head_toc">ID</th>
@@ -154,12 +155,12 @@ a {
 		<th class="head_toc">Reference</th>
                 <th class="head_toc">Requester</th>
 		<th class="head_toc">unit</th>
-		<th class="head_toc">Contact Person</th>
+	<!--	<th class="head_toc">Contact Person</th> -->
 		
 		
 		
                 <th class="head_toc">Date Submit</th>
-                <th class="head_toc">Description</th>
+              <!--  <th class="head_toc">Description</th>
 		<th class="head_toc">Date Recived (IT)</th>
                 <th class="head_toc">SMRC Reviewed Date</th>
                 <th class="head_toc">SMRC Status</th>		
@@ -172,7 +173,7 @@ a {
                 <th class="head_toc">Date Hand Over TO QA</th>
 		<th class="head_toc">QA Testing Competed ON</th>
                 <th class="head_toc">Date Hand Over To IT Ops </th>
-                <th class="head_toc">Release Date</th>		
+                <th class="head_toc">Release Date</th>	 -->	
                 <th class="head_toc">Status</th>
 		
 		
@@ -181,8 +182,8 @@ a {
                 
                 <th>&nbsp;</th>
             </tr>
-=======
-	 <center>
+<!-- =======
+	<!-- <center>
 			<table class="customer" cellpadding="6px" cellspacing="10px">
 				<tr class="head_row">
 					<th class="head_toc">ID</th>
@@ -211,7 +212,7 @@ a {
 
 					<th>&nbsp;</th>
 				</tr>
->>>>>>> origin/master
+>>>>>>> origin/master   -->
             <?php foreach($photos as $photo): ?>
             
             <tr>
@@ -224,34 +225,10 @@ a {
 					<td><?php echo $photo->requester;?></td>
 					<td><?php echo $photo->unit;?></td>
 
-					<td><?php echo $photo->contact_p;?></td>
+					
 					<td><?php echo $photo->date_sub;?></td>
-					<td><?php echo $photo->description;?></td>
-
-					<td><?php echo $photo->date_reciv_it;?></td>
-					<td><?php echo $photo->smrc_date;?></td>
-					<td><?php echo $photo->smrc_status;?></td>
-
-					<td><?php echo $photo->priority;?></td>
-					<td><?php echo $photo->date_develop;?></td>
-					<td><?php echo $photo->date_temo;?></td>
-
-					<td><?php echo $photo->remarks;?></td>
-					<td><?php echo $photo->develop_r_date;?></td>
-					<td><?php echo $photo->document_complet;?></td>
-
-					<td><?php echo $photo->date_hand_qa;?></td>
-					<td><?php echo $photo->qa_complete;?></td>
-					<td><?php echo $photo->date_back_it;?></td>
-
-					<td><?php echo $photo->release_date;?></td>
 					<td><?php echo $photo->status;?></td>
-					<td><?php echo $photo->scan_doc1;?></td>
-
-					<td><?php echo $photo->scan_doc2;?></td>
-					<td><?php echo $photo->scan_doc3;?></td>
-
-
+					
 
 
 
@@ -262,7 +239,7 @@ a {
 					</a>
 					<td>
 						<!--<a href="viewcusmore.php?id=<?php //echo $photo->id;?>">View</a>-->
-						<a href=#>View</a>
+						<a href="view_click.php?id=<?php echo $photo->d_id; ?>">View</a>
 					</td>
 					<!-- <td><a href="delete_admin.php?id=<?php //echo $photo->id;?>">Delete</a></td>
                  -->

@@ -60,7 +60,7 @@ if(!$session->is_logged_in()){
                 
                 <td><?php echo $photo->us_id;?></td>
                 <td><?php echo $photo->us_name;?></td>
-                <td><?php echo $photo->us_pass;?></td>
+                <td><?php //echo $photo->us_pass;?>*********************</td>
                 
                 <td>
                 <!--<a href="comments.php?id=<?php echo $photo->id;?>"> -->
