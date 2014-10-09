@@ -156,6 +156,15 @@ if (!$session->is_logged_in()) {
                 <th class="head_toc">ID</th>
                 <th class="head_toc">Core / NonCore</th>
                 <th class="head_toc">CR/BRD/REPORT</th>
+		
+		
+		<th class="head_toc">Reference</th>
+                <th class="head_toc">Requester</th>
+		<th class="head_toc">unit</th>
+		<th class="head_toc">Contact Person</th>
+		
+		
+		
                 <th class="head_toc">Date Submit</th>
                 <th class="head_toc">Description</th>
 		<th class="head_toc">Date Recived (IT)</th>
