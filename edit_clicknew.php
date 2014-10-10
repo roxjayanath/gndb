@@ -298,7 +298,8 @@ require_once('layouts/header1.php');
   
            </select></p>
         <p class="detailll">Reference : <input type="text" name="reference" class="about_userrrr" value="<?php echo $photo->reference; ?>" /></p>
-        <p class="detailll">Requester : <input type="text" name="requester" class="about_userrrr" value="<?php echo $photo->requester; ?>"/></p>
+        <p class="detailll">Requester : <input type="text" class="datepicker"name="date_req" /> <input type="text" name="requester" class="about_userrrr" /></p>
+        <p class="detailll">Unit : <input type="text" name="requester" class="about_userrrr" value="<?php echo $photo->requester; ?>"/></p>
         <p class="detailll">Unit : <input type="text" name="unit"  class="about_userrrr" value="<?php echo $photo->unit; ?>"/></p>
         <p class="detailll">Contact Person : <input type="text" name="contact_p" class="about_userrrr" value="<?php echo $photo->contact_p; ?>"/></p>
         <p class="detailll">Date Submit : <input type="text" class="datepicker"name="date_sub" value="<?php echo $photo->date_sub; ?>"/></p>
@@ -316,7 +317,13 @@ require_once('layouts/header1.php');
         <p class="detailll">QA Testing Competed ON : <input type="text" class="datepicker" name="qa_complete" value="<?php echo $photo->qa_complete;?>"/></p>
         <p class="detailll">Date Hand Over To IT Ops : <input type="text" class="datepicker" name="date_back_it" value="<?php echo $photo->date_back_it;?>"/></p>
         <p class="detailll">Release Date : <input type="text" class="datepicker" name="release_date" value="<?php echo $photo->release_date;?>"/></p>
-        <p class="detailll">Status : <input type="text"  name="status" class="about_userrrr" value="<?php echo $photo->status;?>"/></p>
+        <p class="detailll">Status : <select name="core" class="about_userrrr">
+             <option value="pending">Pending</option>
+             <option value="completed">Completed</option>
+              <option value="rejected">Rejected</option>
+               <option value="close">Close</option>
+                <option value="new">New</option>
+           </select></p>
         <p class="detailll">Scan Document 1 : <input type="file" class="box" name="pdf1" /></p>
         <p class="detailll">Scan Document 2 : <input type="file" class="box"  name="pdf2" /></p>
         <p class="detailll">Scan Document 3 : <input type="file" class="box" name="pdf3"  /></p>
