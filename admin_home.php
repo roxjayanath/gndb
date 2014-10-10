@@ -68,13 +68,13 @@ if (!empty($session)) {
         
         </div>
         <?php } ?>
-       <!-- <div id="remove_product" class="my_style">
-        	<a href="list_photos.php" class="profile_link">
-            <p class="toc2">Remove Product</p></a>
+        <div id="remove_product" class="my_style">
+        	<a href="charts.php" class="profile_link">
+            <p class="toc2">View Reports</p></a>
         
         </div>
         
-        <div id="customer" class="my_style">
+       <!-- <div id="customer" class="my_style">
         	<a href="#" class="profile_link">
             <p class="toc">Viwe Customer</p></a>
         
