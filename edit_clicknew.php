@@ -56,9 +56,13 @@ if (isset($_POST['submit'])) {
     //$product = Product::::find_by_id($photo->d_id);
     
     $product = new Product();
-   // $product->attach_file($_FILES['pdf1'], 1);
-  //  $product->attach_file($_FILES['pdf2'], 2);
-   // $product->attach_file($_FILES['pdf3'], 3);
+    
+    $product->d_id = $_POST['id'];
+    
+    $product->attach_file($_FILES['pdf1'], 1);
+    $product->attach_file($_FILES['pdf2'], 2);
+    $product->attach_file($_FILES['pdf3'], 3);
+    
     
     
     $product->cor_non= $_POST['core'];
@@ -191,59 +195,9 @@ require_once('layouts/header1.php');
     }
 </script>
 
-<div style="margin-left: 20px;">
-    <div style="height:225px">
-        <div class="large_img_container">
-            <img src="../<?php// echo $photo->image_path(); ?>" width="300"/>
-        </div>
-
-        <!--<div class="small_img_container">
-            <?php if (!empty($photo->image_2)) {
-                ?>
-                <img src="../<?php echo $photo->image_path(2); ?>" width="100"/>
-                <a href="delete_one_photo.php?id=<?php echo $photo->id;  ?>&photo=2">Delete</a>
-            <?php } else {
-                ?>
-                <div class="no_img_div border_right_none"></div>
-                <?php
-            }
-            ?>
-        </div>
-
-
-      <!--  <div class="small_img_container">
-            <?php if (!empty($photo->image_3)) {
-                ?>
-                <img src="../<?php echo $photo->image_path(3); ?>" width="100"/>
-                <a href="delete_one_photo.php?id=<?php echo $photo->id;  ?>&photo=3">Delete</a>
-            <?php } else {
-                ?>
-                <div class="no_img_div border_right_none"></div> 
-                <?php
-            }
-            ?>
-        </div>
-
-
-        <div class="small_img_container">
-            <?php if (!empty($photo->image_4)) {
-                ?>
-                <img src="../<?php echo $photo->image_path(4); ?>" width="100"/>
-                <a href="delete_one_photo.php?id=<?php echo $photo->id;  ?>&photo=4">Delete</a>
-            <?php } else {
-                ?>
-                <div class="no_img_div"></div>   
-                <?php
-            }
-            ?>
-        </div> -->
-
-
-    </div>
+<div style="margin-left: 20px;float:left;">
+    
     <div>
-	<br>
-	<br>
-	<br>
          <br>ID : <?php echo $photo->d_id;?>
         <br>Core / NonCore : <?php echo $photo->cor_non;?>
         <br>CR/BRD/REPORT :<?php echo $photo->cr_brd;?>
@@ -268,23 +222,20 @@ require_once('layouts/header1.php');
         <br>Date Hand Over To IT Ops :<?php echo $photo->date_back_it;?>
         <br>Release Date :<?php echo $photo->release_date;?>
         <br>Status :<?php echo $photo->status;?>
+        <br>
+        <br>Scan document 1 : <?php echo $photo->scan_doc1; ?>
+        <br>Scan document 2 : <?php echo $photo->scan_doc2; ?>
+        <br>Scan document 3 : <?php echo $photo->scan_doc3; ?>
             
     </div>
-</div>
 
 
 
-<div id="admin_content">
+
+<div id="admin_content" style="margin-left: 0px">
     <!--<center><h3>Add Product</h3></center>-->
     <form action="edit_clicknew.php" enctype="multipart/form-data" method="post">
-        
-		
-		
-		
-		
-        
-        
-        
+        <input type="hidden" name="id" value="<?php echo isset($_REQUEST['id']) ? $_REQUEST['id'] : 0; ?>" />
         <p class="detailll" >Core / NonCore : <select name="core" class="about_userrrr">
              <option value="Core">Core</option>
              <option value="NonCore">NonCore</option>
@@ -317,7 +268,7 @@ require_once('layouts/header1.php');
         <p class="detailll">QA Testing Competed ON : <input type="text" class="datepicker" name="qa_complete" value="<?php echo $photo->qa_complete;?>"/></p>
         <p class="detailll">Date Hand Over To IT Ops : <input type="text" class="datepicker" name="date_back_it" value="<?php echo $photo->date_back_it;?>"/></p>
         <p class="detailll">Release Date : <input type="text" class="datepicker" name="release_date" value="<?php echo $photo->release_date;?>"/></p>
-        <p class="detailll">Status : <select name="core" class="about_userrrr">
+        <p class="detailll">Status : <select name="status" class="about_userrrr">
              <option value="pending">Pending</option>
              <option value="completed">Completed</option>
               <option value="rejected">Rejected</option>
@@ -363,6 +314,7 @@ require_once('layouts/header1.php');
         </center>
 
     </form>
+</div>
 </div>
 
 </div>
