@@ -194,6 +194,17 @@ require_once('layouts/header1.php');
         });
 
         $(".datepicker").datepicker();
+
+        //myFunction();
+
+//         $(".tabbertab").click(function(){
+//             alert("clicked");
+// 			if($(this).parent() == $(".tabbertab:first")){
+// 				$("#sub, #canc").hide();
+// 			} else {
+// 				$("#sub, #canc").show();
+// 			}
+//         });
     });
 
     function showCategoryOptions() {
@@ -207,7 +218,8 @@ require_once('layouts/header1.php');
 <script>
 function myFunction() {
     document.getElementById("sub").style.visibility = "hidden";
-    document.getElementsByName("submit".style.visibility = "hidden");
+	document.getElementById("canc").style.visibility = "hidden";
+    //document.getElementsByName("submit".style.visibility = "hidden";
 }
 </script>
 
@@ -396,7 +408,7 @@ function myFunction() {
                 <input type="submit" value="Update" name="submit" class="create_button" id="sub" >
             </p>
             <p >
-                <input type="reset" value="Cancel" name="cancel" class="create_button">
+                <input type="reset" value="Cancel" name="cancel" class="create_button" id="canc">
             </p>
             </p></p>
         </center>
