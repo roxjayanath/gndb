@@ -144,6 +144,11 @@ require_once('layouts/header1.php');
 <script src="javascrpits/jquery-1.8.3.min.js" ></script>
 <script src="javascrpits/jquery-ui.js" ></script>
 
+
+<script type="text/javascript" src="javascrpits/tabber.js"></script>
+<link rel="stylesheet" href="css/example.css" TYPE="text/css" MEDIA="screen">
+<link rel="stylesheet" href="css/example-print.css" TYPE="text/css" MEDIA="print">
+
 <script>
     $(function() {
         showCategoryOptions();
@@ -162,45 +167,76 @@ require_once('layouts/header1.php');
     }
 </script>
 
+
+
+
+
 <div id="admin_content">
     <!--<center><h3>Add Product</h3></center>-->
     <form action="admin_page.php" enctype="multipart/form-data" method="post">
         
         
         
-        
-        <p class="detailll" >Core / NonCore : <select name="core" class="about_userrrr">
+        <div class="tabber">
+
+     <div class="tabbertab">
+	  <h2>Page 1</h2>
+	  <p> <p class="detailll" >Core / NonCore : <select name="core" class="detailindate1">
              <option value="Core">Core</option>
              <option value="NonCore">NonCore</option>
              
   
-           </select></p>
-        <p class="detailll"> CR/BRD/REPORT : <select name="crr" class="about_userrrr">
+           </select></p><p class="detailll" > CR/BRD/REPORT : <select name="crr" class="detailindate2">
              <option value="CR">CR</option>
              <option value="BRD">BRD</option>
              <option value="REPORT">REPORT</option>
   
            </select></p>
-        <p class="detailll">Reference : <input type="text" name="reference" class="about_userrrr" /></p>
-        <p class="detailll">Requester :<input type="text" class="datepicker"name="date_req" /> <input type="text" name="requester" class="about_userrrr" /></p>
-        <p class="detailll">Unit : <input type="text" name="unit"  class="about_userrrr"/></p>
-        <p class="detailll">Contact Person : <input type="text" name="contact_p" class="about_userrrr"/></p>
+          
+           <p class="detailll">Reference : <input type="text" name="reference" class="detailindate3" /></p>
+        <p class="detailll">Requester :<input type="text" class="datepicker"name="date_req" /> <input type="text" name="requester" class="detailindate4" /></p>
+        <p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p>
+        
+         <p class="detailll">Contact Person : <input type="text" name="contact_p" class="detailindate6"/></p>
         <p class="detailll">Date Submit : <input type="text" class="datepicker"name="date_sub" /></p>
-        <p class="detailll">Description : <textarea name="description" class="about_userrrr"></textarea></p>
-        <p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" /></p>
+        <p class="detailll">Description : <textarea name="description" class="detailindate7"></textarea></p>
+        <p class="detailll">Date Recived (IT): <input type="text" class="datepicker8" name="date_reciv_it" /></p>
+          
+          
+          </p>
+     </div>
+
+
+     <div class="tabbertab">
+	  <h2>Page 2</h2>
+	  <p>
+            
+            
         <p class="detailll">SMRC Reviewed Date : <input type="text" class="datepicker" name="smrc_date" /></p>
-        <p class="detailll">SMRC Status : <input type="text" name="smrc_status" class="about_userrrr"/></p>
-        <p class="detailll">Priority : <input type="text"  name="priority" class="about_userrrr"/></p>
-        <p class="detailll">Date Hand Over To Development : <input type="text" class="datepicker" name="date_develop" /></p>
+        <p class="detailll">SMRC Status : <input type="text" name="smrc_status" class="detailindate10"/></p>
+        <p class="detailll">Priority : <input type="text"  name="priority" class="detailindate11"/></p>
+        <p class="detailll">Date Hand Over <br> To Development : <input type="text" class="datepicker" name="date_develop" /></p>
         <p class="detailll">Date Hand Over To Temonors/FLS : <input type="text" class="datepicker"name="date_temo" /></p>
-        <p class="detailll">Remarks : <textarea name="remarks" class="about_userrrr"></textarea></p>
+        <p class="detailll">Remarks : <textarea name="remarks" class=""></textarea></p>
+        
         <p class="detailll">Development Reviewed Date : <input type="text" class="datepicker" name="develop_r_date" /></p>
-        <p class="detailll">Documantation Complete/not : <input type="text" name="document_complet" class="about_userrrr"/></p>
-        <p class="detailll">Date Hand Over TO QA : <input type="text" class="datepicker" name="date_hand_qa" /></p>
+        <p class="detailll">Documantation Complete/not : <input type="text" name="document_complet" class=""/></p>
+            
+            
+            
+          </p>
+     </div>
+
+
+     <div class="tabbertab">
+	  <h2>Page 3</h2>
+	  <p>
+            
+             <p class="detailll">Date Hand Over TO QA : <input type="text" class="datepicker" name="date_hand_qa" /></p>
         <p class="detailll">QA Testing Competed ON : <input type="text" class="datepicker" name="qa_complete" /></p>
         <p class="detailll">Date Hand Over To IT Ops : <input type="text" class="datepicker" name="date_back_it" /></p>
         <p class="detailll">Release Date : <input type="text" class="datepicker" name="release_date" /></p>
-        <p class="detailll">Status :  <select name="core" class="about_userrrr">
+        <p class="detailll">Status :  <select name="status" class="detailindate9">
              <option value="pending">Pending</option>
              <option value="completed">Completed</option>
               <option value="rejected">Rejected</option>
@@ -210,6 +246,22 @@ require_once('layouts/header1.php');
         <p class="detailll">Scan Document 1 : <input type="file" class="box" name="pdf1" /></p>
         <p class="detailll">Scan Document 2 : <input type="file" class="box"  name="pdf2" /></p>
         <p class="detailll">Scan Document 3 : <input type="file" class="box" name="pdf3"  /></p>
+            
+            
+          </p>
+     </div>
+
+</div>
+        
+        
+        
+        
+       
+       
+       
+        
+        
+       
         
         
        

@@ -196,55 +196,7 @@ require_once('layouts/header1.php');
     }
 </script>
 
-<div style="margin-left: 20px;">
-    <div style="height:225px">
-        <div class="large_img_container">
-            <img src="../<?php// echo $photo->image_path(); ?>" width="300"/>
-        </div>
 
-        <!--<div class="small_img_container">
-            <?php if (!empty($photo->image_2)) {
-                ?>
-                <img src="../<?php echo $photo->image_path(2); ?>" width="100"/>
-                <a href="delete_one_photo.php?id=<?php echo $photo->id;  ?>&photo=2">Delete</a>
-            <?php } else {
-                ?>
-                <div class="no_img_div border_right_none"></div>
-                <?php
-            }
-            ?>
-        </div>
-
-
-      <!--  <div class="small_img_container">
-            <?php if (!empty($photo->image_3)) {
-                ?>
-                <img src="../<?php echo $photo->image_path(3); ?>" width="100"/>
-                <a href="delete_one_photo.php?id=<?php echo $photo->id;  ?>&photo=3">Delete</a>
-            <?php } else {
-                ?>
-                <div class="no_img_div border_right_none"></div> 
-                <?php
-            }
-            ?>
-        </div>
-
-
-        <div class="small_img_container">
-            <?php if (!empty($photo->image_4)) {
-                ?>
-                <img src="../<?php echo $photo->image_path(4); ?>" width="100"/>
-                <a href="delete_one_photo.php?id=<?php echo $photo->id;  ?>&photo=4">Delete</a>
-            <?php } else {
-                ?>
-                <div class="no_img_div"></div>   
-                <?php
-            }
-            ?>
-        </div> -->
-
-
-    </div>
     <div style="margin-left: 20px; float:left;"></div>
     
     <div>

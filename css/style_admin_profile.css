@@ -338,11 +338,11 @@ body{
 
 
 #admin_content{
-	width:680px;
+	width:800px;
 	height:auto;
 	float:left;
 	margin-left:10px;
-	background-color:#E68080;
+	background-color: #E68080;
 	border-radius:8px;
 }
 
@@ -365,11 +365,105 @@ body{
 .detailll{
 	font-size:16px;
 	font-family:"DIN"
+	padding-left:566px;
 	
-	width:150px;
-	margin-left:16px;
-	padding-right: 16px;
 }
+
+
+.detailindate1{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:102px;
+	padding-right: 50px;
+}
+
+.detailindate2{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:80px;
+	padding-right: 50px;
+}
+.detailindate3{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:135px;
+	padding-right: 50px;
+}
+.detailindate4{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:16px;
+	padding-right: 50px;
+}
+.detailindate5{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:180px;
+	padding-right: 50px;
+}
+.detailindate6{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:95px;
+	padding-right: 50px;
+}
+.detailindate7{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:130px;
+	padding-right: 50px;
+}
+.detailindate8{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:16px;
+	padding-right: 50px;
+}
+.detailindate9{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:150px;
+	padding-right: 50px;
+}
+
+
+.detailindate10{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:150px;
+	padding-right: 50px;
+}
+
+
+.detailindate11{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:195px;
+	padding-right: 50px;
+}
+
 
 .detail2{
 	font-size:16px;
