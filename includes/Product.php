@@ -71,7 +71,7 @@ class Product extends DatabaseObject {
         3500,
         4500
     );
-    public $upload_dir = '/public/upload/docs/';
+    public $upload_dir = '/public/images/products/';
 
     public function attach_file($file, $img_no, $required = FALSE) {
 
@@ -88,7 +88,7 @@ class Product extends DatabaseObject {
         } else {
             $this->files[] = array(
                 'upload' => $file,
-                'file_no' => $img_no
+                'img_no' => $img_no
             );
             return true;
         }
@@ -198,8 +198,8 @@ class Product extends DatabaseObject {
     function assign_files() {
         if (!empty($this->files)) {
             foreach ($this->files as $file) {
-                $field = "scan_doc" . $file['file_no'];
-                $fileName = $file['file_no'] . '_' . time() . '.' . pathinfo($file['upload']['name'], PATHINFO_EXTENSION);
+                $field = "image_" . $file['img_no'];
+                $fileName = $file['img_no'] . '_' . time() . '.' . pathinfo($file['upload']['name'], PATHINFO_EXTENSION);
                 $this->$field = $fileName;
             }
         }
@@ -212,7 +212,7 @@ class Product extends DatabaseObject {
                 mkdir($path, 0777, TRUE);
             }
             foreach ($this->files as $file) {
-                $field = "scan_doc" . $file['file_no'];
+                $field = "image_" . $file['img_no'];
                 move_uploaded_file($file['upload']['tmp_name'], $path . "/" . $this->$field);
             }
         }
@@ -235,7 +235,7 @@ class Product extends DatabaseObject {
 
         if ($database->query($sql)) {
             $this->id = $database->insert_id();
-            $path = SITE_ROOT . $this->upload_dir . $this->cr_brd;
+            $path = SITE_ROOT . $this->upload_dir . $this->id;
             //upload files
             $this->save_files($path);
 
@@ -265,7 +265,7 @@ class Product extends DatabaseObject {
 //        }
         //echo $sql;
         $database->query($sql);
-        $path = SITE_ROOT . $this->upload_dir . $this->cr_brd;
+        $path = SITE_ROOT . $this->upload_dir . $this->id;
         //upload files
         $this->save_files($path);
         return ($database->affected_rows() == 1) ? true : false;
