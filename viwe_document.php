@@ -15,7 +15,7 @@ if (! $session->is_logged_in ()) {
 
 $page = ! empty ( $_GET ['page'] ) ? ( int ) $_GET ['page'] : 1;
 
-$per_page = 1;
+$per_page = 2;
 
 $total_count = Product::count_all ();
 
@@ -57,7 +57,7 @@ if (! empty ( $_REQUEST ['crr'] ) && $_REQUEST ['crr'] != 'All') {
 // $sql .= "LIMIT {$per_page} ";
 // $sql .= "OFFSET {$pagination->offset()}";
 
-$photos = Product::find_by_sql ( $sql );
+//$photos = Product::find_by_sql ( $sql );
 
 ?>
 
