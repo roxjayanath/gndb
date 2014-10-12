@@ -98,14 +98,22 @@ if (isset($_POST['submit'])) {
     $product->status= $_POST['status'];
 	
 	
-	$update_product = $product->update_document();
+	//$update_product = $product->update_document();
+    $update_product = $product->save();
 	
 	if ($update_product) {
         //$new_comment->try_to_send_notification();
         $session->message("Document {$product->reference} Upload Successfully  by {$user->us_name}");
         redirect_to("edit_clicknew.php?id={$photo->d_id}");
     } else {
-        $message = "there is error updating product";
+       $message = "there is error updating product";
+    	
+//        if(!empty($product->errors)){
+//        	$message = "";
+//        	foreach ($product->errors as $error){
+//        		$message .= $error;
+//        	}	
+//        }
     }
 	
      
@@ -230,14 +238,14 @@ function myFunction() {
 
     
 
-
+ <?php $doc_id = !empty($_REQUEST['id']) ? $_REQUEST['id'] : "0"; ?>
 
 <div id="admin_content3">
     <!--<center><h3>Add Product</h3></center>-->
-    <form action="edit_clicknew.php" enctype="multipart/form-data" method="post">
+    <form action="edit_clicknew.php?id=<?php echo $doc_id ?>" enctype="multipart/form-data" method="post">
         
 		
-		<input type="hidden" name="id" value="<?php echo !empty($_REQUEST['id']) ? $_REQUEST['id'] : "0"  ?>" />
+		<input type="hidden" name="id" value="<?php echo $doc_id  ?>" />
 		
 		
         

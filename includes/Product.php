@@ -112,18 +112,30 @@ class Product extends DatabaseObject {
     public function save() {
         $this->validate_save();
         if (empty($this->errors)) {
-            return isset($this->id) ? $this->update() : $this->create();
+            return isset($this->d_id) ? $this->update() : $this->create();
         } else {
+        	//var_dump($this->errors);
             return FALSE;
         }
     }
+    
+    private function is_exists(){
+    	$product = isset($this->d_id) ? self::find_by_reference($this->reference, $this->d_id) : self::find_by_reference($this->reference);
+    	if($product){
+    		return TRUE;	
+    	} else {
+    		return FALSE;
+    	}
+    } 
     
     function validate_save(){        
         $validation = new Validation();
         if($validation->isEmpty($this->reference)){
             $this->errors['title'] = "Title cannot be empty";
-        } else if($validation->isTooLong($this->title, 100)){
+        } else if($validation->isTooLong($this->reference, 100)){
             $this->errors['title'] = "Title cannot be emptyis too long";
+        } else if($this->is_exists()){
+        	$this->errors['ref'] = "reference already exists";
         }
         //if($validation->isEmpty($this->price)){
           //  $this->errors['price'] = "Price cannot be empty";
@@ -159,6 +171,12 @@ class Product extends DatabaseObject {
 
     public static function find_all() {
         return self::find_by_sql("SELECT * FROM " . self::$table_name );
+    }
+    
+    public static function find_by_reference($ref = "", $id = 0) {
+    	global $database;
+    	$result_array = self::find_by_sql("SELECT * FROM " . self::$table_name . " WHERE reference = '" . $database->escape_value($ref) . "' AND d_id <> ".$database->escape_value($id)." LIMIT 1");
+    	return !empty($result_array) ? array_shift($result_array) : false;
     }
 
     public static function find_by_id($id = 0) {
@@ -292,6 +310,7 @@ class Product extends DatabaseObject {
         if (empty($this->errors)) {
             return $this->update();
         } else {
+        	//var_dump($this->errors);
             return false;
         }
     }
@@ -445,7 +464,8 @@ class Product extends DatabaseObject {
     public function image_path() {
         //$field = 'scan_doc' . $scan_doc;
         $field = 'scan_doc1';
-        return 'upload/docs/' . $this->cr_brd . '/' . $this->scan_doc1;
+        return $path = SERVER_ADDRESS . $this->upload_dir . $this->cr_brd . '/' . $this->scan_doc1;
+        //return 'upload/docs/' . $this->cr_brd . '/' . $this->scan_doc1;
     }
 
 }
