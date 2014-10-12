@@ -30,10 +30,10 @@ echo $total_count;
 
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Work',     8],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
+          ['Pending',     <?php echo $total_count?>],
+          ['Reject',      2],
+          ['Close',  2],
+          ['Comleted', 2],
           ['Sleep',    7]
         ]);
 
@@ -51,6 +51,6 @@ echo $total_count;
     <p>pending = <?php echo $total_count ?></p>
     
     <div id="piechart" style="width: 900px; height: 500px;"></div>
-    
+    <p><a href="admin_home.php">Home Page</a></p>
     
   </body>
