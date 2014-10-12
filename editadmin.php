@@ -12,7 +12,7 @@ if(!$session->is_logged_in()){
    
     $page=!empty($_GET['page'])?(int)$_GET['page'] : 1;
     
-    $per_page= 6;
+    $per_page= 2;
     
     $total_count= User::count_all();
     
@@ -40,7 +40,7 @@ if(!$session->is_logged_in()){
  <center><h1 class="main_toc">Edit User Profiles</h1></center>
  <?php require_once('layouts/headeruser.php'); ?>
  
- 
+ <div id="admin_content">
 
 
            <h2>Users</h2>
@@ -105,6 +105,8 @@ if(!$session->is_logged_in()){
     
 </div>
            <br/>
+           
+           </div>
           
            
 <?php include_layout_template('footer.php'); ?>

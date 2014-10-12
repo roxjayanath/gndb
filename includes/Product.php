@@ -139,7 +139,7 @@ class Product extends DatabaseObject {
 
     public static function count_all($searchString = '') {
         global $database;
-        $sql = "SELECT COUNT(*) FROM " . self::$table_name;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 ";
         $sql .= $searchString;
         $result_set = $database->query($sql);
         $row = $database->fetch_array($result_set);
