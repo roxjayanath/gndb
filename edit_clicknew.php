@@ -59,7 +59,12 @@ if (isset($_POST['submit'])) {
    // $product->attach_file($_FILES['pdf1'], 1);
   //  $product->attach_file($_FILES['pdf2'], 2);
    // $product->attach_file($_FILES['pdf3'], 3);
-    
+   
+   $product->d_id = $_POST['id'];
+   
+   $product->attach_file($_FILES['pdf1'],1);
+   $product->attach_file($_FILES['pdf1'],2);
+   $product->attach_file($_FILES['pdf1'],3);
     
     $product->cor_non= $_POST['core'];
     $product->cr_brd= $_POST['crr'];
@@ -240,6 +245,8 @@ require_once('layouts/header1.php');
 
 
     </div>
+    <div style="margin-left: 20px; float:left;"></div>
+    
     <div>
 	<br>
 	<br>
@@ -269,6 +276,7 @@ require_once('layouts/header1.php');
         <br>Release Date :<?php echo $photo->release_date;?>
         <br>Status :<?php echo $photo->status;?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <br>
         <br>Scan document 1 : <?php echo $photo->scan_doc1; ?>
@@ -281,6 +289,8 @@ require_once('layouts/header1.php');
         ?>
         <br>Last update : <?php echo $dateString; ?>
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 8ae7817... edit document fixed
             
     </div>
 </div>
@@ -330,7 +340,7 @@ require_once('layouts/header1.php');
         <p class="detailll">QA Testing Competed ON : <input type="text" class="datepicker" name="qa_complete" value="<?php echo $photo->qa_complete;?>"/></p>
         <p class="detailll">Date Hand Over To IT Ops : <input type="text" class="datepicker" name="date_back_it" value="<?php echo $photo->date_back_it;?>"/></p>
         <p class="detailll">Release Date : <input type="text" class="datepicker" name="release_date" value="<?php echo $photo->release_date;?>"/></p>
-        <p class="detailll">Status : <select name="core" class="about_userrrr">
+        <p class="detailll">Status : <select name="status" class="about_userrrr">
              <option value="pending">Pending</option>
              <option value="completed">Completed</option>
               <option value="rejected">Rejected</option>

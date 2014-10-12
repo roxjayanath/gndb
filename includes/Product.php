@@ -71,6 +71,7 @@ class Product extends DatabaseObject {
         3500,
         4500
     );
+   // public $upload_dir = '/public/images/products/';
     public $upload_dir = '/public/upload/docs/';
 
     public function attach_file($file, $img_no, $required = FALSE) {
@@ -88,7 +89,8 @@ class Product extends DatabaseObject {
         } else {
             $this->files[] = array(
                 'upload' => $file,
-                'file_no' => $img_no
+                //'img_no' => $img_no
+                'file_now' => $img_no
             );
             return true;
         }
