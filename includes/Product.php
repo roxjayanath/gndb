@@ -11,7 +11,7 @@ class Product extends DatabaseObject {
     protected static $table_name = "ndb_doc";
     protected static $db_fields = array('d_id', 'cor_non', 'cr_brd', 'reference', 'requester', 'unit', 'contact_p', 'date_sub',
                                         'description', 'date_reciv_it', 'smrc_date', 'smrc_status','priority','date_develop',
-                                        'date_temo','remarks','develop_r_date',
+                                        'date_temo','remarks','assing_to','develop_r_date',
                                         'document_complet','date_hand_qa','qa_complete','date_back_it','release_date',
                                         'status','scan_doc1','scan_doc2','scan_doc3', 'update_on','d_visible');
     public $d_id;
@@ -35,6 +35,7 @@ class Product extends DatabaseObject {
      public $date_temo;
      
      public $remarks;
+     public $assing_to;
     public $develop_r_date;
     public $document_complet;
     

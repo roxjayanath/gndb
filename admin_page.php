@@ -63,6 +63,7 @@ if (isset($_POST['submit'])) {
      $product->date_develop= $_POST['date_develop'];
      $product->date_temo= $_POST['date_temo'];
      $product->remarks= $_POST['remarks'];
+     $product->assing_to= $_POST['assing_to'];
     $product->develop_r_date= $_POST['develop_r_date'];
     $product->document_complet= $_POST['document_complet'];
      $product->date_hand_qa= $_POST['date_hand_qa'];
@@ -218,6 +219,8 @@ require_once('layouts/header1.php');
         <p class="detailll">Date Hand Over <br> To Development : <input type="text" class="datepicker" name="date_develop" /></p>
         <p class="detailll">Date Hand Over To Temonors/FLS : <input type="text" class="datepicker"name="date_temo" /></p>
         <p class="detailll">Remarks : <textarea name="remarks" class=""></textarea></p>
+        
+        <p class="detailll">Hand over to : <input type="text" name="assing_to" class="detailindate12"/></p>
         
         <p class="detailll">Development Reviewed Date : <input type="text" class="datepicker" name="develop_r_date" /></p>
         <p class="detailll">Documantation Complete/not : <input type="text" name="document_complet" class=""/></p>
