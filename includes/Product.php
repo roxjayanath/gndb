@@ -431,9 +431,10 @@ class Product extends DatabaseObject {
         return $price;
     }
 
-    public function image_path($image_no = 1) {
-        $field = 'image_' . $image_no;
-        return 'images/products/' . $this->id . '/' . $this->$field;
+    public function image_path() {
+        //$field = 'scan_doc' . $scan_doc;
+        $field = 'scan_doc1';
+        return 'upload/docs/' . $this->cr_brd . '/' . $this->$scan_doc1;
     }
 
 }

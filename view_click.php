@@ -153,7 +153,7 @@ require_once('layouts/header1.php');
         <br>
         <div style="height:225px">
         <div class="large_img_container">
-            <img src="../<?php// echo $photo->image_path(); ?>" width="300"/>
+            <img src="../<?php echo $photo->image_path(); ?>" width="300"/>
         </div>
 
         <!--<div class="small_img_container">
