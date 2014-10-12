@@ -445,7 +445,7 @@ class Product extends DatabaseObject {
     public function image_path() {
         //$field = 'scan_doc' . $scan_doc;
         $field = 'scan_doc1';
-        return 'upload/docs/' . $this->cr_brd . '/' . $this->$scan_doc1;
+        return 'upload/docs/' . $this->cr_brd . '/' . $this->scan_doc1;
     }
 
 }
