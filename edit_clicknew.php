@@ -269,7 +269,6 @@ require_once('layouts/header1.php');
         <br>Release Date :<?php echo $photo->release_date;?>
         <br>Status :<?php echo $photo->status;?>
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
         <br>
         <br>Scan document 1 : <?php echo $photo->scan_doc1; ?>
@@ -282,8 +281,6 @@ require_once('layouts/header1.php');
         ?>
         <br>Last update : <?php echo $dateString; ?>
 >>>>>>> origin/master
-=======
->>>>>>> parent of 8ae7817... edit document fixed
             
     </div>
 </div>
