@@ -221,7 +221,7 @@ function myFunction() {
     <form action="edit_clicknew.php" enctype="multipart/form-data" method="post">
         
 		
-		
+		<input type="hidden" name="id" value="<?php echo !empty($_REQUEST['id']) ? $_REQUEST['id'] : "0"  ?>" />
 		
 		
         
@@ -273,9 +273,7 @@ function myFunction() {
         <br>Date Hand Over To IT Ops :<?php echo $photo->date_back_it;?>
         <br>Release Date :<?php echo $photo->release_date;?>
         <br>Status :<?php echo $photo->status;?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
         <br>
         <br>Scan document 1 : <?php echo $photo->scan_doc1; ?>
         <br>Scan document 2 : <?php echo $photo->scan_doc2; ?>
@@ -286,9 +284,7 @@ function myFunction() {
         	$dateString = date_format($date, "Y/m/d H:i");
         ?>
         <br>Last update : <?php echo $dateString; ?>
->>>>>>> origin/master
-=======
->>>>>>> parent of 8ae7817... edit document fixed
+
             
     </div>
 </div>
