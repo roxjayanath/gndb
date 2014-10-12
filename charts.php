@@ -30,7 +30,7 @@ echo $total_count;
 
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Work',     6],
+          ['Work',     8],
           ['Eat',      2],
           ['Commute',  2],
           ['Watch TV', 2],

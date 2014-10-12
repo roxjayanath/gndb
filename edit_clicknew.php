@@ -14,6 +14,8 @@ if (!$session->is_logged_in()) {
 $photo = Product::find_by_id($_REQUEST['id']);
 //$photo = Product::find_by_id();
 
+$user = User::find_by_id($session->user_id);
+
 if (!$photo) {
     $session->message("The product could not be located");
     redirect_to('edit_clicknew.php');
@@ -83,6 +85,8 @@ if (isset($_POST['submit'])) {
      $product->date_develop= $_POST['date_develop'];
      $product->date_temo= $_POST['date_temo'];
      $product->remarks= $_POST['remarks'];
+     $product->assing_to= $_POST['assing_to'];
+     
     $product->develop_r_date= $_POST['develop_r_date'];
     $product->document_complet= $_POST['document_complet'];
      $product->date_hand_qa= $_POST['date_hand_qa'];
@@ -98,7 +102,7 @@ if (isset($_POST['submit'])) {
 	
 	if ($update_product) {
         //$new_comment->try_to_send_notification();
-        $message = "sucess";
+        $session->message("Document {$product->reference} Upload Successfully  by {$user->us_name}");
         redirect_to("edit_clicknew.php?id={$photo->d_id}");
     } else {
         $message = "there is error updating product";
@@ -159,7 +163,7 @@ if (isset($_POST['submit'])) {
 //var_dump($_SERVER);
 require_once('layouts/header1.php');
 ?>
-<center><h1 class="main_toc5">Add New Document</h1></center>
+<center><h1 class="main_toc5">Edit Document</h1></center>
  <?php echo output_message($message); ?>
 <?php require_once('layouts/header2.php'); ?>
 
@@ -278,6 +282,7 @@ function myFunction() {
         <br>Date Hand Over To Development :<?php echo $photo->date_develop;?>
         <br>Date Hand Over To Temonors/FLS :<?php echo $photo->date_temo;?>
         <br>Remarks :<?php echo $photo->remarks;?>
+	<br>Hand Over To :<?php $photo->assing_to; ?>
         <br>Development Reviewed Date :<?php echo $photo->develop_r_date;?>
         <br>Documantation Complete/not :<?php echo $photo->document_complet;?>
         <br>Date Hand Over TO QA :<?php echo $photo->date_hand_qa;?>
@@ -344,6 +349,9 @@ function myFunction() {
         <p class="detailll">Date Hand Over <br> To Development : <input type="text" class="datepicker" name="date_develop" value="<?php echo $photo->date_develop;?>"/></p>
         <p class="detailll">Date Hand Over To Temonors/FLS : <input type="text" class="datepicker"name="date_temo" value="<?php echo $photo->date_temo;?>"/></p>
         <p class="detailll">Remarks : <textarea name="remarks" class=""><?php echo $photo->remarks;?></textarea></p>
+	
+	<p class="detailll">Hand Over To  : <input type="text" name="assing_to" class="detailindate10" value="<?php echo $photo->assing_to;?>"/></p>
+	
         
         <p class="detailll">Development Reviewed Date : <input type="text" class="datepicker" name="develop_r_date" value="<?php echo $photo->develop_r_date;?>"/></p>
         <p class="detailll">Documantation Complete/not : <input type="text" name="document_complet" class="" value="<?php echo $photo->document_complet;?>"/></p>

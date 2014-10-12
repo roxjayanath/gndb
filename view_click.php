@@ -143,6 +143,7 @@ require_once('layouts/header1.php');
         <br>Date Hand Over To Development :<?php echo $photo->date_develop;?>
         <br>Date Hand Over To Temonors/FLS :<?php echo $photo->date_temo;?>
         <br>Remarks :<?php echo $photo->remarks;?>
+        <br>Hand Over To :<?php $photo->assing_to; ?>
         <br>Development Reviewed Date :<?php echo $photo->develop_r_date;?>
         <br>Documantation Complete/not :<?php echo $photo->document_complet;?>
         <br>Date Hand Over TO QA :<?php echo $photo->date_hand_qa;?>

@@ -15,9 +15,10 @@ redirect_to("login.php");
     redirect_to('index.php');
    }
    
+   $user = User::find_by_id($session->user_id);
    $photo=Product::find_by_id($_GET['id']);
    if($photo&& $photo->destroy()){
-    $session->message("The Document : {$photo->reference} was deleted");
+    $session->message("The Document : {$photo->reference} was deleted by {$user->us_name}");
     redirect_to('delete_document.php');
     
    }else{
