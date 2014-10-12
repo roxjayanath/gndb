@@ -17,7 +17,7 @@ redirect_to("login.php");
    
    $photo=Product::find_by_id($_GET['id']);
    if($photo&& $photo->destroy()){
-    $session->message("The Product was deleted");
+    $session->message("The Document : {$photo->reference} was deleted");
     redirect_to('delete_document.php');
     
    }else{

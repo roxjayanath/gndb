@@ -139,17 +139,17 @@ a {
 	
 	
 	
+
+	   	
 	
-	
-	 <?php echo output_message($message);?>
-	   
+	 
 	    
 <!--  <<<<<<< HEAD  -->
 	 <center>  <table class="customer" cellpadding="6px" cellspacing="10px">
             <tr class="head_row">
                 <th class="head_toc">ID</th>
                 <th class="head_toc">Core / NonCore</th>
-                <th class="head_toc">CR/BRD/REPORT</th>
+                <th class="head_toc">CR/BRD/<br>REPORT</th>
 		
 		
 		<th class="head_toc">Reference</th>
@@ -228,7 +228,7 @@ a {
 					</a>
 					<td>
 						<!--<a href="viewcusmore.php?id=<?php //echo $photo->id;?>">View</a>-->
-						<a href="delete_doc.php?id=<?php echo $photo->d_id; ?>">Delete</a>
+						<a href="delete_doc.php?id=<?php echo $photo->d_id; ?>" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
 					</td>
 					<!-- <td><a href="delete_admin.php?id=<?php //echo $photo->id;?>">Delete</a></td>
                  -->

@@ -149,7 +149,7 @@ a {
             <tr class="head_row">
                 <th class="head_toc">ID</th>
                 <th class="head_toc">Core / NonCore</th>
-                <th class="head_toc">CR/BRD/REPORT</th>
+                <th class="head_toc">CR/BRD/<br>REPORT</th>
 		
 		
 		<th class="head_toc">Reference</th>
