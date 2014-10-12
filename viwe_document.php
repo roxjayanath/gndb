@@ -36,12 +36,12 @@ $sql = "SELECT * FROM ndb_doc WHERE d_visible=1";
 
 if (! empty ( $_REQUEST ['prod_name'] )) {
 	$reference = $_REQUEST ['prod_name'];
-	$sql .= " WHERE lower(reference) like lower('%{$_REQUEST ['prod_name']}%')";
+	$sql .= " AND lower(reference) like lower('%{$_REQUEST ['prod_name']}%')";
 }
 
 if (! empty ( $_REQUEST ['crr'] ) && $_REQUEST ['crr'] != 'All') {
 	$selectedCrr = $_REQUEST ['crr'];
-	$sql .= (! empty ( $_REQUEST ['prod_name'] )) ? " AND " : " WHERE ";
+	$sql .= (! empty ( $_REQUEST ['prod_name'] )) ? " AND " : " AND ";
 	$sql .= "cr_brd = '{$_REQUEST ['crr']}'";
 }
 

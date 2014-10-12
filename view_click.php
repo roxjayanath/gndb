@@ -123,8 +123,35 @@ require_once('layouts/header1.php');
 
 <a href="edit_document.php">&laquo; Back</a><br/>
 <br/>
-<div style="margin-left: 20px;">
-    <div style="height:225px">
+<div id="admin_content3">
+    
+    <div id="admin_content">
+         <br>ID : <?php echo $photo->d_id;?>
+        <br>Core / NonCore : <?php echo $photo->cor_non;?>
+        <br>CR/BRD/REPORT :<?php echo $photo->cr_brd;?>
+		<br>Reference : <?php echo $photo->reference;?>
+		<br>Requester : <?php echo $photo->requester;?>
+		<br>Unit : <?php echo $photo->unit;?>
+		<br>Contact Person : <?php echo $photo->contact_p;?> 
+		
+        <br>Date Submit :<?php echo $photo->date_sub;?>
+        <br>Description :<?php echo $photo->description;?>
+        <br>Date Recived (IT):<?php echo $photo->date_reciv_it;?>
+        <br>SMRC Reviewed Date :<?php echo $photo->smrc_date;?>
+        <br>SMRC Status :<?php echo $photo->smrc_status;?>
+        <br>Prority :<?php echo $photo->priority;?>
+        <br>Date Hand Over To Development :<?php echo $photo->date_develop;?>
+        <br>Date Hand Over To Temonors/FLS :<?php echo $photo->date_temo;?>
+        <br>Remarks :<?php echo $photo->remarks;?>
+        <br>Development Reviewed Date :<?php echo $photo->develop_r_date;?>
+        <br>Documantation Complete/not :<?php echo $photo->document_complet;?>
+        <br>Date Hand Over TO QA :<?php echo $photo->date_hand_qa;?>
+        <br>QA Testing Competed ON :<?php echo $photo->qa_complete;?>
+        <br>Date Hand Over To IT Ops :<?php echo $photo->date_back_it;?>
+        <br>Release Date :<?php echo $photo->release_date;?>
+        <br>Status :<?php echo $photo->status;?>
+        <br>
+        <div style="height:225px">
         <div class="large_img_container">
             <img src="../<?php// echo $photo->image_path(); ?>" width="300"/>
         </div>
@@ -172,31 +199,6 @@ require_once('layouts/header1.php');
 
 
     </div>
-    <div>
-         <br>ID : <?php echo $photo->d_id;?>
-        <br>Core / NonCore : <?php echo $photo->cor_non;?>
-        <br>CR/BRD/REPORT :<?php echo $photo->cr_brd;?>
-		<br>Reference : <?php echo $photo->reference;?>
-		<br>Requester : <?php echo $photo->requester;?>
-		<br>Unit : <?php echo $photo->unit;?>
-		<br>Contact Person : <?php echo $photo->contact_p;?> 
-		
-        <br>Date Submit :<?php echo $photo->date_sub;?>
-        <br>Description :<?php echo $photo->description;?>
-        <br>Date Recived (IT):<?php echo $photo->date_reciv_it;?>
-        <br>SMRC Reviewed Date :<?php echo $photo->smrc_date;?>
-        <br>SMRC Status :<?php echo $photo->smrc_status;?>
-        <br>Prority :<?php echo $photo->priority;?>
-        <br>Date Hand Over To Development :<?php echo $photo->date_develop;?>
-        <br>Date Hand Over To Temonors/FLS :<?php echo $photo->date_temo;?>
-        <br>Remarks :<?php echo $photo->remarks;?>
-        <br>Development Reviewed Date :<?php echo $photo->develop_r_date;?>
-        <br>Documantation Complete/not :<?php echo $photo->document_complet;?>
-        <br>Date Hand Over TO QA :<?php echo $photo->date_hand_qa;?>
-        <br>QA Testing Competed ON :<?php echo $photo->qa_complete;?>
-        <br>Date Hand Over To IT Ops :<?php echo $photo->date_back_it;?>
-        <br>Release Date :<?php echo $photo->release_date;?>
-        <br>Status :<?php echo $photo->status;?>
             
     </div>
 </div>

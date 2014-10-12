@@ -346,6 +346,24 @@ body{
 	border-radius:8px;
 }
 
+#admin_content2{
+	width:800px;
+	height:auto;
+	float:left;
+	margin-left:300px;
+	background-color: #E68080;
+	border-radius:8px;
+}
+
+#admin_content3{
+	width:800px;
+	height:auto;
+	float:left;
+	
+	background-color: #E68080;
+	border-radius:8px;
+}
+
 
 .line{
 	margin-bottom:10px;
