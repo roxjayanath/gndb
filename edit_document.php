@@ -11,7 +11,23 @@ if (! $session->is_logged_in ()) {
 
 ?>
 
+
 <?php
+
+$page = ! empty ( $_GET ['page'] ) ? ( int ) $_GET ['page'] : 1;
+
+$per_page = 1;
+
+$total_count = Product::count_all ();
+
+
+$pagination = new Pagination($page,$per_page,$total_count);
+  
+  $sql = "SELECT * FROM ndb_doc ";
+  $sql .= "LIMIT {$per_page} ";
+  $sql .= "OFFSET {$pagination->offset()}";
+  
+  $photos = Product::find_by_sql($sql);
 
 //$page = ! empty ( $_GET ['page'] ) ? ( int ) $_GET ['page'] : 1;
 
@@ -247,7 +263,33 @@ a {
 
 
 
-
+<div id="pagination" style="clear: both;">
+    <?php
+        if($pagination->total_pages()>1){
+            
+            if($pagination->has_previous_page()){
+                echo " <a href=\"edit_document.php?page=";
+                echo $pagination->previous_page();
+                echo "\">&laquo; Previous</a> ";
+            }
+            for($i=1;$i<=$pagination->total_pages();$i++){
+               if($i==$page){
+                echo " <span class=\"selected\">{$i}</span> ";
+               }else{
+                echo " <a href=\"edit_document.php?page={$i}\">{$i}</a> ";
+               }
+            }
+            
+            
+            if($pagination->has_next_page()){
+                echo " <a href=\"edit_document.php?page=";
+                echo $pagination->next_page();
+                echo "\">Next &raquo;</a> ";
+            }
+            }    
+    ?>
+    
+</div>	 
 
 
 
