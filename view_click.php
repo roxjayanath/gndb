@@ -151,9 +151,10 @@ require_once('layouts/header1.php');
         <br>Date Hand Over To IT Ops :<?php echo $photo->date_back_it;?>
         <br>Release Date :<?php echo $photo->release_date;?>
         <br>Status :<?php echo $photo->status;?>
-        <br>
-        <div style="height:225px">
-        <div class="large_img_container">
+        <br><a href="../<?php echo $photo->image_path(); ?>">Open pdf</a>
+        <!--<div style="height:225px">
+            
+        <!--<div class="large_img_container">
             <img src="../<?php echo $photo->image_path(); ?>" width="300"/>
         </div>
 
