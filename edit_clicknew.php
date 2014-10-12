@@ -268,6 +268,19 @@ require_once('layouts/header1.php');
         <br>Date Hand Over To IT Ops :<?php echo $photo->date_back_it;?>
         <br>Release Date :<?php echo $photo->release_date;?>
         <br>Status :<?php echo $photo->status;?>
+<<<<<<< HEAD
+=======
+        <br>
+        <br>Scan document 1 : <?php echo $photo->scan_doc1; ?>
+        <br>Scan document 2 : <?php echo $photo->scan_doc2; ?>
+        <br>Scan document 3 : <?php echo $photo->scan_doc3; ?>
+        
+        <?php 
+        	$date=date_create($photo->update_on); 
+        	$dateString = date_format($date, "Y/m/d H:i");
+        ?>
+        <br>Last update : <?php echo $dateString; ?>
+>>>>>>> origin/master
             
     </div>
 </div>
