@@ -32,7 +32,7 @@ $allCats = array(
 
 $reference = $selectedCrr = "";
 
-$sql = "SELECT * FROM ndb_doc ";
+$sql = "SELECT * FROM ndb_doc WHERE d_visible=1";
 
 if (! empty ( $_REQUEST ['prod_name'] )) {
 	$reference = $_REQUEST ['prod_name'];
@@ -228,7 +228,7 @@ a {
 					</a>
 					<td>
 						<!--<a href="viewcusmore.php?id=<?php //echo $photo->id;?>">View</a>-->
-						<a href=#>Delete</a>
+						<a href="delete_doc.php?id=<?php echo $photo->d_id; ?>">Delete</a>
 					</td>
 					<!-- <td><a href="delete_admin.php?id=<?php //echo $photo->id;?>">Delete</a></td>
                  -->

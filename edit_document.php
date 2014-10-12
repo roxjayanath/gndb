@@ -32,7 +32,7 @@ $allCats = array(
 
 $reference = $selectedCrr = "";
 
-$sql = "SELECT * FROM ndb_doc ";
+$sql = "SELECT * FROM ndb_doc WHERE d_visible=1";
 
 if (! empty ( $_REQUEST ['prod_name'] )) {
 	$reference = $_REQUEST ['prod_name'];

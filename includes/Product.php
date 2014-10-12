@@ -306,7 +306,21 @@ class Product extends DatabaseObject {
         global $database;
 
         $sql = "DELETE FROM " . self::$table_name . " ";
-        $sql .= "WHERE id=" . $database->escape_value($this->id);
+        $sql .= "WHERE d_id=" . $database->escape_value($this->d_id);
+        $sql .= " LIMIT 1";
+
+        $database->query($sql);
+        return($database->affected_rows() == 1) ? true : false;
+    }
+    
+    
+     public function visibledel() {
+        global $database;
+        
+        //UPDATE Customers SET ContactName='Alfred Schmidt', City='Hamburg' WHERE CustomerName='Alfreds Futterkiste';
+
+        $sql = "UPDATE " . self::$table_name . " ";
+        $sql .= "SET d_visible= 0 WHERE d_id = " . $database->escape_value($this->d_id);
         $sql .= " LIMIT 1";
 
         $database->query($sql);
@@ -371,7 +385,7 @@ class Product extends DatabaseObject {
     }
     public function destroy() {
 
-        if ($this->delete()) {
+        if ($this->visibledel()) {
             //$target_path = SITE_ROOT . DS . 'public' . DS . $this->image_path();
              $path = SITE_ROOT . $this->upload_dir . $this->id;
          unlink($path.'/'.$this->image_1) ;
