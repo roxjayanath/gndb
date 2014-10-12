@@ -1,7 +1,26 @@
 <?php
 
+require_once ("includes/initialize.php");
+
+if (! $session->is_logged_in ()) {
+	redirect_to ( "login.php" );
+}
+
+$total_count = Product::count_status ();
+
+echo $total_count;
+
+
+
+
+
+
+
+
+
 ?>
 
+<head>
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
@@ -11,7 +30,7 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Work',     5],
+          ['Work',     6],
           ['Eat',      2],
           ['Commute',  2],
           ['Watch TV', 2],
@@ -29,4 +48,9 @@
     </script>
   </head>
   <body>
+    <p>pending = <?php echo $total_count ?></p>
+    
     <div id="piechart" style="width: 900px; height: 500px;"></div>
+    
+    
+  </body>

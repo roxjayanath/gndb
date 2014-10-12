@@ -146,6 +146,16 @@ class Product extends DatabaseObject {
         $row = $database->fetch_array($result_set);
         return array_shift($row);
     }
+    
+    public static function count_status($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND status = 'pending' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+    
 
     public static function find_all() {
         return self::find_by_sql("SELECT * FROM " . self::$table_name );
