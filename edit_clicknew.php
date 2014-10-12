@@ -65,8 +65,8 @@ if (isset($_POST['submit'])) {
    $product->d_id = $_POST['id'];
    
    $product->attach_file($_FILES['pdf1'],1);
-   $product->attach_file($_FILES['pdf1'],2);
-   $product->attach_file($_FILES['pdf1'],3);
+   $product->attach_file($_FILES['pdf2'],2);
+   $product->attach_file($_FILES['pdf3'],3);
     
     $product->cor_non= $_POST['core'];
     $product->cr_brd= $_POST['crr'];

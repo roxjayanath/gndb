@@ -92,7 +92,7 @@ class Product extends DatabaseObject {
             $this->files[] = array(
                 'upload' => $file,
                 //'img_no' => $img_no
-                'file_now' => $img_no
+                'file_no' => $img_no
             );
             return true;
         }
