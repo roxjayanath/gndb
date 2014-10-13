@@ -8,7 +8,7 @@ define("DB_NAME","ndb_b");
 //define("CAT_KIDS", 2);
 //define("CAT_ACC", 3);
 
-define("SERVER_ADDRESS", "http://localhost/gndb");
+define("SERVER_ADDRESS", "http://localhost/phpsandbox/gndb");
 
 //user levels
 define("USER_LEVEL_1", 1);

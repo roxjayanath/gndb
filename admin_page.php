@@ -17,6 +17,94 @@ if (!$session->is_logged_in()) {
 <?php
 $max_file_size = 1048576;
 
+$allUnits = array(
+	"BC" => "BC",
+	"Branch Banking" => "Branch Banking",
+	"Cards" => "Cards",
+	"Cash Management" => "Cash Management",
+	"CAU"=>"CAU",
+	"CM"=>"CM",
+	"Collections and REcoveries"=>"Collections and Recoveries",
+	"Compliance"=>"Compliance",
+	"CPU"=>"CPU",
+	"CM"=>"CM",
+	"Collections and Recoveries"=>"Collections and Recoveries",
+	"Complaince"=>"Compliance",
+	"CPU"=>"CPU",
+	"CPU,FINANCE,SME,RISK,CRU"=>"CPU,FINANCE,SME,RISK,CRU",
+	"CRU"=>"CRU",
+	"FIN"=>"FIN",
+	"Finance"=>"Finance",
+	"Finance/Trade"=>"Finance/Trade",
+	"FIN-CRU"=>"FIN-CRU",
+	"Home Loans"=>"Home Loans",
+	"IB"=>"IB",
+	"ISLAMIC BANKING"=>"ISLAMIC BANKING",
+	"IT"=>"IT",
+	"MRU"=>"MRU",
+	"Project Finance"=>"Project Finance",
+	"Recoveries"=>"Recoveries",
+	"Remittance"=>"Remittance",
+	"Retail"=>"Retail",
+	"SME"=>"SME",
+	"TBO"=>"TBO",
+	"TO"=>"TO",
+	"Trade"=>"Trade",
+	"Treasury"=>"Treasury"
+	
+	
+);
+
+
+$allref = array(
+	"BC-R-" => "BC-R-",
+	"C-" => "C-",
+	"CARDS-" => "CARDS-",
+	"CARDS-BRD-" => "CARDS-BRD-",
+	"CARDS-R-" => "CARDS-R-",
+	"CAU-" => "CAU-",
+	"CAU-" => "CAU-",
+	"CAU-BRD-" => "CAU-BRD-",
+	"CAU-R-" => "CAU-R-",
+	"CM" => "CM",
+	"CM-BRD-" => "CM-BRD-",
+	"CM-R-" => "CM-R-",
+	"CPU-" => "CPU-",
+	"CPU-R-" => "CPU-R-",
+	"CPU-BRD-" => "CPU-BRD-",
+	"CRISIL-" => "CRISIL-",
+	"FIN-" => "FIN-",
+	"FIN-R-" => "FIN-R-",
+	"IB" => "IB",
+	"IB-BRD-" => "IB-BRD-",
+	"IB-R-" => "IB-R-",
+	"INS-ALT-R-" => "INS-ALT-R-",
+	"IT-" => "IT-",
+	"PF-R-" => "PF-R-",
+	"REM-" => "REM-",
+	"RET-" => "RET-",
+	"RET-BRD-" => "RET-BRD-",
+	"RET-R-" => "RET-R-",
+	"RISK-" => "RISK-",
+	"RISK-R-" => "RISK-R-",
+	"RISK-BRD-" => "RISK-BRD-",
+	"SME-" => "SME-",
+	"SME-R-" => "SME-R-",
+	"SME-BRD-" => "SME-BRD-",
+	"SUP-AIB-UPD-" => "SUP-AIB-UPD-",
+	"TBO-" => "TBO-R-",
+	"TBO-R-" => "TBO-R-",
+	"TBO-FIN-R-" => "TBO-FIN-R-",
+	"TO-" => "TO-",
+	"TRADE-" => "TRADE-",
+	"TRADE-BRD" => "TRADE-R",
+	"CUSTOM" => "CUSTOM"
+	
+	
+	);
+
+
+
 //$message="";
 if (isset($_POST['submit'])) {
 //    $photo = new Photograph();
@@ -194,14 +282,56 @@ require_once('layouts/header1.php');
   
            </select></p>
           
-           <p class="detailll">Reference : <input type="text" name="reference" class="detailindate3" /></p>
+           <p class="detailll">Reference : 
+		   
+		   <select name="ref1" class="detailindate5">
+						<?php foreach ($allref as $key => $value){
+							$selected = ($selectedCrr == $key) ? "selected" : "";
+							?>
+							<option name="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
+							<?php
+						} ?>
+
+				</select><input type="text" name="reference" class="" />
+		   
+		   
+		   
+		   </p>
         <p class="detailll">Requester :<input type="text" class="datepicker"name="date_req" /> <input type="text" name="requester" class="detailindate4" /></p>
-        <p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p>
+        <!--<p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p> -->
+		
+		
+		
+		
+		
+		
+		<p class="detailll">Unit : <select name="unit" class="detailindate5">
+						<?php foreach ($allUnits as $key => $value){
+							$selected = ($selectedCrr == $key) ? "selected" : "";
+							?>
+							<option name="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
+							<?php
+						} ?>
+
+				</select></p>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
         
          <p class="detailll">Contact Person : <input type="text" name="contact_p" class="detailindate6"/></p>
         <p class="detailll">Date Submit : <input type="text" class="datepicker"name="date_sub" /></p>
         <p class="detailll">Description : <textarea name="description" class="detailindate7"></textarea></p>
-        <p class="detailll">Date Recived (IT): <input type="text" class="datepicker8" name="date_reciv_it" /></p>
+        <p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" /></p>
           
           
           </p>
@@ -244,7 +374,7 @@ require_once('layouts/header1.php');
              <option value="completed">Completed</option>
               <option value="rejected">Rejected</option>
                <option value="close">Close</option>
-                <option value="new">New</option>
+                <option value="hold">Hold</option>
            </select></p>
         <p class="detailll">Scan Document 1 : <input type="file" class="box" name="pdf1" /></p>
         <p class="detailll">Scan Document 2 : <input type="file" class="box"  name="pdf2" /></p>

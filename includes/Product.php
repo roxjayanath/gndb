@@ -52,6 +52,8 @@ class Product extends DatabaseObject {
      
      public $update_on;
      public $d_visible;
+	 
+	 public $sname;
      
      
      
@@ -74,6 +76,7 @@ class Product extends DatabaseObject {
         4500
     );
    // public $upload_dir = '/public/images/products/';
+   public $sandbox = '/php_sandbox';
     public $upload_dir = '/public/upload/docs/';
 
     public function attach_file($file, $img_no, $required = FALSE) {
@@ -162,6 +165,95 @@ class Product extends DatabaseObject {
     public static function count_status($searchString = '') {
         global $database;
         $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND status = 'pending' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+	
+	 public static function count_statuscomplet($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND status = 'completed' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+	
+	 public static function count_statusclose($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND status = 'close' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+	
+	public static function count_statusreject($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND status = 'rejected' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+	
+	public static function count_statushold($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND status = 'hold' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+	
+	
+	public static function count_statuscr($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND cr_brd='CR' AND status = 'pending' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+	
+	public static function count_statusbr($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND cr_brd='BRD' AND status = 'pending' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+	
+	public static function count_statusrep($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND cr_brd='REPORT' AND status = 'pending' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+	
+	public static function count_statusassing_to($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND lower(assing_to) like lower('%m%')";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+	
+	public static function count_statusassing_to2namelist($sname='',$searchString = '') {
+        global $database;
+        $result_array = self::find_by_sql("SELECT * FROM " . self::$table_name . " WHERE d_visible =1 AND lower(assing_to) like lower('%". $database->escape_value($sname) ."%')");
+        return !empty($result_array) ? array_shift($result_array) : false;
+    
+    }
+	
+	public static function count_statusassing_to2($sname='',$searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND lower(assing_to) like lower('%". $database->escape_value($sname) ."%')";
         $sql .= $searchString;
         $result_set = $database->query($sql);
         $row = $database->fetch_array($result_set);
@@ -418,10 +510,10 @@ class Product extends DatabaseObject {
         if ($this->visibledel()) {
             //$target_path = SITE_ROOT . DS . 'public' . DS . $this->image_path();
              $path = SITE_ROOT . $this->upload_dir . $this->id;
-         unlink($path.'/'.$this->image_1) ;
-         unlink($path.'/'.$this->image_2) ;
-         unlink($path.'/'.$this->image_3) ;
-         unlink($path.'/'.$this->image_4) ;
+        // unlink($path.'/'.$this->image_1) ;
+         //unlink($path.'/'.$this->image_2) ;
+        // unlink($path.'/'.$this->image_3) ;
+         //unlink($path.'/'.$this->image_4) ;
          return true;
         } else {
             return false;

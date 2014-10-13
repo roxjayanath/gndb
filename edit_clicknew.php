@@ -9,6 +9,46 @@ if (!$session->is_logged_in()) {
 <?php
 //if (empty($_GET['id'])) {
   //  $session->message("No product ID was provided");
+  
+  $allUnits = array(
+	"BC" => "BC",
+	"Branch Banking" => "Branch Banking",
+	"Cards" => "Cards",
+	"Cash Management" => "Cash Management",
+	"CAU"=>"CAU",
+	"CM"=>"CM",
+	"Collections and REcoveries"=>"Collections and Recoveries",
+	"Compliance"=>"Compliance",
+	"CPU"=>"CPU",
+	"CM"=>"CM",
+	"Collections and Recoveries"=>"Collections and Recoveries",
+	"Complaince"=>"Compliance",
+	"CPU"=>"CPU",
+	"CPU,FINANCE,SME,RISK,CRU"=>"CPU,FINANCE,SME,RISK,CRU",
+	"CRU"=>"CRU",
+	"FIN"=>"FIN",
+	"Finance"=>"Finance",
+	"Finance/Trade"=>"Finance/Trade",
+	"FIN-CRU"=>"FIN-CRU",
+	"Home Loans"=>"Home Loans",
+	"IB"=>"IB",
+	"ISLAMIC BANKING"=>"ISLAMIC BANKING",
+	"IT"=>"IT",
+	"MRU"=>"MRU",
+	"Project Finance"=>"Project Finance",
+	"Recoveries"=>"Recoveries",
+	"Remittance"=>"Remittance",
+	"Retail"=>"Retail",
+	"SME"=>"SME",
+	"TBO"=>"TBO",
+	"TO"=>"TO",
+	"Trade"=>"Trade",
+	"Treasury"=>"Treasury"
+	
+	
+);
+  
+  
 //}
 
 $photo = Product::find_by_id($_REQUEST['id']);
@@ -194,7 +234,13 @@ require_once('layouts/header1.php');
 <link rel="stylesheet" href="css/example.css" TYPE="text/css" MEDIA="screen">
 <link rel="stylesheet" href="css/example-print.css" TYPE="text/css" MEDIA="print">
 
-
+<script type="text/javascript">
+		// Popup window code
+		function newPopup(url) {
+			popupWindow = window.open(
+				url,'popUpWindow','height=850,width=600,left=400,top=400,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+		}
+		</script>
 
 
 <script>
@@ -300,7 +346,7 @@ function myFunction() {
         <br>Status :<?php echo $photo->status;?>
 
         <br>
-        <br>Scan document 1 : <?php echo $photo->scan_doc1; ?>
+        <br>Scan document 1 : <a href="JavaScript:newPopup('<?php echo $photo->image_path(); ?>');" ><?php echo $photo->scan_doc1; ?></a>
         <br>Scan document 2 : <?php echo $photo->scan_doc2; ?>
         <br>Scan document 3 : <?php echo $photo->scan_doc3; ?>
         
@@ -334,12 +380,20 @@ function myFunction() {
           
            <p class="detailll">Reference : <input type="text" name="reference" class="detailindate3" value="<?php echo $photo->reference; ?>" /></p>
         <p class="detailll">Requester :<input type="text" class="datepicker"name="date_req" /> <input type="text" name="requester" class="detailindate4" value="<?php echo $photo->requester; ?>"/></p>
-        <p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5" value="<?php echo $photo->unit; ?>"/></p>
+        <p class="detailll">Unit : <select name="unit" class="detailindate5">
+						<?php foreach ($allUnits as $key => $value){
+							$selected = ($selectedCrr == $key) ? "selected" : "";
+							?>
+							<option name="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
+							<?php
+						} ?>
+
+				</select></p>
         
          <p class="detailll">Contact Person : <input type="text" name="contact_p" class="detailindate6" value="<?php echo $photo->contact_p; ?>"/></p>
         <p class="detailll">Date Submit : <input type="text" class="datepicker"name="date_sub" value="<?php echo $photo->date_sub; ?>"/></p>
         <p class="detailll">Description : <textarea name="description" class="detailindate7"><?php echo $photo->description;?></textarea></p>
-        <p class="detailll">Date Recived (IT): <input type="text" class="datepicker8" name="date_reciv_it" value="<?php echo $photo->date_reciv_it;?>"/></p>
+        <p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" value="<?php echo $photo->date_reciv_it;?>"/></p>
           
           
           </p>

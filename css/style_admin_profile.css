@@ -84,16 +84,17 @@ body{
 	border-radius:8px;
 }
 
+.main_toc55{
+	font-family:"DIN";
+	font-size:35px;
+	padding-left: 350px;
+	
+}
 .main_toc5{
 	font-family:"DIN";
-	font-size:55px;
-	color:#FFF;
-	font-weight:400;
-	margin-top:30px;
-	letter-spacing:5px;
-	background-color:#E61616;
-	width:550px;
-	border-radius:8px;
+	font-size:35px;
+	
+	
 }
 
 .main_toc6{

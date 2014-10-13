@@ -39,6 +39,9 @@ $allCats = array(
 	"REPORT" => "REPORT"
 );
 
+
+
+
 $reference = $selectedCrr = "";
 
 $sql = "SELECT * FROM ndb_doc WHERE d_visible=1";
@@ -99,7 +102,7 @@ a {
 </style>
 
 <center>
-	<h1 class="main_toc">View Document</h1>
+	<h1 class="main_toc5">View Document</h1>
 </center>
 <?php require_once('layouts/header2.php'); ?>
       

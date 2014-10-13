@@ -11,8 +11,8 @@ if (! $session->is_logged_in ()) {
 
 ?>
 
-
 <?php
+
 
 $page = ! empty ( $_GET ['page'] ) ? ( int ) $_GET ['page'] : 1;
 
@@ -28,6 +28,8 @@ $pagination = new Pagination($page,$per_page,$total_count);
   $sql .= "OFFSET {$pagination->offset()}";
   
   $photos = Product::find_by_sql($sql);
+
+
 //$page = ! empty ( $_GET ['page'] ) ? ( int ) $_GET ['page'] : 1;
 
 //$per_page = 10;
@@ -45,9 +47,10 @@ $allCats = array(
 	"REPORT" => "REPORT"
 );
 
-$reference = $selectedCrr = "";
+$reference = $selectedCrr =$assing_to= "";
 
 $sql = "SELECT * FROM ndb_doc WHERE d_visible=1";
+$sql2 = "SELECT COUNT(*) FROM ndb_doc WHERE d_visible=1";
 
 if (! empty ( $_REQUEST ['prod_name'] )) {
 	$reference = $_REQUEST ['prod_name'];
@@ -56,8 +59,13 @@ if (! empty ( $_REQUEST ['prod_name'] )) {
 
 if (! empty ( $_REQUEST ['crr'] ) && $_REQUEST ['crr'] != 'All') {
 	$selectedCrr = $_REQUEST ['crr'];
-	$sql .= (! empty ( $_REQUEST ['prod_name'] )) ? " AND " : " WHERE ";
+	$sql .= (! empty ( $_REQUEST ['prod_name'] )) ? " AND " : " AND ";
 	$sql .= "cr_brd = '{$_REQUEST ['crr']}'";
+}
+
+if (! empty ( $_REQUEST ['assing_to'] )) {
+	$assing_to = $_REQUEST ['assing_to'];
+	$sql .= " AND lower(reference) like lower('%{$_REQUEST ['assing_to']}%')";
 }
 
 // $sql .= "LIMIT {$per_page} ";
@@ -104,8 +112,8 @@ a {
 }
 </style>
 
-	<h1 class="main_toc55">Edit Document</h1>
 <center>
+	<h1 class="main_toc5">Delete Document</h1>
 </center>
 <?php require_once('layouts/header2.php'); ?>
       
@@ -125,6 +133,15 @@ a {
 					value="<?php echo $reference ?>" /></th>
 					<th><input type="submit" name="sub" value="Search"
 					onclick="submitSearch()" /></th>
+					
+					<th>Assing to </th>
+				<th><input type="text" name="assing_to"
+					value="<?php echo $assing_to; ?>" /></th>
+					<th><input type="submit" name="sub2" value="Search"
+					onclick="submitSearch()" /></th>
+					
+					
+					
 				<th>CR/BRD/REPORT : <select name="crr" onchange="submitSearch()">
 						<?php foreach ($allCats as $key => $value){
 							$selected = ($selectedCrr == $key) ? "selected" : "";
@@ -154,28 +171,23 @@ a {
 	
 	
 	
+
+	   	
 	
-	
-	 <?php echo output_message($message);?>
-	   
+	 
 	    
 <!--  <<<<<<< HEAD  -->
 	 <center>  <table class="customer" cellpadding="6px" cellspacing="10px">
             <tr class="head_row">
-                <th class="head_toc">ID</th>
+                
                 <th class="head_toc">Core / NonCore</th>
                 <th class="head_toc">CR/BRD/<br>REPORT</th>
 		
 		
 		<th class="head_toc">Reference</th>
-                <th class="head_toc">Requester</th>
-		<th class="head_toc">unit</th>
-		
-		
-		
-		
                 <th class="head_toc">Date Submit</th>
 				<th class="head_toc">Status</th>
+				<th class="head_toc">Last Edited</th>
                 
 		
 		
@@ -219,17 +231,17 @@ a {
             
             <tr>
 
-					<td><?php echo $photo->d_id;?></td>
+					
 					<td><?php echo $photo->cor_non;?></td>
 					<td><?php echo $photo->cr_brd;?></td>
 
 					<td><?php echo $photo->reference;?></td>
-					<td><?php echo $photo->requester;?></td>
-					<td><?php echo $photo->unit;?></td>
+					
 
 					
 					<td><?php echo $photo->date_sub;?></td>
 					<td><?php echo $photo->status;?></td>
+					<td><?php echo $photo->update_on;?></td>
 					
 
 
@@ -243,7 +255,7 @@ a {
 					</a>
 					<td>
 						<!--<a href="viewcusmore.php?id=<?php //echo $photo->id;?>">View</a>-->
-						<a href="edit_clicknew.php?id=<?php echo $photo->d_id; ?>">Edit</a>
+						<a href="delete_doc.php?id=<?php echo $photo->d_id; ?>" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
 					</td>
 					<!-- <td><a href="delete_admin.php?id=<?php //echo $photo->id;?>">Delete</a></td>
                  -->
@@ -258,16 +270,12 @@ a {
 
 
 
-
-
-
-
 <div id="pagination" style="clear: both;">
     <?php
         if($pagination->total_pages()>1){
             
             if($pagination->has_previous_page()){
-                echo " <a href=\"edit_document.php?page=";
+                echo " <a href=\"edit_log.php?page=";
                 echo $pagination->previous_page();
                 echo "\">&laquo; Previous</a> ";
             }
@@ -275,20 +283,24 @@ a {
                if($i==$page){
                 echo " <span class=\"selected\">{$i}</span> ";
                }else{
-                echo " <a href=\"edit_document.php?page={$i}\">{$i}</a> ";
+                echo " <a href=\"edit_log.php?page={$i}\">{$i}</a> ";
                }
             }
             
             
             if($pagination->has_next_page()){
-                echo " <a href=\"edit_document.php?page=";
+                echo " <a href=\"edit_log.php?page=";
                 echo $pagination->next_page();
                 echo "\">Next &raquo;</a> ";
             }
             }    
     ?>
     
-</div>	 
+</div>	
+
+
+
+
 
 
 

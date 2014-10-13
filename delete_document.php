@@ -16,7 +16,7 @@ if (! $session->is_logged_in ()) {
 
 $page = ! empty ( $_GET ['page'] ) ? ( int ) $_GET ['page'] : 1;
 
-$per_page = 1;
+$per_page = 2;
 
 $total_count = Product::count_all ();
 
@@ -28,6 +28,7 @@ $pagination = new Pagination($page,$per_page,$total_count);
   $sql .= "OFFSET {$pagination->offset()}";
   
   $photos = Product::find_by_sql($sql);
+
 
 //$page = ! empty ( $_GET ['page'] ) ? ( int ) $_GET ['page'] : 1;
 
@@ -52,7 +53,7 @@ $sql = "SELECT * FROM ndb_doc WHERE d_visible=1";
 
 if (! empty ( $_REQUEST ['prod_name'] )) {
 	$reference = $_REQUEST ['prod_name'];
-	$sql .= " WHERE lower(reference) like lower('%{$_REQUEST ['prod_name']}%')";
+	$sql .= " AND lower(reference) like lower('%{$_REQUEST ['prod_name']}%')";
 }
 
 if (! empty ( $_REQUEST ['crr'] ) && $_REQUEST ['crr'] != 'All') {
@@ -106,7 +107,7 @@ a {
 </style>
 
 <center>
-	<h1 class="main_toc">Delete Document</h1>
+	<h1 class="main_toc5">Delete Document</h1>
 </center>
 <?php require_once('layouts/header2.php'); ?>
       

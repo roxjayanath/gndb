@@ -21,7 +21,7 @@
 //var_dump($_SERVER);
 require_once('layouts/header1.php');
 ?>
-<center><h1 class="main_toc5">Add Product</h1></center>
+<center><h1 class="main_toc5">Log History</h1></center>
 <?php require_once('layouts/header2.php'); ?>
 
       
@@ -33,7 +33,9 @@ require_once('layouts/header1.php');
         </tr>
         
         <tr>
-        <td><p><a href="logfile.php?clear=true" onclick="return confirm('Are you shure you want to Clear log ');">Clear log file</a></p>
+		<p><a href="edit_log.php" >Editing Log Hisotry</a></p>
+        <td><p><a href="logfile.php?clear=true" onclick="return confirm('Are you shure you want to Clear log ');">Clear log file</a></p><br>
+		
 <?php
 
 if(file_exists($logfile)&& is_readable($logfile)&& $handle=fopen($logfile,'r')){

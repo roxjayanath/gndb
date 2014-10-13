@@ -99,6 +99,14 @@ require_once('layouts/header1.php');
     }
 </script>
 
+ <script type="text/javascript">
+		// Popup window code
+		function newPopup(url) {
+			popupWindow = window.open(
+				url,'popUpWindow','height=850,width=600,left=400,top=400,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+		}
+		</script>
+
 <style>
     .large_img_container{
         float: left;
@@ -127,8 +135,8 @@ require_once('layouts/header1.php');
     
     <div id="admin_content">
          <br>ID : <?php echo $photo->d_id;?>
-        <br>Core / NonCore : <?php echo $photo->cor_non;?>
-        <br>CR/BRD/REPORT :<?php echo $photo->cr_brd;?>
+        <br><p>Core / NonCore : <?php echo $photo->cor_non;?>
+        CR/BRD/REPORT :<?php echo $photo->cr_brd;?></p>
 		<br>Reference : <?php echo $photo->reference;?>
 		<br>Requester : <?php echo $photo->requester;?>
 		<br>Unit : <?php echo $photo->unit;?>
@@ -151,7 +159,10 @@ require_once('layouts/header1.php');
         <br>Date Hand Over To IT Ops :<?php echo $photo->date_back_it;?>
         <br>Release Date :<?php echo $photo->release_date;?>
         <br>Status :<?php echo $photo->status;?>
-        <br><a href="<?php echo $photo->image_path(); ?>">Open pdf 1</a>
+       
+        
+        
+        <p ><a href="JavaScript:newPopup('<?php echo $photo->image_path(); ?>');" >Open pdf 1</a></p> 
         <!--<div style="height:225px">
             
         <!--<div class="large_img_container">
