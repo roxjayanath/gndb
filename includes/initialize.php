@@ -3,9 +3,9 @@
 //define('DS',         DIRECTORY_SEPARATOR);
 define('DS',         '/');
 
-//define('SITE_ROOT',           DS.'wamp'.DS.'www'.DS.'php_sandbox'.DS.'gndb');
+define('SITE_ROOT',           DS.'wamp'.DS.'www'.DS.'php_sandbox'.DS.'gndb');
 //define('SITE_ROOT',           '/Applications/XAMPP/htdocs/gndb');
-define('SITE_ROOT',           DS.'wamp'.DS.'www'.DS.'phpsandbox'.DS.'gndb');
+//define('SITE_ROOT',           DS.'wamp'.DS.'www'.DS.'phpsandbox'.DS.'gndb');
  
 define('LIB_PATH',            SITE_ROOT.DS.'includes');
 

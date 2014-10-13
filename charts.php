@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
 
 <head>
 <script src="javascrpits/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="javascrpits/jsapi.js"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
@@ -80,14 +80,14 @@ if (isset($_POST['submit'])) {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
           ['Pending',     <?php echo $total_count; ?>],
-          ['Reject',      <?php echo $total_countcr; ?>],
-          ['Close',  2],
-          ['Comleted', 2],
-          ['New',    7]
+          ['Reject',     <?php echo $total_countreject; ?>],
+          ['Close',  <?php echo $total_countclose; ?>],
+          ['Comleted', <?php echo $total_countcomlete; ?>],
+          ['Hold',    <?php echo $total_counthold; ?>]
         ]);
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'FUll Status '
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -102,11 +102,11 @@ if (isset($_POST['submit'])) {
   <body>
   <form action="charts.php" enctype="multipart/form-data" method="post">
        <h1>Full Status</h1>
-    <p>Total pending = <?php echo $total_count ?></p>
-	<p>Total hold = <?php echo $total_counthold ?></p>
-	<p>Total reject = <?php echo $total_countreject ?></p>
-	<p>Total close = <?php echo $total_countclose ?></p>
-	<p>Total completed = <?php echo $total_countcomlete ?></p>
+    <p>Total pending = <?php echo $total_count; ?></p>
+	<p>Total hold = <?php echo $total_counthold; ?></p>
+	<p>Total reject = <?php echo $total_countreject; ?></p>
+	<p>Total close = <?php echo $total_countclose; ?></p>
+	<p>Total completed = <?php echo $total_countcomlete; ?></p>
 	
 	<br>
 	<br>
