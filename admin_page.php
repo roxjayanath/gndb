@@ -234,9 +234,15 @@ require_once('layouts/header1.php');
 <script src="javascrpits/jquery-ui.js" ></script>
 
 
-<script type="text/javascript" src="javascrpits/tabber.js"></script>
-<link rel="stylesheet" href="css/example.css" TYPE="text/css" MEDIA="screen">
-<link rel="stylesheet" href="css/example-print.css" TYPE="text/css" MEDIA="print">
+<script type="text/javascript">
+		// Popup window code
+		function newPopup(url) {
+			popupWindow = window.open(
+				url,'popUpWindow','height=850,width=600,left=400,top=400,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+		}
+		</script>
+
+
 
 <script>
     $(function() {
@@ -247,6 +253,17 @@ require_once('layouts/header1.php');
         });
 
         $(".datepicker").datepicker();
+
+        //myFunction();
+
+//         $(".tabbertab").click(function(){
+//             alert("clicked");
+// 			if($(this).parent() == $(".tabbertab:first")){
+// 				$("#sub, #canc").hide();
+// 			} else {
+// 				$("#sub, #canc").show();
+// 			}
+//         });
     });
 
     function showCategoryOptions() {
@@ -259,6 +276,38 @@ require_once('layouts/header1.php');
 
 
 
+    
+    <script src="javascrpits/jquery-1.7.1.min.js" type="text/javascript"></script> 
+  <script src="javascrpits/jquery.hashchange.min.js" type="text/javascript"></script>
+  <script src="javascrpits/jquery.easytabs.min.js" type="text/javascript"></script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready( function() {
+      $('#tab-container').easytabs();
+    });
+  </script>
+
+
+
+
+<style>
+    /* Example Styles for Demo */
+    .etabs { margin: 0; padding: 0; }
+    .tab { display: inline-block; zoom:1; *display:inline; background: #eee; border: solid 1px #999; border-bottom: none; -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; }
+    .tab a { font-size: 14px; line-height: 2em; display: block; padding: 0 10px; outline: none; }
+    .tab a:hover { text-decoration: underline; }
+    .tab.active { background: #fff; padding-top: 6px; position: relative; top: 1px; border-color: #666; }
+    .tab a.active { font-weight: bold; }
+    .tab-container .panel-container { background: #fff; border: solid #666 1px; padding: 10px; -moz-border-radius: 0 4px 4px 4px; -webkit-border-radius: 0 4px 4px 4px; }
+    .panel-container { margin-bottom: 10px; }
+  </style>
+
+
+
+
 
 <div id="admin_content">
     <!--<center><h3>Add Product</h3></center>-->
@@ -266,16 +315,63 @@ require_once('layouts/header1.php');
         
         
         
-        <div class="tabber">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <div id="tab-container" class='tab-container'>
+ <ul class='etabs'>
+   <li class='tab'><a href="#tabs1-html">Page 1</a></li>
+   <li class='tab'><a href="#tabs1-js">Page 2</a></li>
+   <li class='tab'><a href="#tabs1-css">Page 3</a></li>
+     
 
-     <div class="tabbertab">
-	  <h2>Page 1</h2>
-	  <p> <p class="detailll" >Core / NonCore : <select name="core" class="detailindate1">
+ </ul>
+ <div class='panel-container'>
+  <div id="tabs1-html">
+   
+
+  
+    <code>
+<p> <p class="detailll" >Core / NonCore : <select name="core" class="detailindate1">
              <option value="Core">Core</option>
              <option value="NonCore">NonCore</option>
              
   
-           </select></p><p class="detailll" > CR/BRD/REPORT : <select name="crr" class="detailindate2">
+           </select></p>
+           
+           <p class="detailll">Unit : <select name="unit" class="detailindate5">
+						<?php foreach ($allUnits as $key => $value){
+							$selected = ($selectedCrr == $key) ? "selected" : "";
+							?>
+							<option name="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
+							<?php
+						} ?>
+
+				</select></p>
+		
+           
+           
+           
+           
+           <p class="detailll" > CR/BRD/REPORT : <select name="crr" class="detailindate2">
              <option value="CR">CR</option>
              <option value="BRD">BRD</option>
              <option value="REPORT">REPORT</option>
@@ -305,15 +401,6 @@ require_once('layouts/header1.php');
 		
 		
 		
-		<p class="detailll">Unit : <select name="unit" class="detailindate5">
-						<?php foreach ($allUnits as $key => $value){
-							$selected = ($selectedCrr == $key) ? "selected" : "";
-							?>
-							<option name="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
-							<?php
-						} ?>
-
-				</select></p>
 		
 		
 		
@@ -335,12 +422,27 @@ require_once('layouts/header1.php');
           
           
           </p>
-     </div>
+    </code>
+    
+  
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   <div id="tabs1-js">
+   
 
-
-     <div class="tabbertab">
-	  <h2>Page 2</h2>
-	  <p>
+   
+    <code>
+<p>
             
             
         <p class="detailll">SMRC Reviewed Date : <input type="text" class="datepicker" name="smrc_date" /></p>
@@ -358,12 +460,23 @@ require_once('layouts/header1.php');
             
             
           </p>
-     </div>
+    </code>
+  
+
+  </div>
+   
+   
+   
+   
+   
+   
+   
+  <div id="tabs1-css">
 
 
-     <div class="tabbertab">
-	  <h2>Page 3</h2>
-	  <p>
+  <code>
+    
+<p>
             
              <p class="detailll">Date Hand Over TO QA : <input type="text" class="datepicker" name="date_hand_qa" /></p>
         <p class="detailll">QA Testing Competed ON : <input type="text" class="datepicker" name="qa_complete" /></p>
@@ -381,10 +494,73 @@ require_once('layouts/header1.php');
         <p class="detailll">Scan Document 3 : <input type="file" class="box" name="pdf3"  /></p>
             
             
-          </p>
-     </div>
+          </p>  
+  </code>
 
+  </div>
+ </div>
 </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
