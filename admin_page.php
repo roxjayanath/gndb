@@ -277,7 +277,7 @@ require_once('layouts/header1.php');
 
 
     
-    <script src="javascrpits/jquery-1.7.1.min.js" type="text/javascript"></script> 
+<!--     <script src="javascrpits/jquery-1.7.1.min.js" type="text/javascript"></script>  -->
   <script src="javascrpits/jquery.hashchange.min.js" type="text/javascript"></script>
   <script src="javascrpits/jquery.easytabs.min.js" type="text/javascript"></script>
 
