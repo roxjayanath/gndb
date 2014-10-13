@@ -17,16 +17,16 @@ $page = ! empty ( $_GET ['page'] ) ? ( int ) $_GET ['page'] : 1;
 
 $per_page = 2;
 
-$total_count = Product::count_all ();
+// $total_count = Product::count_all ();
 
 
-$pagination = new Pagination($page,$per_page,$total_count);
+// $pagination = new Pagination($page,$per_page,$total_count);
   
-  $sql = "SELECT * FROM ndb_doc ";
-  $sql .= "LIMIT {$per_page} ";
-  $sql .= "OFFSET {$pagination->offset()}";
+//   $sql = "SELECT * FROM ndb_doc ";
+//   $sql .= "LIMIT {$per_page} ";
+//   $sql .= "OFFSET {$pagination->offset()}";
   
-  $photos = Product::find_by_sql($sql);
+  //$photos = Product::find_by_sql($sql);
 
 // $photos= Photograph::find_all();
 
@@ -44,7 +44,7 @@ $allCats = array(
 
 $reference = $selectedCrr = "";
 
-$sql = "SELECT * FROM ndb_doc WHERE d_visible=1";
+$sql = "SELECT * FROM ndb_doc WHERE d_visible=1 ";
 
 if (! empty ( $_REQUEST ['prod_name'] )) {
 	$reference = $_REQUEST ['prod_name'];
@@ -53,14 +53,24 @@ if (! empty ( $_REQUEST ['prod_name'] )) {
 
 if (! empty ( $_REQUEST ['crr'] ) && $_REQUEST ['crr'] != 'All') {
 	$selectedCrr = $_REQUEST ['crr'];
-	$sql .= (! empty ( $_REQUEST ['prod_name'] )) ? " AND " : " AND ";
-	$sql .= "cr_brd = '{$_REQUEST ['crr']}'";
+	//$sql .= (! empty ( $_REQUEST ['prod_name'] )) ? " AND " : " AND ";
+	$sql .= " AND cr_brd = '{$_REQUEST ['crr']}'";
 }
 
 // $sql .= "LIMIT {$per_page} ";
 // $sql .= "OFFSET {$pagination->offset()}";
 
-//$photos = Product::find_by_sql ( $sql );
+$photoCount = Product::find_by_sql ( $sql );
+
+$total_count = count($photoCount);
+
+$pagination = new Pagination($page,$per_page,$total_count);
+
+$sql2 = $sql;
+$sql2 .= " LIMIT {$per_page} ";
+$sql2 .= " OFFSET {$pagination->offset()}";
+
+$photos = Product::find_by_sql ( $sql2 );
 
 ?>
 
