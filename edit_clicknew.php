@@ -230,9 +230,8 @@ require_once('layouts/header1.php');
 <script src="javascrpits/jquery-1.8.3.min.js" ></script>
 <script src="javascrpits/jquery-ui.js" ></script>
 
-<script type="text/javascript" src="javascrpits/tabber.js"></script>
-<link rel="stylesheet" href="css/example.css" TYPE="text/css" MEDIA="screen">
-<link rel="stylesheet" href="css/example-print.css" TYPE="text/css" MEDIA="print">
+<script src="javascrpits/jquery.hashchange.min.js" type="text/javascript"></script>
+  <script src="javascrpits/jquery.easytabs.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 		// Popup window code
@@ -282,6 +281,28 @@ function myFunction() {
 </script>
 
 
+<script type="text/javascript">
+    $(document).ready( function() {
+      $('#tab-container').easytabs();
+    });
+  </script>
+
+
+<style>
+    /* Example Styles for Demo */
+    .etabs { margin: 0; padding: 0; }
+    .tab { display: inline-block; zoom:1; *display:inline; background: #eee; border: solid 1px #999; border-bottom: none; -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; }
+    .tab a { font-size: 14px; line-height: 2em; display: block; padding: 0 10px; outline: none; }
+    .tab a:hover { text-decoration: underline; }
+    .tab.active { background: #fff; padding-top: 6px; position: relative; top: 1px; border-color: #666; }
+    .tab a.active { font-weight: bold; }
+    .tab-container .panel-container { background: #fff; border: solid #666 1px; padding: 10px; -moz-border-radius: 0 4px 4px 4px; -webkit-border-radius: 0 4px 4px 4px; }
+    .panel-container { margin-bottom: 10px; }
+  </style>
+
+
+
+
     
 
  <?php $doc_id = !empty($_REQUEST['id']) ? $_REQUEST['id'] : "0"; ?>
@@ -292,6 +313,221 @@ function myFunction() {
         
 		
 		<input type="hidden" name="id" value="<?php echo $doc_id  ?>" />
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<div id="tab-container" class='tab-container'>
+ <ul class='etabs'>
+    <li class='tab'><a href="#tabs1-htmll">View</a></li>
+   <li class='tab'><a href="#tabs1-html">Page 1</a></li>
+   <li class='tab'><a href="#tabs1-js">Page 2</a></li>
+   <li class='tab'><a href="#tabs1-css">Page 3</a></li>
+     
+
+ </ul>
+ <div class='panel-container'>
+  <div id="tabs1-html">
+   
+
+  
+    <code>
+<p>  <div >
+	
+	ID : <?php echo $photo->d_id;?>
+        <br>Core / NonCore : <?php echo $photo->cor_non;?>
+        <br>CR/BRD/REPORT :<?php echo $photo->cr_brd;?>
+		<br>Reference : <?php echo $photo->reference;?>
+		<br>Requester : <?php echo $photo->requester;?>
+		<br>Unit : <?php echo $photo->unit;?>
+		<br>Contact Person : <?php echo $photo->contact_p;?> 
+		
+        <br>Date Submit :<?php echo $photo->date_sub;?>
+        <br>Description :<?php echo $photo->description;?>
+        <br>Date Recived (IT):<?php echo $photo->date_reciv_it;?>
+        <br>SMRC Reviewed Date :<?php echo $photo->smrc_date;?>
+        <br>SMRC Status :<?php echo $photo->smrc_status;?>
+        <br>Prority :<?php echo $photo->priority;?>
+        <br>Date Hand Over To Development :<?php echo $photo->date_develop;?>
+        <br>Date Hand Over To Temonors/FLS :<?php echo $photo->date_temo;?>
+        <br>Remarks :<?php echo $photo->remarks;?>
+	<br>Hand Over To :<?php $photo->assing_to; ?>
+        <br>Development Reviewed Date :<?php echo $photo->develop_r_date;?>
+        <br>Documantation Complete/not :<?php echo $photo->document_complet;?>
+        <br>Date Hand Over TO QA :<?php echo $photo->date_hand_qa;?>
+        <br>QA Testing Competed ON :<?php echo $photo->qa_complete;?>
+        <br>Date Hand Over To IT Ops :<?php echo $photo->date_back_it;?>
+        <br>Release Date :<?php echo $photo->release_date;?>
+        <br>Status :<?php echo $photo->status;?>
+
+        <br>
+        <br>Scan document 1 : <a href="JavaScript:newPopup('<?php echo $photo->image_path(); ?>');" ><?php echo $photo->scan_doc1; ?></a>
+        <br>Scan document 2 : <?php echo $photo->scan_doc2; ?>
+        <br>Scan document 3 : <?php echo $photo->scan_doc3; ?>
+        
+        <?php 
+        	$date=date_create($photo->update_on); 
+        	$dateString = date_format($date, "Y/m/d H:i");
+        ?>
+        <br>Last update : <?php echo $dateString; ?>
+
+            
+    </div>
+          </p>
+    </code>
+    
+  
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   <div id="tabs1-js">
+   
+
+   
+    <code>
+<p>
+            
+            
+        <p class="detailll">SMRC Reviewed Date : <input type="text" class="datepicker" name="smrc_date" /></p>
+        <p class="detailll">SMRC Status : <input type="text" name="smrc_status" class="detailindate10"/></p>
+        <p class="detailll">Priority : <input type="text"  name="priority" class="detailindate11"/></p>
+        <p class="detailll">Date Hand Over <br> To Development : <input type="text" class="datepicker" name="date_develop" /></p>
+        <p class="detailll">Date Hand Over To Temonors/FLS : <input type="text" class="datepicker"name="date_temo" /></p>
+        <p class="detailll">Remarks : <textarea name="remarks" class=""></textarea></p>
+        
+        <p class="detailll">Hand over to : <input type="text" name="assing_to" class="detailindate12"/></p>
+        
+        <p class="detailll">Development Reviewed Date : <input type="text" class="datepicker" name="develop_r_date" /></p>
+        <p class="detailll">Documantation Complete/not : <input type="text" name="document_complet" class=""/></p>
+            
+            
+            
+          </p>
+    </code>
+  
+
+  </div>
+   
+   
+   
+   
+   
+   
+   
+  <div id="tabs1-css">
+
+
+  <code>
+    
+<p>
+            
+             <p class="detailll">Date Hand Over TO QA : <input type="text" class="datepicker" name="date_hand_qa" /></p>
+        <p class="detailll">QA Testing Competed ON : <input type="text" class="datepicker" name="qa_complete" /></p>
+        <p class="detailll">Date Hand Over To IT Ops : <input type="text" class="datepicker" name="date_back_it" /></p>
+        <p class="detailll">Release Date : <input type="text" class="datepicker" name="release_date" /></p>
+        <p class="detailll">Status :  <select name="status" class="detailindate9">
+             <option value="pending">Pending</option>
+             <option value="completed">Completed</option>
+              <option value="rejected">Rejected</option>
+               <option value="close">Close</option>
+                <option value="hold">Hold</option>
+           </select></p>
+        <p class="detailll">Scan Document 1 : <input type="file" class="box" name="pdf1" /></p>
+        <p class="detailll">Scan Document 2 : <input type="file" class="box"  name="pdf2" /></p>
+        <p class="detailll">Scan Document 3 : <input type="file" class="box" name="pdf3"  /></p>
+            
+            
+          </p>  
+  </code>
+
+  </div>
+ </div>
+</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
         
