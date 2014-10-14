@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
  
  //SELECTt * FROM ndb_doc WHERE d_visible =1 AND lower(assing_to) like lower('%m%')
  
- $sql = "SELECT * FROM ndb_doc WHERE d_visible =1 AND lower(assing_to) like lower('%".$product->sname= $_POST['assing_to'];
+ $sql = "SELECT * FROM ndb_doc WHERE d_visible =1 AND status = 'pending' AND lower(assing_to) like lower('%".$product->sname= $_POST['assing_to'];
  $sql.= "%')";
  $photos = Product::find_by_sql ( $sql );
  
