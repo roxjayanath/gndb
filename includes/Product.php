@@ -9,14 +9,19 @@ require_once(LIB_PATH . DS . 'database.php');
 class Product extends DatabaseObject {
 
     protected static $table_name = "ndb_doc";
-    protected static $db_fields = array('d_id', 'cor_non', 'cr_brd', 'reference', 'requester', 'unit', 'contact_p', 'date_sub',
+    protected static $db_fields = array('d_id', 'cor_non', 'cr_brd','ref1','ref2','ref3','ref1','reffull','reference', 'requester', 'unit', 'contact_p', 'date_sub',
                                         'description', 'date_reciv_it', 'smrc_date', 'smrc_status','priority','date_develop',
-                                        'date_temo','remarks','assing_to','develop_r_date',
+                                        'date_temo','remarks','assing_to','ded_line','develop_r_date',
                                         'document_complet','date_hand_qa','qa_complete','date_back_it','release_date',
                                         'status','scan_doc1','scan_doc2','scan_doc3', 'update_on','d_visible');
     public $d_id;
     public $cor_non;
     public $cr_brd;
+	
+	public $ref1;
+	public $ref2;
+	public $ref3;
+	public $reffull;
     
     public $reference;
     public $requester;
@@ -36,6 +41,7 @@ class Product extends DatabaseObject {
      
      public $remarks;
      public $assing_to;
+	 public $ded_line;
     public $develop_r_date;
     public $document_complet;
     
@@ -54,6 +60,8 @@ class Product extends DatabaseObject {
      public $d_visible;
 	 
 	 public $sname;
+	 
+	 public $maxvalue;
      
      
      
@@ -113,7 +121,7 @@ class Product extends DatabaseObject {
     }
 
     public function save() {
-        $this->validate_save();
+        //$this->validate_save();
         if (empty($this->errors)) {
             return isset($this->d_id) ? $this->update() : $this->create();
         } else {
@@ -290,6 +298,48 @@ class Product extends DatabaseObject {
             $object_array[] = self::instantiate($row);
         }
         return $object_array;
+    }
+	
+	public static function find_by_sql2() {
+        global $database;
+		$objectt_array = array();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+        //$maxvalue = $database->query($sql);
+		//$sql22 = "SELECT MAX(ref3) AS maxnumber FROM ndb_doc WHERE  unit= '".$temref1 ."' AND cr_brd= '". $tempref2 ."' " ;
+		$sql22 = "SELECT MAX(ref3) AS maxnumber FROM ndb_doc WHERE unit= 'BC' AND cr_brd= 'CR'";
+		//$result = mysqli_query($conn->connection,$sql22) or die(mysql_error());
+		$result_set = $database->query($sql22);
+		 while ($row = $database->fetch_array($result_set)) {
+		 $object_array[] = self::instantiate($row['maxnumber']);
+		 }
+		return $objectt_array;
+		//$sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND cr_brd='REPORT' AND status = 'pending' ";
+        //$sql .= $searchString;
+        //$result_set = $database->query($sql);
+        //$row = $database->fetch_array($result_set);
+        //return array_shift($row);
+		
+		
+        //$object_array = array();
+       // while ($row = $database->fetch_array($result_set)) {
+            //$object_array[] = self::instantiate($row);
+      //  }
+        //return $maxvalue;
     }
 
     private function has_attribute($attribute) {

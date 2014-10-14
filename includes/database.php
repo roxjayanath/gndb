@@ -48,6 +48,13 @@ class MySQLDatabase {
     return $result;
    }
    
+   public function query2($sql){
+    $this->last_query=$sql;
+    $result = mysqli_query2($this->connection,$sql);
+    $this->comfirm_query2($result);
+    return $result;
+   }
+   
   public function escape_value($value){
        
         if($this->real_escape_string){
