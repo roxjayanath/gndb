@@ -9,7 +9,7 @@ require_once(LIB_PATH . DS . 'database.php');
 class Product extends DatabaseObject {
 
     protected static $table_name = "ndb_doc";
-    protected static $db_fields = array('d_id', 'cor_non', 'cr_brd','ref1','ref2','ref3','ref1','reffull','reference', 'requester', 'unit', 'contact_p', 'date_sub',
+    protected static $db_fields = array('d_id', 'cor_non', 'cr_brd','ref1','ref2','ref3','reffull','reference', 'requester', 'unit', 'contact_p', 'date_sub',
                                         'description', 'date_reciv_it', 'smrc_date', 'smrc_status','priority','date_develop',
                                         'date_temo','remarks','assing_to','ded_line','develop_r_date',
                                         'document_complet','date_hand_qa','qa_complete','date_back_it','release_date',
