@@ -17,6 +17,9 @@ if (!$session->is_logged_in()) {
 <?php
 $max_file_size = 1048576;
 
+$tempmax=0;
+$tempmaxid=0;
+
 $allUnits = array(
 	"BC" => "BC",
 	"Branch Banking" => "Branch Banking",
@@ -102,7 +105,7 @@ $allref = array(
 	
 	
 	);
-
+$tempref2=1;
 
 
 //$message="";
@@ -124,9 +127,25 @@ if (isset($_POST['submit'])) {
 //        redirect_to('admin_page.php');
 //    } else {
 //        $message = join("<br/>", $photo->errors);
+
+
+
+$tempref=2;
+
 //        echo $message;
 //    }
     $user = User::find_by_id($session->user_id);
+	
+  
+	
+	$row =0;
+	
+	
+	
+	
+	
+	$conn= new MySQLDatabase();
+	$database= new MySQLDatabase();
     
     $product = new Product();
     $product->attach_file($_FILES['pdf1'], 1);
@@ -136,6 +155,71 @@ if (isset($_POST['submit'])) {
     
     $product->cor_non= $_POST['core'];
     $product->cr_brd= $_POST['crr'];
+	
+	$product->ref1= $_POST['unit'];
+	$product->ref2= $_POST['crr'];
+	
+	$maxnum = Product::find_by_sql2( );
+	
+	echo $maxnum;
+	echo var_dump($maxnum);
+	
+	//echo $maxnum;
+	echo $product->ref1;
+	echo $product->ref1 ;
+	
+	//$sql22 = "SELECT MAX(ref3) AS maxnumber FROM ndb_doc WHERE  unit= '".$product->ref1 ."' AND cr_brd= '". $product->ref2 ."' " ;
+	
+	
+	
+	
+	//$maxquery = mysqli_query($conn->connection,$sql22);
+	//$row=mysqli_fetch_array($conn->connection,$maxquery);
+	//$tempmaxid= $row[0];
+	//while($row=mysqli_fetch_array($conn->connection,$sql22)){
+	
+	//$tempmax =$row['maxnumber'];
+	//echo " value".$row['maxnumber'];
+	//}
+	
+	//$photoCount = Product::find_by_sql2 ( $sql22 );
+	
+	   // global $database;
+        //$sql3 = "SELECT MAX(ref3) AS maxnumber FROM ndb_doc WHERE  unit= '".$product->ref1 ."' AND cr_brd= '". $product->ref2 ."' ";
+       // $sql3 .= $searchString;
+        //$result_set = $database->query($sql3);
+        //$row = $database->fetch_array($result_set);
+        //return array_shift($row);
+	
+	     // $tempref = $row;
+		 
+		 
+		 //$result = mysqli_query($conn->connection,$sql22) or die(mysql_error());
+		// while($row = mysqli_fetch_array($conn->connection,$result)){
+		 
+		 
+		 //$tempref2=$row['maxnumber'];
+		 
+		 
+		 
+	
+	
+	
+	
+  
+  
+  
+  
+  //echo  $photoCount->maxvalue;
+	
+	
+	
+	//$product->ref3= $tempref;
+	$product->reffull=  $product->ref1 ."-". $product->ref2."-".$product->ref3;
+	
+	
+	
+	
     $product->reference= $_POST['reference'];
     $product->requester= $_POST['requester'];
     $product->unit= $_POST['unit'];
@@ -152,6 +236,7 @@ if (isset($_POST['submit'])) {
      $product->date_temo= $_POST['date_temo'];
      $product->remarks= $_POST['remarks'];
      $product->assing_to= $_POST['assing_to'];
+	 $product->ded_line= $_POST['ded_line'];
     $product->develop_r_date= $_POST['develop_r_date'];
     $product->document_complet= $_POST['document_complet'];
      $product->date_hand_qa= $_POST['date_hand_qa'];
@@ -350,7 +435,10 @@ require_once('layouts/header1.php');
 
   
     <code>
-<p> <p class="detailll" >Core / NonCore : <select name="core" class="detailindate1">
+<p> <?php echo " value" ?> 
+
+
+<p class="detailll" >Core / NonCore : <select name="core" class="detailindate1">
              <option value="Core">Core</option>
              <option value="NonCore">NonCore</option>
              
@@ -380,7 +468,7 @@ require_once('layouts/header1.php');
           
            <p class="detailll">Reference : 
 		   
-		   <select name="ref1" class="detailindate5">
+		   <select name="ref1" class="detailindate55">
 						<?php foreach ($allref as $key => $value){
 							$selected = ($selectedCrr == $key) ? "selected" : "";
 							?>
@@ -393,7 +481,7 @@ require_once('layouts/header1.php');
 		   
 		   
 		   </p>
-        <p class="detailll">Requester :<input type="text" class="datepicker"name="date_req" /> <input type="text" name="requester" class="detailindate4" /></p>
+        <p class="detailll">Requester :<input type="text" class="datepicker"name="date_req" style="margin-left: 160px;"/> <input type="text" name="requester" class="detailindate4" /></p>
         <!--<p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p> -->
 		
 		
@@ -404,7 +492,7 @@ require_once('layouts/header1.php');
 		
 		
 		
-		
+
 		
 		
 		
@@ -416,9 +504,9 @@ require_once('layouts/header1.php');
 		
         
          <p class="detailll">Contact Person : <input type="text" name="contact_p" class="detailindate6"/></p>
-        <p class="detailll">Date Submit : <input type="text" class="datepicker"name="date_sub" /></p>
+        <p class="detailll">Date Submit : <input type="text" class="datepicker"name="date_sub"  style="margin-left: 130px;"/></p>
         <p class="detailll">Description : <textarea name="description" class="detailindate7"></textarea></p>
-        <p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" /></p>
+        <p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" style="margin-left: 80px;"/></p>
           
           
           </p>
@@ -445,17 +533,20 @@ require_once('layouts/header1.php');
 <p>
             
             
-        <p class="detailll">SMRC Reviewed Date : <input type="text" class="datepicker" name="smrc_date" /></p>
+        <p class="detailll">SMRC Reviewed Date : <input type="text" class="datepicker" name="smrc_date" style="margin-left: 100px;"/></p>
         <p class="detailll">SMRC Status : <input type="text" name="smrc_status" class="detailindate10"/></p>
         <p class="detailll">Priority : <input type="text"  name="priority" class="detailindate11"/></p>
-        <p class="detailll">Date Hand Over <br> To Development : <input type="text" class="datepicker" name="date_develop" /></p>
+        <p class="detailll">Date Hand Over To Development : <input type="text" class="datepicker" name="date_develop" /></p>
         <p class="detailll">Date Hand Over To Temonors/FLS : <input type="text" class="datepicker"name="date_temo" /></p>
-        <p class="detailll">Remarks : <textarea name="remarks" class=""></textarea></p>
+        <p class="detailll">Remarks : <textarea name="remarks" class="detailindate101"></textarea></p>
         
-        <p class="detailll">Hand over to : <input type="text" name="assing_to" class="detailindate12"/></p>
-        
-        <p class="detailll">Development Reviewed Date : <input type="text" class="datepicker" name="develop_r_date" /></p>
-        <p class="detailll">Documantation Complete/not : <input type="text" name="document_complet" class=""/></p>
+        <p class="detailll">Hand over to : <input type="text" name="assing_to" class="detailindate100"/></p>
+       
+	   <p class="detailll">Dead Line : <input type="text" class="datepicker" name="ded_line" style="margin-left: 185px;"/></p>
+
+
+	   <p class="detailll">Development Reviewed Date : <input type="text" class="datepicker" name="develop_r_date" style="margin-left: 25px;"/></p>
+        <p class="detailll">Documantation Complete/not : <input type="text" name="document_complet" style="margin-left: 15px;"/></p>
             
             
             
@@ -478,10 +569,10 @@ require_once('layouts/header1.php');
     
 <p>
             
-             <p class="detailll">Date Hand Over TO QA : <input type="text" class="datepicker" name="date_hand_qa" /></p>
-        <p class="detailll">QA Testing Competed ON : <input type="text" class="datepicker" name="qa_complete" /></p>
-        <p class="detailll">Date Hand Over To IT Ops : <input type="text" class="datepicker" name="date_back_it" /></p>
-        <p class="detailll">Release Date : <input type="text" class="datepicker" name="release_date" /></p>
+             <p class="detailll">Date Hand Over TO QA : <input type="text" class="datepicker" name="date_hand_qa" style="margin-left: 45px;"/></p>
+        <p class="detailll">QA Testing Competed ON : <input type="text" class="datepicker" name="qa_complete" style="margin-left: 23px;"/></p>
+        <p class="detailll">Date Hand Over To IT Ops : <input type="text" class="datepicker" name="date_back_it" style="margin-left: 5px;"/></p>
+        <p class="detailll">Release Date : <input type="text" class="datepicker" name="release_date" style="margin-left: 120px;"/></p>
         <p class="detailll">Status :  <select name="status" class="detailindate9">
              <option value="pending">Pending</option>
              <option value="completed">Completed</option>
