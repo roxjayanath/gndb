@@ -126,6 +126,7 @@ if (isset($_POST['submit'])) {
      $product->date_temo= $_POST['date_temo'];
      $product->remarks= $_POST['remarks'];
      $product->assing_to= $_POST['assing_to'];
+	 $product->ded_line= $_POST['ded_line'];
      
     $product->develop_r_date= $_POST['develop_r_date'];
     $product->document_complet= $_POST['document_complet'];
@@ -349,7 +350,7 @@ function myFunction() {
 
  </ul>
  <div class='panel-container'>
-  <div id="tabs1-html">
+  <div id="tabs1-htmll">
    
 
   
@@ -373,7 +374,8 @@ function myFunction() {
         <br>Date Hand Over To Development :<?php echo $photo->date_develop;?>
         <br>Date Hand Over To Temonors/FLS :<?php echo $photo->date_temo;?>
         <br>Remarks :<?php echo $photo->remarks;?>
-	<br>Hand Over To :<?php $photo->assing_to; ?>
+     	<br>Hand Over To :<?php echo $photo->assing_to; ?>
+	     <br>Dead Line :<?php echo $photo->ded_line; ?>
         <br>Development Reviewed Date :<?php echo $photo->develop_r_date;?>
         <br>Documantation Complete/not :<?php echo $photo->document_complet;?>
         <br>Date Hand Over TO QA :<?php echo $photo->date_hand_qa;?>
@@ -403,7 +405,45 @@ function myFunction() {
   
   
   
+   <div id="tabs1-html">
+    <code>
+	
+	
+	<p> <p class="detailll" >Core / NonCore : <select name="core" class="detailindate1">
+             <option value="Core">Core</option>
+             <option value="NonCore">NonCore</option>
+             
   
+           </select></p><p class="detailll" > CR/BRD/REPORT : <select name="crr" class="detailindate2">
+             <option value="CR">CR</option>
+             <option value="BRD">BRD</option>
+             <option value="REPORT">REPORT</option>
+  
+           </select></p>
+          
+           <p class="detailll">Reference : <input type="text" name="reference" class="detailindate3" value="<?php echo $photo->reference; ?>" /></p>
+        <p class="detailll">Requester :<input type="text" class="datepicker"name="date_req" style="margin-left: 160px;"/> <input type="text" name="requester" class="detailindate4" value="<?php echo $photo->requester; ?>"/></p>
+        <p class="detailll">Unit : <select name="unit" class="detailindate5">
+						<?php foreach ($allUnits as $key => $value){
+							$selected = ($selectedCrr == $key) ? "selected" : "";
+							?>
+							<option name="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
+							<?php
+						} ?>
+
+				</select></p>
+        
+         <p class="detailll">Contact Person : <input type="text" name="contact_p" class="detailindate6" value="<?php echo $photo->contact_p; ?>"/></p>
+        <p class="detailll">Date Submit : <input type="text" class="datepicker"name="date_sub" value="<?php echo $photo->date_sub; ?>" style="margin-left: 130px;"/></p>
+        <p class="detailll">Description : <textarea name="description" class="detailindate7"><?php echo $photo->description;?></textarea></p>
+        <p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" value="<?php echo $photo->date_reciv_it;?>" style="margin-left: 80px;"/></p>
+          
+          
+          </p>
+	
+	
+    </code>
+   </div>
   
   
   
@@ -416,20 +456,24 @@ function myFunction() {
 
    
     <code>
-<p>
+ <p>
             
             
-        <p class="detailll">SMRC Reviewed Date : <input type="text" class="datepicker" name="smrc_date" /></p>
-        <p class="detailll">SMRC Status : <input type="text" name="smrc_status" class="detailindate10"/></p>
-        <p class="detailll">Priority : <input type="text"  name="priority" class="detailindate11"/></p>
-        <p class="detailll">Date Hand Over <br> To Development : <input type="text" class="datepicker" name="date_develop" /></p>
-        <p class="detailll">Date Hand Over To Temonors/FLS : <input type="text" class="datepicker"name="date_temo" /></p>
-        <p class="detailll">Remarks : <textarea name="remarks" class=""></textarea></p>
-        
-        <p class="detailll">Hand over to : <input type="text" name="assing_to" class="detailindate12"/></p>
-        
-        <p class="detailll">Development Reviewed Date : <input type="text" class="datepicker" name="develop_r_date" /></p>
-        <p class="detailll">Documantation Complete/not : <input type="text" name="document_complet" class=""/></p>
+        <p class="detailll">SMRC Reviewed Date : <input type="text" class="datepicker" name="smrc_date" value="<?php echo $photo->smrc_date;?>" style="margin-left: 100px;"/></p>
+        <p class="detailll">SMRC Status : <input type="text" name="smrc_status" class="detailindate10" value="<?php echo $photo->smrc_status;?>"/></p>
+        <p class="detailll">Priority : <input type="text"  name="priority" class="detailindate11" value="<?php echo $photo->priority;?>"/></p>
+        <p class="detailll">Date Hand Over To Development : <input type="text" class="datepicker" name="date_develop" value="<?php echo $photo->date_develop;?>"/></p>
+        <p class="detailll">Date Hand Over To Temonors/FLS : <input type="text" class="datepicker"name="date_temo" value="<?php echo $photo->date_temo;?>"/></p>
+        <p class="detailll">Remarks : <textarea name="remarks" class="detailindate101"><?php echo $photo->remarks;?></textarea></p>
+	
+	<p class="detailll">Hand Over To  : <input type="text" name="assing_to" class="detailindate100" value="<?php echo $photo->assing_to;?>"/></p>
+	
+         <p class="detailll">Dead Line : <input type="text" class="datepicker" name="ded_line" value="<?php echo $photo->ded_line;?>"  style="margin-left: 185px;"/></p>
+
+		
+		
+        <p class="detailll">Development Reviewed Date : <input type="text" class="datepicker" name="develop_r_date" value="<?php echo $photo->develop_r_date;?>" style="margin-left: 25px;"/></p>
+        <p class="detailll">Documantation Complete/not : <input type="text" name="document_complet" class="" value="<?php echo $photo->document_complet;?>" style="margin-left: 15px;"/></p>
             
             
             
@@ -450,25 +494,23 @@ function myFunction() {
 
   <code>
     
-<p>
-            
-             <p class="detailll">Date Hand Over TO QA : <input type="text" class="datepicker" name="date_hand_qa" /></p>
-        <p class="detailll">QA Testing Competed ON : <input type="text" class="datepicker" name="qa_complete" /></p>
-        <p class="detailll">Date Hand Over To IT Ops : <input type="text" class="datepicker" name="date_back_it" /></p>
-        <p class="detailll">Release Date : <input type="text" class="datepicker" name="release_date" /></p>
+<p class="detailll">Date Hand Over TO QA : <input type="text" class="datepicker" name="date_hand_qa" value="<?php echo $photo->date_hand_qa;?>" style="margin-left: 45px;"/></p>
+        <p class="detailll">QA Testing Competed ON : <input type="text" class="datepicker" name="qa_complete" value="<?php echo $photo->qa_complete;?>" style="margin-left: 23px;"/></p>
+        <p class="detailll">Date Hand Over To IT Ops : <input type="text" class="datepicker" name="date_back_it" value="<?php echo $photo->date_back_it;?>" style="margin-left: 5px;"/></p>
+        <p class="detailll">Release Date : <input type="text" class="datepicker" name="release_date" value="<?php echo $photo->release_date;?>" style="margin-left: 120px;"/></p>
         <p class="detailll">Status :  <select name="status" class="detailindate9">
              <option value="pending">Pending</option>
              <option value="completed">Completed</option>
               <option value="rejected">Rejected</option>
                <option value="close">Close</option>
-                <option value="hold">Hold</option>
+                <option value="new">New</option>
            </select></p>
         <p class="detailll">Scan Document 1 : <input type="file" class="box" name="pdf1" /></p>
         <p class="detailll">Scan Document 2 : <input type="file" class="box"  name="pdf2" /></p>
         <p class="detailll">Scan Document 3 : <input type="file" class="box" name="pdf3"  /></p>
             
             
-          </p>  
+          </p>
   </code>
 
   </div>
@@ -545,154 +587,7 @@ function myFunction() {
 	
 	
 	
-	 <div class="tabber">
-	    
-	    <div class="tabbertab">
-	  <h2 onclick="myFunction()">View</h2>
-	  <p>
-	    
-	    
-    
-    <div >
-	
-	ID : <?php echo $photo->d_id;?>
-        <br>Core / NonCore : <?php echo $photo->cor_non;?>
-        <br>CR/BRD/REPORT :<?php echo $photo->cr_brd;?>
-		<br>Reference : <?php echo $photo->reference;?>
-		<br>Requester : <?php echo $photo->requester;?>
-		<br>Unit : <?php echo $photo->unit;?>
-		<br>Contact Person : <?php echo $photo->contact_p;?> 
-		
-        <br>Date Submit :<?php echo $photo->date_sub;?>
-        <br>Description :<?php echo $photo->description;?>
-        <br>Date Recived (IT):<?php echo $photo->date_reciv_it;?>
-        <br>SMRC Reviewed Date :<?php echo $photo->smrc_date;?>
-        <br>SMRC Status :<?php echo $photo->smrc_status;?>
-        <br>Prority :<?php echo $photo->priority;?>
-        <br>Date Hand Over To Development :<?php echo $photo->date_develop;?>
-        <br>Date Hand Over To Temonors/FLS :<?php echo $photo->date_temo;?>
-        <br>Remarks :<?php echo $photo->remarks;?>
-	<br>Hand Over To :<?php $photo->assing_to; ?>
-        <br>Development Reviewed Date :<?php echo $photo->develop_r_date;?>
-        <br>Documantation Complete/not :<?php echo $photo->document_complet;?>
-        <br>Date Hand Over TO QA :<?php echo $photo->date_hand_qa;?>
-        <br>QA Testing Competed ON :<?php echo $photo->qa_complete;?>
-        <br>Date Hand Over To IT Ops :<?php echo $photo->date_back_it;?>
-        <br>Release Date :<?php echo $photo->release_date;?>
-        <br>Status :<?php echo $photo->status;?>
-
-        <br>
-        <br>Scan document 1 : <a href="JavaScript:newPopup('<?php echo $photo->image_path(); ?>');" ><?php echo $photo->scan_doc1; ?></a>
-        <br>Scan document 2 : <?php echo $photo->scan_doc2; ?>
-        <br>Scan document 3 : <?php echo $photo->scan_doc3; ?>
-        
-        <?php 
-        	$date=date_create($photo->update_on); 
-        	$dateString = date_format($date, "Y/m/d H:i");
-        ?>
-        <br>Last update : <?php echo $dateString; ?>
-
-            
-    </div>
-</div>
-	    
-	    
-	    
-	  </p>
-
-     <div class="tabbertab">
-	  <h2>Page 1</h2>
-	  <p> <p class="detailll" >Core / NonCore : <select name="core" class="detailindate1">
-             <option value="Core">Core</option>
-             <option value="NonCore">NonCore</option>
-             
-  
-           </select></p><p class="detailll" > CR/BRD/REPORT : <select name="crr" class="detailindate2">
-             <option value="CR">CR</option>
-             <option value="BRD">BRD</option>
-             <option value="REPORT">REPORT</option>
-  
-           </select></p>
-          
-           <p class="detailll">Reference : <input type="text" name="reference" class="detailindate3" value="<?php echo $photo->reference; ?>" /></p>
-        <p class="detailll">Requester :<input type="text" class="datepicker"name="date_req" /> <input type="text" name="requester" class="detailindate4" value="<?php echo $photo->requester; ?>"/></p>
-        <p class="detailll">Unit : <select name="unit" class="detailindate5">
-						<?php foreach ($allUnits as $key => $value){
-							$selected = ($selectedCrr == $key) ? "selected" : "";
-							?>
-							<option name="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
-							<?php
-						} ?>
-
-				</select></p>
-        
-         <p class="detailll">Contact Person : <input type="text" name="contact_p" class="detailindate6" value="<?php echo $photo->contact_p; ?>"/></p>
-        <p class="detailll">Date Submit : <input type="text" class="datepicker"name="date_sub" value="<?php echo $photo->date_sub; ?>"/></p>
-        <p class="detailll">Description : <textarea name="description" class="detailindate7"><?php echo $photo->description;?></textarea></p>
-        <p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" value="<?php echo $photo->date_reciv_it;?>"/></p>
-          
-          
-          </p>
-     </div>
-
-
-     <div class="tabbertab">
-	  <h2>Page 2</h2>
-	  <p>
-            
-            
-        <p class="detailll">SMRC Reviewed Date : <input type="text" class="datepicker" name="smrc_date" value="<?php echo $photo->smrc_date;?>"/></p>
-        <p class="detailll">SMRC Status : <input type="text" name="smrc_status" class="detailindate10" value="<?php echo $photo->smrc_status;?>"/></p>
-        <p class="detailll">Priority : <input type="text"  name="priority" class="detailindate11" value="<?php echo $photo->priority;?>"/></p>
-        <p class="detailll">Date Hand Over <br> To Development : <input type="text" class="datepicker" name="date_develop" value="<?php echo $photo->date_develop;?>"/></p>
-        <p class="detailll">Date Hand Over To Temonors/FLS : <input type="text" class="datepicker"name="date_temo" value="<?php echo $photo->date_temo;?>"/></p>
-        <p class="detailll">Remarks : <textarea name="remarks" class=""><?php echo $photo->remarks;?></textarea></p>
-	
-	<p class="detailll">Hand Over To  : <input type="text" name="assing_to" class="detailindate10" value="<?php echo $photo->assing_to;?>"/></p>
-	
-        
-        <p class="detailll">Development Reviewed Date : <input type="text" class="datepicker" name="develop_r_date" value="<?php echo $photo->develop_r_date;?>"/></p>
-        <p class="detailll">Documantation Complete/not : <input type="text" name="document_complet" class="" value="<?php echo $photo->document_complet;?>"/></p>
-            
-            
-            
-          </p>
-     </div>
-
-
-     <div class="tabbertab">
-	  <h2>Page 3</h2>
-	  <p>
-            
-             <p class="detailll">Date Hand Over TO QA : <input type="text" class="datepicker" name="date_hand_qa" value="<?php echo $photo->date_hand_qa;?>"/></p>
-        <p class="detailll">QA Testing Competed ON : <input type="text" class="datepicker" name="qa_complete" value="<?php echo $photo->qa_complete;?>"/></p>
-        <p class="detailll">Date Hand Over To IT Ops : <input type="text" class="datepicker" name="date_back_it" value="<?php echo $photo->date_back_it;?>"/></p>
-        <p class="detailll">Release Date : <input type="text" class="datepicker" name="release_date" value="<?php echo $photo->release_date;?>"/></p>
-        <p class="detailll">Status :  <select name="status" class="detailindate9">
-             <option value="pending">Pending</option>
-             <option value="completed">Completed</option>
-              <option value="rejected">Rejected</option>
-               <option value="close">Close</option>
-                <option value="new">New</option>
-           </select></p>
-        <p class="detailll">Scan Document 1 : <input type="file" class="box" name="pdf1" /></p>
-        <p class="detailll">Scan Document 2 : <input type="file" class="box"  name="pdf2" /></p>
-        <p class="detailll">Scan Document 3 : <input type="file" class="box" name="pdf3"  /></p>
-            
-            
-          </p>
-     </div>
-
-</div>
-        
-        
-       
-        
-      
-        
-        
-        
-        
+	 
         
         
         

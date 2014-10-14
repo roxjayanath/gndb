@@ -403,7 +403,7 @@ body{
 	font-family:"DIN"
 	
 	width:200px;
-	margin-left:80px;
+	margin-left:110px;
 	padding-right: 50px;
 }
 .detailindate3{
@@ -427,9 +427,18 @@ body{
 	font-family:"DIN"
 	
 	width:200px;
-	margin-left:180px;
+	margin-left:200px;
 	padding-right: 50px;
 }
+.detailindate55{
+	font-size:16px;
+	font-family:"DIN"
+	width:200px;
+	margin-left:150px;
+	
+}
+
+
 .detailindate6{
 	font-size:16px;
 	font-family:"DIN"
@@ -459,7 +468,7 @@ body{
 	font-family:"DIN"
 	
 	width:200px;
-	margin-left:150px;
+	margin-left:180px;
 	padding-right: 50px;
 }
 
@@ -469,7 +478,25 @@ body{
 	font-family:"DIN"
 	
 	width:200px;
-	margin-left:150px;
+	margin-left:165px;
+	padding-right: 50px;
+}
+
+.detailindate100{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:165px;
+	padding-right: 50px;
+}
+
+.detailindate101{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:215px;
 	padding-right: 50px;
 }
 
