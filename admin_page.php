@@ -20,7 +20,21 @@ $max_file_size = 1048576;
 $tempmax=0;
 $tempmaxid=0;
 
+$coreNCore = array(
+		0 => "-select-",
+		"Core" => "Core",
+		"NonCore" => "NonCore" 
+);
+
+$crBrdReport = array(
+		0 => "-select-",
+		"CR" => "CR",
+		"BRD" => "BRD",
+		"REPORT" => "REPORT"
+);
+
 $allUnits = array(
+		0 => "-select-",
 	"BC" => "BC",
 	"Branch Banking" => "Branch Banking",
 	"Cards" => "Cards",
@@ -60,6 +74,7 @@ $allUnits = array(
 
 
 $allref = array(
+		0 => "-select-",
 	"BC-R-" => "BC-R-",
 	"C-" => "C-",
 	"CARDS-" => "CARDS-",
@@ -162,25 +177,26 @@ $tempref=2;
         
         
         
-         $host="localhost";
-    $username="root";
-    $password="";
-    $db_name="ndb_b";
-   $con= mysqli_connect("$host","$username","$password")or die("cannot connect");
-    $con->select_db("$db_name")or die("cannot select DB");
+//          $host="localhost";
+//     $username="root";
+//     $password="";
+//     $db_name="ndb_b";
+//    $con= mysqli_connect("$host","$username","$password")or die("cannot connect");
+//     $con->select_db("$db_name")or die("cannot select DB");
 
-    $max="SELECT MAX(ref3) AS maxnumber FROM ndb_doc WHERE unit= '".$product->ref1."' AND cr_brd= '".$product->ref2."'";
-    $maxquery= mysqli_query($con,$max) or die (died);
-   while($row = mysqli_fetch_assoc($maxquery)) {
-    echo "The max num is ". $row['maxnumber']."this is it";
-    $newnumber = $row['maxnumber'] + 1;
-    echo "NEW index number:". $newnumber;
-}
+//     $max="SELECT MAX(ref3) AS maxnumber FROM ndb_doc WHERE unit= '".$product->ref1."' AND cr_brd= '".$product->ref2."'";
+//     $maxquery= mysqli_query($con,$max) or die (died);
+//    while($row = mysqli_fetch_assoc($maxquery)) {
+//     echo "The max num is ". $row['maxnumber']."this is it";
+//     $newnumber = $row['maxnumber'] + 1;
+//     echo "NEW index number:". $newnumber;
+//}
        
         
         
         
-        $product->ref3= $newnumber;
+       // $product->ref3= $newnumber;
+$product->ref3= $_POST['reference'];
         
         
         
@@ -197,7 +213,7 @@ $tempref=2;
 	
 	
 	
-    $product->reference= $_POST['reference'];
+    //$product->reference= $_POST['reference'];
     $product->requester= $_POST['requester'];
     $product->unit= $_POST['unit'];
     $product->contact_p= $_POST['contact_p'];
@@ -320,6 +336,23 @@ require_once('layouts/header1.php');
 
         $(".datepicker").datepicker();
 
+        coreChange();
+
+        unitChange();
+
+		$("select[name=core]").change(function(){
+			coreChange();
+		});
+
+		$("select[name=unit]").change(function(){
+			unitChange();
+		});
+
+		$("select[name=crr]").change(function(){
+			if($("select[name=crr]").val() != 0) ajaxGetDocNumber();
+		});	
+		
+		    	
         //myFunction();
 
 //         $(".tabbertab").click(function(){
@@ -331,6 +364,36 @@ require_once('layouts/header1.php');
 // 			}
 //         });
     });
+
+    function coreChange(){
+    	if($("select[name=core]").val() == 0){
+			$("#unit_sec").hide();
+			$("#cr_brd_sec").hide();
+		} else {
+			$("#unit_sec").show();
+			$("#cr_brd_sec").hide();
+		}
+    }
+
+    function unitChange(){
+    	if($("select[name=unit]").val() == 0){
+			$("#cr_brd_sec").hide();
+		} else {
+			$("#cr_brd_sec").show();
+		}
+    }
+
+    function ajaxGetDocNumber(){
+        var ref1 = $("select[name=unit]").val();
+       	var ref2 = $("select[name=crr]").val();
+		$.post("ajax_get_doc_number.php", {'ref1' : ref1, 'ref2' : ref2}, function(result){
+			//console.log(result);
+			if(result){
+				$("input[name=reference]").val(result.max_doc);
+			}
+			
+		});
+    }
 
     function showCategoryOptions() {
         var catId = $("select[name=category]").val();
@@ -420,17 +483,22 @@ require_once('layouts/header1.php');
 
 
 <p class="detailll" >Core / NonCore : <select name="core" class="detailindate1">
-             <option value="Core">Core</option>
-             <option value="NonCore">NonCore</option>
+<!--              <option value="Core">Core</option> -->
+<!--              <option value="NonCore">NonCore</option> -->
              
+             <?php foreach ($coreNCore as $coreKey => $coreVal){
+             	?>
+             		<option value="<?php echo $coreKey ?>"><?php echo $coreVal ?></option>
+             	<?php
+             } ?>
   
            </select></p>
            
-           <p class="detailll">Unit : <select name="unit" class="detailindate5">
+           <p class="detailll" id="unit_sec">Unit : <select name="unit" class="detailindate5">
 						<?php foreach ($allUnits as $key => $value){
-							$selected = ($selectedCrr == $key) ? "selected" : "";
+							//$selected = ($selectedCrr == $key) ? "selected" : "";
 							?>
-							<option name="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
+							<option value="<?php echo $key ?>" <?php //echo $selected ?>><?php echo $value ?></option>
 							<?php
 						} ?>
 
@@ -440,10 +508,17 @@ require_once('layouts/header1.php');
            
            
            
-           <p class="detailll" > CR/BRD/REPORT : <select name="crr" class="detailindate2">
-             <option value="CR">CR</option>
-             <option value="BRD">BRD</option>
-             <option value="REPORT">REPORT</option>
+           <p class="detailll" id="cr_brd_sec"> CR/BRD/REPORT : <select name="crr" class="detailindate2">
+<!--              <option value="CR">CR</option> -->
+<!--              <option value="BRD">BRD</option> -->
+<!--              <option value="REPORT">REPORT</option> -->
+           
+           <?php foreach ($crBrdReport as $crKey => $crVal){
+             	?>
+             		<option value="<?php echo $crKey ?>"><?php echo $crVal ?></option>
+             	<?php
+             } ?>
+           
   
            </select></p>
           
@@ -457,7 +532,8 @@ require_once('layouts/header1.php');
 							<?php
 						} ?>
 
-				</select><input type="text" name="reference" class="" />
+				</select>
+				<input type="text" name="reference" class="" />
 		   
 		   
 		   

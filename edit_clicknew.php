@@ -138,7 +138,8 @@ if (isset($_POST['submit'])) {
     $product->release_date= $_POST['release_date'];
     $product->status= $_POST['status'];
 	
-	
+	$product->edited_by = $user->us_id;
+    
 	//$update_product = $product->update_document();
     $update_product = $product->save();
 	

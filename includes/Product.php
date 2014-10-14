@@ -13,7 +13,7 @@ class Product extends DatabaseObject {
                                         'description', 'date_reciv_it', 'smrc_date', 'smrc_status','priority','date_develop',
                                         'date_temo','remarks','assing_to','ded_line','develop_r_date',
                                         'document_complet','date_hand_qa','qa_complete','date_back_it','release_date',
-                                        'status','scan_doc1','scan_doc2','scan_doc3', 'update_on','d_visible');
+                                        'status','scan_doc1','scan_doc2','scan_doc3', 'update_on','d_visible', 'edited_by');
     public $d_id;
     public $cor_non;
     public $cr_brd;
@@ -62,6 +62,8 @@ class Product extends DatabaseObject {
 	 public $sname;
 	 
 	 public $maxvalue;
+	 
+	 public $edited_by;
      
      
      
@@ -613,6 +615,16 @@ class Product extends DatabaseObject {
         $field = 'scan_doc1';
         return $path = SERVER_ADDRESS . $this->upload_dir . $this->cr_brd . '/' . $this->scan_doc1;
         //return 'upload/docs/' . $this->cr_brd . '/' . $this->scan_doc1;
+    }
+    
+    public static function getLastDocNumber($ref1, $ref2){
+    	global $database;
+    	$ref1 = $database->escape_value($ref1);
+    	$ref2 = $database->escape_value($ref2);
+    	$max="SELECT MAX(ref3) AS maxnumber FROM ndb_doc WHERE unit= '".$ref1."' AND cr_brd= '".$ref2."'";
+    	$result_set = $database->query($max);
+    	$row = $database->fetch_array($result_set);
+    	return  array_shift($row);
     }
 
 }

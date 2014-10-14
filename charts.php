@@ -149,7 +149,9 @@ if (isset($_POST['submit'])) {
                 <th>&nbsp;</th>
             </tr>
 
-            <?php foreach($photos as $photo): ?>
+            <?php 
+            if(!empty($photos)){
+            foreach($photos as $photo): ?>
             
             <tr>
 
@@ -157,7 +159,10 @@ if (isset($_POST['submit'])) {
 					<td><?php echo $photo->cor_non;?></td>
 					<td><?php echo $photo->cr_brd;?></td>
 
-					<td><?php echo $photo->reference;?></td>
+					<td><?php 
+            //echo $photo->reference;
+					echo $photo->reffull;
+					?></td>
 					
 
 					
@@ -181,7 +186,9 @@ if (isset($_POST['submit'])) {
                  -->
 				</tr>
             
-            <?php endforeach;?>
+            <?php endforeach;
+            }
+            ?>
             
             
             
