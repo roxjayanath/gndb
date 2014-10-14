@@ -302,12 +302,17 @@ class Product extends DatabaseObject {
 	
 	public static function find_by_sql2() {
         global $database;
-		$objectt_array = array();
+		//$objectt_array = array();
 		
 		
 		
 		
 		
+    $result = mysqli_query("SELECT MAX(ref3) AS maxnumber FROM ndb_doc WHERE unit= 'BC' AND cr_brd= 'CR'");
+    $row = mysqli_fetch_row($result);
+    $highest_id = $row[0];
+    return $highest_id;
+
 		
 		
 		
@@ -321,13 +326,13 @@ class Product extends DatabaseObject {
 		
         //$maxvalue = $database->query($sql);
 		//$sql22 = "SELECT MAX(ref3) AS maxnumber FROM ndb_doc WHERE  unit= '".$temref1 ."' AND cr_brd= '". $tempref2 ."' " ;
-		$sql22 = "SELECT MAX(ref3) AS maxnumber FROM ndb_doc WHERE unit= 'BC' AND cr_brd= 'CR'";
+		//$sql22 = "SELECT MAX(ref3) AS maxnumber FROM ndb_doc WHERE unit= 'BC' AND cr_brd= 'CR'";
 		//$result = mysqli_query($conn->connection,$sql22) or die(mysql_error());
-		$result_set = $database->query($sql22);
-		 while ($row = $database->fetch_array($result_set)) {
-		 $object_array[] = self::instantiate($row['maxnumber']);
-		 }
-		return $objectt_array;
+		//$result_set = $database->query($sql22);
+		// while ($row = $database->fetch_array($result_set)) {
+		 //$object_array[] = self::instantiate($row['maxnumber']);
+		// }
+		//return $objectt_array;
 		//$sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND cr_brd='REPORT' AND status = 'pending' ";
         //$sql .= $searchString;
         //$result_set = $database->query($sql);

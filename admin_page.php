@@ -158,64 +158,41 @@ $tempref=2;
 	
 	$product->ref1= $_POST['unit'];
 	$product->ref2= $_POST['crr'];
-	
-	$maxnum = Product::find_by_sql2( );
-	
-	echo $maxnum;
-	echo var_dump($maxnum);
-	
-	//echo $maxnum;
-	echo $product->ref1;
-	echo $product->ref1 ;
-	
-	//$sql22 = "SELECT MAX(ref3) AS maxnumber FROM ndb_doc WHERE  unit= '".$product->ref1 ."' AND cr_brd= '". $product->ref2 ."' " ;
-	
-	
-	
-	
-	//$maxquery = mysqli_query($conn->connection,$sql22);
-	//$row=mysqli_fetch_array($conn->connection,$maxquery);
-	//$tempmaxid= $row[0];
-	//while($row=mysqli_fetch_array($conn->connection,$sql22)){
-	
-	//$tempmax =$row['maxnumber'];
-	//echo " value".$row['maxnumber'];
-	//}
-	
-	//$photoCount = Product::find_by_sql2 ( $sql22 );
-	
-	   // global $database;
-        //$sql3 = "SELECT MAX(ref3) AS maxnumber FROM ndb_doc WHERE  unit= '".$product->ref1 ."' AND cr_brd= '". $product->ref2 ."' ";
-       // $sql3 .= $searchString;
-        //$result_set = $database->query($sql3);
-        //$row = $database->fetch_array($result_set);
-        //return array_shift($row);
-	
-	     // $tempref = $row;
-		 
-		 
-		 //$result = mysqli_query($conn->connection,$sql22) or die(mysql_error());
-		// while($row = mysqli_fetch_array($conn->connection,$result)){
-		 
-		 
-		 //$tempref2=$row['maxnumber'];
-		 
-		 
-		 
+        
+        
+        
+        
+         $host="localhost";
+    $username="root";
+    $password="";
+    $db_name="ndb_b";
+   $con= mysqli_connect("$host","$username","$password")or die("cannot connect");
+    $con->select_db("$db_name")or die("cannot select DB");
+
+    $max="SELECT MAX(ref3) AS maxnumber FROM ndb_doc WHERE unit= '".$product->ref1."' AND cr_brd= '".$product->ref2."'";
+    $maxquery= mysqli_query($con,$max) or die (died);
+   while($row = mysqli_fetch_assoc($maxquery)) {
+    echo "The max num is ". $row['maxnumber']."this is it";
+    $newnumber = $row['maxnumber'] + 1;
+    echo "NEW index number:". $newnumber;
+}
+       
+        
+        
+        
+        $product->ref3= $newnumber;
+        
+        
+        
+        
+        
+        
+        
+        
+        
 	
 	
-	
-	
-  
-  
-  
-  
-  //echo  $photoCount->maxvalue;
-	
-	
-	
-	//$product->ref3= $tempref;
-	$product->reffull=  $product->ref1 ."-". $product->ref2."-".$product->ref3;
+	$product->reffull=  $product->ref1 ."-". $product->ref2."-".$newnumber;
 	
 	
 	
@@ -287,6 +264,10 @@ $tempref=2;
    // }
 //}
 ?>
+
+
+
+
 
 
 
