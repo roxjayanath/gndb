@@ -208,13 +208,13 @@ $product->ref3= $_POST['reference'];
         
 	
 	
-	$product->reffull=  $product->ref1 ."-". $product->ref2."-".$newnumber;
+	$product->reffull=  $product->ref1 ."-". $product->ref2."-".$product->ref3;
 	
 	
 	
 	
     //$product->reference= $_POST['reference'];
-    $product->requester= $_POST['requester'];
+   // $product->requester= $_POST['requester'];
     $product->unit= $_POST['unit'];
     $product->contact_p= $_POST['contact_p'];
     
@@ -239,6 +239,7 @@ $product->ref3= $_POST['reference'];
      $product->date_back_it= $_POST['date_back_it'];
     $product->release_date= $_POST['release_date'];
     $product->status= $_POST['status'];
+	$product->edited_by= $session->user_id;
      
     
     
@@ -254,7 +255,7 @@ $product->ref3= $_POST['reference'];
    // $product->quan = $_POST['quan'];
 
     if ($product->save()) {
-        $session->message("Document {$product->reference} Upload Successfully  by {$user->us_name}");
+        $session->message("Document {$product->reffull} Upload Successfully  by {$user->us_name}");
         echo $product->reference;
         redirect_to('admin_page.php');
     } else {
@@ -417,8 +418,27 @@ require_once('layouts/header1.php');
     $(document).ready( function() {
       $('#tab-container').easytabs();
     });
+	
+	
+	
+	
+	
+	
+	
   </script>
-
+  
+  <script type="text/javascript">
+  function valemty(){
+	var x = document.forms["mine"]["contact_p"].value;
+	
+	var_dump("ok");
+	if(x==null || x==""){
+	alert("Comtact person must be fill out");
+	retun false;
+	
+	}
+	}
+</script>
 
 
 
@@ -440,7 +460,7 @@ require_once('layouts/header1.php');
 
 <div id="admin_content">
     <!--<center><h3>Add Product</h3></center>-->
-    <form action="admin_page.php" enctype="multipart/form-data" method="post">
+    <form name="mine" action="admin_page.php" enctype="multipart/form-data" method="post" onsubmit="return valemty()" >
         
         
         
@@ -467,21 +487,159 @@ require_once('layouts/header1.php');
         
         <div id="tab-container" class='tab-container'>
  <ul class='etabs'>
-   <li class='tab'><a href="#tabs1-html">Page 1</a></li>
-   <li class='tab'><a href="#tabs1-js">Page 2</a></li>
-   <li class='tab'><a href="#tabs1-css">Page 3</a></li>
+
+ <li class='tab'><a href="#tabs1-html">Details</a></li>
+ <li class='tab'><a href="#tabs1-jss">Approvals</a></li>
+ 
+   <li class='tab'><a href="#tabs1-csss">System Suport Testing & Developing</a></li>
+   <li class='tab'><a href="#tabs1-js">QA Testing</a></li>
+   <li class='tab'><a href="#tabs1-css">Document Closer</a></li>
+  
+   
+   
+ <!--  <li class='tab'><a href="#tabs1-htmll">Details</a></li>
+   <li class='tab'><a href="#tabs1-html">Approvals</a></li>
+   <li class='tab'><a href="#tabs1-js">Development</a></li>
+   <li class='tab'><a href="#tabs1-css">System Suport Testing</a></li>
+   <li class='tab'><a href="#tabs1-css1">QA Testing</a></li>
+   <li class='tab'><a href="#tabs1-css2">Document Closer</a></li> -->
      
 
  </ul>
  <div class='panel-container'>
+ 
+ 
+ 
+ <div id="tabs1-csss">
+   
+
+   
+    <code>
+<p>
+            
+            
+        <p class="detailll">PACK Received   Date : <input type="text" class="datepicker" name="pack_date" style="margin-left: 100px;"/></p>
+		<p class="detailll">Developer Testing Assinged To :  <select name="dev_ass" class="detailindate9">
+             <option value="pending">Name1</option>
+             <option value="inprogress">Name2</option>
+              <option value="rejected">name 3</option>
+               <option value="close">name4</option>
+                <option value="hold">name5</option>
+           </select></p>
+		   
+		   <p class="detailll">Testing Enviroriment  :  <select name="dev_en" class="detailindate9">
+             <option value="st">Staging</option>
+             <option value="sp1">sp1</option>
+              <option value="sp2">sp2</option>
+               <option value="sp3">sp3</option>
+               
+           </select></p>
+		   
+		   <p class="detailll">Testing Cycle No:  <select name="dev_cy" class="detailindate9">
+             <option value="1">1</option>
+             <option value="2">2</option>
+              <option value="3">3</option>
+               <option value="4">4</option>
+			   <option value="5">5</option>
+             <option value="6">6</option>
+              <option value="7">7</option>
+               <option value="8">8</option>
+			   <option value="9">9</option>
+             <option value="10">10</option>
+           </select></p>
+		
+				<p class="detailll">Date Return To Developer :  <input type="text" class="datepicker" name="date_ret_date" style="margin-left: 100px;"/></p>
+				<p class="detailll">Assign User : <input type="text" name="ass_user" class="detailindate10"/></p>
+				<p class="detailll">User Assign Date :  <input type="text" class="datepicker" name="user_ass_date" style="margin-left: 100px;"/></p>
+				<p class="detailll">Tested Completed Date :  <input type="text" class="datepicker" name="test_com_date" style="margin-left: 100px;"/></p>
+				
+				
+				<p class="detailll">Testing Status :  <select name="test_status" class="detailindate9">
+             <option value="pending">Pending</option>
+             <option value="inprogress">Inprogress</option>
+              <option value="rejected">Rejected</option>
+               <option value="close">Close</option>
+                <option value="hold">Hold</option>
+           </select></p>
+				
+      
+            
+            
+            
+          </p>
+    </code>
+  
+
+  </div>
+ 
+ 
+ 
+ 
+ 
+ <div id="tabs1-jss">
+   
+
+   
+    <code>
+<p>
+            <p style="
+    font-family: serif;
+    font-size: 30px;
+">Document submit for Review/Approval </p>
+            
+        <p class="detailll">Development Review Date : <input type="text" class="datepicker" name="smrc_date" style="margin-left: 100px;"/></p>
+		<p class="detailll">AVP-IT Approval Date : <input type="text" class="datepicker" name="avp_it" style="margin-left: 100px;"/></p>
+		<p class="detailll">VP-IT Approval Date : <input type="text" class="datepicker" name="vp_it" style="margin-left: 100px;"/></p>
+		<p class="detailll">Bussiness Line Cost Approval Date : <input type="text" class="datepicker" name="vp_it" style="margin-left: 100px;"/></p>
+        <p class="detailll">CFO Approval Date : <input type="text" class="datepicker" name="cfo_date" style="margin-left: 100px;"/></p>
+		<p class="detailll">BRP Approval Date : <input type="text" class="datepicker" name="brd_date" style="margin-left: 100px;"/></p>
+		<p class="detailll">Date Hand Over To Development : <input type="text" class="datepicker" name="date_develop" /></p>
+		<p class="detailll">Document held with previosly : <?php //echo?></p>
+		<p class="detailll">Document Hand over to : <input type="text" name="assing_to" class="detailindate100"/></p>
+		
+		
+		
+		
+		
+            
+          </p>
+    </code>
+  
+
+  </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   <div id="tabs1-html">
    
 
   
     <code>
-<p> <?php echo " value" ?> 
+ 
 
-
+<p style="
+    font-family: serif;
+    font-size: 30px;
+">Details of the Document </p>
 <p class="detailll" >Core / NonCore : <select name="core" class="detailindate1">
 <!--              <option value="Core">Core</option> -->
 <!--              <option value="NonCore">NonCore</option> -->
@@ -522,32 +680,51 @@ require_once('layouts/header1.php');
   
            </select></p>
           
-           <p class="detailll">Reference : 
+          <!-- <p class="detailll">Reference : 
 		   
-		   <select name="ref1" class="detailindate55">
-						<?php foreach ($allref as $key => $value){
-							$selected = ($selectedCrr == $key) ? "selected" : "";
-							?>
-							<option name="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
-							<?php
-						} ?>
-
-				</select>
-				<input type="text" name="reference" class="" />
+		  
+				<input type="text" name="reference" class="detailindate4" style="margin-left: 150px;"/>
+		     
 		   
 		   
-		   
-		   </p>
-        <p class="detailll">Requester :<input type="text" class="datepicker"name="date_req" style="margin-left: 160px;"/> <input type="text" name="requester" class="detailindate4" /></p>
+		   </p> -->
+        <p class="detailll">Requester :<input type="text" name="requester" class="detailindate4" /></p>
+		
+		<p class="detailll">Request Date :<input type="text" class="datepicker"name="date_req" style="margin-left: 160px;"/></p> 
         <!--<p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p> -->
 		
+		<p class="detailll">Description : <textarea name="description" class="detailindate7"></textarea></p>
 		
 		
+		<p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" style="margin-left: 80px;"/></p>
 		
 		
+		<p class="detailll">Priority : <select name="priority" class="detailindate1">
+                               <option value="Core">Low</option> 
+                               <option value="NonCore">Medium</option> 
+							    <option value="NonCore">High</option> 
+             
+             
+  
+           </select></p></p>
+		   
+		   
+		
+		<p class="detailll">Remarks : <textarea name="remarks" class="detailindate101"></textarea></p>
+		
+		<p class="detailll">Status :  <select name="status" class="detailindate9">
+             <option value="pending">Pending</option>
+             <option value="inprogress">Inprogress</option>
+              <option value="rejected">Rejected</option>
+               <option value="close">Close</option>
+                <option value="hold">Hold</option>
+           </select></p>
+        
 		
 		
-		
+		<p class="detailll">Scan Document 1 : <input type="file" class="box" name="pdf1" /></p>
+        <p class="detailll">Scan Document 2 : <input type="file" class="box"  name="pdf2" /></p>
+        <p class="detailll">Scan Document 3 : <input type="file" class="box" name="pdf3"  /></p>
 		
 
 		
@@ -560,10 +737,7 @@ require_once('layouts/header1.php');
 		
 		
         
-         <p class="detailll">Contact Person : <input type="text" name="contact_p" class="detailindate6"/></p>
-        <p class="detailll">Date Submit : <input type="text" class="datepicker"name="date_sub"  style="margin-left: 130px;"/></p>
-        <p class="detailll">Description : <textarea name="description" class="detailindate7"></textarea></p>
-        <p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" style="margin-left: 80px;"/></p>
+        
           
           
           </p>
@@ -582,43 +756,44 @@ require_once('layouts/header1.php');
   
   
   
-   <div id="tabs1-js">
    
+   
+   
+   
+   
+   
+   
+   
+  <div id="tabs1-js">
 
-   
-    <code>
+
+  <code>
+    
 <p>
             
-            
-        <p class="detailll">SMRC Reviewed Date : <input type="text" class="datepicker" name="smrc_date" style="margin-left: 100px;"/></p>
-        <p class="detailll">SMRC Status : <input type="text" name="smrc_status" class="detailindate10"/></p>
-        <p class="detailll">Priority : <input type="text"  name="priority" class="detailindate11"/></p>
-        <p class="detailll">Date Hand Over To Development : <input type="text" class="datepicker" name="date_develop" /></p>
-        <p class="detailll">Date Hand Over To Temonors/FLS : <input type="text" class="datepicker"name="date_temo" /></p>
-        <p class="detailll">Remarks : <textarea name="remarks" class="detailindate101"></textarea></p>
+             <p class="detailll">QA Assign Date : <input type="text" class="datepicker" name="date_hand_qa" style="margin-left: 45px;"/></p>
+			  <p class="detailll">QA Reference Number : <input type="text" name="qaref" class="detailindate100"/></p>
+			  <p class="detailll">QA Tester Name : <input type="text" name="qaref" class="detailindate100"/></p>
+			  <p class="detailll">QA Status :  <select name="status" class="detailindate9">
+             <option value="pending">Pending</option>
+             <option value="inprogress">Inprogress</option>
+              <option value="rejected">Rejected</option>
+               <option value="close">Close</option>
+                <option value="hold">Hold</option>
+           </select></p>
+			 
+        <p class="detailll">Live Transfer Date : <input type="text" class="datepicker" name="qa_complete" style="margin-left: 23px;"/></p>
         
-        <p class="detailll">Hand over to : <input type="text" name="assing_to" class="detailindate100"/></p>
-       
-	   <p class="detailll">Dead Line : <input type="text" class="datepicker" name="ded_line" style="margin-left: 185px;"/></p>
-
-
-	   <p class="detailll">Development Reviewed Date : <input type="text" class="datepicker" name="develop_r_date" style="margin-left: 25px;"/></p>
-        <p class="detailll">Documantation Complete/not : <input type="text" name="document_complet" style="margin-left: 15px;"/></p>
+        
             
             
-            
-          </p>
-    </code>
-  
+          </p>  
+  </code>
 
   </div>
-   
-   
-   
-   
-   
-   
-   
+  
+  
+  
   <div id="tabs1-css">
 
 
@@ -626,26 +801,60 @@ require_once('layouts/header1.php');
     
 <p>
             
-             <p class="detailll">Date Hand Over TO QA : <input type="text" class="datepicker" name="date_hand_qa" style="margin-left: 45px;"/></p>
-        <p class="detailll">QA Testing Competed ON : <input type="text" class="datepicker" name="qa_complete" style="margin-left: 23px;"/></p>
-        <p class="detailll">Date Hand Over To IT Ops : <input type="text" class="datepicker" name="date_back_it" style="margin-left: 5px;"/></p>
-        <p class="detailll">Release Date : <input type="text" class="datepicker" name="release_date" style="margin-left: 120px;"/></p>
-        <p class="detailll">Status :  <select name="status" class="detailindate9">
-             <option value="pending">Pending</option>
-             <option value="completed">Completed</option>
-              <option value="rejected">Rejected</option>
-               <option value="close">Close</option>
-                <option value="hold">Hold</option>
-           </select></p>
-        <p class="detailll">Scan Document 1 : <input type="file" class="box" name="pdf1" /></p>
-        <p class="detailll">Scan Document 2 : <input type="file" class="box"  name="pdf2" /></p>
-        <p class="detailll">Scan Document 3 : <input type="file" class="box" name="pdf3"  /></p>
+             <p class="detailll">Original Document Recived Date : <input type="text" class="datepicker" name="or_r_date" style="margin-left: 45px;"/></p>
+ <p class="detailll">Documentation Fix By : <select name="doc_fix" class="detailindate9">
+             <option value="pending">Name1</option>
+             <option value="inprogress">Name2</option>
+              <option value="rejected">name 3</option>
+               <option value="close">name4</option>
+                <option value="hold">name5</option>
+           </select></p>	
+
+<p class="detailll">Sender User Notification : <select name="user_noty" class="detailindate9">
+             <option value="yes">YES</option>
+             <option value="no">NO</option>
+              
+           </select></p>	
+
+<p class="detailll">Remarks : <textarea name="remark" class="detailindate7"></textarea></p>		   
+
+
+
+			 
+        
+        
             
             
           </p>  
   </code>
 
   </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ </div>
+</div>
+
+
+
+
  </div>
 </div>
         

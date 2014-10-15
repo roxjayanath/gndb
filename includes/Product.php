@@ -11,8 +11,9 @@ class Product extends DatabaseObject {
     protected static $table_name = "ndb_doc";
     protected static $db_fields = array('d_id', 'cor_non', 'cr_brd','ref1','ref2','ref3','reffull','reference', 'requester', 'unit', 'contact_p', 'date_sub',
                                         'description', 'date_reciv_it', 'smrc_date', 'smrc_status','priority','date_develop',
+                                        'AVPIT','VPIT','COST_DATE','CFO_DATE','DEV_HAND','PACK_DATE','DEC_TESTER','TEST_ENV','TEST_C_NO','TEST_COM_DATE','TEST_STAT',
                                         'date_temo','remarks','assing_to','ded_line','develop_r_date',
-                                        'document_complet','date_hand_qa','qa_complete','date_back_it','release_date',
+                                        'document_complet','date_hand_qa','QA_REF_N','QA_TEST_N','QA_STATUS','qa_complete','date_back_it','D_FIX_BY','USER_Not','release_date',
                                         'status','scan_doc1','scan_doc2','scan_doc3', 'update_on','d_visible', 'edited_by');
     public $d_id;
     public $cor_non;
@@ -37,6 +38,20 @@ class Product extends DatabaseObject {
     
      public $priority;
      public $date_develop;
+     
+     public $AVPIT;
+    public $VPIT;
+    public $COST_DATE;
+     public $CFO_DATE;
+      public $DEV_HAND;
+       public $PACK_DATE;
+        public $DEV_TESTER;
+         public $TEST_ENV;
+          public $TEST_C_NO;
+           public $TEST_COM_DATE;
+            public $TEST_STAT;
+    
+     
      public $date_temo;
      
      public $remarks;
@@ -46,8 +61,14 @@ class Product extends DatabaseObject {
     public $document_complet;
     
      public $date_hand_qa;
+      public $QA_REF_N;
+       public $QA_TEST_N;
+        public $QA_STATUS;
      public $qa_complete;
      public $date_back_it;
+     
+      public $D_FIX_BY;
+       public $USER_Not;
      
     public $release_date;
     public $status;
@@ -123,7 +144,7 @@ class Product extends DatabaseObject {
     }
 
     public function save() {
-        //$this->validate_save();
+       // $this->validate_save();
         if (empty($this->errors)) {
             return isset($this->d_id) ? $this->update() : $this->create();
         } else {
@@ -143,13 +164,65 @@ class Product extends DatabaseObject {
     
     function validate_save(){        
         $validation = new Validation();
-        if($validation->isEmpty($this->reference)){
+        if($validation->isEmpty($this->contact_p)){
             $this->errors['title'] = "Title cannot be empty";
-        } else if($validation->isTooLong($this->reference, 100)){
+        } else if($validation->isTooLong($this->contact_p, 100)){
             $this->errors['title'] = "Title cannot be emptyis too long";
         } else if($this->is_exists()){
         	$this->errors['ref'] = "reference already exists";
         }
+		
+		
+		
+		
+		if($validation->isEmpty($this->cor_non)){
+            $this->errors['title'] = "Title cannot be empty";
+        } else if($validation->isTooLong($this->cor_non, 100)){
+            $this->errors['title'] = "Title cannot be emptyis too long";
+        } else if($this->is_exists()){
+        	$this->errors['ref'] = "reference already exists";
+        }
+		
+		if($validation->isEmpty($this->cr_brd)){
+            $this->errors['title'] = "Title cannot be empty";
+        } else if($validation->isTooLong($this->cr_brd, 100)){
+            $this->errors['title'] = "Title cannot be emptyis too long";
+        } else if($this->is_exists()){
+        	$this->errors['ref'] = "reference already exists";
+        }
+		
+		if($validation->isEmpty($this->cor_non)){
+            $this->errors['title'] = "Title cannot be empty";
+        } else if($validation->isTooLong($this->cor_non, 100)){
+            $this->errors['title'] = "Title cannot be emptyis too long";
+        } else if($this->is_exists()){
+        	$this->errors['ref'] = "reference already exists";
+        }
+		
+		
+		if($validation->isEmpty($this->unit)){
+            $this->errors['title'] = "Title cannot be empty";
+        } else if($validation->isTooLong($this->unit, 100)){
+            $this->errors['title'] = "Title cannot be emptyis too long";
+        } else if($this->is_exists()){
+        	$this->errors['ref'] = "reference already exists";
+        }
+		
+		if($validation->isEmpty($this->ref3)){
+            $this->errors['title'] = "Title cannot be empty";
+        } else if($validation->isTooLong($this->ref3, 100)){
+            $this->errors['title'] = "Title cannot be emptyis too long";
+        } else if($this->is_exists()){
+        	$this->errors['ref'] = "reference already exists";
+        }
+		
+		
+		
+		
+		
+		
+		
+		
         //if($validation->isEmpty($this->price)){
           //  $this->errors['price'] = "Price cannot be empty";
        // } else if($validation->isInvalidAmount($this->price)){

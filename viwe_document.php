@@ -15,7 +15,7 @@ if (! $session->is_logged_in ()) {
 
 $page = ! empty ( $_GET ['page'] ) ? ( int ) $_GET ['page'] : 1;
 
-$per_page = 2;
+$per_page = 25;
 
 // $total_count = Product::count_all ();
 
@@ -243,7 +243,7 @@ a {
 					<td><?php echo $photo->cor_non;?></td>
 					<td><?php echo $photo->cr_brd;?></td>
 
-					<td><?php echo $photo->reference;?></td>
+					<td><?php echo $photo->reffull;?></td>
 					<td><?php echo $photo->requester;?></td>
 					<td><?php echo $photo->unit;?></td>
 

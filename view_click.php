@@ -163,7 +163,9 @@ require_once('layouts/header1.php');
        
         
         
-        <p ><a href="JavaScript:newPopup('<?php echo $photo->image_path(); ?>');" >Open pdf 1</a></p> 
+        <br>Scan document 1 : <a href="JavaScript:newPopup('<?php echo $photo->image_path(); ?>');" ><?php echo $photo->scan_doc1; ?></a>
+        <br>Scan document 2 : <?php echo $photo->scan_doc2; ?>
+        <br>Scan document 3 : <?php echo $photo->scan_doc3; ?>
         <!--<div style="height:225px">
             
         <!--<div class="large_img_container">

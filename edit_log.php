@@ -73,6 +73,10 @@ if (! empty ( $_REQUEST ['assing_to'] )) {
 
 $photos = Product::find_by_sql ( $sql );
 
+
+
+$user = User::find_by_id (6);
+
 ?>
 
 
@@ -113,7 +117,7 @@ a {
 </style>
 
 <center>
-	<h1 class="main_toc5">Delete Document</h1>
+	<h1 class="main_toc5">Edit Document Log History</h1>
 </center>
 <?php require_once('layouts/header2.php'); ?>
       
@@ -188,6 +192,7 @@ a {
                 <th class="head_toc">Date Submit</th>
 				<th class="head_toc">Status</th>
 				<th class="head_toc">Last Edited</th>
+				<th class="head_toc">Edited by</th>
                 
 		
 		
@@ -242,6 +247,7 @@ a {
 					<td><?php echo $photo->date_sub;?></td>
 					<td><?php echo $photo->status;?></td>
 					<td><?php echo $photo->update_on;?></td>
+					<td><?php echo $user->us_name;?></td>
 					
 
 
@@ -253,10 +259,7 @@ a {
 						<!--<a href="comments.php?id=<?php echo $photo->id;?>"> -->
                 <?php //echo count($photo->comments());?></td>
 					</a>
-					<td>
-						<!--<a href="viewcusmore.php?id=<?php //echo $photo->id;?>">View</a>-->
-						<a href="delete_doc.php?id=<?php echo $photo->d_id; ?>" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
-					</td>
+					
 					<!-- <td><a href="delete_admin.php?id=<?php //echo $photo->id;?>">Delete</a></td>
                  -->
 				</tr>

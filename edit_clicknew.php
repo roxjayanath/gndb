@@ -343,10 +343,12 @@ function myFunction() {
 		
 		<div id="tab-container" class='tab-container'>
  <ul class='etabs'>
-    <li class='tab'><a href="#tabs1-htmll">View</a></li>
-   <li class='tab'><a href="#tabs1-html">Page 1</a></li>
-   <li class='tab'><a href="#tabs1-js">Page 2</a></li>
-   <li class='tab'><a href="#tabs1-css">Page 3</a></li>
+    <li class='tab'><a href="#tabs1-htmll">Details</a></li>
+   <li class='tab'><a href="#tabs1-html">Approvals</a></li>
+   <li class='tab'><a href="#tabs1-js">Development</a></li>
+   <li class='tab'><a href="#tabs1-css">System Suport Testing</a></li>
+   <li class='tab'><a href="#tabs1-css1">QA Testing</a></li>
+   <li class='tab'><a href="#tabs1-css2">Document Closer</a></li>
      
 
  </ul>
