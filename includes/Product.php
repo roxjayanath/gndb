@@ -11,8 +11,8 @@ class Product extends DatabaseObject {
     protected static $table_name = "ndb_doc";
     protected static $db_fields = array('d_id', 'cor_non', 'cr_brd','ref1','ref2','ref3','reffull','reference', 'requester', 'unit', 'contact_p', 'date_sub',
                                         'description', 'date_reciv_it', 'smrc_date', 'smrc_status','priority','date_develop',
-                                        'AVPIT','VPIT','COST_DATE','CFO_DATE','DEV_HAND','PACK_DATE','DEC_TESTER','TEST_ENV','TEST_C_NO','TEST_COM_DATE','TEST_STAT',
-                                        'date_temo','remarks','assing_to','ded_line','develop_r_date',
+                                        'AVPIT','VPIT','COST_DATE','CFO_DATE','BRP','DEV_HAND','PACK_DATE','DEV_TESTER','TEST_ENV','TEST_C_NO','TEST_COM_DATE','TEST_STAT',
+                                        'date_temo','remarks','assing_to','ded_line','USER_ASS','develop_r_date',
                                         'document_complet','date_hand_qa','QA_REF_N','QA_TEST_N','QA_STATUS','qa_complete','date_back_it','D_FIX_BY','USER_Not','release_date',
                                         'status','scan_doc1','scan_doc2','scan_doc3', 'update_on','d_visible', 'edited_by');
     public $d_id;
@@ -43,6 +43,7 @@ class Product extends DatabaseObject {
     public $VPIT;
     public $COST_DATE;
      public $CFO_DATE;
+      public $BRP;
       public $DEV_HAND;
        public $PACK_DATE;
         public $DEV_TESTER;
@@ -57,6 +58,7 @@ class Product extends DatabaseObject {
      public $remarks;
      public $assing_to;
 	 public $ded_line;
+	 public $USER_ASS;
     public $develop_r_date;
     public $document_complet;
     
@@ -144,11 +146,11 @@ class Product extends DatabaseObject {
     }
 
     public function save() {
-       // $this->validate_save();
+        $this->validate_save();
         if (empty($this->errors)) {
             return isset($this->d_id) ? $this->update() : $this->create();
         } else {
-        	//var_dump($this->errors);
+        	var_dump($this->errors);
             return FALSE;
         }
     }
@@ -162,28 +164,23 @@ class Product extends DatabaseObject {
     	}
     } 
     
-    function validate_save(){        
-        $validation = new Validation();
-        if($validation->isEmpty($this->contact_p)){
-            $this->errors['title'] = "Title cannot be empty";
-        } else if($validation->isTooLong($this->contact_p, 100)){
-            $this->errors['title'] = "Title cannot be emptyis too long";
-        } else if($this->is_exists()){
-        	$this->errors['ref'] = "reference already exists";
-        }
+    
 		
 		
-		
-		
+	 function validate_save(){      	
+		$validation = new Validation();
+		//$session = new Session();
 		if($validation->isEmpty($this->cor_non)){
             $this->errors['title'] = "Title cannot be empty";
+			//$session->message="Choose Unite";
         } else if($validation->isTooLong($this->cor_non, 100)){
             $this->errors['title'] = "Title cannot be emptyis too long";
         } else if($this->is_exists()){
         	$this->errors['ref'] = "reference already exists";
+			
         }
 		
-		if($validation->isEmpty($this->cr_brd)){
+		/*if($validation->isEmpty($this->cr_brd)){
             $this->errors['title'] = "Title cannot be empty";
         } else if($validation->isTooLong($this->cr_brd, 100)){
             $this->errors['title'] = "Title cannot be emptyis too long";
@@ -215,6 +212,12 @@ class Product extends DatabaseObject {
         } else if($this->is_exists()){
         	$this->errors['ref'] = "reference already exists";
         }
+		
+		*/
+		
+		
+		
+		
 		
 		
 		
@@ -290,6 +293,15 @@ class Product extends DatabaseObject {
         return array_shift($row);
     }
 	
+        public static function count_statusin($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND status = 'inprogress' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+        
 	
 	public static function count_statuscr($searchString = '') {
         global $database;

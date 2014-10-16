@@ -261,7 +261,7 @@ a {
 					</a>
 					<td>
 						<!--<a href="viewcusmore.php?id=<?php //echo $photo->id;?>">View</a>-->
-						<a href="view_click.php?id=<?php echo $photo->d_id; ?>">View</a>
+						<a href="view_click_late.php?id=<?php echo $photo->d_id; ?>">View</a>
 					</td>
 					<!-- <td><a href="delete_admin.php?id=<?php //echo $photo->id;?>">Delete</a></td>
                  -->

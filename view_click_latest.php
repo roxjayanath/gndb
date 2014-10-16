@@ -219,15 +219,15 @@ $product->ref3= $_POST['reference'];
     
     
     
-    //$product->contact_p= $_POST['contact_p'];
+    $product->contact_p= $_POST['contact_p'];
     
     $product->date_sub= $_POST['date_req'];
     
     $product->description= $_POST['description'];
     $product->date_reciv_it= $_POST['date_reciv_it'];
-	
-	
-    $product->smrc_date= $_POST['smrc_date'];   
+    $product->smrc_date= $_POST['smrc_date'];
+    
+    
     $product->AVPIT= $_POST['avp_it'];
     $product->VPIT= $_POST['vp_it'];
     $product->COST_DATE= $_POST['biss_date'];
@@ -242,7 +242,6 @@ $product->ref3= $_POST['reference'];
       $product->TEST_ENV= $_POST['dev_en'];
       $product->TEST_C_NO= $_POST['dev_cy'];
       $product->develop_r_date= $_POST['date_ret_date'];
-	  $product->USER_ASS= $_POST['user_ass_date'];
       $product->ded_line= $_POST['ass_user'];
       $product->TEST_COM_DATE= $_POST['test_com_date'];
        $product->TEST_STAT= $_POST['test_status'];
@@ -258,26 +257,26 @@ $product->ref3= $_POST['reference'];
     $product->date_back_it= $_POST['or_r_date'];
     $product->D_FIX_BY= $_POST['doc_fix'];
     $product->USER_Not= $_POST['user_noty'];
-    $product->remarks= $_POST['remarks'];
+    $product->remarks= $_POST['remark'];
     
     
     
-    //$product->smrc_status= $_POST['smrc_status'];
+    $product->smrc_status= $_POST['smrc_status'];
     $product->priority= $_POST['priority'];
     
      
-    // $product->date_temo= $_POST['date_temo'];
+     $product->date_temo= $_POST['date_temo'];
      
      
 	
    
-  //  $product->document_complet= $_POST['document_complet'];
+    $product->document_complet= $_POST['document_complet'];
      
      
      
      
     
-  //  $product->release_date= $_POST['release_date'];
+    $product->release_date= $_POST['release_date'];
     $product->status= $_POST['status'];
 	$product->edited_by= $session->user_id;
      
@@ -503,7 +502,26 @@ require_once('layouts/header1.php');
     <form name="mine" action="admin_page.php" enctype="multipart/form-data" method="post" onsubmit="return valemty()" >
         
         
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         <div id="tab-container" class='tab-container'>
@@ -539,16 +557,16 @@ require_once('layouts/header1.php');
 <p>
             
             
-        <p class="detailll">PACK Received   Date : <input type="text" class="datepicker" name="pack_date" style="margin-left: 160px;"/></p>
+        <p class="detailll">PACK Received   Date : <input type="text" class="datepicker" name="pack_date" style="margin-left: 100px;"/></p>
 		<p class="detailll">Developer Testing Assinged To :  <select name="dev_ass" class="detailindate9">
-             <option value="Name1">Name1</option>
-             <option value="Name2">Name2</option>
-              <option value="Name3">name 3</option>
-               <option value="Name4">name4</option>
-                <option value="Name5">name5</option>
+             <option value="1">Name1</option>
+             <option value="2">Name2</option>
+              <option value="3">name 3</option>
+               <option value="4">name4</option>
+                <option value="5">name5</option>
            </select></p>
 		   
-		   <p class="detailll">Testing Enviroriment  :  <select name="dev_en" class="detailindate99">
+		   <p class="detailll">Testing Enviroriment  :  <select name="dev_en" class="detailindate9">
              <option value="st">Staging</option>
              <option value="sp1">sp1</option>
               <option value="sp2">sp2</option>
@@ -556,7 +574,7 @@ require_once('layouts/header1.php');
                
            </select></p>
 		   
-		   <p class="detailll">Testing Cycle No:  <select name="dev_cy" class="detailindate999">
+		   <p class="detailll">Testing Cycle No:  <select name="dev_cy" class="detailindate9">
              <option value="1">1</option>
              <option value="2">2</option>
               <option value="3">3</option>
@@ -571,13 +589,11 @@ require_once('layouts/header1.php');
 		
 				<p class="detailll">Date Return To Developer :  <input type="text" class="datepicker" name="date_ret_date" style="margin-left: 100px;"/></p>
 				<p class="detailll">Assign User : <input type="text" name="ass_user" class="detailindate10"/></p>
+				<p class="detailll">User Assign Date :  <input type="text" class="datepicker" name="user_ass_date" style="margin-left: 100px;"/></p>
+				<p class="detailll">Tested Completed Date :  <input type="text" class="datepicker" name="test_com_date" style="margin-left: 100px;"/></p>
 				
 				
-				<p class="detailll">User Assign Date :  <input type="text" class="datepicker" name="user_ass_date" style="margin-left: 180px;"/></p>
-				<p class="detailll">Tested Completed Date :  <input type="text" class="datepicker" name="test_com_date" style="margin-left: 130px;"/></p>
-				
-				
-				<p class="detailll">Testing Status :  <select name="test_status" class="detailindate9999">
+				<p class="detailll">Testing Status :  <select name="test_status" class="detailindate9">
              <option value="pending">Pending</option>
              <option value="inprogress">Inprogress</option>
               <option value="rejected">Rejected</option>
@@ -610,15 +626,15 @@ require_once('layouts/header1.php');
     font-size: 30px;
 ">Document submit for Review/Approval </p>
             
-        <p class="detailll">Development Review Date : <input type="text" class="datepicker" name="smrc_date" style="margin-left: 120px;"/></p>
-		<p class="detailll">AVP-IT Approval Date : <input type="text" class="datepicker" name="avp_it" style="margin-left: 150px;"/></p>
-		<p class="detailll">VP-IT Approval Date : <input type="text" class="datepicker" name="biss_date" style="margin-left: 160px;"/></p>
-		<p class="detailll">Bussiness Line Cost Approval Date : <input type="text" class="datepicker" name="vp_it" style="margin-left: 20px;"/></p>
-        <p class="detailll">CFO Approval Date : <input type="text" class="datepicker" name="cfo_date" style="margin-left: 180px;"/></p>
-		<p class="detailll">BRP Approval Date : <input type="text" class="datepicker" name="brd_date" style="margin-left: 180px;"/></p>
-		<p class="detailll">Date Hand Over To Development : <input type="text" class="datepicker" name="date_develop" style="margin-left: 60px;"/></p>
-		<!--<p class="detailll">Document held with previosly : <?php //echo?></p>
-		--><p class="detailll">Document Hand over to : <input type="text" name="assing_to" class="detailindate100"/></p>
+        <p class="detailll">Development Review Date : <input type="text" class="datepicker" name="smrc_date" style="margin-left: 100px;"/></p>
+		<p class="detailll">AVP-IT Approval Date : <input type="text" class="datepicker" name="avp_it" style="margin-left: 100px;"/></p>
+		<p class="detailll">VP-IT Approval Date : <input type="text" class="datepicker" name="biss_date" style="margin-left: 100px;"/></p>
+		<p class="detailll">Bussiness Line Cost Approval Date : <input type="text" class="datepicker" name="vp_it" style="margin-left: 100px;"/></p>
+        <p class="detailll">CFO Approval Date : <input type="text" class="datepicker" name="cfo_date" style="margin-left: 100px;"/></p>
+		<p class="detailll">BRP Approval Date : <input type="text" class="datepicker" name="brd_date" style="margin-left: 100px;"/></p>
+		<p class="detailll">Date Hand Over To Development : <input type="text" class="datepicker" name="date_develop" /></p>
+		<p class="detailll">Document held with previosly : <?php //echo?></p>
+		<p class="detailll">Document Hand over to : <input type="text" name="assing_to" class="detailindate100"/></p>
 		
 		
 		
@@ -713,7 +729,7 @@ require_once('layouts/header1.php');
 		   </p> 
         <p class="detailll" >Requester :<input type="text" name="requester" class="detailindate4" /></p>
 		
-		<p class="detailll">Request Date :<input type="text" class="datepicker"name="date_req" style="margin-left: 130px;"/></p> 
+		<p class="detailll">Request Date :<input type="text" class="datepicker"name="date_req" style="margin-left: 160px;"/></p> 
         <!--<p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p> -->
 		
 		<p class="detailll">Description : <textarea name="description" class="detailindate7"></textarea></p>
@@ -722,10 +738,10 @@ require_once('layouts/header1.php');
 		<p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" style="margin-left: 80px;"/></p>
 		
 		
-		<p class="detailll">Priority : <select name="priority" class="detailindate11">
-                               <option value="Low">Low</option> 
-                               <option value="Medium">Medium</option> 
-							    <option value="HonCore">High</option> 
+		<p class="detailll">Priority : <select name="priority" class="detailindate1">
+                               <option value="Core">Low</option> 
+                               <option value="NonCore">Medium</option> 
+							    <option value="NonCore">High</option> 
              
              
   
@@ -735,19 +751,11 @@ require_once('layouts/header1.php');
 		
 		<p class="detailll">Remarks : <textarea name="remarks" class="detailindate101"></textarea></p>
 		
-		<p class="detailll">Status :  <select name="status" class="detailindate94">
+		<p class="detailll">Status :  <select name="status" class="detailindate9">
              <option value="pending">Pending</option>
              <option value="inprogress">Inprogress</option>
-			 
-			 <option value="approval_pending">Approval Pending</option>
-			 <option value="development">Development</option>
-			 <option value="support_t">Support Team Testing</option>
-               <option value="qa_t">QA Testing</option>
-			   
-			   <option value="us_t">User Testing</option>
-			  <option value="rejected">Rejected</option>
-               
-			   <option value="close">Close</option>
+              <option value="rejected">Rejected</option>
+               <option value="close">Close</option>
                 <option value="hold">Hold</option>
            </select></p>
         
@@ -758,7 +766,18 @@ require_once('layouts/header1.php');
         <p class="detailll">Scan Document 3 : <input type="file" class="box" name="pdf3"  /></p>
 		
 
-      
+		
+		
+		
+		
+		
+		
+		
+		
+		
+        
+        
+          
           
           </p>
     </code>
@@ -768,7 +787,20 @@ require_once('layouts/header1.php');
   
   
   
-
+  
+  
+  
+  
+  
+  
+  
+  
+   
+   
+   
+   
+   
+   
    
    
   <div id="tabs1-js">
@@ -778,10 +810,10 @@ require_once('layouts/header1.php');
     
 <p>
             
-             <p class="detailll">QA Assign Date : <input type="text" class="datepicker" name="date_hand_qa" style="margin-left: 80px;"/></p>
-			  <p class="detailll">QA Reference Number : <input type="text" name="qaref" class="detailindate1000"/></p>
-			  <p class="detailll">QA Tester Name : <input type="text" name="qatestname" class="detailindate1001"/></p>
-			  <p class="detailll">QA Status :  <select name="qastatus" class="detailindate98">
+             <p class="detailll">QA Assign Date : <input type="text" class="datepicker" name="date_hand_qa" style="margin-left: 45px;"/></p>
+			  <p class="detailll">QA Reference Number : <input type="text" name="qaref" class="detailindate100"/></p>
+			  <p class="detailll">QA Tester Name : <input type="text" name="qatestname" class="detailindate100"/></p>
+			  <p class="detailll">QA Status :  <select name="qastatus" class="detailindate9">
              <option value="pending">Pending</option>
              <option value="inprogress">Inprogress</option>
               <option value="rejected">Rejected</option>
@@ -789,7 +821,7 @@ require_once('layouts/header1.php');
                 <option value="hold">Hold</option>
            </select></p>
 			 
-        <p class="detailll">Live Transfer Date : <input type="text" class="datepicker" name="qa_complete" style="margin-left: 40px;"/></p>
+        <p class="detailll">Live Transfer Date : <input type="text" class="datepicker" name="qa_complete" style="margin-left: 23px;"/></p>
         
         
             
@@ -809,19 +841,21 @@ require_once('layouts/header1.php');
 <p>
             
              <p class="detailll">Original Document Recived Date : <input type="text" class="datepicker" name="or_r_date" style="margin-left: 45px;"/></p>
- <p class="detailll">Documentation Fix By : <select name="doc_fix" class="detailindate97">
-             <option value="Name1">Name1</option>
-             <option value="Name2">Name2</option>
-              <option value="Name3">name 3</option>
-               <option value="Name4">name4</option>
-                <option value="Name5">name5</option>
+ <p class="detailll">Documentation Fix By : <select name="doc_fix" class="detailindate9">
+             <option value="pending">Name1</option>
+             <option value="inprogress">Name2</option>
+              <option value="rejected">name 3</option>
+               <option value="close">name4</option>
+                <option value="hold">name5</option>
            </select></p>	
 
-<p class="detailll">Sender User Notification : <select name="user_noty" class="detailindate96">
+<p class="detailll">Sender User Notification : <select name="user_noty" class="detailindate9">
              <option value="yes">YES</option>
              <option value="no">NO</option>
               
            </select></p>	
+
+<p class="detailll">Remarks : <textarea name="remark" class="detailindate7"></textarea></p>		   
 
 
 
@@ -836,7 +870,22 @@ require_once('layouts/header1.php');
   </div>
   
   
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
  </div>
@@ -849,7 +898,93 @@ require_once('layouts/header1.php');
 </div>
         
         
-  
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       
+       
+       
+        
+        
+       
+        
+        
+       
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         

@@ -240,7 +240,7 @@ a {
 					<td><?php echo $photo->cor_non;?></td>
 					<td><?php echo $photo->cr_brd;?></td>
 
-					<td><?php echo $photo->reference;?></td>
+					<td><?php echo $photo->reffull;?></td>
 					
 
 					

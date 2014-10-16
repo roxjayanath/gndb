@@ -398,12 +398,22 @@ body{
 	padding-right: 50px;
 }
 
+.detailindate11{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:100px;
+	margin-left:160px;
+	padding-right: 50px;
+}
+
+
 .detailindate2{
 	font-size:16px;
 	font-family:"DIN"
 	
 	width:200px;
-	margin-left:110px;
+	margin-left:150px;
 	padding-right: 50px;
 }
 .detailindate3{
@@ -419,7 +429,7 @@ body{
 	font-family:"DIN"
 	
 	width:200px;
-	margin-left:16px;
+	margin-left:160px;
 	padding-right: 50px;
 }
 .detailindate5{
@@ -467,18 +477,80 @@ body{
 	font-size:16px;
 	font-family:"DIN"
 	
-	width:200px;
-	margin-left:180px;
-	padding-right: 50px;
+	width:170px;
+	margin-left:50px;
+	
 }
 
+.detailindate94{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:170px;
+	margin-left:180px;
+	
+}
+.detailindate97{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:170px;
+	margin-left:145px;
+	
+}
+.detailindate96{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:170px;
+	margin-left:105px;
+	
+}
+
+.detailindate98{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:170px;
+	margin-left:130px;
+	
+}
+
+.detailindate99{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:170px;
+	margin-left:140px;
+	
+}
+
+
+.detailindate999{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:170px;
+	margin-left:190px;
+	
+}
+
+
+.detailindate9999{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:170px;
+	margin-left:200px;
+	
+}
 
 .detailindate10{
 	font-size:16px;
 	font-family:"DIN"
 	
 	width:200px;
-	margin-left:165px;
+	margin-left:230px;
 	padding-right: 50px;
 }
 
@@ -487,7 +559,24 @@ body{
 	font-family:"DIN"
 	
 	width:200px;
-	margin-left:165px;
+	margin-left:140px;
+	padding-right: 50px;
+}
+
+.detailindate1000{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:30px;
+	padding-right: 50px;
+}
+.detailindate1001{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:80px;
 	padding-right: 50px;
 }
 
@@ -496,8 +585,19 @@ body{
 	font-family:"DIN"
 	
 	width:200px;
-	margin-left:215px;
+	margin-left:170px;
 	padding-right: 50px;
+	
+}
+
+.detailindate106{
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:200px;
+	margin-left:170px;
+	padding-right: 50px;
+	
 }
 
 
@@ -506,7 +606,7 @@ body{
 	font-family:"DIN"
 	
 	width:200px;
-	margin-left:195px;
+	margin-left:160px;
 	padding-right: 50px;
 }
 

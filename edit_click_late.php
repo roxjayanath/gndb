@@ -2,15 +2,18 @@
 require_once("includes/initialize.php");
 if (!$session->is_logged_in()) {
    redirect_to("index.php"); 
-} else if(!empty($session->user_id)){
-	$user = User::find_by_id($session->user_id);
-	if(empty($user)){
-		redirect_to("index.php");
-	} else if(!$user->isAuthorized(RIGHT_INSERT_DOC)){
-		redirect_to("admin_home.php");
-	}
-} else {
-	redirect_to("index.php");
+} 
+?>
+
+<?php 
+$photo = Product::find_by_id($_REQUEST['id']);
+//$photo = Product::find_by_id();
+
+$user = User::find_by_id($session->user_id);
+
+if (!$photo) {
+    $session->message("The product could not be located");
+    redirect_to('edit_clicknew.php');
 }
 ?>
 
@@ -167,12 +170,12 @@ $tempref=2;
     $product->attach_file($_FILES['pdf2'], 2);
     $product->attach_file($_FILES['pdf3'], 3);
     
-    
-    $product->cor_non= $_POST['core'];
-    $product->cr_brd= $_POST['crr'];
+    $product->d_id = $_POST['id'];
+    //$product->cor_non= $_POST['core'];
+   // $product->cr_brd= $_POST['crr'];
 	
-	$product->ref1= $_POST['unit'];
-	$product->ref2= $_POST['crr'];
+	//$product->ref1= $_POST['unit'];
+	//$product->ref2= $_POST['crr'];
         
         
         
@@ -208,26 +211,26 @@ $product->ref3= $_POST['reference'];
         
 	
 	
-	$product->reffull=  $product->ref1 ."-". $product->ref2."-".$product->ref3;
+	$product->reffull=  $photo->reffull;;
 	
 	
 	
 	
     //$product->reference= $_POST['reference'];
     $product->requester= $_POST['requester'];
-    $product->unit= $_POST['unit'];
+    //$product->unit= $_POST['unit'];
     
     
     
-    //$product->contact_p= $_POST['contact_p'];
+   // $product->contact_p= $_POST['contact_p'];
     
     $product->date_sub= $_POST['date_req'];
     
     $product->description= $_POST['description'];
     $product->date_reciv_it= $_POST['date_reciv_it'];
-	
-	
-    $product->smrc_date= $_POST['smrc_date'];   
+    $product->smrc_date= $_POST['smrc_date'];
+    
+    
     $product->AVPIT= $_POST['avp_it'];
     $product->VPIT= $_POST['vp_it'];
     $product->COST_DATE= $_POST['biss_date'];
@@ -241,7 +244,7 @@ $product->ref3= $_POST['reference'];
      $product->DEV_TESTER= $_POST['dev_ass'];
       $product->TEST_ENV= $_POST['dev_en'];
       $product->TEST_C_NO= $_POST['dev_cy'];
-      $product->develop_r_date= $_POST['date_ret_date'];
+       $product->develop_r_date= $_POST['date_ret_date'];
 	  $product->USER_ASS= $_POST['user_ass_date'];
       $product->ded_line= $_POST['ass_user'];
       $product->TEST_COM_DATE= $_POST['test_com_date'];
@@ -262,22 +265,22 @@ $product->ref3= $_POST['reference'];
     
     
     
-    //$product->smrc_status= $_POST['smrc_status'];
+    $product->smrc_status= $_POST['smrc_status'];
     $product->priority= $_POST['priority'];
     
      
-    // $product->date_temo= $_POST['date_temo'];
+     $product->date_temo= $_POST['date_temo'];
      
      
 	
    
-  //  $product->document_complet= $_POST['document_complet'];
+    $product->document_complet= $_POST['document_complet'];
      
      
      
      
     
-  //  $product->release_date= $_POST['release_date'];
+    $product->release_date= $_POST['release_date'];
     $product->status= $_POST['status'];
 	$product->edited_by= $session->user_id;
      
@@ -338,7 +341,10 @@ $product->ref3= $_POST['reference'];
 require_once('layouts/header1.php');
 ?>
 <center><h1 class="main_toc5">Add New Document</h1></center>
- <?php echo output_message($message); ?>
+ <?php 
+
+ 
+ echo output_message($message); ?>
 <?php require_once('layouts/header2.php'); ?>
 
 <style>
@@ -496,14 +502,37 @@ require_once('layouts/header1.php');
 
 
 
+ <?php $doc_id = !empty($_REQUEST['id']) ? $_REQUEST['id'] : "0"; ?>
+
 
 
 <div id="admin_content">
     <!--<center><h3>Add Product</h3></center>-->
-    <form name="mine" action="admin_page.php" enctype="multipart/form-data" method="post" onsubmit="return valemty()" >
+    <form name="mine" action="edit_click_late.php?id=<?php echo $doc_id ?>" enctype="multipart/form-data" method="post" onsubmit="return valemty()" >
         
         
-
+        
+        
+        
+        
+        <input type="hidden" name="id" value="<?php echo $doc_id  ?>" />
+		
+		
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         <div id="tab-container" class='tab-container'>
@@ -539,8 +568,8 @@ require_once('layouts/header1.php');
 <p>
             
             
-        <p class="detailll">PACK Received   Date : <input type="text" class="datepicker" name="pack_date" style="margin-left: 160px;"/></p>
-		<p class="detailll">Developer Testing Assinged To :  <select name="dev_ass" class="detailindate9">
+        <p class="detailll">PACK Received   Date : <input type="text" class="datepicker" name="pack_date" style="margin-left: 160px;" value="<?php echo $photo->PACK_DATE; ?>"/></p>
+		<p class="detailll">Developer Testing Assinged To :  <select name="dev_ass" class="detailindate9" value="<?php echo $photo->DEV_TESTER; ?>">
              <option value="Name1">Name1</option>
              <option value="Name2">Name2</option>
               <option value="Name3">name 3</option>
@@ -548,7 +577,7 @@ require_once('layouts/header1.php');
                 <option value="Name5">name5</option>
            </select></p>
 		   
-		   <p class="detailll">Testing Enviroriment  :  <select name="dev_en" class="detailindate99">
+		   <p class="detailll">Testing Enviroriment  :   <select name="dev_en" class="detailindate99" value="<?php echo $photo->TEST_ENV; ?>">
              <option value="st">Staging</option>
              <option value="sp1">sp1</option>
               <option value="sp2">sp2</option>
@@ -556,7 +585,7 @@ require_once('layouts/header1.php');
                
            </select></p>
 		   
-		   <p class="detailll">Testing Cycle No:  <select name="dev_cy" class="detailindate999">
+		   <p class="detailll">Testing Cycle No:  <select name="dev_cy" class="detailindate999" value="<?php echo $photo->TEST_C_NO; ?>">
              <option value="1">1</option>
              <option value="2">2</option>
               <option value="3">3</option>
@@ -569,15 +598,13 @@ require_once('layouts/header1.php');
              <option value="10">10</option>
            </select></p>
 		
-				<p class="detailll">Date Return To Developer :  <input type="text" class="datepicker" name="date_ret_date" style="margin-left: 100px;"/></p>
-				<p class="detailll">Assign User : <input type="text" name="ass_user" class="detailindate10"/></p>
+				<p class="detailll">Date Return To Developer :  <input type="text" class="datepicker" name="date_ret_date" style="margin-left: 100px;" value="<?php echo $photo->develop_r_date; ?>"/></p>
+				<p class="detailll">Assign User : <input type="text" name="ass_user" class="detailindate10" value="<?php echo $photo->USER_ASS; ?>" /></p>
+				<p class="detailll">User Assign Date :  <input type="text" class="datepicker" name="user_ass_date" style="margin-left: 180px;" value="<?php echo $photo->ded_line; ?>"/></p>
+				<p class="detailll">Tested Completed Date :  <input type="text" class="datepicker" name="test_com_date" style="margin-left: 130px;" value="<?php echo $photo->TEST_COM_DATE; ?>"/></p>
 				
 				
-				<p class="detailll">User Assign Date :  <input type="text" class="datepicker" name="user_ass_date" style="margin-left: 180px;"/></p>
-				<p class="detailll">Tested Completed Date :  <input type="text" class="datepicker" name="test_com_date" style="margin-left: 130px;"/></p>
-				
-				
-				<p class="detailll">Testing Status :  <select name="test_status" class="detailindate9999">
+				<p class="detailll">Testing Status :  <select name="test_status" class="detailindate9999" value="<?php echo $photo->TEST_STAT; ?>">
              <option value="pending">Pending</option>
              <option value="inprogress">Inprogress</option>
               <option value="rejected">Rejected</option>
@@ -610,15 +637,15 @@ require_once('layouts/header1.php');
     font-size: 30px;
 ">Document submit for Review/Approval </p>
             
-        <p class="detailll">Development Review Date : <input type="text" class="datepicker" name="smrc_date" style="margin-left: 120px;"/></p>
-		<p class="detailll">AVP-IT Approval Date : <input type="text" class="datepicker" name="avp_it" style="margin-left: 150px;"/></p>
-		<p class="detailll">VP-IT Approval Date : <input type="text" class="datepicker" name="biss_date" style="margin-left: 160px;"/></p>
-		<p class="detailll">Bussiness Line Cost Approval Date : <input type="text" class="datepicker" name="vp_it" style="margin-left: 20px;"/></p>
-        <p class="detailll">CFO Approval Date : <input type="text" class="datepicker" name="cfo_date" style="margin-left: 180px;"/></p>
-		<p class="detailll">BRP Approval Date : <input type="text" class="datepicker" name="brd_date" style="margin-left: 180px;"/></p>
-		<p class="detailll">Date Hand Over To Development : <input type="text" class="datepicker" name="date_develop" style="margin-left: 60px;"/></p>
-		<!--<p class="detailll">Document held with previosly : <?php //echo?></p>
-		--><p class="detailll">Document Hand over to : <input type="text" name="assing_to" class="detailindate100"/></p>
+        <p class="detailll">Development Review Date : <input type="text" class="datepicker" name="smrc_date" style="margin-left: 120px;" value="<?php echo $photo->smrc_date; ?>"/></p>
+		<p class="detailll">AVP-IT Approval Date : <input type="text" class="datepicker" name="avp_it" style="margin-left: 150px;" value="<?php echo $photo->AVPIT; ?>"/></p>
+		<p class="detailll">VP-IT Approval Date : <input type="text" class="datepicker" name="biss_date" style="margin-left: 160px;" value="<?php echo $photo->VPIT; ?>"/></p>
+		<p class="detailll">Bussiness Line Cost Approval Date : <input type="text" class="datepicker" name="vp_it" style="margin-left: 20px;" value="<?php echo $photo->COST_DATE; ?>"/></p>
+        <p class="detailll">CFO Approval Date : <input type="text" class="datepicker" name="cfo_date" style="margin-left: 180px;" value="<?php echo $photo->CFO_DATE; ?>"/></p>
+		<p class="detailll">BRP Approval Date : <input type="text" class="datepicker" name="brd_date" style="margin-left: 180px;" value="<?php echo $photo->BRP; ?>"/></p>
+		<p class="detailll">Date Hand Over To Development : <input type="text" class="datepicker" name="date_develop" value="<?php echo $photo->date_develop; ?>" style="margin-left: 60px;"/></p>
+		<p class="detailll">Document held with previosly : <?php echo $photo->reference; ?></p>
+		<p class="detailll">Document Hand over to : <input type="text" name="assing_to" class="detailindate100" value="<?php echo $photo->assing_to; ?>"/></p>
 		
 		
 		
@@ -663,69 +690,31 @@ require_once('layouts/header1.php');
     font-family: serif;
     font-size: 30px;
 ">Details of the Document </p>
-<p class="detailll" >Core / NonCore : <select name="core" class="detailindate1">
-<!--              <option value="Core">Core</option> -->
-<!--              <option value="NonCore">NonCore</option> -->
-             
-             <?php foreach ($coreNCore as $coreKey => $coreVal){
-             	?>
-             		<option value="<?php echo $coreKey ?>"><?php echo $coreVal ?></option>
-             	<?php
-             } ?>
-  
-           </select></p>
-           
-           <p class="detailll" id="unit_sec">Unit : <select name="unit" class="detailindate5">
-						<?php foreach ($allUnits as $key => $value){
-							//$selected = ($selectedCrr == $key) ? "selected" : "";
-							?>
-							<option value="<?php echo $key ?>" <?php //echo $selected ?>><?php echo $value ?></option>
-							<?php
-						} ?>
 
-				</select></p>
-		
-           
-           
-           
-           
-           <p class="detailll" id="cr_brd_sec"> CR/BRD/REPORT : <select name="crr" class="detailindate2">
-<!--              <option value="CR">CR</option> -->
-<!--              <option value="BRD">BRD</option> -->
-<!--              <option value="REPORT">REPORT</option> -->
-           
-           <?php foreach ($crBrdReport as $crKey => $crVal){
-             	?>
-             		<option value="<?php echo $crKey ?>"><?php echo $crVal ?></option>
-             	<?php
-             } ?>
-           
-  
-           </select></p>
           
-         <p class="detailll" hidden="hidden">Reference : 
+         <p class="detailll" >Reference : <?php echo $photo->reffull; ?>
 		   
 		  
-				<input type="text" name="reference" class="detailindate4" style="margin-left: 150px;"/>
+				<input hidden="hidden" type="text" name="reference" class="detailindate4" style="margin-left: 150px;"/>
 		     
 		   
 		   
 		   </p> 
-        <p class="detailll" >Requester :<input type="text" name="requester" class="detailindate4" /></p>
+        <p class="detailll" >Requester :<input type="text" name="requester" class="detailindate4" value="<?php echo $photo->requester; ?>"/></p>
 		
-		<p class="detailll">Request Date :<input type="text" class="datepicker"name="date_req" style="margin-left: 130px;"/></p> 
+		<p class="detailll">Request Date :<input type="text" class="datepicker"name="date_req" style="margin-left: 130px;" value="<?php echo $photo->date_sub; ?>"/></p> 
         <!--<p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p> -->
 		
-		<p class="detailll">Description : <textarea name="description" class="detailindate7"></textarea></p>
+		<p class="detailll">Description : <textarea name="description" class="detailindate7" ><?php echo $photo->description; ?></textarea></p>
 		
 		
-		<p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" style="margin-left: 80px;"/></p>
+		<p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" style="margin-left: 80px;" value="<?php echo $photo->date_reciv_it; ?>"/></p>
 		
 		
-		<p class="detailll">Priority : <select name="priority" class="detailindate11">
-                               <option value="Low">Low</option> 
-                               <option value="Medium">Medium</option> 
-							    <option value="HonCore">High</option> 
+		<p class="detailll">Priority : <select name="priority" class="detailindate11" value="<?php echo $photo->priority; ?>">
+                               <option value="Core">Low</option> 
+                               <option value="NonCore">Medium</option> 
+							    <option value="NonCore">High</option> 
              
              
   
@@ -733,21 +722,17 @@ require_once('layouts/header1.php');
 		   
 		   
 		
-		<p class="detailll">Remarks : <textarea name="remarks" class="detailindate101"></textarea></p>
+		<p class="detailll">Remarks : <textarea name="remarks" class="detailindate101"><?php echo $photo->remarks; ?></textarea></p>
 		
-		<p class="detailll">Status :  <select name="status" class="detailindate94">
+		<p class="detailll">Status :  <select name="status" class="detailindate94" value="<?php echo $photo->status; ?>">
              <option value="pending">Pending</option>
              <option value="inprogress">Inprogress</option>
-			 
-			 <option value="approval_pending">Approval Pending</option>
+               <option value="approval_pending">Approval Pending</option>
 			 <option value="development">Development</option>
 			 <option value="support_t">Support Team Testing</option>
                <option value="qa_t">QA Testing</option>
-			   
-			   <option value="us_t">User Testing</option>
 			  <option value="rejected">Rejected</option>
-               
-			   <option value="close">Close</option>
+               <option value="close">Close</option>
                 <option value="hold">Hold</option>
            </select></p>
         
@@ -758,7 +743,18 @@ require_once('layouts/header1.php');
         <p class="detailll">Scan Document 3 : <input type="file" class="box" name="pdf3"  /></p>
 		
 
-      
+		
+		
+		
+		
+		
+		
+		
+		
+		
+        
+        
+          
           
           </p>
     </code>
@@ -768,7 +764,20 @@ require_once('layouts/header1.php');
   
   
   
-
+  
+  
+  
+  
+  
+  
+  
+  
+   
+   
+   
+   
+   
+   
    
    
   <div id="tabs1-js">
@@ -778,10 +787,10 @@ require_once('layouts/header1.php');
     
 <p>
             
-             <p class="detailll">QA Assign Date : <input type="text" class="datepicker" name="date_hand_qa" style="margin-left: 80px;"/></p>
-			  <p class="detailll">QA Reference Number : <input type="text" name="qaref" class="detailindate1000"/></p>
-			  <p class="detailll">QA Tester Name : <input type="text" name="qatestname" class="detailindate1001"/></p>
-			  <p class="detailll">QA Status :  <select name="qastatus" class="detailindate98">
+             <p class="detailll">QA Assign Date : <input type="text" class="datepicker" name="date_hand_qa" style="margin-left: 80px;" value="<?php echo $photo->date_hand_qa; ?>"/></p>
+			  <p class="detailll">QA Reference Number : <input type="text" name="qaref" class="detailindate1000" value="<?php echo $photo->QA_REF_N; ?>"/></p>
+			  <p class="detailll">QA Tester Name : <input type="text" name="qatestname" class="detailindate1001" value="<?php echo $photo->QA_TEST_N; ?>"/></p>
+			  <p class="detailll">QA Status :  <select name="qastatus" class="detailindate98" value="<?php echo $photo->QA_STATUS; ?>">
              <option value="pending">Pending</option>
              <option value="inprogress">Inprogress</option>
               <option value="rejected">Rejected</option>
@@ -789,7 +798,7 @@ require_once('layouts/header1.php');
                 <option value="hold">Hold</option>
            </select></p>
 			 
-        <p class="detailll">Live Transfer Date : <input type="text" class="datepicker" name="qa_complete" style="margin-left: 40px;"/></p>
+        <p class="detailll">Live Transfer Date : <input type="text" class="datepicker" name="qa_complete" style="margin-left: 40px;" value="<?php echo $photo->qa_complete; ?>"/></p>
         
         
             
@@ -808,8 +817,8 @@ require_once('layouts/header1.php');
     
 <p>
             
-             <p class="detailll">Original Document Recived Date : <input type="text" class="datepicker" name="or_r_date" style="margin-left: 45px;"/></p>
- <p class="detailll">Documentation Fix By : <select name="doc_fix" class="detailindate97">
+             <p class="detailll">Original Document Recived Date : <input type="text" class="datepicker" name="or_r_date" style="margin-left: 45px;" value="<?php echo $photo->reference; ?>"/></p>
+ <p class="detailll">Documentation Fix By : <select name="doc_fix" class="detailindate97" value="<?php echo $photo->reference; ?>">
              <option value="Name1">Name1</option>
              <option value="Name2">Name2</option>
               <option value="Name3">name 3</option>
@@ -817,11 +826,12 @@ require_once('layouts/header1.php');
                 <option value="Name5">name5</option>
            </select></p>	
 
-<p class="detailll">Sender User Notification : <select name="user_noty" class="detailindate96">
+<p class="detailll">Sender User Notification : <select name="user_noty" class="detailindate96" value="<?php echo $photo->reference; ?>">
              <option value="yes">YES</option>
              <option value="no">NO</option>
               
            </select></p>	
+
 
 
 
@@ -836,7 +846,22 @@ require_once('layouts/header1.php');
   </div>
   
   
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
  </div>
@@ -849,7 +874,93 @@ require_once('layouts/header1.php');
 </div>
         
         
-  
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       
+       
+       
+        
+        
+       
+        
+        
+       
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         

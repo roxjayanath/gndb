@@ -71,6 +71,42 @@ if (isset($_POST['submit'])) {
 <head>
 <script src="javascrpits/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="javascrpits/jsapi.js"></script>
+<link rel="stylesheet" href="css/jquery-ui.css"></link>
+<script src="javascrpits/jquery-ui.js" ></script>
+<script src="javascrpits/jquery.hashchange.min.js" type="text/javascript"></script>
+  <script src="javascrpits/jquery.easytabs.min.js" type="text/javascript"></script>
+
+  
+  <script type="text/javascript">
+    $(document).ready( function() {
+      $('#tab-container').easytabs();
+    });
+	
+	$(document).ready( function() {
+      $('#tab-container1').easytabs();
+    });
+	
+	
+	
+	
+	
+	
+  </script>
+  
+  <style>
+    /* Example Styles for Demo */
+    .etabs { margin: 0; padding: 0; }
+    .tab { display: inline-block; zoom:1; *display:inline; background: #eee; border: solid 1px #999; border-bottom: none; -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; }
+    .tab a { font-size: 14px; line-height: 2em; display: block; padding: 0 10px; outline: none; }
+    .tab a:hover { text-decoration: underline; }
+    .tab.active { background: #fff; padding-top: 6px; position: relative; top: 1px; border-color: #666; }
+    .tab a.active { font-weight: bold; }
+    .tab-container .panel-container { background: #fff; border: solid #666 1px; padding: 10px; -moz-border-radius: 0 4px 4px 4px; -webkit-border-radius: 0 4px 4px 4px; }
+    .panel-container { margin-bottom: 10px; }
+  </style>
+  
+  
+
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
@@ -101,7 +137,43 @@ if (isset($_POST['submit'])) {
 	
   </head>
   <body>
-  <form action="charts.php" enctype="multipart/form-data" method="post">
+  <form action="chartsnew.php" enctype="multipart/form-data" method="post">
+  
+  
+  
+  
+  
+   <div id="tab-container" class='tab-container'>
+ <ul class='etabs'>
+
+ <li class='tab'><a href="#tabs1-h">Details</a></li>
+ <li class='tab'><a href="#tabs1-j">Approvals</a></li>
+   <li class='tab'><a href="#tabs1-js">QA Testing</a></li>
+   <li class='tab'><a href="#tabs1-c">Document Closer</a></li>
+  
+   
+   
+ <!--  <li class='tab'><a href="#tabs1-htmll">Details</a></li>
+   <li class='tab'><a href="#tabs1-html">Approvals</a></li>
+   <li class='tab'><a href="#tabs1-js">Development</a></li>
+   <li class='tab'><a href="#tabs1-css">System Suport Testing</a></li>
+   <li class='tab'><a href="#tabs1-css1">QA Testing</a></li>
+   <li class='tab'><a href="#tabs1-css2">Document Closer</a></li> -->
+     
+
+ </ul>
+ <div class='panel-container'>
+ 
+ <div id="tabs1-h">
+   
+
+   
+    <code>
+<p>
+            
+            
+        
+				
        <h1>Full Status</h1>
     <p>Total pending = <?php echo $total_count; ?></p>
 	<p>Total hold = <?php echo $total_counthold; ?></p>
@@ -109,15 +181,218 @@ if (isset($_POST['submit'])) {
 	<p>Total close = <?php echo $total_countclose; ?></p>
 	<p>Total completed = <?php echo $total_countcomlete; ?></p>
 	
-	<br>
-	<br>
-	<h1>Pending</h1>
+            
+            
+            
+          </p>
+    </code>
+  
+
+  </div>
+  
+  
+  <div id="tabs1-j">
+   
+
+   
+    <code>
+<p>
+            
+            
+        
+				
+   
+            
+            
+            
+          </p>
+    </code>
+  
+
+  </div>
+  
+  <div id="tabs1-js">
+   
+
+   
+    <code>
+<p>
+            
+            
+        
+				
+      <h1>Pending</h1>
 	<p>CR pending = <?php echo $total_countcr ?></p>
 	<p>BR pending = <?php echo $total_countbr ?></p>
 	<p>REPORT pending = <?php echo $total_countrep ?></p>
+            
+            
+            
+          </p>
+    </code>
+  
+
+  </div>
+  <div id="tabs1-c">
+   
+
+   
+    <code>
+<p>
+            
+            
+        
+				
+      done
+            
+            
+            
+          </p>
+    </code>
+  
+
+  </div>
+ 
+ 
+ </div>
+ 
+ 
+ 
+ 
+  
+  
+  <div id="tab-container1" class='tab-container'>
+ <ul class='etabs'>
+
+ <li class='tab'><a href="#tabs1-htmll">Details</a></li>
+ <li class='tab'><a href="#tabs1-jsss">Approvals</a></li>
+   <li class='tab'><a href="#tabs1-jss">QA Testing</a></li>
+   <li class='tab'><a href="#tabs1-csss">Document Closer</a></li>
+  
+   
+   
+ <!--  <li class='tab'><a href="#tabs1-htmll">Details</a></li>
+   <li class='tab'><a href="#tabs1-html">Approvals</a></li>
+   <li class='tab'><a href="#tabs1-js">Development</a></li>
+   <li class='tab'><a href="#tabs1-css">System Suport Testing</a></li>
+   <li class='tab'><a href="#tabs1-css1">QA Testing</a></li>
+   <li class='tab'><a href="#tabs1-css2">Document Closer</a></li> -->
+     
+
+ </ul>
+ <div class='panel-container'>
+ 
+ <div id="tabs1-htmll">
+   
+
+   
+    <code>
+<p>
+            
+            
+        
+				
+      tab 1
+            
+            
+            
+          </p>
+    </code>
+  
+
+  </div>
+  
+  
+  <div id="tabs1-jsss">
+   
+
+   
+    <code>
+<p>
+            
+            
+        
+				
+      tab1.1
+            
+            
+            
+          </p>
+    </code>
+  
+
+  </div>
+  
+  <div id="tabs1-jss">
+   
+
+   
+    <code>
+<p>
+            
+            
+        
+				
+      tab1.2
+            
+            
+            
+          </p>
+    </code>
+  
+
+  </div>
+  <div id="tabs1-csss">
+   
+
+   
+    <code>
+<p>
+            
+            
+        
+				
+      tab1.3
+            
+            
+            
+          </p>
+    </code>
+  
+
+  </div>
+ 
+ 
+ </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      
+	
+	<br>
+	<br>
 	
 	
-	 <p><p class="detailll">Hand over to : <input type="text" name="assing_to" class="detailindate12"/></p>
+	
+	 
+					
+					
+					
+					
+					
+					
+		  <p><p class="detailll">Hand over to : <input type="text" name="assing_to" class="detailindate12"/></p>
 				<p >
                 <input type="submit" value="Search" name="submit" class="create_button">
             </p>
@@ -194,14 +469,7 @@ if (isset($_POST['submit'])) {
             
             
            </table>
-		</center>
-					
-					
-					
-					
-					
-					
-					
+		</center>			
 					
 					
 					

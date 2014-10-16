@@ -135,9 +135,8 @@ require_once('layouts/header1.php');
     
     <div id="admin_content">
          <br>ID : <?php echo $photo->d_id;?>
-        <br><p>Core / NonCore : <?php echo $photo->cor_non;?>
-        CR/BRD/REPORT :<?php echo $photo->cr_brd;?></p>
-		<br>Reference : <?php echo $photo->reference;?>
+        
+		<br>Reference : <?php echo $photo->reffull;?>
 		<br>Requester : <?php echo $photo->requester;?>
 		<br>Unit : <?php echo $photo->unit;?>
 		<br>Contact Person : <?php echo $photo->contact_p;?> 
