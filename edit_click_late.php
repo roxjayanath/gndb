@@ -125,7 +125,8 @@ $allref = array(
 	);
 $tempref2=1;
 
-
+$product = new Product();
+$product->errors['title']=" ";
 //$message="";
 if (isset($_POST['submit'])) {
 //    $photo = new Photograph();
@@ -265,22 +266,22 @@ $product->ref3= $_POST['reference'];
     
     
     
-    $product->smrc_status= $_POST['smrc_status'];
+    //$product->smrc_status= $_POST['smrc_status'];
     $product->priority= $_POST['priority'];
     
      
-     $product->date_temo= $_POST['date_temo'];
+    // $product->date_temo= $_POST['date_temo'];
      
      
 	
    
-    $product->document_complet= $_POST['document_complet'];
+    //$product->document_complet= $_POST['document_complet'];
      
      
      
      
     
-    $product->release_date= $_POST['release_date'];
+   // $product->release_date= $_POST['release_date'];
     $product->status= $_POST['status'];
 	$product->edited_by= $session->user_id;
      
@@ -345,6 +346,7 @@ require_once('layouts/header1.php');
 
  
  echo output_message($message); ?>
+ <center><p style=" color: rgb(252,0, 0);"><?php echo $product->errors['title'];?></p></center>
 <?php require_once('layouts/header2.php'); ?>
 
 <style>

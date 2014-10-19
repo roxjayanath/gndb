@@ -123,6 +123,9 @@ $allref = array(
 $tempref2=1;
 
 
+
+$product = new Product();
+$product->errors['title']=" ";
 //$message="";
 if (isset($_POST['submit'])) {
 //    $photo = new Photograph();
@@ -150,6 +153,8 @@ $tempref=2;
 //        echo $message;
 //    }
     $user = User::find_by_id($session->user_id);
+    
+    $categories = DEVCategory::find_all();
 	
   
 	
@@ -339,6 +344,12 @@ require_once('layouts/header1.php');
 ?>
 <center><h1 class="main_toc5">Add New Document</h1></center>
  <?php echo output_message($message); ?>
+ 
+ 
+
+
+ 
+ <center><p style=" color: rgb(252,0, 0);"><?php echo $product->errors['title'];?></p></center>
 <?php require_once('layouts/header2.php'); ?>
 
 <style>
@@ -468,16 +479,16 @@ require_once('layouts/header1.php');
   </script>
   
   <script type="text/javascript">
-  function valemty(){
-	var x = document.forms["mine"]["contact_p"].value;
+  //function valemty(){
+	//var x = document.forms["mine"]["contact_p"].value;
 	
-	var_dump("ok");
-	if(x==null || x==""){
-	alert("Comtact person must be fill out");
-	retun false;
+	//var_dump("ok");
+	//if(x==null || x==""){
+	//alert("Comtact person must be fill out");
+	//return false;
 	
-	}
-	}
+	//}
+	//}
 </script>
 
 
@@ -540,13 +551,31 @@ require_once('layouts/header1.php');
             
             
         <p class="detailll">PACK Received   Date : <input type="text" class="datepicker" name="pack_date" style="margin-left: 160px;"/></p>
-		<p class="detailll">Developer Testing Assinged To :  <select name="dev_ass" class="detailindate9">
+	<!--	<p class="detailll">Developer Testing Assinged To :  <select name="dev_ass" class="detailindate9">
              <option value="Name1">Name1</option>
              <option value="Name2">Name2</option>
               <option value="Name3">name 3</option>
                <option value="Name4">name4</option>
                 <option value="Name5">name5</option>
-           </select></p>
+           </select></p  -->
+                
+                
+                
+               <p> Developer Testing Assinged To :<select name="category" class="box">
+                <?php
+                if (!empty($categories)) {
+                    foreach ($categories as $cat) {
+                        ?>
+                        <option value="<?php echo $cat->dev_id ?>"><?php echo $cat->dev_name ?></option>
+                        <?php
+                    }
+                }
+                ?>
+                <!--                <option value="Men">Men</option>
+                                <option value="Kids">Kids</option>-->
+            </select></p> 
+                
+                
 		   
 		   <p class="detailll">Testing Enviroriment  :  <select name="dev_en" class="detailindate99">
              <option value="st">Staging</option>
