@@ -6,12 +6,12 @@
  */
 require_once(LIB_PATH . DS . 'database.php');
 
-class ProductCategory extends DatabaseObject {
+class DEVCategory extends DatabaseObject {
 
-    protected static $table_name = "product_category";
-    protected static $db_fields = array('id', 'category');
-    public $id;
-    public $category;   
+    protected static $table_name = "dev_team";
+    protected static $db_fields = array('dev_id', 'dev_name');
+    public $dev_id;
+    public $dev_name;   
     public $errors = array();
 
     private static function instantiate($record) {

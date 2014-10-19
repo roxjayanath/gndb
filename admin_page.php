@@ -73,6 +73,8 @@ $allUnits = array(
 );
 
 
+
+
 $allref = array(
 		0 => "-select-",
 	"BC-R-" => "BC-R-",
@@ -122,7 +124,9 @@ $allref = array(
 	);
 $tempref2=1;
 
+$categories = DEVCategory::find_all();
 
+$fixCategories = FixCategory::find_all();
 
 $product = new Product();
 $product->errors['title']=" ";
@@ -154,9 +158,9 @@ $tempref=2;
 //    }
     $user = User::find_by_id($session->user_id);
     
-    $categories = DEVCategory::find_all();
+    
 	
-  
+
 	
 	$row =0;
 	
@@ -811,6 +815,7 @@ require_once('layouts/header1.php');
 			  <p class="detailll">QA Reference Number : <input type="text" name="qaref" class="detailindate1000"/></p>
 			  <p class="detailll">QA Tester Name : <input type="text" name="qatestname" class="detailindate1001"/></p>
 			  <p class="detailll">QA Status :  <select name="qastatus" class="detailindate98">
+			  <option value="0">-Select-</option>
              <option value="pending">Pending</option>
              <option value="inprogress">Inprogress</option>
               <option value="rejected">Rejected</option>
@@ -839,11 +844,12 @@ require_once('layouts/header1.php');
             
              <p class="detailll">Original Document Recived Date : <input type="text" class="datepicker" name="or_r_date" style="margin-left: 45px;"/></p>
  <p class="detailll">Documentation Fix By : <select name="doc_fix" class="detailindate97">
-             <option value="Name1">Name1</option>
-             <option value="Name2">Name2</option>
-              <option value="Name3">name 3</option>
-               <option value="Name4">name4</option>
-                <option value="Name5">name5</option>
+             <?php foreach ($fixCategories as $value){
+							//$selected = ($selectedCrr == $key) ? "selected" : "";
+							?>
+							<option value="<?php echo $value->qa_id ?>" <?php //echo $selected ?>><?php echo $value->qa_name; ?></option>
+							<?php
+						} ?>
            </select></p>	
 
 <p class="detailll">Sender User Notification : <select name="user_noty" class="detailindate96">
