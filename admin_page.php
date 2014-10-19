@@ -565,7 +565,8 @@ require_once('layouts/header1.php');
                 
                 
                 
-               <p> Developer Testing Assinged To :<select name="category" class="box">
+               <p> Developer Testing Assinged To :<select name="dev_ass" class="detailindate9">
+               <option value="0">-select-</option>
                 <?php
                 if (!empty($categories)) {
                     foreach ($categories as $cat) {
@@ -844,6 +845,7 @@ require_once('layouts/header1.php');
             
              <p class="detailll">Original Document Recived Date : <input type="text" class="datepicker" name="or_r_date" style="margin-left: 45px;"/></p>
  <p class="detailll">Documentation Fix By : <select name="doc_fix" class="detailindate97">
+ <option value="0">-select-</option>
              <?php foreach ($fixCategories as $value){
 							//$selected = ($selectedCrr == $key) ? "selected" : "";
 							?>

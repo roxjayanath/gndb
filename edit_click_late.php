@@ -123,6 +123,36 @@ $allref = array(
 	
 	
 	);
+
+$priorityArray = array(
+	"Low" => "Low",
+		"Medium" => "Medium",
+		"High" => "High"
+		
+);
+
+$statusArray = array(
+	"pending" => "Pending",
+		"inprogress" => "Inprogress", 
+		"approval_pending" => "Approval Pending",
+		"development" => "Development",
+		"support_t" => "Support Team Testing",
+		"qa_t" => "QA Testing",
+		"rejected" => "Rejected",
+		"close" => "Close",
+		"hold" => "Hold"
+);
+
+$qaStatus = array(
+	"pending" => "Pending",
+		"inprogress" => "Inprogress", 
+		"rejected" => "Rejected",
+		"close" => "Close",
+		"hold" => "Hold"
+);
+
+$fixCategories = FixCategory::find_all();
+
 $tempref2=1;
 
 $product = new Product();
@@ -301,7 +331,7 @@ $product->ref3= $_POST['reference'];
     if ($product->save()) {
         $session->message("Document {$product->reffull} Upload Successfully  by {$user->us_name}");
         echo $product->reference;
-        redirect_to('admin_page.php');
+        redirect_to('edit_click_late.php?id=' . $product->d_id);
     } else {
        // $message = join("<br/>", $photo->errors);
         echo $message;
@@ -401,7 +431,19 @@ require_once('layouts/header1.php');
 			if($("select[name=crr]").val() != 0) ajaxGetDocNumber();
 		});	
 		
-		    	
+		$("select[name=qastatus]").change(function(){
+			$qaVal = $("select[name=qastatus]").val();
+			if($qaVal == "rejected" || $qaVal == "close" || $qaVal == "hold"){
+				$("select[name=status]").val($qaVal);
+			} 
+			else if($qaVal == "pending" || $qaVal == "inprogress"){
+				$("select[name=status]").val("qa_t");
+			}
+		}); 	
+
+// 		$("select[name=status]").change(function(){
+// 			$("select[name=qastatus]").val("0");
+// 		}); 
         //myFunction();
 
 //         $(".tabbertab").click(function(){
@@ -714,10 +756,15 @@ require_once('layouts/header1.php');
 		
 		
 		<p class="detailll">Priority : <select name="priority" class="detailindate11" value="<?php echo $photo->priority; ?>">
-                               <option value="Core">Low</option> 
-                               <option value="NonCore">Medium</option> 
-							    <option value="NonCore">High</option> 
-             
+<!--                                <option value="Low">Low</option>  -->
+<!--                                <option value="NonCore">Medium</option>  -->
+<!-- 							    <option value="NonCore">High</option>  -->
+             <?php foreach ($priorityArray as $key => $priority){
+             	$selected = $key == $photo->priority ? "selected" : "";
+             	?>
+             	<option value="<?php echo $key; ?>" <?php echo $selected ?>><?php echo $priority ?></option>
+             	<?php
+             } ?>
              
   
            </select></p></p>
@@ -726,16 +773,13 @@ require_once('layouts/header1.php');
 		
 		<p class="detailll">Remarks : <textarea name="remarks" class="detailindate101"><?php echo $photo->remarks; ?></textarea></p>
 		
-		<p class="detailll">Status :  <select name="status" class="detailindate94" value="<?php echo $photo->status; ?>">
-             <option value="pending">Pending</option>
-             <option value="inprogress">Inprogress</option>
-               <option value="approval_pending">Approval Pending</option>
-			 <option value="development">Development</option>
-			 <option value="support_t">Support Team Testing</option>
-               <option value="qa_t">QA Testing</option>
-			  <option value="rejected">Rejected</option>
-               <option value="close">Close</option>
-                <option value="hold">Hold</option>
+		<p class="detailll">Status :  <select name="status" class="detailindate94" >
+             <?php foreach ($statusArray as $key => $status){
+             	$selected = $key == $photo->status ? "selected" : "";
+             	?>
+             	<option value="<?php echo $key; ?>" <?php echo $selected ?>><?php echo $status ?></option>
+             	<?php
+             } ?>
            </select></p>
         
 		
@@ -792,12 +836,18 @@ require_once('layouts/header1.php');
              <p class="detailll">QA Assign Date : <input type="text" class="datepicker" name="date_hand_qa" style="margin-left: 80px;" value="<?php echo $photo->date_hand_qa; ?>"/></p>
 			  <p class="detailll">QA Reference Number : <input type="text" name="qaref" class="detailindate1000" value="<?php echo $photo->QA_REF_N; ?>"/></p>
 			  <p class="detailll">QA Tester Name : <input type="text" name="qatestname" class="detailindate1001" value="<?php echo $photo->QA_TEST_N; ?>"/></p>
-			  <p class="detailll">QA Status :  <select name="qastatus" class="detailindate98" value="<?php echo $photo->QA_STATUS; ?>">
-             <option value="pending">Pending</option>
-             <option value="inprogress">Inprogress</option>
-              <option value="rejected">Rejected</option>
-               <option value="close">Close</option>
-                <option value="hold">Hold</option>
+			  <p class="detailll">QA Status :  <select name="qastatus" class="detailindate98" >
+             <option value="0">-select-</option>
+             <?php foreach ($qaStatus as $key => $qa){
+             	$selected = $key == $photo->QA_STATUS ? "selected" : "";
+             	?>
+             	<option value="<?php echo $key; ?>" <?php echo $selected ?>><?php echo $qa ?></option>
+             	<?php
+             } ?>
+<!--              <option value="inprogress">Inprogress</option> -->
+<!--               <option value="rejected">Rejected</option> -->
+<!--                <option value="close">Close</option> -->
+<!--                 <option value="hold">Hold</option> -->
            </select></p>
 			 
         <p class="detailll">Live Transfer Date : <input type="text" class="datepicker" name="qa_complete" style="margin-left: 40px;" value="<?php echo $photo->qa_complete; ?>"/></p>
@@ -820,12 +870,20 @@ require_once('layouts/header1.php');
 <p>
             
              <p class="detailll">Original Document Recived Date : <input type="text" class="datepicker" name="or_r_date" style="margin-left: 45px;" value="<?php echo $photo->reference; ?>"/></p>
- <p class="detailll">Documentation Fix By : <select name="doc_fix" class="detailindate97" value="<?php echo $photo->reference; ?>">
-             <option value="Name1">Name1</option>
-             <option value="Name2">Name2</option>
-              <option value="Name3">name 3</option>
-               <option value="Name4">name4</option>
-                <option value="Name5">name5</option>
+ <p class="detailll">Documentation Fix By : <select name="doc_fix" class="detailindate97" >
+<!--              <option value="Name1">Name1</option> -->
+<!--              <option value="Name2">Name2</option> -->
+<!--               <option value="Name3">name 3</option> -->
+<!--                <option value="Name4">name4</option> -->
+<!--                 <option value="Name5">name5</option> -->
+ <option value="0">-select-</option>
+ 	<?php foreach ($fixCategories as $value){
+							$selected = ($photo->D_FIX_BY == $value->qa_id) ? "selected" : "";
+							?>
+							<option value="<?php echo $value->qa_id ?>" <?php echo $selected ?>><?php echo $value->qa_name; ?></option>
+							<?php
+						} ?>
+ 	
            </select></p>	
 
 <p class="detailll">Sender User Notification : <select name="user_noty" class="detailindate96" value="<?php echo $photo->reference; ?>">

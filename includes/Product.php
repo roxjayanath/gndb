@@ -146,7 +146,7 @@ class Product extends DatabaseObject {
     }
 
     public function save() {
-        $this->validate_save();
+        if (isset($this->d_id)) $this->validate_save(true); else $this->validate_save();
         if (empty($this->errors)) {
             return isset($this->d_id) ? $this->update() : $this->create();
         } else {
@@ -167,15 +167,19 @@ class Product extends DatabaseObject {
     
 		
 		
-	 function validate_save(){      	
+	 function validate_save($edit = false){      	
 		$validation = new Validation();
 		//$session = new Session();
-		if($validation->isEmpty($this->cor_non)){
-            $this->errors['title'] = "Title cannot be empty";
-			//$session->message="Choose Unite";
-        } else if($validation->isTooLong($this->cor_non, 100)){
-            $this->errors['title'] = "Title cannot be emptyis too long";
-        } else if($this->is_exists()){
+		if (! $edit) {
+			if ($validation->isEmpty ( $this->cor_non )) {
+				$this->errors ['title'] = "Title cannot be empty";
+				// $session->message="Choose Unite";
+			} else if ($validation->isTooLong ( $this->cor_non, 100 )) {
+				$this->errors ['title'] = "Title cannot be emptyis too long";
+			}
+		}
+        
+        if($this->is_exists()){
         	$this->errors['ref'] = "reference already exists";
 			
         }

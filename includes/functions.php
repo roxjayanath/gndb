@@ -15,12 +15,14 @@ function strip_zero_from_date($marked_string = "") {
 }
 
 function __autoload($class_name) {
-    $class_name = strtolower($class_name);
+    //$class_name = strtolower($class_name);
     $path = LIB_PATH . DS . "{$class_name}.php";
     if (file_exists($path)) {
         require_once($path);
+    } else if(file_exists(strtolower($path))){
+    	require_once(strtolower($path));
     } else {
-        die("The file {$class_name}.php could not found");
+        die("The file {$class_name}.php at {$path} could not found");
     }
 }
 
