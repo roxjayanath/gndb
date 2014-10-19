@@ -69,7 +69,7 @@ if (!empty($session)) {
         </div>
         <?php } ?>
         <div id="remove_product" class="my_style">
-        	<a href="charts.php" class="profile_link">
+        	<a href="chartsnew.php" class="profile_link">
             <p class="toc2">View Reports</p></a>
         
         </div>
