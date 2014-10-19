@@ -69,12 +69,26 @@ if (isset($_POST['submit'])) {
 ?>
 
 <head>
-<script src="javascrpits/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="javascrpits/jsapi.js"></script>
-<link rel="stylesheet" href="css/jquery-ui.css"></link>
+	<link rel="stylesheet" href="css/jquery-ui.css"></link>
+<script src="javascrpits/jquery-1.8.3.min.js" ></script>
 <script src="javascrpits/jquery-ui.js" ></script>
-<script src="javascrpits/jquery.hashchange.min.js" type="text/javascript"></script>
+
+ <script src="javascrpits/jquery.hashchange.min.js" type="text/javascript"></script>
   <script src="javascrpits/jquery.easytabs.min.js" type="text/javascript"></script>
+	
+	
+	
+	
+	
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    
+
+
+
+
+
+ 
 
   
   <script type="text/javascript">
