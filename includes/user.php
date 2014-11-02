@@ -39,9 +39,9 @@ class User {
         //$us_passed = self::get_encrypted_password($us_pass);
         $check = self::find_by_username($us_name);
 		if(empty($us_pass)){
-		 return fasle;
+		 return false;
 		}
-        if(empty($check)) return fasle;
+        if(empty($check)) return false;
         
         $us_pass = self::get_encrypted_password($us_pass, $check->us_salt);
 
@@ -50,9 +50,11 @@ class User {
         $sql .="And us_pass = '{$us_pass}' ";
         $sql .= "LIMIT 1";
 		
+        //var_dump($sql);
 
         $result_array = self::find_by_sql($sql);
         return !empty($result_array) ? array_shift($result_array) : false;
+        //return false;
     }
 
     public static function find_all() {
@@ -249,7 +251,7 @@ class User {
 
     static function get_encrypted_password($password, $salt) {
         //return sha1($password+$salt);
-        return hash("sha512", $password+$salt);
+        return hash("sha512", $password.$salt);
     }
     
 //     static function set_encrypted_password($password) {

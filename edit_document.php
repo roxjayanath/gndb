@@ -168,7 +168,7 @@ a {
 						<?php foreach ($allCats as $key => $value){
 							$selected = ($selectedCrr == $key) ? "selected" : "";
 							?>
-							<option name="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
+							<option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $value ?></option>
 							<?php
 						} ?>
 
@@ -177,9 +177,9 @@ a {
 				
 					<th>Status : <select name="statrr" onchange="submitSearch()">
 						<?php foreach ($statusArray as $keys => $values){
-							$selected = ($selectedCrr == $keys) ? "selected" : "";
+							$selected = ($statuscrr == $keys) ? "selected" : "";
 							?>
-							<option name="<?php echo $keys ?>" <?php echo $selected ?>><?php echo $values ?></option>
+							<option value="<?php echo $keys ?>" <?php echo $selected ?>><?php echo $values ?></option>
 							<?php
 						} ?>
 
