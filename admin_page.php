@@ -35,39 +35,27 @@ $crBrdReport = array(
 
 $allUnits = array(
 		0 => "-select-",
-	"BC" => "BC",
-	"Branch Banking" => "Branch Banking",
-	"Cards" => "Cards",
-	"Cash Management" => "Cash Management",
-	"CAU"=>"CAU",
-	"CM"=>"CM",
-	"Collections and REcoveries"=>"Collections and Recoveries",
-	"Compliance"=>"Compliance",
-	"CPU"=>"CPU",
-	"CM"=>"CM",
-	"Collections and Recoveries"=>"Collections and Recoveries",
-	"Complaince"=>"Compliance",
-	"CPU"=>"CPU",
-	"CPU,FINANCE,SME,RISK,CRU"=>"CPU,FINANCE,SME,RISK,CRU",
-	"CRU"=>"CRU",
-	"FIN"=>"FIN",
-	"Finance"=>"Finance",
-	"Finance/Trade"=>"Finance/Trade",
-	"FIN-CRU"=>"FIN-CRU",
-	"Home Loans"=>"Home Loans",
-	"IB"=>"IB",
-	"ISLAMIC BANKING"=>"ISLAMIC BANKING",
-	"IT"=>"IT",
+	"BC" => "Balance Confirmation Unit",
+	"RETAIL" => "Retail Banking",
+	"CARDS" => "Card Center",
+	"CM" => "Cash Management",
+	"CAU"=>"Credit Administration Unit",
+	"REC"=>"Collections and Recoveries",
+	"COM"=>"Compliance",
+	"CPU"=>"Central Processing Unit",
+	"CRU"=>"Central Reconcilation Unit",
+	"FIN"=>"Finance Department",
+	"TRADE"=>"Trade Finance",
+	"LOAN"=>"Home Loans",
+	"IB"=>"Islamic Banking",
+	"IT"=>"Information Technology",
 	"MRU"=>"MRU",
-	"Project Finance"=>"Project Finance",
-	"Recoveries"=>"Recoveries",
-	"Remittance"=>"Remittance",
-	"Retail"=>"Retail",
+	"PF"=>"Project Finance",
+	"REM"=>"Remittance",
 	"SME"=>"SME",
-	"TBO"=>"TBO",
-	"TO"=>"TO",
-	"Trade"=>"Trade",
-	"Treasury"=>"Treasury"
+	"TBO"=>"Treasury Back Office",
+	"TREASURY"=>"Treasury",
+	"NC"=>"Non Core"
 	
 	
 );
@@ -236,37 +224,37 @@ $product->ref3= $_POST['reference'];
     $product->date_reciv_it= $_POST['date_reciv_it'];
 	
 	
-    $product->smrc_date= $_POST['smrc_date'];   
-    $product->AVPIT= $_POST['avp_it'];
-    $product->VPIT= $_POST['vp_it'];
-    $product->COST_DATE= $_POST['biss_date'];
-    $product->CFO_DATE= $_POST['cfo_date'];
-    $product->BRP= $_POST['brd_date'];
-    $product->date_develop= $_POST['date_develop'];
-    $product->assing_to= $_POST['assing_to'];
+   // $product->smrc_date= $_POST['smrc_date'];   
+   // $product->AVPIT= $_POST['avp_it'];
+  //  $product->VPIT= $_POST['vp_it'];
+  //  $product->COST_DATE= $_POST['biss_date'];
+   // $product->CFO_DATE= $_POST['cfo_date'];
+   // $product->BRP= $_POST['brd_date'];
+   // $product->date_develop= $_POST['date_develop'];
+   // $product->assing_to= $_POST['assing_to'];
     
     
-    $product->PACK_DATE= $_POST['pack_date'];
-     $product->DEV_TESTER= $_POST['dev_ass'];
-      $product->TEST_ENV= $_POST['dev_en'];
-      $product->TEST_C_NO= $_POST['dev_cy'];
-      $product->develop_r_date= $_POST['date_ret_date'];
-	  $product->USER_ASS= $_POST['user_ass_date'];
-      $product->ded_line= $_POST['ass_user'];
-      $product->TEST_COM_DATE= $_POST['test_com_date'];
-       $product->TEST_STAT= $_POST['test_status'];
+  //  $product->PACK_DATE= $_POST['pack_date'];
+  //   $product->DEV_TESTER= $_POST['dev_ass'];
+   //   $product->TEST_ENV= $_POST['dev_en'];
+    //  $product->TEST_C_NO= $_POST['dev_cy'];
+    //  $product->develop_r_date= $_POST['date_ret_date'];
+	//  $product->USER_ASS= $_POST['user_ass_date'];
+    //  $product->ded_line= $_POST['ass_user'];
+    //  $product->TEST_COM_DATE= $_POST['test_com_date'];
+     //  $product->TEST_STAT= $_POST['test_status'];
     
     
-    $product->date_hand_qa= $_POST['date_hand_qa'];
-    $product->QA_REF_N= $_POST['qaref'];
-    $product->QA_TEST_N= $_POST['qatestname'];
-    $product->QA_STATUS= $_POST['qastatus'];
-    $product->qa_complete= $_POST['qa_complete'];
+   // $product->date_hand_qa= $_POST['date_hand_qa'];
+  //  $product->QA_REF_N= $_POST['qaref'];
+  //  $product->QA_TEST_N= $_POST['qatestname'];
+  //  $product->QA_STATUS= $_POST['qastatus'];
+  //  $product->qa_complete= $_POST['qa_complete'];
     
     
-    $product->date_back_it= $_POST['or_r_date'];
-    $product->D_FIX_BY= $_POST['doc_fix'];
-    $product->USER_Not= $_POST['user_noty'];
+   // $product->date_back_it= $_POST['or_r_date'];
+   // $product->D_FIX_BY= $_POST['doc_fix'];
+   // $product->USER_Not= $_POST['user_noty'];
     $product->remarks= $_POST['remarks'];
     
     
@@ -370,6 +358,9 @@ require_once('layouts/header1.php');
 <link rel="stylesheet" href="css/jquery-ui.css"></link>
 <script src="javascrpits/jquery-1.8.3.min.js" ></script>
 <script src="javascrpits/jquery-ui.js" ></script>
+
+
+
 
 
 <script type="text/javascript">
@@ -525,7 +516,7 @@ require_once('layouts/header1.php');
  <ul class='etabs'>
 
  <li class='tab'><a href="#tabs1-html">Details</a></li>
- <li class='tab'><a href="#tabs1-jss">Approvals</a></li>
+ <!-- <li class='tab'><a href="#tabs1-jss">Approvals</a></li>
  
    <li class='tab'><a href="#tabs1-csss">System Suport Testing & Developing</a></li>
    <li class='tab'><a href="#tabs1-js">QA Testing</a></li>
@@ -533,7 +524,7 @@ require_once('layouts/header1.php');
   
    
    
- <!--  <li class='tab'><a href="#tabs1-htmll">Details</a></li>
+   <li class='tab'><a href="#tabs1-htmll">Details</a></li>
    <li class='tab'><a href="#tabs1-html">Approvals</a></li>
    <li class='tab'><a href="#tabs1-js">Development</a></li>
    <li class='tab'><a href="#tabs1-css">System Suport Testing</a></li>
@@ -546,140 +537,7 @@ require_once('layouts/header1.php');
  
  
  
- <div id="tabs1-csss">
-   
 
-   
-    <code>
-<p>
-            
-            
-        <p class="detailll">PACK Received   Date : <input type="text" class="datepicker" name="pack_date" style="margin-left: 160px;"/></p>
-	<!--	<p class="detailll">Developer Testing Assinged To :  <select name="dev_ass" class="detailindate9">
-             <option value="Name1">Name1</option>
-             <option value="Name2">Name2</option>
-              <option value="Name3">name 3</option>
-               <option value="Name4">name4</option>
-                <option value="Name5">name5</option>
-           </select></p  -->
-                
-                
-                
-               <p> Developer Testing Assinged To :<select name="dev_ass" class="detailindate9">
-               <option value="0">-select-</option>
-                <?php
-                if (!empty($categories)) {
-                    foreach ($categories as $cat) {
-                        ?>
-                        <option value="<?php echo $cat->dev_id ?>"><?php echo $cat->dev_name ?></option>
-                        <?php
-                    }
-                }
-                ?>
-                <!--                <option value="Men">Men</option>
-                                <option value="Kids">Kids</option>-->
-            </select></p> 
-                
-                
-		   
-		   <p class="detailll">Testing Enviroriment  :  <select name="dev_en" class="detailindate99">
-             <option value="st">Staging</option>
-             <option value="sp1">sp1</option>
-              <option value="sp2">sp2</option>
-               <option value="sp3">sp3</option>
-               
-           </select></p>
-		   
-		   <p class="detailll">Testing Cycle No:  <select name="dev_cy" class="detailindate999">
-             <option value="1">1</option>
-             <option value="2">2</option>
-              <option value="3">3</option>
-               <option value="4">4</option>
-			   <option value="5">5</option>
-             <option value="6">6</option>
-              <option value="7">7</option>
-               <option value="8">8</option>
-			   <option value="9">9</option>
-             <option value="10">10</option>
-           </select></p>
-		
-				<p class="detailll">Date Return To Developer :  <input type="text" class="datepicker" name="date_ret_date" style="margin-left: 100px;"/></p>
-				<p class="detailll">Assign User : <input type="text" name="ass_user" class="detailindate10"/></p>
-				
-				
-				<p class="detailll">User Assign Date :  <input type="text" class="datepicker" name="user_ass_date" style="margin-left: 180px;"/></p>
-				<p class="detailll">Tested Completed Date :  <input type="text" class="datepicker" name="test_com_date" style="margin-left: 130px;"/></p>
-				
-				
-				<p class="detailll">Testing Status :  <select name="test_status" class="detailindate9999">
-             <option value="pending">Pending</option>
-             <option value="inprogress">Inprogress</option>
-              <option value="rejected">Rejected</option>
-               <option value="close">Close</option>
-                <option value="hold">Hold</option>
-           </select></p>
-				
-      
-            
-            
-            
-          </p>
-    </code>
-  
-
-  </div>
- 
- 
- 
- 
- 
- <div id="tabs1-jss">
-   
-
-   
-    <code>
-<p>
-            <p style="
-    font-family: serif;
-    font-size: 30px;
-">Document submit for Review/Approval </p>
-            
-        <p class="detailll">Development Review Date : <input type="text" class="datepicker" name="smrc_date" style="margin-left: 120px;"/></p>
-		<p class="detailll">AVP-IT Approval Date : <input type="text" class="datepicker" name="avp_it" style="margin-left: 150px;"/></p>
-		<p class="detailll">VP-IT Approval Date : <input type="text" class="datepicker" name="biss_date" style="margin-left: 160px;"/></p>
-		<p class="detailll">Bussiness Line Cost Approval Date : <input type="text" class="datepicker" name="vp_it" style="margin-left: 20px;"/></p>
-        <p class="detailll">CFO Approval Date : <input type="text" class="datepicker" name="cfo_date" style="margin-left: 180px;"/></p>
-		<p class="detailll">BRP Approval Date : <input type="text" class="datepicker" name="brd_date" style="margin-left: 180px;"/></p>
-		<p class="detailll">Date Hand Over To Development : <input type="text" class="datepicker" name="date_develop" style="margin-left: 60px;"/></p>
-		<!--<p class="detailll">Document held with previosly : <?php //echo?></p>
-		--><p class="detailll">Document Hand over to : <input type="text" name="assing_to" class="detailindate100"/></p>
-		
-		
-		
-		
-		
-            
-          </p>
-    </code>
-  
-
-  </div>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
  
  
  
@@ -759,7 +617,7 @@ require_once('layouts/header1.php');
 		<p class="detailll">Priority : <select name="priority" class="detailindate11">
                                <option value="Low">Low</option> 
                                <option value="Medium">Medium</option> 
-							    <option value="HonCore">High</option> 
+							    <option value="High">High</option> 
              
              
   
@@ -770,19 +628,23 @@ require_once('layouts/header1.php');
 		<p class="detailll">Remarks : <textarea name="remarks" class="detailindate101"></textarea></p>
 		
 		<p class="detailll">Status :  <select name="status" class="detailindate94">
-             <option value="pending">Pending</option>
-             <option value="inprogress">Inprogress</option>
+             <option value="Pending">Pending</option>
+             <option value="Inprogress">Inprogress</option>
 			 
-			 <option value="approval_pending">Approval Pending</option>
-			 <option value="development">Development</option>
-			 <option value="support_t">Support Team Testing</option>
-               <option value="qa_t">QA Testing</option>
+			 <option value="Approval Pending">Approval Pending</option>
+			 <option value="Development">Development</option>
+			 <option value="Support Team Testing">Support Team Testing</option>
+               <option value="QA Testing">QA Testing</option>
 			   
-			   <option value="us_t">User Testing</option>
-			  <option value="rejected">Rejected</option>
+			   <option value="User Testing">User Testing</option>
+			  <option value="Rejected">Rejected</option>
                
-			   <option value="close">Close</option>
-                <option value="hold">Hold</option>
+			   <option value="Close">Close</option>
+                <option value="Hold">Hold</option>
+				<option value="Pending Temonos">Pending Temonos</option>
+				
+				
+				
            </select></p>
         
 		
@@ -805,73 +667,7 @@ require_once('layouts/header1.php');
 
    
    
-  <div id="tabs1-js">
-
-
-  <code>
-    
-<p>
-            
-             <p class="detailll">QA Assign Date : <input type="text" class="datepicker" name="date_hand_qa" style="margin-left: 80px;"/></p>
-			  <p class="detailll">QA Reference Number : <input type="text" name="qaref" class="detailindate1000"/></p>
-			  <p class="detailll">QA Tester Name : <input type="text" name="qatestname" class="detailindate1001"/></p>
-			  <p class="detailll">QA Status :  <select name="qastatus" class="detailindate98">
-			  <option value="0">-Select-</option>
-             <option value="pending">Pending</option>
-             <option value="inprogress">Inprogress</option>
-              <option value="rejected">Rejected</option>
-               <option value="close">Close</option>
-                <option value="hold">Hold</option>
-           </select></p>
-			 
-        <p class="detailll">Live Transfer Date : <input type="text" class="datepicker" name="qa_complete" style="margin-left: 40px;"/></p>
-        
-        
-            
-            
-          </p>  
-  </code>
-
-  </div>
-  
-  
-  
-  <div id="tabs1-css">
-
-
-  <code>
-    
-<p>
-            
-             <p class="detailll">Original Document Recived Date : <input type="text" class="datepicker" name="or_r_date" style="margin-left: 45px;"/></p>
- <p class="detailll">Documentation Fix By : <select name="doc_fix" class="detailindate97">
- <option value="0">-select-</option>
-             <?php foreach ($fixCategories as $value){
-							//$selected = ($selectedCrr == $key) ? "selected" : "";
-							?>
-							<option value="<?php echo $value->qa_id ?>" <?php //echo $selected ?>><?php echo $value->qa_name; ?></option>
-							<?php
-						} ?>
-           </select></p>	
-
-<p class="detailll">Sender User Notification : <select name="user_noty" class="detailindate96">
-             <option value="yes">YES</option>
-             <option value="no">NO</option>
-              
-           </select></p>	
-
-
-
-			 
-        
-        
-            
-            
-          </p>  
-  </code>
-
-  </div>
-  
+ 
   
 
   

@@ -13,14 +13,14 @@
         </div>
         <?php } ?>
 	
-	<?php if($user->rights[RIGHT_EDIT_DOC]){ ?>
+	<?php if($user->rights[RIGHT_VIEW_DOC]){ ?>
         <div id="my_profile" class="my_style">
         	<a href="viwe_document.php" class="profile_link"><p class="toc">View Document</p></a>
         
         </div>
         <?php } ?>
-	 <?php if($user->rights[RIGHT_VIEW_DOC]){ ?>
-        <div id="edit_profile" class="my_style">
+	 <?php if($user->rights[RIGHT_EDIT_DOC]){ ?>
+        <div id="my_profile" class="my_style">
         	<a href="edit_document.php" class="profile_link"><p class="toc">Edit Document</p></a>
         
         </div>
@@ -28,7 +28,7 @@
         <?php if($user->rights[RIGHT_DELETE_DOC]){ ?>
        
         
-        <div id="new_admin" class="my_style">
+        <div id="my_profile" class="my_style">
         	<a href="delete_document.php" class="profile_link"><p class="toc">Delete Document</p></a>
         
         </div>
@@ -46,7 +46,7 @@
         </div>
                 
         --><div id="add_product" class="my_style">
-        	<a href="admin_home.php" class="profile_link"><p class="toc">Main Menu</p></a>
+        	<a href="admin_home.php" class="profile_link"><p class="toc">Home</p></a>
         
         </div><!--
         

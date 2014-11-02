@@ -28,7 +28,10 @@ if (!empty($session)) {
       	<?php if($user->rights[RIGHT_INSERT_DOC]){ ?>
       	<div id="my_profile" class="my_style">
         	<a href="admin_page.php" class="profile_link">
-            <p class="toc">Insert New Document</p></a>
+            <p class="toc" style="
+    
+    margin-left: 25px;
+">Insert New Document</p></a>
         
         </div>
         <?php } ?>
@@ -36,41 +39,61 @@ if (!empty($session)) {
         <?php if($user->rights[RIGHT_EDIT_DOC]){ ?>
         <div id="password" class="my_style">
         	<a href="edit_document.php" class="profile_link">
-            <p class="toc2">Edit Document</p></a>
+            <p class="toc2"style="
+    
+    margin-left: 25px;
+">Edit Document</p></a>
         
         </div>
         <?php } ?>
         <?php if($user->rights[RIGHT_VIEW_DOC]){ ?>
         <div id="new_admin" class="my_style">
         	<a href="viwe_document.php" class="profile_link">
-            <p class="toc3">View Document</p></a>
+            <p class="toc3"style="
+    
+    margin-left: 25px;
+">View Document</p></a>
         
         </div>
         <?php } ?>
         <?php if($user->rights[RIGHT_DELETE_DOC]){ ?>
         <div id="invoice" class="my_style">
         	<a href="delete_document.php" class="profile_link">
-            <p class="toc3">Delete Document</p></a>
+            <p class="toc3"style="
+    
+    margin-left: 25px;
+">Delete Document</p></a>
         
         </div>
         <?php } ?>
         <?php if($user->rights[RIGHT_USER_CONTROL]){ ?>
         <div id="add_product" class="my_style">
         	<a href="user_control.php" class="profile_link">
-            <p class="toc">User Control</p></a>
+            <p class="toc"style="
+    
+    margin-left: 5px;
+">User Control</p></a>
         
         </div>
         <?php } ?>
         <?php if($user->rights[RIGHT_LOG_HISTORY]){ ?>
         <div id="edit_product" class="my_style">
         	<a href="log_histry.php" class="profile_link">
-            <p class="toc2">Log Hisotry</p></a>
+            <p class="toc2"style="
+    
+    margin-left: 5px;
+">Log Hisotry</p></a>
         
         </div>
         <?php } ?>
-        <div id="remove_product" class="my_style">
+        <div id="remove_product" class="my_style" style="
+    margin-left: 1px;
+">
         	<a href="chartsnew.php" class="profile_link">
-            <p class="toc2">View Reports</p></a>
+            <p class="toc2" style="
+    /* padding-left: 0px; */
+    margin-left: 55px;
+">View Reports</p></a>
         
         </div>
         

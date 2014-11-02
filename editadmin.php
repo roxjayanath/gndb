@@ -12,7 +12,7 @@ if(!$session->is_logged_in()){
    
     $page=!empty($_GET['page'])?(int)$_GET['page'] : 1;
     
-    $per_page= 2;
+    $per_page= 10;
     
     $total_count= User::count_all();
     

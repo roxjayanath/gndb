@@ -922,7 +922,7 @@ require_once('layouts/header1.php');
         
         <br/>
         <center>
-            <p class="line">
+            <!--<p class="line">
             <p class="detail2">
             <p >
                 <input type="submit" value="Add" name="submit" class="create_button">
@@ -930,7 +930,7 @@ require_once('layouts/header1.php');
             <p >
                 <input type="reset" value="Cancel" name="cancel" class="create_button">
             </p>
-            </p></p>
+            </p></p> -->
         </center>
 
     </form>

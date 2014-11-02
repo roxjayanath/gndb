@@ -8,12 +8,15 @@ define("DB_NAME","ndb_b");
 //define("CAT_KIDS", 2);
 //define("CAT_ACC", 3);
 
+//define("SERVER_ADDRESS", "\\phpsandbox\gndb");
+
 define("SERVER_ADDRESS", "http://localhost/phpsandbox/gndb");
 
 //user levels
 define("USER_LEVEL_1", 1);
 define("USER_LEVEL_2", 2);
 define("USER_LEVEL_3", 3);
+define("USER_LEVEL_4", 4);
 
 //rights
 define("RIGHT_INSERT_DOC", "insert_document");

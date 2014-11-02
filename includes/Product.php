@@ -177,6 +177,13 @@ class Product extends DatabaseObject {
 			} else if ($validation->isTooLong ( $this->cor_non, 100 )) {
 				$this->errors ['title'] = "Title cannot be emptyis too long";
 			}
+			
+			if($validation->isEmpty($this->ref1)){
+            $this->errors['title'] = "select type";
+        }
+			if($validation->isEmpty($this->ref2)){
+            $this->errors['title'] = "select the unit";
+        }
 		}
         
         if($this->is_exists()){
@@ -184,40 +191,48 @@ class Product extends DatabaseObject {
 			
         }
 		
-		/*if($validation->isEmpty($this->cr_brd)){
-            $this->errors['title'] = "Title cannot be empty";
-        } else if($validation->isTooLong($this->cr_brd, 100)){
-            $this->errors['title'] = "Title cannot be emptyis too long";
-        } else if($this->is_exists()){
-        	$this->errors['ref'] = "reference already exists";
-        }
 		
-		if($validation->isEmpty($this->cor_non)){
-            $this->errors['title'] = "Title cannot be empty";
-        } else if($validation->isTooLong($this->cor_non, 100)){
+		
+		/* if($validation->isEmpty($this->ref1)){
+            $this->errors['title'] = "select type";
+        } else if($validation->isTooLong($this->ref1, 100)){
             $this->errors['title'] = "Title cannot be emptyis too long";
         } else if($this->is_exists()){
         	$this->errors['ref'] = "reference already exists";
         }
 		
 		
-		if($validation->isEmpty($this->unit)){
-            $this->errors['title'] = "Title cannot be empty";
-        } else if($validation->isTooLong($this->unit, 100)){
+		
+		
+		
+	/*	if($validation->isEmpty($this->ref2)){
+            $this->errors['title'] = "select the unit";
+        } else if($validation->isTooLong($this->ref2, 100)){
+            $this->errors['title'] = "Title cannot be emptyis too long";
+        } else if($this->is_exists()){
+        	$this->errors['ref'] = "reference already exists";
+        } */
+		
+		if($validation->isEmpty($this->requester)){
+            $this->errors['title'] = "Requester cannot be empty";
+        } else if($validation->isTooLong($this->requester, 100)){
             $this->errors['title'] = "Title cannot be emptyis too long";
         } else if($this->is_exists()){
         	$this->errors['ref'] = "reference already exists";
         }
 		
-		if($validation->isEmpty($this->ref3)){
-            $this->errors['title'] = "Title cannot be empty";
-        } else if($validation->isTooLong($this->ref3, 100)){
-            $this->errors['title'] = "Title cannot be emptyis too long";
-        } else if($this->is_exists()){
-        	$this->errors['ref'] = "reference already exists";
-        }
+		if($validation->isEmpty($this->description)){
+            $this->errors['title'] = "Description cannot be empty";
+        } 
 		
-		*/
+		
+		
+		if($validation->isEmpty($this->date_reciv_it)){
+            $this->errors['title'] = "Recive Date must be fill out";
+        } 
+		
+		
+		
 		
 		
 		
@@ -505,7 +520,7 @@ class Product extends DatabaseObject {
 
         if ($database->query($sql)) {
             $this->id = $database->insert_id();
-            $path = SITE_ROOT . $this->upload_dir . $this->cr_brd;
+            $path = SITE_ROOT . $this->upload_dir ;
             //upload files
             $this->save_files($path);
 
@@ -535,7 +550,9 @@ class Product extends DatabaseObject {
 //        }
         //echo $sql;
         $database->query($sql);
-        $path = SITE_ROOT . $this->upload_dir . $this->cr_brd;
+        $path = SITE_ROOT . $this->upload_dir ;
+		
+		//SERVER_ADDRESS . $this->upload_dir . $this->cr_brd . '/'  . $this->scan_doc1;
         //upload files
         $this->save_files($path);
         return ($database->affected_rows() == 1) ? true : false;
@@ -702,7 +719,8 @@ class Product extends DatabaseObject {
     public function image_path() {
         //$field = 'scan_doc' . $scan_doc;
         $field = 'scan_doc1';
-        return $path = SERVER_ADDRESS . $this->upload_dir . $this->cr_brd . '/' . $this->scan_doc1;
+        return $path = SERVER_ADDRESS . $this->upload_dir  . $this->scan_doc1;
+		//. $this->cr_brd
         //return 'upload/docs/' . $this->cr_brd . '/' . $this->scan_doc1;
     }
     

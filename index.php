@@ -37,7 +37,7 @@ if (isset ( $_POST ['commit'] )) {
 	if ($found_user) {
 		// var_dump($found_user);
 		$session->login ( $found_user );
-		log_action ( 'Login', "{$found_user->us_name} logged in ." );
+	    log_action ( 'Login', "{$found_user->us_name} logged in ." );
 		redirect_to ( "admin_home.php" );
 	} else {
 		$message = "Username / password wrong";

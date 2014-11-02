@@ -47,19 +47,46 @@ $allCats = array(
 	"REPORT" => "REPORT"
 );
 
-$reference = $selectedCrr = "";
+$statusArray = array(
+"All" => "All",
+	"Pending" => "Pending",
+		"Inprogress" => "Inprogress", 
+		"Approval Pending" => "Approval Pending",
+		"Development" => "Development",
+		"Support Team Testing" => "Support Team Testing",
+		"QA Testing" => "QA Testing",
+		"Rejected" => "Rejected",
+		"Close" => "Close",
+		"Hold" => "Hold",
+		"Pending Temonos" => "Pending Temonos"
+);
+
+$reference = $selectedCrr = $statuscrr=$requester="";
+
 
 $sql = "SELECT * FROM ndb_doc WHERE d_visible=1 ";
 
 if (! empty ( $_REQUEST ['prod_name'] )) {
 	$reference = $_REQUEST ['prod_name'];
-	$sql .= " AND lower(reference) like lower('%{$_REQUEST ['prod_name']}%')";
+	$sql .= " AND lower(reffull) like lower('%{$_REQUEST ['prod_name']}%')";
 }
 
 if (! empty ( $_REQUEST ['crr'] ) && $_REQUEST ['crr'] != 'All') {
 	$selectedCrr = $_REQUEST ['crr'];
 	//$sql .= (! empty ( $_REQUEST ['prod_name'] )) ? " AND " : " WHERE ";
 	$sql .= "AND cr_brd = '{$_REQUEST ['crr']}'";
+}
+
+
+if (! empty ( $_REQUEST ['statrr'] ) && $_REQUEST ['statrr'] != 'All') {
+	$statuscrr = $_REQUEST ['statrr'];
+	//$sql .= (! empty ( $_REQUEST ['prod_name'] )) ? " AND " : " AND ";
+	$sql .= " AND status = '{$_REQUEST ['statrr']}'";
+}
+
+if (! empty ( $_REQUEST ['req_name'] )) {
+	$requester = $_REQUEST ['req_name'];
+	$sql .= " AND lower(requester) like lower('%{$_REQUEST ['req_name']}%')";
 }
 
 // $sql .= "LIMIT {$per_page} ";
@@ -146,6 +173,29 @@ a {
 						} ?>
 
 				</select></th>
+				
+				
+				
+				<th>Status : <select name="statrr" onchange="submitSearch()">
+						<?php foreach ($statusArray as $keys => $values){
+							$selected = ($selectedCrr == $keys) ? "selected" : "";
+							?>
+							<option name="<?php echo $keys ?>" <?php echo $selected ?>><?php echo $values ?></option>
+							<?php
+						} ?>
+
+				</select></th>
+				
+				<th>Requester Name</th>
+				<th><input type="text" name="req_name"
+					value="<?php echo $requester ?>" /></th>
+					<th><input type="submit" name="sub" value="Search"
+					onclick="submitSearch()" /></th>
+				
+				
+
+				
+			</tr>
 
 				
 			</tr>
@@ -181,7 +231,10 @@ a {
 		
 		<th class="head_toc">Reference</th>
                 <th class="head_toc">Requester</th>
-		<th class="head_toc">unit</th>
+		<th class="head_toc" style="
+    /* margin-left: 45px; */
+    padding-right: 150px;
+">Description</th>
 		
 		
 		
@@ -237,11 +290,11 @@ a {
 
 					<td><?php echo $photo->reffull;?></td>
 					<td><?php echo $photo->requester;?></td>
-					<td><?php echo $photo->unit;?></td>
+					<td style="text-transform : uppercase"><?php echo $photo->description;?></td>
 
 					
 					<td><?php echo $photo->date_sub;?></td>
-					<td><?php echo $photo->status;?></td>
+					<td style="text-transform : capitalize"><?php echo $photo->status;?></td>
 					
 
 

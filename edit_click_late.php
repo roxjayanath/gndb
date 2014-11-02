@@ -23,6 +23,16 @@ $max_file_size = 1048576;
 $tempmax=0;
 $tempmaxid=0;
 
+
+$categories = DEVCategory::find_all();
+
+$fixCategories = FixCategory::find_all();
+
+$devCategories = DEVCategory::find_all();
+
+
+
+
 $coreNCore = array(
 		0 => "-select-",
 		"Core" => "Core",
@@ -38,43 +48,30 @@ $crBrdReport = array(
 
 $allUnits = array(
 		0 => "-select-",
-	"BC" => "BC",
-	"Branch Banking" => "Branch Banking",
-	"Cards" => "Cards",
-	"Cash Management" => "Cash Management",
-	"CAU"=>"CAU",
-	"CM"=>"CM",
-	"Collections and REcoveries"=>"Collections and Recoveries",
-	"Compliance"=>"Compliance",
-	"CPU"=>"CPU",
-	"CM"=>"CM",
-	"Collections and Recoveries"=>"Collections and Recoveries",
-	"Complaince"=>"Compliance",
-	"CPU"=>"CPU",
-	"CPU,FINANCE,SME,RISK,CRU"=>"CPU,FINANCE,SME,RISK,CRU",
-	"CRU"=>"CRU",
-	"FIN"=>"FIN",
-	"Finance"=>"Finance",
-	"Finance/Trade"=>"Finance/Trade",
-	"FIN-CRU"=>"FIN-CRU",
-	"Home Loans"=>"Home Loans",
-	"IB"=>"IB",
-	"ISLAMIC BANKING"=>"ISLAMIC BANKING",
-	"IT"=>"IT",
+	"BC" => "Balance Confirmation Unit",
+	"RETAIL" => "Retail Banking",
+	"CARDS" => "Card Center",
+	"CM" => "Cash Management",
+	"CAU"=>"Credit Administration Unit",
+	"REC"=>"Collections and Recoveries",
+	"COM"=>"Compliance",
+	"CPU"=>"Central Processing Unit",
+	"CRU"=>"Central Reconcilation Unit",
+	"FIN"=>"Finance Department",
+	"TRADE"=>"Trade Finance",
+	"LOAN"=>"Home Loans",
+	"IB"=>"Islamic Banking",
+	"IT"=>"Information Technology",
 	"MRU"=>"MRU",
-	"Project Finance"=>"Project Finance",
-	"Recoveries"=>"Recoveries",
-	"Remittance"=>"Remittance",
-	"Retail"=>"Retail",
+	"PF"=>"Project Finance",
+	"REM"=>"Remittance",
 	"SME"=>"SME",
-	"TBO"=>"TBO",
-	"TO"=>"TO",
-	"Trade"=>"Trade",
-	"Treasury"=>"Treasury"
+	"TBO"=>"Treasury Back Office",
+	"TREASURY"=>"Treasury",
+	"NC"=>"Non Core"
 	
 	
 );
-
 
 $allref = array(
 		0 => "-select-",
@@ -131,16 +128,66 @@ $priorityArray = array(
 		
 );
 
+
+$stageArray = array(
+	"STAGING" => "STAGING",
+		"SP1" => "SP1",
+		"SP2" => "SP2",
+		"SP3" => "SP3",
+		"SP4" => "SP4",
+		"SP4" => "SP4"
+		
+);
+
+
+
+$testcArray = array(
+	"1" => "1",
+		"2" => "3",
+		"3" => "3",
+		"4" => "4",
+		"5" => "5",
+		"6" => "6",
+		"7" => "7",
+		"8" => "8",
+		"9" => "9",
+		"10" => "10"
+		
+);
+
+
+
+$teststatArray = array(
+	"Pending" => "Pending",
+		"Inprogress" => "Inprogress",
+		"Rejected" => "Rejected",
+		"Close" => "Close",
+		"Hold" => "Hold"
+		
+);
+
+
+
+$usernotArray = array(
+	"YES" => "YES",
+		"NO" => "NO"
+		
+);
+
+
+
+
 $statusArray = array(
-	"pending" => "Pending",
-		"inprogress" => "Inprogress", 
-		"approval_pending" => "Approval Pending",
-		"development" => "Development",
-		"support_t" => "Support Team Testing",
-		"qa_t" => "QA Testing",
-		"rejected" => "Rejected",
-		"close" => "Close",
-		"hold" => "Hold"
+	"Pending" => "Pending",
+		"Inprogress" => "Inprogress", 
+		"Approval Pending" => "Approval Pending",
+		"Development" => "Development",
+		"Support Team Testing" => "Support Team Testing",
+		"QA Testing" => "QA Testing",
+		"Rejected" => "Rejected",
+		"Close" => "Close",
+		"Hold" => "Hold",
+		"Pending Temonos" => "Pending Temonos"
 );
 
 $qaStatus = array(
@@ -152,6 +199,8 @@ $qaStatus = array(
 );
 
 $fixCategories = FixCategory::find_all();
+
+$devCategories = DEVCategory::find_all();
 
 $tempref2=1;
 
@@ -613,34 +662,97 @@ require_once('layouts/header1.php');
             
             
         <p class="detailll">PACK Received   Date : <input type="text" class="datepicker" name="pack_date" style="margin-left: 160px;" value="<?php echo $photo->PACK_DATE; ?>"/></p>
-		<p class="detailll">Developer Testing Assinged To :  <select name="dev_ass" class="detailindate9" value="<?php echo $photo->DEV_TESTER; ?>">
+		<!--<p class="detailll">Developer Testing Assinged To :  <select name="dev_ass" class="detailindate9" value="<?php echo $photo->DEV_TESTER; ?>">
              <option value="Name1">Name1</option>
              <option value="Name2">Name2</option>
               <option value="Name3">name 3</option>
                <option value="Name4">name4</option>
                 <option value="Name5">name5</option>
+           </select></p> -->
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   <p style="
+    font-size: 16px;
+">
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		     Developer Testing Assinged To :<select name="dev_ass" class="detailindate9">
+             
+		   
+		   $devCategories = DEVCategory::find_all();
+		   
+		   <option value="0">-select-</option>
+ 	<?php foreach ($devCategories as $value){
+							$selected = ($photo->DEV_TESTER == $value->dev_id) ? "selected" : "";
+							?>
+							<option value="<?php echo $value->dev_id ?>" <?php echo $selected ?>><?php echo $value->dev_name; ?></option>
+							<?php
+						} ?>
+ 	
            </select></p>
 		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
 		   <p class="detailll">Testing Enviroriment  :   <select name="dev_en" class="detailindate99" value="<?php echo $photo->TEST_ENV; ?>">
-             <option value="st">Staging</option>
-             <option value="sp1">sp1</option>
-              <option value="sp2">sp2</option>
-               <option value="sp3">sp3</option>
-               
+               <option value="0">-select-</option>
+			  <?php foreach ($stageArray as $key => $TEST_ENV){
+             	$selected = $key == $photo->TEST_ENV ? "selected" : "";
+             	?>
+             	<option value="<?php echo $key; ?>" <?php echo $selected ?>><?php echo $TEST_ENV ?></option>
+             	<?php
+             } ?>
+             
+  
            </select></p>
 		   
 		   <p class="detailll">Testing Cycle No:  <select name="dev_cy" class="detailindate999" value="<?php echo $photo->TEST_C_NO; ?>">
-             <option value="1">1</option>
-             <option value="2">2</option>
-              <option value="3">3</option>
-               <option value="4">4</option>
-			   <option value="5">5</option>
-             <option value="6">6</option>
-              <option value="7">7</option>
-               <option value="8">8</option>
-			   <option value="9">9</option>
-             <option value="10">10</option>
+              <option value="0">-select-</option>
+			 <?php foreach ($testcArray as $key => $TEST_C_NO){
+             	$selected = $key == $photo->TEST_C_NO ? "selected" : "";
+             	?>
+             	<option value="<?php echo $key; ?>" <?php echo $selected ?>><?php echo $TEST_C_NO ?></option>
+             	<?php
+             } ?>
            </select></p>
+		   
+		   
+		   
+		   
 		
 				<p class="detailll">Date Return To Developer :  <input type="text" class="datepicker" name="date_ret_date" style="margin-left: 100px;" value="<?php echo $photo->develop_r_date; ?>"/></p>
 				<p class="detailll">Assign User : <input type="text" name="ass_user" class="detailindate10" value="<?php echo $photo->USER_ASS; ?>" /></p>
@@ -649,11 +761,13 @@ require_once('layouts/header1.php');
 				
 				
 				<p class="detailll">Testing Status :  <select name="test_status" class="detailindate9999" value="<?php echo $photo->TEST_STAT; ?>">
-             <option value="pending">Pending</option>
-             <option value="inprogress">Inprogress</option>
-              <option value="rejected">Rejected</option>
-               <option value="close">Close</option>
-                <option value="hold">Hold</option>
+ <option value="0">-select-</option>            
+			<?php foreach ($teststatArray as $key => $TEST_STAT){
+             	$selected = $key == $photo->TEST_STAT ? "selected" : "";
+             	?>
+             	<option value="<?php echo $key; ?>" <?php echo $selected ?>><?php echo $TEST_STAT ?></option>
+             	<?php
+             } ?>
            </select></p>
 				
       
@@ -688,7 +802,7 @@ require_once('layouts/header1.php');
         <p class="detailll">CFO Approval Date : <input type="text" class="datepicker" name="cfo_date" style="margin-left: 180px;" value="<?php echo $photo->CFO_DATE; ?>"/></p>
 		<p class="detailll">BRP Approval Date : <input type="text" class="datepicker" name="brd_date" style="margin-left: 180px;" value="<?php echo $photo->BRP; ?>"/></p>
 		<p class="detailll">Date Hand Over To Development : <input type="text" class="datepicker" name="date_develop" value="<?php echo $photo->date_develop; ?>" style="margin-left: 60px;"/></p>
-		<p class="detailll">Document held with previosly : <?php echo $photo->reference; ?></p>
+		<p class="detailll">Document held with previosly : <?php echo $photo->assing_to; ?></p>
 		<p class="detailll">Document Hand over to : <input type="text" name="assing_to" class="detailindate100" value="<?php echo $photo->assing_to; ?>"/></p>
 		
 		
@@ -782,7 +896,7 @@ require_once('layouts/header1.php');
              } ?>
            </select></p>
         
-		
+		<br>Scan document 1 : <a href="JavaScript:newPopup('<?php echo $photo->image_path(); ?>');" ><?php echo $photo->scan_doc1; ?></a>
 		
 		<p class="detailll">Scan Document 1 : <input type="file" class="box" name="pdf1" /></p>
         <p class="detailll">Scan Document 2 : <input type="file" class="box"  name="pdf2" /></p>
@@ -886,9 +1000,14 @@ require_once('layouts/header1.php');
  	
            </select></p>	
 
-<p class="detailll">Sender User Notification : <select name="user_noty" class="detailindate96" value="<?php echo $photo->reference; ?>">
-             <option value="yes">YES</option>
-             <option value="no">NO</option>
+<p class="detailll">Sender User Notification : <select name="user_noty" class="detailindate96" value="<?php echo $photo->USER_Not; ?>">
+              <option value="0">-select-</option>
+			  <?php foreach ($usernotArray as $key => $USER_Not){
+             	$selected = $key == $photo->USER_Not ? "selected" : "";
+             	?>
+             	<option value="<?php echo $key; ?>" <?php echo $selected ?>><?php echo $USER_Not ?></option>
+             	<?php
+             } ?>
               
            </select></p>	
 
@@ -1030,7 +1149,7 @@ require_once('layouts/header1.php');
             <p class="line">
             <p class="detail2">
             <p >
-                <input type="submit" value="Add" name="submit" class="create_button">
+                <input type="submit" value="Update" name="submit" class="create_button">
             </p>
             <p >
                 <input type="reset" value="Cancel" name="cancel" class="create_button">

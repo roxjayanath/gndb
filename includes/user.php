@@ -36,8 +36,11 @@ class User {
         global $database;
         $us_name = $database->escape_value($us_name);
         $us_pass = $database->escape_value($us_pass);
-        //$us_pass = self::get_encrypted_password($us_pass);
+        //$us_passed = self::get_encrypted_password($us_pass);
         $check = self::find_by_username($us_name);
+		if(empty($us_pass)){
+		 return fasle;
+		}
         if(empty($check)) return fasle;
         
         $us_pass = self::get_encrypted_password($us_pass, $check->us_salt);
@@ -46,6 +49,7 @@ class User {
         $sql .= "WHERE us_name = '{$us_name}' ";
         $sql .="And us_pass = '{$us_pass}' ";
         $sql .= "LIMIT 1";
+		
 
         $result_array = self::find_by_sql($sql);
         return !empty($result_array) ? array_shift($result_array) : false;
@@ -132,6 +136,10 @@ class User {
 			case USER_LEVEL_3 :
 				$user->rights [RIGHT_INSERT_DOC] = true;
 				$user->rights [RIGHT_EDIT_DOC] = true;
+				$user->rights [RIGHT_VIEW_DOC] = true;
+				break;
+				
+			case USER_LEVEL_4 :
 				$user->rights [RIGHT_VIEW_DOC] = true;
 				break;
 		}

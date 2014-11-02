@@ -19,10 +19,10 @@ $total_countin = Product::count_statusin();
 //$total_countassing = Product::count_statusassing_to ();
 //$total_countassing2 = Product::count_statusassing_to2();
 
-echo $total_count;
-echo $total_countcr;
-echo $total_countbr;
-echo $total_countrep;
+//echo $total_count;
+//echo $total_countcr;
+//echo $total_countbr;
+//echo $total_countrep;
 
 $temsname='';
 $tempcount='';
@@ -41,8 +41,8 @@ if (isset($_POST['submit'])) {
  $total_countassing2 = Product::count_statusassing_to2($product->sname= $_POST['assing_to']);
  
  
- echo $total_countassing2;
- echo $product->assing_to;
+ //echo $total_countassing2;
+ //echo $product->assing_to;
  //echo $product->sname;
  
  $temsname=$product->sname;
@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
  
  //SELECTt * FROM ndb_doc WHERE d_visible =1 AND lower(assing_to) like lower('%m%')
  
- $sql = "SELECT * FROM ndb_doc WHERE d_visible =1 AND status = 'pending' AND lower(assing_to) like lower('%".$product->sname= $_POST['assing_to'];
+ $sql = "SELECT * FROM ndb_doc WHERE d_visible =1  AND lower(assing_to) like lower('%".$product->sname= $_POST['assing_to'];
  $sql.= "%')";
  $photos = Product::find_by_sql ( $sql );
  
@@ -68,6 +68,17 @@ if (isset($_POST['submit'])) {
 
 ?>
 
+<?php
+//include_layout_template('header.php');
+//var_dump($_SERVER);
+require_once('layouts/header1.php');
+?>
+<center><h1 class="main_toc5">Reports and Charts</h1></center>
+<p><a href="admin_home.php" style="
+    font-family: cursive;
+    font-size: 20px;
+    color: blue;
+">Home Page</a></p>
 <head>
 	<link rel="stylesheet" href="css/jquery-ui.css"></link>
 <script src="javascrpits/jquery-1.8.3.min.js" ></script>
@@ -87,7 +98,13 @@ if (isset($_POST['submit'])) {
 
 
 
-
+<script type="text/javascript">
+		// Popup window code
+		function newPopup(url) {
+			popupWindow = window.open(
+				url,'popUpWindow','height=350,width=400,left=400,top=400,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+		}
+		</script>
  
 
   
@@ -151,7 +168,7 @@ if (isset($_POST['submit'])) {
 	
   </head>
   <body>
-  <form action="chartsnew.php" enctype="multipart/form-data" method="post">
+ 
   
   
   
@@ -160,9 +177,9 @@ if (isset($_POST['submit'])) {
    <div id="tab-container" class='tab-container'>
  <ul class='etabs'>
 
- <li class='tab'><a href="#tabs1-h">Details</a></li>
+ <li class='tab'><a href="#tabs1-h">Full Status</a></li>
  <li class='tab'><a href="#tabs1-j">Approvals</a></li>
-   <li class='tab'><a href="#tabs1-js">QA Testing</a></li>
+   <li class='tab'><a href="#tabs1-js">Pending Types</a></li>
    <li class='tab'><a href="#tabs1-c">Document Closer</a></li>
   
    
@@ -189,11 +206,11 @@ if (isset($_POST['submit'])) {
         
 				
        <h1>Full Status</h1>
-    <p>Total pending = <?php echo $total_count; ?></p>
-	<p>Total hold = <?php echo $total_counthold; ?></p>
-	<p>Total reject = <?php echo $total_countreject; ?></p>
-	<p>Total close = <?php echo $total_countclose; ?></p>
-	<p>Total completed = <?php echo $total_countcomlete; ?></p>
+    <p>Total Pending = <?php echo $total_count; ?> </p><p class="command"><a href="JavaScript:newPopup('edit_user.php');" class="edit">View</a></p>
+	<p>Total Hold = <?php echo $total_counthold; ?></p>
+	<p>Total Reject = <?php echo $total_countreject; ?></p>
+	<p>Total Close = <?php echo $total_countclose; ?></p>
+	<p>Total Completed = <?php echo $total_countcomlete; ?></p>
 	
             
             
@@ -211,205 +228,16 @@ if (isset($_POST['submit'])) {
    
     <code>
 <p>
-            
-            
-        
-				
-   
-            
-            
-            
-          </p>
-    </code>
-  
 
-  </div>
-  
-  <div id="tabs1-js">
-   
 
-   
-    <code>
-<p>
-            
-            
-        
-				
-      <h1>Pending</h1>
-	<p>CR pending = <?php echo $total_countcr ?></p>
-	<p>BR pending = <?php echo $total_countbr ?></p>
-	<p>REPORT pending = <?php echo $total_countrep ?></p>
-            
-            
-            
-          </p>
-    </code>
-  
 
-  </div>
-  <div id="tabs1-c">
-   
-
-   
-    <code>
-<p>
-            
-            
-        
-				
-      done
-            
-            
-            
-          </p>
-    </code>
-  
-
-  </div>
- 
- 
- </div>
- 
- 
- 
- 
-  
-  
-  <div id="tab-container1" class='tab-container'>
- <ul class='etabs'>
-
- <li class='tab'><a href="#tabs1-htmll">Details</a></li>
- <li class='tab'><a href="#tabs1-jsss">Approvals</a></li>
-   <li class='tab'><a href="#tabs1-jss">QA Testing</a></li>
-   <li class='tab'><a href="#tabs1-csss">Document Closer</a></li>
-  
-   
-   
- <!--  <li class='tab'><a href="#tabs1-htmll">Details</a></li>
-   <li class='tab'><a href="#tabs1-html">Approvals</a></li>
-   <li class='tab'><a href="#tabs1-js">Development</a></li>
-   <li class='tab'><a href="#tabs1-css">System Suport Testing</a></li>
-   <li class='tab'><a href="#tabs1-css1">QA Testing</a></li>
-   <li class='tab'><a href="#tabs1-css2">Document Closer</a></li> -->
-     
-
- </ul>
- <div class='panel-container'>
- 
- <div id="tabs1-htmll">
-   
-
-   
-    <code>
-<p>
-            
-            
-        
-				
-      tab 1
-            
-            
-            
-          </p>
-    </code>
-  
-
-  </div>
-  
-  
-  <div id="tabs1-jsss">
-   
-
-   
-    <code>
-<p>
-            
-            
-        
-				
-      tab1.1
-            
-            
-            
-          </p>
-    </code>
-  
-
-  </div>
-  
-  <div id="tabs1-jss">
-   
-
-   
-    <code>
-<p>
-            
-            
-        
-				
-      tab1.2
-            
-            
-            
-          </p>
-    </code>
-  
-
-  </div>
-  <div id="tabs1-csss">
-   
-
-   
-    <code>
-<p>
-            
-            
-        
-				
-      tab1.3
-            
-            
-            
-          </p>
-    </code>
-  
-
-  </div>
- 
- 
- </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-      
-	
-	<br>
-	<br>
-	
-	
-	
-	 
-					
-					
-					
-					
-					
+ <form action="chartsnew.php" enctype="multipart/form-data" method="post">
 					
 		  <p><p class="detailll">Hand over to : <input type="text" name="assing_to" class="detailindate12"/></p>
 				<p >
-                <input type="submit" value="Search" name="submit" class="create_button">
+                <input type="submit" value="Search" name="submit" class="">
             </p>
+			
 			
 			<p><?php echo $temsname; ?> Holds : <?php echo $tempcount; ?> Pendings</p>
             
@@ -419,7 +247,7 @@ if (isset($_POST['submit'])) {
 					
 					
 					<center>  <table class="customer" cellpadding="6px" cellspacing="10px">
-            <tr class="head_row">
+            <tr class="">
                 
                 <th class="head_toc">Core / NonCore</th>
                 <th class="head_toc">CR/BRD/<br>REPORT</th>
@@ -517,6 +345,95 @@ if (isset($_POST['submit'])) {
 					
     
     <div id="piechart" style="width: 900px; height: 500px;"></div>
-    <p><a href="admin_home.php">Home Page</a></p>
+    
     </form>
+
+
+            
+            
+        
+				
+   
+            
+            
+            
+          </p>
+    </code>
+  
+
+  </div>
+  
+  <div id="tabs1-js">
+   
+
+   
+    <code>
+<p>
+            
+            
+        
+				
+      <h1>Pending</h1>
+	<p>CR pending = <?php echo $total_countcr ?></p>
+	<p>BR pending = <?php echo $total_countbr ?></p>
+	<p>REPORT pending = <?php echo $total_countrep ?></p>
+            
+            
+            
+          </p>
+    </code>
+  
+
+  </div>
+  <div id="tabs1-c">
+   
+
+   
+    <code>
+<p>
+            
+            
+        
+				
+      done
+            
+            
+            
+          </p>
+    </code>
+  
+
+  </div>
+ 
+ 
+ </div>
+ 
+ 
+ 
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      
+	
+	<br>
+	<br>
+	
+	
+	
+	 
+					
+					
+					
+					
+					
   </body>
