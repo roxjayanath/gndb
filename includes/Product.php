@@ -553,7 +553,8 @@ class Product extends DatabaseObject {
 
         if ($database->query($sql)) {
             $this->id = $database->insert_id();
-            $path = SITE_ROOT . $this->upload_dir ;
+            //$path = SITE_ROOT . $this->upload_dir ;
+            $path = SITE_ROOT . $this->upload_dir . $this->cr_brd;
             //upload files
             $this->save_files($path);
 
@@ -583,10 +584,11 @@ class Product extends DatabaseObject {
 //        }
         //echo $sql;
         $database->query($sql);
-        $path = SITE_ROOT . $this->upload_dir ;
-		
+        //$path = SITE_ROOT . $this->upload_dir ;
+        $path = SITE_ROOT . $this->upload_dir . $this->cr_brd;
 		//SERVER_ADDRESS . $this->upload_dir . $this->cr_brd . '/'  . $this->scan_doc1;
         //upload files
+        echo $path;
         $this->save_files($path);
         return ($database->affected_rows() == 1) ? true : false;
 
@@ -749,12 +751,15 @@ class Product extends DatabaseObject {
         return $price;
     }
 
-    public function image_path() {
+    public function image_path($no = 1) {
         //$field = 'scan_doc' . $scan_doc;
-        $field = 'scan_doc1';
-        return $path = SERVER_ADDRESS . $this->upload_dir  . $this->scan_doc1;
+        //$field = 'scan_doc1';
+        $field = 'scan_doc' . $no;
+        //return $path = SERVER_ADDRESS . $this->upload_dir  . $this->scan_doc1;
+        //return $path = SERVER_ADDRESS . $this->upload_dir  . $field;
 		//. $this->cr_brd
         //return 'upload/docs/' . $this->cr_brd . '/' . $this->scan_doc1;
+        return SERVER_ADDRESS . $this->upload_dir  . $this->cr_brd . '/' . $this->$field;
     }
     
     public static function getLastDocNumber($ref1, $ref2){

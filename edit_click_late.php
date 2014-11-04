@@ -253,6 +253,9 @@ $tempref=2;
     $product->d_id = $_POST['id'];
     //$product->cor_non= $_POST['core'];
    // $product->cr_brd= $_POST['crr'];
+   if ($photo != null) {
+		$product->cr_brd = $photo->cr_brd;
+	}
 	
 	//$product->ref1= $_POST['unit'];
 	//$product->ref2= $_POST['crr'];
@@ -420,19 +423,23 @@ $product->ref3= $_POST['reference'];
 //var_dump($_SERVER);
 require_once('layouts/header1.php');
 ?>
-<center><h1 class="main_toc5">Add New Document</h1></center>
- <?php 
+<center>
+	<h1 class="main_toc5">Add New Document</h1>
+</center>
+<?php 
 
  
  echo output_message($message); ?>
- <center><p style=" color: rgb(252,0, 0);"><?php echo $product->errors['title'];?></p></center>
+<center>
+	<p style="color: rgb(252, 0, 0);"><?php echo !empty($product->errors['title']) ? $product->errors['title'] : "";?></p>
+</center>
 <?php require_once('layouts/header2.php'); ?>
 
 <style>
-    .create_button{
-        width: 100px;
-    }
-    
+.create_button {
+	width: 100px;
+}
+
 /*    .error_msg{
         color: #FF0000; 
         float: left;
@@ -440,8 +447,8 @@ require_once('layouts/header1.php');
     }*/
 </style>
 <link rel="stylesheet" href="css/jquery-ui.css"></link>
-<script src="javascrpits/jquery-1.8.3.min.js" ></script>
-<script src="javascrpits/jquery-ui.js" ></script>
+<script src="javascrpits/jquery-1.8.3.min.js"></script>
+<script src="javascrpits/jquery-ui.js"></script>
 
 
 <script type="text/javascript">
@@ -545,10 +552,11 @@ require_once('layouts/header1.php');
 
 
 
-    
+
 <!--     <script src="javascrpits/jquery-1.7.1.min.js" type="text/javascript"></script>  -->
-  <script src="javascrpits/jquery.hashchange.min.js" type="text/javascript"></script>
-  <script src="javascrpits/jquery.easytabs.min.js" type="text/javascript"></script>
+<script src="javascrpits/jquery.hashchange.min.js"
+	type="text/javascript"></script>
+<script src="javascrpits/jquery.easytabs.min.js" type="text/javascript"></script>
 
 
 
@@ -565,8 +573,8 @@ require_once('layouts/header1.php');
 	
 	
   </script>
-  
-  <script type="text/javascript">
+
+<script type="text/javascript">
   function valemty(){
 	var x = document.forms["mine"]["contact_p"].value;
 	
@@ -582,582 +590,760 @@ require_once('layouts/header1.php');
 
 
 <style>
-    /* Example Styles for Demo */
-    .etabs { margin: 0; padding: 0; }
-    .tab { display: inline-block; zoom:1; *display:inline; background: #eee; border: solid 1px #999; border-bottom: none; -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; }
-    .tab a { font-size: 14px; line-height: 2em; display: block; padding: 0 10px; outline: none; }
-    .tab a:hover { text-decoration: underline; }
-    .tab.active { background: #fff; padding-top: 6px; position: relative; top: 1px; border-color: #666; }
-    .tab a.active { font-weight: bold; }
-    .tab-container .panel-container { background: #fff; border: solid #666 1px; padding: 10px; -moz-border-radius: 0 4px 4px 4px; -webkit-border-radius: 0 4px 4px 4px; }
-    .panel-container { margin-bottom: 10px; }
-  </style>
+/* Example Styles for Demo */
+.etabs {
+	margin: 0;
+	padding: 0;
+}
+
+.tab {
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	background: #eee;
+	border: solid 1px #999;
+	border-bottom: none;
+	-moz-border-radius: 4px 4px 0 0;
+	-webkit-border-radius: 4px 4px 0 0;
+}
+
+.tab a {
+	font-size: 14px;
+	line-height: 2em;
+	display: block;
+	padding: 0 10px;
+	outline: none;
+}
+
+.tab a:hover {
+	text-decoration: underline;
+}
+
+.tab.active {
+	background: #fff;
+	padding-top: 6px;
+	position: relative;
+	top: 1px;
+	border-color: #666;
+}
+
+.tab a.active {
+	font-weight: bold;
+}
+
+.tab-container .panel-container {
+	background: #fff;
+	border: solid #666 1px;
+	padding: 10px;
+	-moz-border-radius: 0 4px 4px 4px;
+	-webkit-border-radius: 0 4px 4px 4px;
+}
+
+.panel-container {
+	margin-bottom: 10px;
+}
+</style>
 
 
 
- <?php $doc_id = !empty($_REQUEST['id']) ? $_REQUEST['id'] : "0"; ?>
+<?php $doc_id = !empty($_REQUEST['id']) ? $_REQUEST['id'] : "0"; ?>
 
 
 
 <div id="admin_content">
-    <!--<center><h3>Add Product</h3></center>-->
-    <form name="mine" action="edit_click_late.php?id=<?php echo $doc_id ?>" enctype="multipart/form-data" method="post" onsubmit="return valemty()" >
-        
-        
-        
-        
-        
-        
-        <input type="hidden" name="id" value="<?php echo $doc_id  ?>" />
-		
-		
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <div id="tab-container" class='tab-container'>
- <ul class='etabs'>
+	<!--<center><h3>Add Product</h3></center>-->
+	<form name="mine" action="edit_click_late.php?id=<?php echo $doc_id ?>"
+		enctype="multipart/form-data" method="post"
+		onsubmit="return valemty()">
 
- <li class='tab'><a href="#tabs1-html">Details</a></li>
- <li class='tab'><a href="#tabs1-jss">Approvals</a></li>
- 
-   <li class='tab'><a href="#tabs1-csss">System Suport Testing & Developing</a></li>
-   <li class='tab'><a href="#tabs1-js">QA Testing</a></li>
-   <li class='tab'><a href="#tabs1-css">Document Closer</a></li>
-  
-   
-   
- <!--  <li class='tab'><a href="#tabs1-htmll">Details</a></li>
+
+
+
+
+
+		<input type="hidden" name="id" value="<?php echo $doc_id  ?>" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div id="tab-container" class='tab-container'>
+			<ul class='etabs'>
+
+				<li class='tab'><a href="#tabs1-html">Details</a></li>
+				<li class='tab'><a href="#tabs1-jss">Approvals</a></li>
+
+				<li class='tab'><a href="#tabs1-csss">System Suport Testing &
+						Developing</a></li>
+				<li class='tab'><a href="#tabs1-js">QA Testing</a></li>
+				<li class='tab'><a href="#tabs1-css">Document Closer</a></li>
+
+
+
+				<!--  <li class='tab'><a href="#tabs1-htmll">Details</a></li>
    <li class='tab'><a href="#tabs1-html">Approvals</a></li>
    <li class='tab'><a href="#tabs1-js">Development</a></li>
    <li class='tab'><a href="#tabs1-css">System Suport Testing</a></li>
    <li class='tab'><a href="#tabs1-css1">QA Testing</a></li>
    <li class='tab'><a href="#tabs1-css2">Document Closer</a></li> -->
-     
 
- </ul>
- <div class='panel-container'>
- 
- 
- 
- <div id="tabs1-csss">
-   
 
-   
-    <code>
-<p>
-            
-            
-        <p class="detailll">PACK Received   Date : <input type="text" class="datepicker" name="pack_date" style="margin-left: 160px;" value="<?php echo $photo->PACK_DATE; ?>"/></p>
-		<!--<p class="detailll">Developer Testing Assinged To :  <select name="dev_ass" class="detailindate9" value="<?php echo $photo->DEV_TESTER; ?>">
+			</ul>
+			<div class='panel-container'>
+
+
+
+				<div id="tabs1-csss">
+
+
+
+					<code>
+						<p>
+						
+						
+						<p class="detailll">
+							PACK Received Date : <input type="text" class="datepicker"
+								name="pack_date" style="margin-left: 160px;"
+								value="<?php echo $photo->PACK_DATE; ?>" />
+						</p>
+						<!--<p class="detailll">Developer Testing Assinged To :  <select name="dev_ass" class="detailindate9" value="<?php echo $photo->DEV_TESTER; ?>">
              <option value="Name1">Name1</option>
              <option value="Name2">Name2</option>
               <option value="Name3">name 3</option>
                <option value="Name4">name4</option>
                 <option value="Name5">name5</option>
            </select></p> -->
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   <p style="
-    font-size: 16px;
-">
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		     Developer Testing Assinged To :<select name="dev_ass" class="detailindate9">
-             
-		   
-		   $devCategories = DEVCategory::find_all();
-		   
-		   <option value="0">-select-</option>
+
+
+
+
+
+
+
+
+						<p style="font-size: 16px;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							Developer Testing Assinged To :<select name="dev_ass"
+								class="detailindate9"> $devCategories = DEVCategory::find_all();
+
+								<option value="0">-select-</option>
  	<?php foreach ($devCategories as $value){
 							$selected = ($photo->DEV_TESTER == $value->dev_id) ? "selected" : "";
 							?>
-							<option value="<?php echo $value->dev_id ?>" <?php echo $selected ?>><?php echo $value->dev_name; ?></option>
+							<option value="<?php echo $value->dev_id ?>"
+									<?php echo $selected ?>><?php echo $value->dev_name; ?></option>
 							<?php
 						} ?>
  	
-           </select></p>
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   <p class="detailll">Testing Enviroriment  :   <select name="dev_en" class="detailindate99" value="<?php echo $photo->TEST_ENV; ?>">
-               <option value="0">-select-</option>
+           </select>
+						</p>
+
+
+
+
+
+
+
+
+
+
+						<p class="detailll">
+							Testing Enviroriment : <select name="dev_en"
+								class="detailindate99" value="<?php echo $photo->TEST_ENV; ?>">
+								<option value="0">-select-</option>
 			  <?php foreach ($stageArray as $key => $TEST_ENV){
              	$selected = $key == $photo->TEST_ENV ? "selected" : "";
              	?>
-             	<option value="<?php echo $key; ?>" <?php echo $selected ?>><?php echo $TEST_ENV ?></option>
+             	<option value="<?php echo $key; ?>"
+									<?php echo $selected ?>><?php echo $TEST_ENV ?></option>
              	<?php
              } ?>
              
   
-           </select></p>
-		   
-		   <p class="detailll">Testing Cycle No:  <select name="dev_cy" class="detailindate999" value="<?php echo $photo->TEST_C_NO; ?>">
-              <option value="0">-select-</option>
+           </select>
+						</p>
+
+						<p class="detailll">
+							Testing Cycle No: <select name="dev_cy" class="detailindate999"
+								value="<?php echo $photo->TEST_C_NO; ?>">
+								<option value="0">-select-</option>
 			 <?php foreach ($testcArray as $key => $TEST_C_NO){
              	$selected = $key == $photo->TEST_C_NO ? "selected" : "";
              	?>
-             	<option value="<?php echo $key; ?>" <?php echo $selected ?>><?php echo $TEST_C_NO ?></option>
+             	<option value="<?php echo $key; ?>"
+									<?php echo $selected ?>><?php echo $TEST_C_NO ?></option>
              	<?php
              } ?>
-           </select></p>
-		   
-		   
-		   
-		   
-		
-				<p class="detailll">Date Return To Developer :  <input type="text" class="datepicker" name="date_ret_date" style="margin-left: 100px;" value="<?php echo $photo->develop_r_date; ?>"/></p>
-				<p class="detailll">Assign User : <input type="text" name="ass_user" class="detailindate10" value="<?php echo $photo->USER_ASS; ?>" /></p>
-				<p class="detailll">User Assign Date :  <input type="text" class="datepicker" name="user_ass_date" style="margin-left: 180px;" value="<?php echo $photo->ded_line; ?>"/></p>
-				<p class="detailll">Tested Completed Date :  <input type="text" class="datepicker" name="test_com_date" style="margin-left: 130px;" value="<?php echo $photo->TEST_COM_DATE; ?>"/></p>
-				
-				
-				<p class="detailll">Testing Status :  <select name="test_status" class="detailindate9999" value="<?php echo $photo->TEST_STAT; ?>">
- <option value="0">-select-</option>            
+           </select>
+						</p>
+
+
+
+
+
+						<p class="detailll">
+							Date Return To Developer : <input type="text" class="datepicker"
+								name="date_ret_date" style="margin-left: 100px;"
+								value="<?php echo $photo->develop_r_date; ?>" />
+						</p>
+						<p class="detailll">
+							Assign User : <input type="text" name="ass_user"
+								class="detailindate10" value="<?php echo $photo->USER_ASS; ?>" />
+						</p>
+						<p class="detailll">
+							User Assign Date : <input type="text" class="datepicker"
+								name="user_ass_date" style="margin-left: 180px;"
+								value="<?php echo $photo->ded_line; ?>" />
+						</p>
+						<p class="detailll">
+							Tested Completed Date : <input type="text" class="datepicker"
+								name="test_com_date" style="margin-left: 130px;"
+								value="<?php echo $photo->TEST_COM_DATE; ?>" />
+						</p>
+
+
+						<p class="detailll">
+							Testing Status : <select name="test_status"
+								class="detailindate9999"
+								value="<?php echo $photo->TEST_STAT; ?>">
+								<option value="0">-select-</option>            
 			<?php foreach ($teststatArray as $key => $TEST_STAT){
              	$selected = $key == $photo->TEST_STAT ? "selected" : "";
              	?>
-             	<option value="<?php echo $key; ?>" <?php echo $selected ?>><?php echo $TEST_STAT ?></option>
+             	<option value="<?php echo $key; ?>"
+									<?php echo $selected ?>><?php echo $TEST_STAT ?></option>
              	<?php
              } ?>
-           </select></p>
-				
-      
-            
-            
-            
-          </p>
-    </code>
-  
+           </select>
+						</p>
 
-  </div>
- 
- 
- 
- 
- 
- <div id="tabs1-jss">
-   
 
-   
-    <code>
-<p>
-            <p style="
-    font-family: serif;
-    font-size: 30px;
-">Document submit for Review/Approval </p>
-            
-        <p class="detailll">Development Review Date : <input type="text" class="datepicker" name="smrc_date" style="margin-left: 120px;" value="<?php echo $photo->smrc_date; ?>"/></p>
-		<p class="detailll">AVP-IT Approval Date : <input type="text" class="datepicker" name="avp_it" style="margin-left: 150px;" value="<?php echo $photo->AVPIT; ?>"/></p>
-		<p class="detailll">VP-IT Approval Date : <input type="text" class="datepicker" name="biss_date" style="margin-left: 160px;" value="<?php echo $photo->VPIT; ?>"/></p>
-		<p class="detailll">Bussiness Line Cost Approval Date : <input type="text" class="datepicker" name="vp_it" style="margin-left: 20px;" value="<?php echo $photo->COST_DATE; ?>"/></p>
-        <p class="detailll">CFO Approval Date : <input type="text" class="datepicker" name="cfo_date" style="margin-left: 180px;" value="<?php echo $photo->CFO_DATE; ?>"/></p>
-		<p class="detailll">BRP Approval Date : <input type="text" class="datepicker" name="brd_date" style="margin-left: 180px;" value="<?php echo $photo->BRP; ?>"/></p>
-		<p class="detailll">Date Hand Over To Development : <input type="text" class="datepicker" name="date_develop" value="<?php echo $photo->date_develop; ?>" style="margin-left: 60px;"/></p>
-		<p class="detailll">Document held with previosly : <?php echo $photo->assing_to; ?></p>
-		<p class="detailll">Document Hand over to : <input type="text" name="assing_to" class="detailindate100" value="<?php echo $photo->assing_to; ?>"/></p>
-		
-		
-		
-		
-		
-            
-          </p>
-    </code>
-  
 
-  </div>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-  <div id="tabs1-html">
-   
 
-  
-    <code>
- 
 
-<p style="
-    font-family: serif;
-    font-size: 30px;
-">Details of the Document </p>
+						</p>
+					</code>
 
-          
-         <p class="detailll" >Reference : <?php echo $photo->reffull; ?>
+
+				</div>
+
+
+
+
+
+				<div id="tabs1-jss">
+
+
+
+					<code>
+						<p>
+						
+						
+						<p style="font-family: serif; font-size: 30px;">Document submit
+							for Review/Approval</p>
+
+						<p class="detailll">
+							Development Review Date : <input type="text" class="datepicker"
+								name="smrc_date" style="margin-left: 120px;"
+								value="<?php echo $photo->smrc_date; ?>" />
+						</p>
+						<p class="detailll">
+							AVP-IT Approval Date : <input type="text" class="datepicker"
+								name="avp_it" style="margin-left: 150px;"
+								value="<?php echo $photo->AVPIT; ?>" />
+						</p>
+						<p class="detailll">
+							VP-IT Approval Date : <input type="text" class="datepicker"
+								name="biss_date" style="margin-left: 160px;"
+								value="<?php echo $photo->VPIT; ?>" />
+						</p>
+						<p class="detailll">
+							Bussiness Line Cost Approval Date : <input type="text"
+								class="datepicker" name="vp_it" style="margin-left: 20px;"
+								value="<?php echo $photo->COST_DATE; ?>" />
+						</p>
+						<p class="detailll">
+							CFO Approval Date : <input type="text" class="datepicker"
+								name="cfo_date" style="margin-left: 180px;"
+								value="<?php echo $photo->CFO_DATE; ?>" />
+						</p>
+						<p class="detailll">
+							BRP Approval Date : <input type="text" class="datepicker"
+								name="brd_date" style="margin-left: 180px;"
+								value="<?php echo $photo->BRP; ?>" />
+						</p>
+						<p class="detailll">
+							Date Hand Over To Development : <input type="text"
+								class="datepicker" name="date_develop"
+								value="<?php echo $photo->date_develop; ?>"
+								style="margin-left: 60px;" />
+						</p>
+						<p class="detailll">Document held with previosly : <?php echo $photo->assing_to; ?></p>
+						<p class="detailll">
+							Document Hand over to : <input type="text" name="assing_to"
+								class="detailindate100" value="<?php echo $photo->assing_to; ?>" />
+						</p>
+
+
+
+
+
+
+						</p>
+					</code>
+
+
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				<div id="tabs1-html">
+
+
+
+					<code>
+
+
+						<p style="font-family: serif; font-size: 30px;">Details of the
+							Document</p>
+
+
+						<p class="detailll">Reference : <?php echo $photo->reffull; ?>
 		   
 		  
-				<input hidden="hidden" type="text" name="reference" class="detailindate4" style="margin-left: 150px;"/>
-		     
-		   
-		   
-		   </p> 
-        <p class="detailll" >Requester :<input type="text" name="requester" class="detailindate4" value="<?php echo $photo->requester; ?>"/></p>
-		
-		<p class="detailll">Request Date :<input type="text" class="datepicker"name="date_req" style="margin-left: 130px;" value="<?php echo $photo->date_sub; ?>"/></p> 
-        <!--<p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p> -->
-		
-		<p class="detailll">Description : <textarea name="description" class="detailindate7" ><?php echo $photo->description; ?></textarea></p>
-		
-		
-		<p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" style="margin-left: 80px;" value="<?php echo $photo->date_reciv_it; ?>"/></p>
-		
-		
-		<p class="detailll">Priority : <select name="priority" class="detailindate11" value="<?php echo $photo->priority; ?>">
-<!--                                <option value="Low">Low</option>  -->
-<!--                                <option value="NonCore">Medium</option>  -->
-<!-- 							    <option value="NonCore">High</option>  -->
+				<input hidden="hidden" type="text" name="reference"
+								class="detailindate4" style="margin-left: 150px;" />
+
+
+
+						</p>
+						<p class="detailll">
+							Requester :<input type="text" name="requester"
+								class="detailindate4" value="<?php echo $photo->requester; ?>" />
+						</p>
+
+						<p class="detailll">
+							Request Date :<input type="text" class="datepicker"
+								name="date_req" style="margin-left: 130px;"
+								value="<?php echo $photo->date_sub; ?>" />
+						</p>
+						<!--<p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p> -->
+
+						<p class="detailll">
+							Description :
+							<textarea name="description" class="detailindate7"><?php echo $photo->description; ?></textarea>
+						</p>
+
+
+						<p class="detailll">
+							Date Recived (IT): <input type="text" class="datepicker"
+								name="date_reciv_it" style="margin-left: 80px;"
+								value="<?php echo $photo->date_reciv_it; ?>" />
+						</p>
+
+
+						<p class="detailll">
+							Priority : <select name="priority" class="detailindate11"
+								value="<?php echo $photo->priority; ?>">
+								<!--                                <option value="Low">Low</option>  -->
+								<!--                                <option value="NonCore">Medium</option>  -->
+								<!-- 							    <option value="NonCore">High</option>  -->
              <?php foreach ($priorityArray as $key => $priority){
              	$selected = $key == $photo->priority ? "selected" : "";
              	?>
-             	<option value="<?php echo $key; ?>" <?php echo $selected ?>><?php echo $priority ?></option>
+             	<option value="<?php echo $key; ?>"
+									<?php echo $selected ?>><?php echo $priority ?></option>
              	<?php
              } ?>
              
   
-           </select></p></p>
-		   
-		   
-		
-		<p class="detailll">Remarks : <textarea name="remarks" class="detailindate101"><?php echo $photo->remarks; ?></textarea></p>
-		
-		<p class="detailll">Status :  <select name="status" class="detailindate94" >
+           </select>
+						</p>
+						</p>
+
+
+
+						<p class="detailll">
+							Remarks :
+							<textarea name="remarks" class="detailindate101"><?php echo $photo->remarks; ?></textarea>
+						</p>
+
+						<p class="detailll">
+							Status : <select name="status" class="detailindate94">
              <?php foreach ($statusArray as $key => $status){
              	$selected = $key == $photo->status ? "selected" : "";
              	?>
-             	<option value="<?php echo $key; ?>" <?php echo $selected ?>><?php echo $status ?></option>
+             	<option value="<?php echo $key; ?>"
+									<?php echo $selected ?>><?php echo $status ?></option>
              	<?php
              } ?>
-           </select></p>
-        
-		<br>Scan document 1 : <a href="JavaScript:newPopup('<?php echo $photo->image_path(); ?>');" ><?php echo $photo->scan_doc1; ?></a>
-		
-		<p class="detailll">Scan Document 1 : <input type="file" class="box" name="pdf1" /></p>
-        <p class="detailll">Scan Document 2 : <input type="file" class="box"  name="pdf2" /></p>
-        <p class="detailll">Scan Document 3 : <input type="file" class="box" name="pdf3"  /></p>
-		
+           </select>
+						</p>
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-        
-        
-          
-          
-          </p>
-    </code>
-    
-  
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-   
-   
-   
-   
-   
-   
-   
-   
-  <div id="tabs1-js">
+						<br>Scan document 1 : <a
+							href="JavaScript:newPopup('<?php echo $photo->image_path(); ?>');"><?php echo $photo->scan_doc1; ?></a>
+						<br>Scan document 2 : <a
+							href="JavaScript:newPopup('<?php echo $photo->image_path(2); ?>');"><?php echo $photo->scan_doc2; ?></a>
+						<br>Scan document 3 : <a
+							href="JavaScript:newPopup('<?php echo $photo->image_path(3); ?>');"><?php echo $photo->scan_doc3; ?></a>
+
+						<p class="detailll">
+							Scan Document 1 : <input type="file" class="box" name="pdf1" />
+						</p>
+						<p class="detailll">
+							Scan Document 2 : <input type="file" class="box" name="pdf2" />
+						</p>
+						<p class="detailll">
+							Scan Document 3 : <input type="file" class="box" name="pdf3" />
+						</p>
 
 
-  <code>
-    
-<p>
-            
-             <p class="detailll">QA Assign Date : <input type="text" class="datepicker" name="date_hand_qa" style="margin-left: 80px;" value="<?php echo $photo->date_hand_qa; ?>"/></p>
-			  <p class="detailll">QA Reference Number : <input type="text" name="qaref" class="detailindate1000" value="<?php echo $photo->QA_REF_N; ?>"/></p>
-			  <p class="detailll">QA Tester Name : <input type="text" name="qatestname" class="detailindate1001" value="<?php echo $photo->QA_TEST_N; ?>"/></p>
-			  <p class="detailll">QA Status :  <select name="qastatus" class="detailindate98" >
-             <option value="0">-select-</option>
+
+
+
+
+
+
+
+
+
+
+
+
+
+						</p>
+					</code>
+
+
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				<div id="tabs1-js">
+
+
+					<code>
+
+						<p>
+						
+						
+						<p class="detailll">
+							QA Assign Date : <input type="text" class="datepicker"
+								name="date_hand_qa" style="margin-left: 80px;"
+								value="<?php echo $photo->date_hand_qa; ?>" />
+						</p>
+						<p class="detailll">
+							QA Reference Number : <input type="text" name="qaref"
+								class="detailindate1000" value="<?php echo $photo->QA_REF_N; ?>" />
+						</p>
+						<p class="detailll">
+							QA Tester Name : <input type="text" name="qatestname"
+								class="detailindate1001"
+								value="<?php echo $photo->QA_TEST_N; ?>" />
+						</p>
+						<p class="detailll">
+							QA Status : <select name="qastatus" class="detailindate98">
+								<option value="0">-select-</option>
              <?php foreach ($qaStatus as $key => $qa){
              	$selected = $key == $photo->QA_STATUS ? "selected" : "";
              	?>
-             	<option value="<?php echo $key; ?>" <?php echo $selected ?>><?php echo $qa ?></option>
+             	<option value="<?php echo $key; ?>"
+									<?php echo $selected ?>><?php echo $qa ?></option>
              	<?php
              } ?>
 <!--              <option value="inprogress">Inprogress</option> -->
-<!--               <option value="rejected">Rejected</option> -->
-<!--                <option value="close">Close</option> -->
-<!--                 <option value="hold">Hold</option> -->
-           </select></p>
-			 
-        <p class="detailll">Live Transfer Date : <input type="text" class="datepicker" name="qa_complete" style="margin-left: 40px;" value="<?php echo $photo->qa_complete; ?>"/></p>
-        
-        
-            
-            
-          </p>  
-  </code>
+								<!--               <option value="rejected">Rejected</option> -->
+								<!--                <option value="close">Close</option> -->
+								<!--                 <option value="hold">Hold</option> -->
+							</select>
+						</p>
 
-  </div>
-  
-  
-  
-  <div id="tabs1-css">
+						<p class="detailll">
+							Live Transfer Date : <input type="text" class="datepicker"
+								name="qa_complete" style="margin-left: 40px;"
+								value="<?php echo $photo->qa_complete; ?>" />
+						</p>
 
 
-  <code>
-    
-<p>
-            
-             <p class="detailll">Original Document Recived Date : <input type="text" class="datepicker" name="or_r_date" style="margin-left: 45px;" value="<?php echo $photo->reference; ?>"/></p>
- <p class="detailll">Documentation Fix By : <select name="doc_fix" class="detailindate97" >
-<!--              <option value="Name1">Name1</option> -->
-<!--              <option value="Name2">Name2</option> -->
-<!--               <option value="Name3">name 3</option> -->
-<!--                <option value="Name4">name4</option> -->
-<!--                 <option value="Name5">name5</option> -->
- <option value="0">-select-</option>
+
+
+						</p>
+					</code>
+
+				</div>
+
+
+
+				<div id="tabs1-css">
+
+
+					<code>
+
+						<p>
+						
+						
+						<p class="detailll">
+							Original Document Recived Date : <input type="text"
+								class="datepicker" name="or_r_date" style="margin-left: 45px;"
+								value="<?php echo $photo->reference; ?>" />
+						</p>
+						<p class="detailll">
+							Documentation Fix By : <select name="doc_fix"
+								class="detailindate97">
+								<!--              <option value="Name1">Name1</option> -->
+								<!--              <option value="Name2">Name2</option> -->
+								<!--               <option value="Name3">name 3</option> -->
+								<!--                <option value="Name4">name4</option> -->
+								<!--                 <option value="Name5">name5</option> -->
+								<option value="0">-select-</option>
  	<?php foreach ($fixCategories as $value){
 							$selected = ($photo->D_FIX_BY == $value->qa_id) ? "selected" : "";
 							?>
-							<option value="<?php echo $value->qa_id ?>" <?php echo $selected ?>><?php echo $value->qa_name; ?></option>
+							<option value="<?php echo $value->qa_id ?>"
+									<?php echo $selected ?>><?php echo $value->qa_name; ?></option>
 							<?php
 						} ?>
  	
-           </select></p>	
+           </select>
+						</p>
 
-<p class="detailll">Sender User Notification : <select name="user_noty" class="detailindate96" value="<?php echo $photo->USER_Not; ?>">
-              <option value="0">-select-</option>
+						<p class="detailll">
+							Sender User Notification : <select name="user_noty"
+								class="detailindate96" value="<?php echo $photo->USER_Not; ?>">
+								<option value="0">-select-</option>
 			  <?php foreach ($usernotArray as $key => $USER_Not){
              	$selected = $key == $photo->USER_Not ? "selected" : "";
              	?>
-             	<option value="<?php echo $key; ?>" <?php echo $selected ?>><?php echo $USER_Not ?></option>
+             	<option value="<?php echo $key; ?>"
+									<?php echo $selected ?>><?php echo $USER_Not ?></option>
              	<?php
              } ?>
               
-           </select></p>	
+           </select>
+						</p>
 
 
 
 
-			 
-        
-        
-            
-            
-          </p>  
-  </code>
 
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
- </div>
+
+
+
+
+						</p>
+					</code>
+
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			</div>
+		</div>
+
+</div>
 </div>
 
 
 
 
- </div>
-</div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-       
-       
-       
-        
-        
-       
-        
-        
-       
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <br/>
-        <center>
-            <p class="line">
-            <p class="detail2">
-            <p >
-                <input type="submit" value="Update" name="submit" class="create_button">
-            </p>
-            <p >
-                <input type="reset" value="Cancel" name="cancel" class="create_button">
-            </p>
-            </p></p>
-        </center>
 
-    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br />
+<center>
+	<p class="line">
+	
+	
+	<p class="detail2">
+	
+	
+	<p>
+		<input type="submit" value="Update" name="submit"
+			class="create_button">
+	</p>
+	<p>
+		<input type="reset" value="Cancel" name="cancel" class="create_button">
+	</p>
+	</p>
+	</p>
+</center>
+
+</form>
 </div>
 
 </div>

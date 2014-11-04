@@ -710,8 +710,10 @@ require_once('layouts/header1.php');
 		
 		
 		  <br>Scan document 1 : <a href="JavaScript:newPopup('<?php echo $photo->image_path(); ?>');" ><?php echo $photo->scan_doc1; ?></a>
-        <br>Scan document 2 : <?php echo $photo->scan_doc2; ?>
-        <br>Scan document 3 : <?php echo $photo->scan_doc3; ?>
+		  <br>Scan document 2 : <a href="JavaScript:newPopup('<?php echo $photo->image_path(2); ?>');" ><?php echo $photo->scan_doc2; ?></a>
+		  <br>Scan document 3 : <a href="JavaScript:newPopup('<?php echo $photo->image_path(3); ?>');" ><?php echo $photo->scan_doc3; ?></a>
+        <!-- <br>Scan document 2 : <?php //echo $photo->scan_doc2; ?>
+        <br>Scan document 3 : <?php //echo $photo->scan_doc3; ?>  -->
 		
 
 		

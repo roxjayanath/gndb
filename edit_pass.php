@@ -9,6 +9,7 @@
      <?php
     
     $photo = User::find_by_id($session->user_id);
+    //var_dump($photo);
     //$photo = User::find_by_id($_REQUEST['id']);
     
     

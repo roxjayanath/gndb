@@ -271,7 +271,8 @@ class User {
     function update_password() {
         $this->validate_user(array('password'));
         if (empty($this->errors)) {
-            $this->password = self::get_encrypted_password($this->password,$this->salt);
+        	$this->us_salt = base64_encode(mcrypt_create_iv(16));
+            $this->us_pass = self::get_encrypted_password($this->extra["new_password"],$this->us_salt);
             return $this->update();
         } else {
             return false;
@@ -293,7 +294,8 @@ class User {
         }
 
         if (in_array('password', $fields)) {
-            $encOldPassword = self::get_encrypted_password($this->extra['old_password']);
+            $encOldPassword = self::get_encrypted_password($this->extra['old_password'], $this->us_salt);
+            //echo $encOldPassword;
             if ($validation->isEmpty($this->extra['old_password'])) {
                 $this->errors['old_password'] = "Current password cannot be empty";
             } else if ($validation->isNotEqual($this->us_pass, $encOldPassword)) {
