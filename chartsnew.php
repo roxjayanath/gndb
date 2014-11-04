@@ -7,6 +7,8 @@ if (! $session->is_logged_in ()) {
 }
 
 $sname;
+$total_all = Product::count_all ();
+
 $total_count = Product::count_status ();
 $total_countcr = Product::count_statuscr ();
 $total_countbr = Product::count_statusbr ();
@@ -16,6 +18,17 @@ $total_countclose = Product::count_statusclose();
 $total_countreject = Product::count_statusreject();
 $total_counthold = Product::count_statushold();
 $total_countin = Product::count_statusin();
+
+
+$total_countdev = Product::count_statusdev();
+
+$total_countpetem = Product::count_statpendtem();
+$total_countqatest = Product::count_statqatest();
+
+
+
+
+
 //$total_countassing = Product::count_statusassing_to ();
 //$total_countassing2 = Product::count_statusassing_to2();
 
@@ -75,10 +88,22 @@ require_once('layouts/header1.php');
 ?>
 <center><h1 class="main_toc5">Reports and Charts</h1></center>
 <p><a href="admin_home.php" style="
-    font-family: cursive;
+   
     font-size: 20px;
     color: blue;
-">Home Page</a></p>
+">Home Page</a>
+<br/>
+<a href="docholder.php" style="
+   
+    font-size: 20px;
+    color: blue;
+">Find Document Holder</a>
+<br/>
+<a href="viwe_document.php" style="
+   
+    font-size: 20px;
+    color: blue;
+">View Documents</a></p>
 <head>
 	<link rel="stylesheet" href="css/jquery-ui.css"></link>
 <script src="javascrpits/jquery-1.8.3.min.js" ></script>
@@ -148,8 +173,8 @@ require_once('layouts/header1.php');
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
           ['Pending',     <?php echo $total_count; ?>],
-          ['Reject',     <?php echo $total_countreject; ?>],
-          ['Close',  <?php echo $total_countclose; ?>],
+          ['Development',     <?php echo $total_countdev; ?>],
+          ['QA Testing',  <?php echo $total_countqatest; ?>],
           ['Inprogress', <?php echo $total_countin; ?>],
           ['Hold',    <?php echo $total_counthold; ?>]
         ]);
@@ -178,9 +203,9 @@ require_once('layouts/header1.php');
  <ul class='etabs'>
 
  <li class='tab'><a href="#tabs1-h">Full Status</a></li>
- <li class='tab'><a href="#tabs1-j">Approvals</a></li>
-   <li class='tab'><a href="#tabs1-js">Pending Types</a></li>
-   <li class='tab'><a href="#tabs1-c">Document Closer</a></li>
+
+   <li class='tab'><a href="#tabs1-js">Pending CR/BRD/RR</a></li>
+
   
    
    
@@ -200,17 +225,74 @@ require_once('layouts/header1.php');
 
    
     <code>
-<p>
-            
+<p><h1 style="font-family: -webkit-pictograph;">Full Status</h1>
+        <table border="1">
+		
+		
+		<tr>
+		<th><p style="font-family: -webkit-pictograph;">Total Pending</p> </th>
+		<th><p style="font-family: -webkit-pictograph;"><?php echo $total_count; ?> </p> </th>
+		
+		</tr>
+		
+		<tr>
+		<th><p style="font-family: -webkit-pictograph;">Total Pending Temonos</p> </th>
+		<th><p style="font-family: -webkit-pictograph;"><?php echo $total_countpetem; ?> </p> </th>
+		
+		</tr>
+		
+		<tr>
+		<th><p style="font-family: -webkit-pictograph;">Total Development</p> </th>
+		<th><p style="font-family: -webkit-pictograph;"><?php echo $total_countdev; ?> </p> </th>
+		
+		</tr>
+		<tr>
+		<th><p style="font-family: -webkit-pictograph;">Total QA Testing</p> </th>
+		<th><p style="font-family: -webkit-pictograph;"><?php echo $total_countqatest; ?> </p> </th>
+		
+		</tr>
+		
+		<tr>
+		<th><p style="font-family: -webkit-pictograph;">Total Hold</p> </th>
+		<th><p style="font-family: -webkit-pictograph;"><?php echo $total_counthold; ?> </p> </th>
+		
+		</tr>
+		<tr>
+		<th><p style="font-family: -webkit-pictograph;">Total Reject</p> </th>
+		<th><p style="font-family: -webkit-pictograph;"><?php echo $total_countreject; ?> </p> </th>
+		
+		</tr>
+		
+		<tr>
+		<th><p style="font-family: -webkit-pictograph;">Total Close</p> </th>
+		<th><p style="font-family: -webkit-pictograph;"><?php echo $total_countclose; ?> </p> </th>
+		
+		</tr>
+		
+		<tr>
+		<th style="
+    /* margin-left: 0px; */
+    padding: 20px;
+"><p style="font-family: -webkit-pictograph;">Total Issues</p> </th>
+		<th style="
+    /* margin-left: 0px; */
+    padding: 20px;
+"><p style="font-family: -webkit-pictograph;"><?php echo $total_all; ?> </p> </th>
+		
+		</tr>
+
+		</table>       
             
         
+		
+		
+		
+		
 				
-       <h1>Full Status</h1>
-    <p>Total Pending = <?php echo $total_count; ?> </p><p class="command"><a href="JavaScript:newPopup('edit_user.php');" class="edit">View</a></p>
-	<p>Total Hold = <?php echo $total_counthold; ?></p>
-	<p>Total Reject = <?php echo $total_countreject; ?></p>
-	<p>Total Close = <?php echo $total_countclose; ?></p>
-	<p>Total Completed = <?php echo $total_countcomlete; ?></p>
+     
+	
+	
+	
 	
             
             
@@ -222,146 +304,7 @@ require_once('layouts/header1.php');
   </div>
   
   
-  <div id="tabs1-j">
-   
-
-   
-    <code>
-<p>
-
-
-
- <form action="chartsnew.php" enctype="multipart/form-data" method="post">
-					
-		  <p><p class="detailll">Hand over to : <input type="text" name="assing_to" class="detailindate12"/></p>
-				<p >
-                <input type="submit" value="Search" name="submit" class="">
-            </p>
-			
-			
-			<p><?php echo $temsname; ?> Holds : <?php echo $tempcount; ?> Pendings</p>
-            
-					
-					
-					
-					
-					
-					<center>  <table class="customer" cellpadding="6px" cellspacing="10px">
-            <tr class="">
-                
-                <th class="head_toc">Core / NonCore</th>
-                <th class="head_toc">CR/BRD/<br>REPORT</th>
-		
-		
-		<th class="head_toc">Reference</th>
-                <th class="head_toc">Date Submit</th>
-				<th class="head_toc">Holder</th>
-				<th class="head_toc">Status</th>
-				<th class="head_toc">Last Edited</th>
-                
-		
-		
-                
-                
-                
-                <th>&nbsp;</th>
-            </tr>
-
-            <?php 
-            if(!empty($photos)){
-            foreach($photos as $photo): ?>
-            
-            <tr>
-
-					
-					<td><?php echo $photo->cor_non;?></td>
-					<td><?php echo $photo->cr_brd;?></td>
-
-					<td><?php 
-            //echo $photo->reference;
-					echo $photo->reffull;
-					?></td>
-					
-
-					
-					<td><?php echo $photo->date_sub;?></td>
-					<td><?php echo $photo->assing_to;?></td>
-					<td><?php echo $photo->status;?></td>
-					<td><?php echo $photo->update_on;?></td>
-					
-
-
-
-
-
-
-					<td>
-						<!--<a href="comments.php?id=<?php echo $photo->id;?>"> -->
-                <?php //echo count($photo->comments());?></td>
-					</a>
-					
-					<!-- <td><a href="delete_admin.php?id=<?php //echo $photo->id;?>">Delete</a></td>
-                 -->
-				</tr>
-            
-            <?php endforeach;
-            }
-            ?>
-            
-            
-            
-           </table>
-		</center>			
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-    
-    <div id="piechart" style="width: 900px; height: 500px;"></div>
-    
-    </form>
-
-
-            
-            
-        
-				
-   
-            
-            
-            
-          </p>
-    </code>
-  
-
-  </div>
+ 
   
   <div id="tabs1-js">
    
@@ -369,41 +312,56 @@ require_once('layouts/header1.php');
    
     <code>
 <p>
-            
+             
+			 <h1 style="font-family: -webkit-pictograph;">Pending CR/BRD/RR</h1>
+			 <table border="1">
+		<tr>
+		<th style="
+    /* margin-left: 0px; */
+    padding: 30px;
+"><p style="font-family: -webkit-pictograph;">CR pending</p> </th>
+		<th style="
+    /* margin-left: 0px; */
+    padding: 20px;
+"><p style="font-family: -webkit-pictograph;"><?php echo $total_countcr; ?> </p> </th>
+		
+		</tr>
+		
+		<tr>
+		<th style="
+    /* margin-left: 0px; */
+    padding: 30px;
+"><p style="font-family: -webkit-pictograph;">BRD pending</p> </th>
+		<th><p style="font-family: -webkit-pictograph;"><?php echo $total_countbr; ?> </p> </th>
+		
+		</tr>
+		
+		<tr>
+		<th style="
+    /* margin-left: 0px; */
+    padding: 30px;
+"><p style="font-family: -webkit-pictograph;">REPORT pending</p> </th>
+		<th><p style="font-family: -webkit-pictograph;"><?php echo $total_countrep; ?> </p> </th>
+		
+		</tr>
+		
+		
+		
+		</table>
+			 
+			 
+			
+			
             
         
-				
-      <h1>Pending</h1>
-	<p>CR pending = <?php echo $total_countcr ?></p>
-	<p>BR pending = <?php echo $total_countbr ?></p>
-	<p>REPORT pending = <?php echo $total_countrep ?></p>
-            
-            
+	
             
           </p>
     </code>
   
 
   </div>
-  <div id="tabs1-c">
-   
-
-   
-    <code>
-<p>
-            
-            
-        
-				
-      done
-            
-            
-            
-          </p>
-    </code>
-  
-
-  </div>
+ 
  
  
  </div>
@@ -429,7 +387,7 @@ require_once('layouts/header1.php');
 	<br>
 	
 	
-	
+	  <div id="piechart" style="width: 900px; height: 500px;"></div>
 	 
 					
 					

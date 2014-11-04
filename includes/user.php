@@ -232,7 +232,7 @@ class User {
 
         $sql = "UPDATE " . self::$table_name . " SET ";
         $sql .= join(", ", $attribute_pairs);
-        $sql .= " WHERE id=" . $database->escape_value($this->id);
+        $sql .= " WHERE us_id=" . $database->escape_value($this->us_id);
 
         $database->query($sql);
         return ($database->affected_rows() == 1) ? true : false;
@@ -271,7 +271,7 @@ class User {
     function update_password() {
         $this->validate_user(array('password'));
         if (empty($this->errors)) {
-            $this->password = self::get_encrypted_password($this->password);
+            $this->password = self::get_encrypted_password($this->password,$this->salt);
             return $this->update();
         } else {
             return false;

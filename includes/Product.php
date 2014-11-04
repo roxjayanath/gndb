@@ -276,6 +276,27 @@ class Product extends DatabaseObject {
         return array_shift($row);
     }
 	
+	public static function count_statpendtem($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND status = 'Pending Temonos' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+	
+	public static function count_statqatest($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND status = 'QA Testing' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+	
+	
+	
+	
 	 public static function count_statuscomplet($searchString = '') {
         global $database;
         $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND status = 'completed' ";
@@ -284,6 +305,18 @@ class Product extends DatabaseObject {
         $row = $database->fetch_array($result_set);
         return array_shift($row);
     }
+	
+	public static function count_statusdev($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND status = 'Development' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+	
+	
+	
 	
 	 public static function count_statusclose($searchString = '') {
         global $database;
@@ -342,7 +375,7 @@ class Product extends DatabaseObject {
 	
 	public static function count_statusrep($searchString = '') {
         global $database;
-        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND cr_brd='REPORT' AND status = 'pending' ";
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND cr_brd='RR' AND status = 'pending' ";
         $sql .= $searchString;
         $result_set = $database->query($sql);
         $row = $database->fetch_array($result_set);
