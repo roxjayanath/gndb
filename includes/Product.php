@@ -517,7 +517,8 @@ class Product extends DatabaseObject {
         if (!empty($this->files)) {
             foreach ($this->files as $file) {
                 $field = "scan_doc" . $file['file_no'];
-                $fileName = $file['file_no'] . '_' . time() . '.' . pathinfo($file['upload']['name'], PATHINFO_EXTENSION);
+                //$fileName = $file['file_no'] . '_' . time() . '.' . pathinfo($file['upload']['name'], PATHINFO_EXTENSION);
+                $fileName = $file['file_no'] . '_' . $this->reffull . '.' . pathinfo($file['upload']['name'], PATHINFO_EXTENSION);
                 $this->$field = $fileName;
             }
         }

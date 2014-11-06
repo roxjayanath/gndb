@@ -693,7 +693,11 @@ require_once('layouts/header1.php');
 		<p class="detailll">Request Date :<?php echo $photo->date_sub;?></p> 
         <!--<p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p> -->
 		
-		<p class="detailll">Description : <?php echo $photo->description;?></p>
+		<!-- <p class="detailll">Description : <?php //echo $photo->description;?></p> -->
+		<div class="detailll">
+			<div style="float: left;width:135px">Description : </div>
+			<div style="margin-left: 135px"><?php echo $photo->description;?></div>
+		</div>
 		
 		
 		<p class="detailll">Date Recived (IT): <?php echo $photo->date_reciv_it;?></p>

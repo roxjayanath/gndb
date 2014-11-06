@@ -50,9 +50,9 @@ function log_action($action, $message = "") {
         fclose($handle);
         if ($new) {
             chmod($logfile, 0755);
-        } else {
-            echo "Cound not open log gile for writing.";
-        }
+        } 
+    } else {
+        echo "Cound not open log gile for writing.";
     }
 }
 
