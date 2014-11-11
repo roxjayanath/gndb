@@ -437,6 +437,8 @@ require_once('layouts/header1.php');
 			//console.log(result);
 			if(result){
 				$("input[name=reference]").val(result.max_doc);
+				$("#reference_view").html(result.max_doc);
+				$("#ref_field").show();
 			}
 			
 		});
@@ -595,12 +597,12 @@ require_once('layouts/header1.php');
   
            </select></p>
           
-         <p class="detailll" hidden="hidden">Reference : 
+         <p class="detailll" id="ref_field" style="display:none;">Reference : 
 		   
 		  
-				<input type="text" name="reference" class="detailindate4" style="margin-left: 150px;"/>
+				<input type="hidden" name="reference" class="detailindate4" style="margin-left: 150px;"/>
 		     
-		   
+		   		<span id="reference_view" class="detailindate4" style="margin-left: 150px;"></span>
 		   
 		   </p> 
         <p class="detailll" >Requester :<input type="text" name="requester" class="detailindate4" /></p>
