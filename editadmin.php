@@ -43,9 +43,19 @@ if(!$session->is_logged_in()){
  <div id="admin_content">
 
 
-           <h2>Users</h2>
+                 
+      <script type="text/javascript">
+		// Popup window code
+		function newPopup(url) {
+			popupWindow = window.open(
+				url,'popUpWindow','height=350,width=400,left=400,top=400,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+		}
+		</script>
+
            <?php echo output_message($message);?>
-           <table class="customer" cellpadding="6px" cellspacing="10px">
+           <table class="customer" cellpadding="6px" cellspacing="10px" style="
+    padding-left: 88px;
+">
             <tr class="head_row">
                 <th class="head_toc">ID</th>
                 <th class="head_toc">User Name</th>
@@ -67,7 +77,13 @@ if(!$session->is_logged_in()){
                 <?php //echo count($photo->comments());?></td>
                 </a>
                <!-- <td><a href="edit_admin.php?id=<?php echo $photo->us_id;?>" onclick="return confirm('Are you shure you want to Edit');">Edit</a></td>
-                --><td><a href="delete_admin.php?id=<?php echo $photo->us_id;?>" onclick="return confirm('Are you shure you want to Delete');">Delete</a></td>
+                -->
+				<td>
+				<a href="JavaScript:newPopup('edit_user.php?id=<?php echo $photo->us_id;?>');" >Edit</a>
+				</td>
+				
+				<td><a href="delete_admin.php?id=<?php echo $photo->us_id;?>" onclick="return confirm('Are you shure you want to Delete');">Delete</a></td>
+				
                 
             </tr>
             

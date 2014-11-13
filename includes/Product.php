@@ -9,9 +9,9 @@ require_once(LIB_PATH . DS . 'database.php');
 class Product extends DatabaseObject {
 
     protected static $table_name = "ndb_doc";
-    protected static $db_fields = array('d_id', 'cor_non', 'cr_brd','ref1','ref2','ref3','reffull','reference', 'requester', 'unit', 'contact_p', 'date_sub',
-                                        'description', 'date_reciv_it', 'smrc_date', 'smrc_status','priority','date_develop',
-                                        'AVPIT','VPIT','COST_DATE','CFO_DATE','BRP','DEV_HAND','PACK_DATE','DEV_TESTER','TEST_ENV','TEST_C_NO','TEST_COM_DATE','TEST_STAT',
+    protected static $db_fields = array('d_id', 'cor_non', 'cr_brd','ref1','ref2','ref3','reffull','reference', 'requester', 'unit', 'contact_p', 'date_sub','testdate',
+                                        'description', 'date_reciv_it', 'smrc_date', 'smrc_status','priority','COST','date_develop',
+                                        'AVPIT','VPIT','COST_DATE','CFO_DATE','BRP','DEV_HAND','PACK_DATE','DEV_TESTER','TEST_ENV','TEST_MEM','TEST_C_NO','TEST_COM_DATE','TEST_STAT',
                                         'date_temo','remarks','assing_to','ded_line','USER_ASS','develop_r_date',
                                         'document_complet','date_hand_qa','QA_REF_N','QA_TEST_N','QA_STATUS','qa_complete','date_back_it','D_FIX_BY','USER_Not','release_date',
                                         'status','scan_doc1','scan_doc2','scan_doc3', 'update_on','d_visible', 'edited_by');
@@ -30,6 +30,13 @@ class Product extends DatabaseObject {
     
     public $contact_p;
     public $date_sub;
+	
+	
+	
+	public $testdate;
+	
+	
+	
     public $description;
     
     public $date_reciv_it;
@@ -37,6 +44,7 @@ class Product extends DatabaseObject {
     public $smrc_status;
     
      public $priority;
+	 public $COST;
      public $date_develop;
      
      public $AVPIT;
@@ -48,6 +56,7 @@ class Product extends DatabaseObject {
        public $PACK_DATE;
         public $DEV_TESTER;
          public $TEST_ENV;
+		public $TEST_MEM;
           public $TEST_C_NO;
            public $TEST_COM_DATE;
             public $TEST_STAT;
@@ -353,11 +362,40 @@ class Product extends DatabaseObject {
         $row = $database->fetch_array($result_set);
         return array_shift($row);
     }
+	
+	
+	 public static function count_statusapp($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND status = 'Approval Pending' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+	
+	
+	 public static function count_statussst($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND status = 'Support Team Testing' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
+	
+	public static function count_statusut($searchString = '') {
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND status = 'User Testing' ";
+        $sql .= $searchString;
+        $result_set = $database->query($sql);
+        $row = $database->fetch_array($result_set);
+        return array_shift($row);
+    }
         
 	
 	public static function count_statuscr($searchString = '') {
         global $database;
-        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND cr_brd='CR' AND status = 'pending' ";
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND cr_brd='CR' AND ( status = 'pending' OR status = 'Pending Temonos'  OR status = 'QA Testing'  OR status = 'Development'  OR status = 'inprogress' OR status = 'Approval Pending' OR status = 'Support Team Testing' OR status = 'User Testing' )";
         $sql .= $searchString;
         $result_set = $database->query($sql);
         $row = $database->fetch_array($result_set);
@@ -366,7 +404,7 @@ class Product extends DatabaseObject {
 	
 	public static function count_statusbr($searchString = '') {
         global $database;
-        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND cr_brd='BRD' AND status = 'pending' ";
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND cr_brd='BRD'  AND ( status = 'pending' OR status = 'Pending Temonos'  OR status = 'QA Testing'  OR status = 'Development'  OR status = 'inprogress' OR status = 'Approval Pending' OR status = 'Support Team Testing' OR status = 'User Testing' )";
         $sql .= $searchString;
         $result_set = $database->query($sql);
         $row = $database->fetch_array($result_set);
@@ -375,7 +413,7 @@ class Product extends DatabaseObject {
 	
 	public static function count_statusrep($searchString = '') {
         global $database;
-        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND cr_brd='RR' AND status = 'pending' ";
+        $sql = "SELECT COUNT(*) FROM " . self::$table_name ." WHERE d_visible =1 AND cr_brd='RR'  AND ( status = 'pending' OR status = 'Pending Temonos'  OR status = 'QA Testing'  OR status = 'Development'  OR status = 'inprogress' OR status = 'Approval Pending' OR status = 'Support Team Testing' OR status = 'User Testing' )";
         $sql .= $searchString;
         $result_set = $database->query($sql);
         $row = $database->fetch_array($result_set);

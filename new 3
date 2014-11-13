@@ -1,0 +1,22 @@
+<td><?php// echo $photo->smrc_status;?></td>
+		
+		<td><?php// echo $photo->priority;?></td>
+                <td><?php// echo $photo->date_develop;?></td>
+		<td><?php// echo $photo->date_temo;?></td>
+		
+		<td><?php// echo $photo->remarks;?></td>
+                <td><?php// echo $photo->develop_r_date;?></td>
+		<td><?php// echo $photo->document_complet;?></td>
+		
+		<td><?php //echo $photo->date_hand_qa;?></td>
+                <td><?php// echo $photo->qa_complete;?></td>
+		<td><?php// echo $photo->date_back_it;?></td>
+		
+		<td><?php //echo $photo->release_date;?></td>
+                <td><?php// echo $photo->status;?></td>
+		<td><?php// echo $photo->scan_doc1;?></td>
+		
+		<td><?php //echo $photo->scan_doc2;?></td>
+		<td><?php //echo $photo->scan_doc3;?></td>
+		
+		 <td><?php// echo $photo->smrc_date;?></td>

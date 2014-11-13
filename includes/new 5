@@ -1,0 +1,10 @@
+SELECT COUNT(*) FROM `ndb_doc` WHERE d_visible =1 AND cr_brd='CR' AND status = 'pending'OR status = 'Pending Temonos'OR status = 'QA Testing'OR status = 'Development'OR status = 'inprogress' OR status = 'Approval Pending' OR status = 'Support Team Testing' OR status = 'User Testing' 
+
+
+
+SELECT * FROM `ndb_doc` WHERE d_visible =1 AND cr_brd='CR' AND status = 'pending'OR status = 'Pending Temonos'OR status = 'QA Testing'OR status = 'Development'OR status = 'inprogress' OR status = 'Approval Pending' OR status = 'Support Team Testing' OR status = 'User Testing' 
+
+
+SELECT * FROM `ndb_doc` WHERE d_visible = 1 AND cr_brd = 'CR' AND (status = 'pending' OR status = 'Pending Temonos'OR status = 'QA Testing'OR status = 'Development'OR status = 'inprogress' OR status = 'Approval Pending' OR status = 'Support Team Testing' OR status = 'User Testing' ) 
+
+

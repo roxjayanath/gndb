@@ -19,6 +19,7 @@ $max_file_size = 1048576;
 
 $tempmax=0;
 $tempmaxid=0;
+$refnumber=0;
 
 $coreNCore = array(
 		0 => "-select-",
@@ -30,7 +31,7 @@ $crBrdReport = array(
 		0 => "-select-",
 		"CR" => "CR",
 		"BRD" => "BRD",
-		"REPORT" => "REPORT"
+		"RR" => "REPORT"
 );
 
 $allUnits = array(
@@ -118,6 +119,18 @@ $fixCategories = FixCategory::find_all();
 
 $product = new Product();
 $product->errors['title']=" ";
+
+
+if (isset ( $_POST ['cancel'] )) {
+
+redirect_to ( "admin_home.php" );
+
+}
+
+
+
+
+
 //$message="";
 if (isset($_POST['submit'])) {
 //    $photo = new Photograph();
@@ -219,6 +232,13 @@ $product->ref3= $_POST['reference'];
     //$product->contact_p= $_POST['contact_p'];
     
     $product->date_sub= $_POST['date_req'];
+	
+	
+	$time = strtotime($_POST['test_req']);
+
+    $newformat = date('Y-m-d',$time);
+	
+	$product->testdate= $newformat;
     
     $product->description= $_POST['description'];
     $product->date_reciv_it= $_POST['date_reciv_it'];
@@ -359,6 +379,8 @@ require_once('layouts/header1.php');
 <script src="javascrpits/jquery-1.8.3.min.js" ></script>
 <script src="javascrpits/jquery-ui.js" ></script>
 
+<script src="javascrpits/ckeditor.js" ></script>
+
 
 
 
@@ -386,6 +408,8 @@ require_once('layouts/header1.php');
         coreChange();
 
         unitChange();
+		
+		refChange()
 
 		$("select[name=core]").change(function(){
 			coreChange();
@@ -396,6 +420,7 @@ require_once('layouts/header1.php');
 		});
 
 		$("select[name=crr]").change(function(){
+		refChange()
 			if($("select[name=crr]").val() != 0) ajaxGetDocNumber();
 		});	
 		
@@ -416,19 +441,37 @@ require_once('layouts/header1.php');
     	if($("select[name=core]").val() == 0){
 			$("#unit_sec").hide();
 			$("#cr_brd_sec").hide();
+			$("#ref_er").hide();
 		} else {
 			$("#unit_sec").show();
 			$("#cr_brd_sec").hide();
+			$("#ref_er").hide();
 		}
     }
 
     function unitChange(){
     	if($("select[name=unit]").val() == 0){
 			$("#cr_brd_sec").hide();
+			$("#ref_er").hide();
 		} else {
 			$("#cr_brd_sec").show();
+			$("#ref_er").hide();
 		}
     }
+	
+	function refChange(){
+    	if($("select[name=crr]").val() == 0){
+			
+			$("#ref_er").hide();
+		} else {
+			
+			$("#ref_er").show();
+		}
+    }
+	
+	//ref_er
+	
+	
 
     function ajaxGetDocNumber(){
         var ref1 = $("select[name=unit]").val();
@@ -437,8 +480,10 @@ require_once('layouts/header1.php');
 			//console.log(result);
 			if(result){
 				$("input[name=reference]").val(result.max_doc);
-				$("#reference_view").html(result.max_doc);
-				$("#ref_field").show();
+				$("#reference_view").html(result.max_doc); 
+                $("#ref_field").show(); 
+
+				//$refnumber=$_GET['reference'];
 			}
 			
 		});
@@ -555,7 +600,7 @@ require_once('layouts/header1.php');
 
 <p style="
     font-family: serif;
-    font-size: 30px;
+    font-size: 24px;
 ">Details of the Document </p>
 <p class="detailll" >Core / NonCore : <select name="core" class="detailindate1">
 <!--              <option value="Core">Core</option> -->
@@ -597,20 +642,41 @@ require_once('layouts/header1.php');
   
            </select></p>
           
-         <p class="detailll" id="ref_field" style="display:none;">Reference : 
+        <!-- <p class="detailll" id="ref_er" hidden="hidden"> Reference :  -->
+		 <p class="detailll" id="ref_field" style="display:none;">Reference : 
 		   
+		  <?php //echo $refnumber;?>
 		  
-				<input type="hidden" name="reference" class="detailindate4" style="margin-left: 150px;"/>
+		  <input type="hidden" name="reference" class="detailindate4" style="margin-left: 150px;"/>
+				<!--<input type="text" name="reference" class="detailindate4" style="margin-left: 150px;"/> -->
 		     
-		   		<span id="reference_view" class="detailindate4" style="margin-left: 150px;"></span>
 		   
+		   <span id="reference_view" class="detailindate4" style="margin-left: 150px;"></span>
 		   </p> 
+		   
+		   
+		   
+		   
+		   
+		   
+		   
         <p class="detailll" >Requester :<input type="text" name="requester" class="detailindate4" /></p>
 		
 		<p class="detailll">Request Date :<input type="text" class="datepicker"name="date_req" style="margin-left: 130px;"/></p> 
-        <!--<p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p> -->
 		
-		<p class="detailll">Description : <textarea name="description" class="detailindate7"></textarea></p>
+		<p class="detailll">Test Date :<input type="text" class="datepicker"name="test_req" style="margin-left: 130px;"/></p> 
+		
+		
+		
+        <!--<p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p> -->
+		<div class="detailll">
+			<div style="float: left;width:138px">Description : </div>
+			<div style="margin-left: 138px"><textarea name="description" class="detailindate7" id="editor1" rows="3" cols="40"></textarea></div>
+	
+		<script>
+		CKEDITOR.replace('editor1');
+		</script>
+		</div>
 		
 		
 		<p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" style="margin-left: 80px;"/></p>
@@ -627,7 +693,21 @@ require_once('layouts/header1.php');
 		   
 		   
 		
-		<p class="detailll">Remarks : <textarea name="remarks" class="detailindate101"></textarea></p>
+		
+		
+		<div class="detailll">
+			<div style="float: left;width:100px">Remarks : </div>
+			<div style="margin-left: 100px"><textarea name="remarks" class="detailindate101" id="editor1" rows="3" cols="40"></textarea></div>
+	
+		<script>
+		CKEDITOR.replace('editor1');
+		</script>
+		</div>
+		
+		
+		
+		
+		
 		
 		<p class="detailll">Status :  <select name="status" class="detailindate94">
              <option value="Pending">Pending</option>
@@ -697,7 +777,7 @@ require_once('layouts/header1.php');
                 <input type="submit" value="Add" name="submit" class="create_button">
             </p>
             <p >
-                <input type="reset" value="Cancel" name="cancel" class="create_button">
+                <input type="submit" value="Cancel" name="cancel" class="create_button" >
             </p>
             </p></p>
         </center>

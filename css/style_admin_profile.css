@@ -9,7 +9,7 @@ body{
 .logo{
 	
 	width:100%;
-	height:130px;
+	height:70px;
 	margin:auto;
 }
 
@@ -38,7 +38,7 @@ body{
 
 .main_toc{
 	font-family:"DIN";
-	font-size:55px;
+	font-size:30px;
 	color:#FFF;
 	font-weight:400;
 	margin-top:30px;
@@ -87,7 +87,10 @@ body{
 .main_toc55{
 	font-family:"DIN";
 	font-size:25px;
-	padding-left: 350px;
+	padding-left: 400px;
+	
+	
+	
 	
 }
 .main_toc5{
@@ -146,7 +149,7 @@ body{
 }
 
 #menu_wrap{
-	width:230px;
+	width:0px;
 	height:auto;
 	float:left;
 	margin-bottom:10px;
@@ -156,18 +159,19 @@ body{
 }
 
 #control_set{
-	width:220px;
-	height:45px;
+	width:130px;
+	height:70px;
 	margin-top:15px;
 	margin-bottom:5px;
 	color:#FFF;
 	margin-left:0;
-	background-color:#8F0000;
+	background-color:#0A5EA0;
 	border-radius:13px;
 	float:left;
 }
 
 .toc_control{
+width: 20px;
 	font-family:"DIN";
 	font-size:22px;
 	color:#FFF;
@@ -179,14 +183,36 @@ body{
 
 
 #my_profile{
-	width:220px;
-	height:40px;
+	width:120px;
+	height:82px;
 	margin-top:10px;
 	margin-left:0;
 	border-radius:12px;
-	background-color:#CC0000;
+	background-color:#5694B8;
 	float:left;
 }
+
+#my_profile3{
+	width:215px;
+	height:37px;
+	margin-top:10px;
+	margin-left:0;
+	border-radius:42px;
+	background-color:#5694B8;
+	float:left;
+}
+
+#my_profile2{
+	width:120px;
+	height:90px;
+	margin-top:10px;
+	margin-left:0;
+	border-radius:12px;
+	background-color:#5694B8;
+	float:left;
+}
+
+
 #edit_profile{
 	width:220px;
 	height:40px;
@@ -240,13 +266,13 @@ body{
 }
 
 #add_product{
-	width:220px;
-	height:40px;
+	width:120px;
+	height:60px;
 	margin-top:10px;
 	margin-left:0;
 	margin-right:5px;
 	border-radius:12px;
-	background-color:#3E3E3E;
+	background-color:#5694B8;
 	float:left;
 }
 
@@ -320,7 +346,7 @@ body{
 
 .toc{
 	font-family:"DIN";
-	font-size:18px;
+	font-size:20px;
 	color:#FFF;
 	font-weight:200;
 	margin-top:10px;
@@ -333,17 +359,35 @@ body{
 	font-weight:100;
 }
 
+
+.toc111{
+	font-family:"DIN";
+	font-size:20px;
+	color:#FFF;
+	font-weight:200;
+	margin-top:-12px;
+	margin-left:10px;
+	letter-spacing:2px;
+}
+
+.toc111:hover{
+	color:#DFDFDF;
+	font-weight:100;
+}
+
+
+
 .profile_link{
 	text-decoration:none;
 }
 
 
 #admin_content{
-	width:800px;
+	width:1000px;
 	height:auto;
 	float:left;
 	margin-left:10px;
-	background-color: #E68080;
+	background-color: #E6C8C8;
 	border-radius:8px;
 }
 
@@ -365,6 +409,55 @@ body{
 	border-radius:8px;
 }
 
+#admin_content4{
+	width:1000px;
+	height:auto;
+	float:left;
+	margin-left:10px;
+	background-color: #BDC5CE;
+	border-radius:8px;
+
+}
+
+#admin_content5{
+	width:1000px;
+	height:auto;
+	float:left;
+	margin-left:10px;
+	background-color: #C9B0B0;
+	border-radius:8px;
+}
+#admin_content6{
+	width:1000px;
+	height:auto;
+	float:left;
+	margin-left:10px;
+	background-color: #B9C1D1;
+	border-radius:8px;
+}
+#admin_content7{
+	width:1000px;
+	height:auto;
+	float:left;
+	margin-left:10px;
+	background-color: #DBDBDB;
+	border-radius:8px;
+}
+.multiline{
+    font-size:16px;
+	font-family:"DIN"
+	padding-left:566px;
+   white-space: pre-wrap;
+}
+
+
+.multiline2{
+    font-size:11px;
+	font-family:"DIN"
+	padding-left:566px;
+   white-space: pre-wrap;
+}
+
 
 .line{
 	margin-bottom:10px;
@@ -376,8 +469,8 @@ body{
 	color:#333;
 	float:left;
 	width:220px;
-	margin-left:5px;
-	background-color:#E68080;
+	margin-left:200px;
+	
 	padding-left:8px;
 }
 
@@ -495,15 +588,29 @@ body{
 	font-family:"DIN"
 	
 	width:170px;
-	margin-left:145px;
+	margin-left:135px;
 	
 }
+
+
+.detailindate9777{
+
+
+	font-size:16px;
+	font-family:"DIN"
+	
+	width:170px;
+	margin-left:90px;
+	
+}
+
+
 .detailindate96{
 	font-size:16px;
 	font-family:"DIN"
 	
 	width:170px;
-	margin-left:105px;
+	margin-left:127px;
 	
 }
 
@@ -745,7 +852,7 @@ body{
 }
 
 .head_row{
-	background-color:#333;
+	background-color:#A38286;
 	color:#FFF;
 	width:auto;
 	height:auto;

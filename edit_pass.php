@@ -62,7 +62,7 @@
 
 <body>
 
-	<center><div  class="logo"><img src="images/logo-02-01 small-01.png"/></div></center><br/>
+	<center><div  class="logo"><img src="images/ndbl.jpg"/></div></center><br/>
    
    <?php echo output_message($message); ?>
    <form method="post" action="edit_pass.php">

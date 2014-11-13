@@ -44,7 +44,7 @@ $allCats = array(
 	"All" => "All",
 	"CR" => "CR",
 	"BRD" => "BRD",
-	"REPORT" => "REPORT"
+	"RR" => "REPORT"
 );
 
 $statusArray = array(
@@ -154,12 +154,13 @@ a {
       
       
       <?php echo output_message($message); ?>
-<div id="admin_content">
+<div id="admin_content6">
 	<form method="POST" name="ajax_param" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 		<input type="hidden" name="page" value="1" />
-		<table class="search_tabel" cellpadding="5px">
+		<table class="" cellpadding="5px" style="
+    font-size: 13px;">
 			<tr>
-				<th>Reference Name</th>
+				<th>Reference</th>
 				<th><input type="text" name="prod_name"
 					value="<?php echo $reference ?>" /></th>
 					<th><input type="submit" name="sub" value="Search"
@@ -222,14 +223,17 @@ a {
 	 
 	    
 <!--  <<<<<<< HEAD  -->
-	 <center>  <table class="customer" cellpadding="6px" cellspacing="10px">
+	 <center>  <table class="customer" cellpadding="6px" cellspacing="10px" style="
+    font-size: 13px;">
             <tr class="head_row">
                 <th class="head_toc">ID</th>
                 <th class="head_toc">Core / NonCore</th>
-                <th class="head_toc">CR/BRD/<br>REPORT</th>
+                <th class="head_toc">Type</th>
 		
 		
-		<th class="head_toc">Reference</th>
+		<th class="head_toc" style="
+    padding-right: 34px;
+">Reference</th>
                 <th class="head_toc">Requester</th>
 		<th class="head_toc" style="
     /* margin-left: 45px; */
@@ -247,7 +251,7 @@ a {
                 
                 
                 
-                <th>&nbsp;</th>
+               <!-- <th>&nbsp;</th> -->
             </tr>
 <!-- =======
 	<!-- <center>
@@ -323,7 +327,7 @@ a {
 
 
 
-<div id="pagination" style="clear: both;">
+<div id="pagination" style="clear: both; padding-left: 428px;">
     <?php
         if($pagination->total_pages()>1){
             

@@ -29,7 +29,19 @@ if (!$photo) {
 }
 
 
+$userss = User::find_by_id ($photo->edited_by);
 
+
+if(!empty($photo->TEST_MEM))
+{
+
+$assing_user = FixCategory::find_by_id ($photo->TEST_MEM);
+$displayus=$assing_user->qa_name;
+}
+else{
+//$assing_user = FixCategory::find_by_id ('2');
+$displayus='';
+}
 
 
 $max_file_size = 1048576;
@@ -257,6 +269,7 @@ $product->ref3= $_POST['reference'];
     $product->PACK_DATE= $_POST['pack_date'];
      $product->DEV_TESTER= $_POST['dev_ass'];
       $product->TEST_ENV= $_POST['dev_en'];
+	  $product->TEST_MEM= $_POST['test_mem'];
       $product->TEST_C_NO= $_POST['dev_cy'];
       $product->develop_r_date= $_POST['date_ret_date'];
 	  $product->USER_ASS= $_POST['user_ass_date'];
@@ -515,7 +528,7 @@ require_once('layouts/header1.php');
 
 
 
-<div id="admin_content">
+<div id="admin_content" style="font-style: normal;">
     <!--<center><h3>Add Product</h3></center>-->
     <form name="mine" action="edit_click_late.php" enctype="multipart/form-data" method="post" onsubmit="return valemty()" >
         
@@ -579,6 +592,7 @@ require_once('layouts/header1.php');
 		<p class="detailll">Developer Testing Assinged To :  <?php echo $photo->DEV_TESTER;?></p>
 		   
 		   <p class="detailll">Testing Enviroriment  :  <?php echo $photo->TEST_ENV;?></p>
+		   <p class="detailll">Assigned Test Team Member : <?php echo $displayus;?></p>
 		   
 		   <p class="detailll">Testing Cycle No: <?php echo $photo->TEST_C_NO;?></p>
 		
@@ -680,37 +694,94 @@ require_once('layouts/header1.php');
 ">Details of the Document </p>
 
           
-         <p class="detailll" >Reference : 
+         <!--<p class="detailll" >Reference : 
 		   
 		  
-				<?php echo $photo->reffull;?>
+				<?php// echo $photo->reffull;?>
 		     
 		   
 		   
-		   </p> 
-        <p class="detailll" >Requester :<?php echo $photo->requester;?></p>
+		   </p>  -->
+		   
+		   <div class="detailll">
+			<div style="float: left;width:135px">Reference : </div>
+			<div style="margin-left: 200px"><?php echo $photo->reffull;?></div>
+		</div>
+		   
+		   
+		   <br>
+		   
+       <!-- <p class="detailll" >Requester :<?php// echo $photo->requester;?></p> -->
 		
-		<p class="detailll">Request Date :<?php echo $photo->date_sub;?></p> 
-        <!--<p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p> -->
-		
-		<!-- <p class="detailll">Description : <?php //echo $photo->description;?></p> -->
 		<div class="detailll">
-			<div style="float: left;width:135px">Description : </div>
-			<div style="margin-left: 135px"><?php echo $photo->description;?></div>
+			<div style="float: left;width:135px">Requester : </div>
+			<div style="margin-left: 198px"><?php echo $photo->requester;?></div>
+		</div>
+		<br>
+		<!--<p class="detailll">Request Date :<?php //echo $photo->date_sub;?></p>  -->
+		
+		<div class="detailll">
+			<div style="float: left;width:145px">Request Date : </div>
+			<div style="margin-left: 196px"><?php echo $photo->date_sub;?></div>
 		</div>
 		
 		
-		<p class="detailll">Date Recived (IT): <?php echo $photo->date_reciv_it;?></p>
+        <!--<p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p> -->
+		
+		<!-- <p class="detailll">Description : <?php //echo $photo->description;?></p> -->
+		<div class="multiline">
+			<div style="float: left;width:130px">Description : </div>
+			<div style="margin-left: 197px; margin-top: -34px;"><?php echo $photo->description;?></div>
+		</div>
 		
 		
-		<p class="detailll">Priority : <?php echo $photo->priority;?></p>
-		   
-		   
+		<!--<p class="detailll">Date Recived (IT): <?php// echo $photo->date_reciv_it;?></p> -->
 		
-		<p class="detailll">Remarks : <?php echo $photo->remarks;?></p>
+		<div class="detailll">
+			<div style="float: left;width:184px">Date Recived (IT): </div>
+			<div style="margin-left: 194px;  "><?php echo $photo->date_reciv_it;?></div>
+		</div>
 		
-		<p class="detailll">Status :  <?php echo $photo->status;?></p>
+		<br>
+		<!--<p class="detailll">Priority : <?php echo $photo->priority;?></p> -->
+		   <div class="detailll">
+			<div style="float: left;width:135px">Priority : </div>
+			<div style="margin-left: 196px"><?php echo $photo->priority;?></div>
+		</div>
+		  
+		
+		<!--<p class="detailll">Remarks : <?php// echo $photo->remarks;?></p> -->
+		<div class="multiline">
+			<div style="float: left;width:130px">Remarks : </div>
+			<div style="margin-left: 194px; margin-top: -34px;"><?php echo $photo->remarks;?></div>
+		</div>
+		
+		
+		
+		
+		
+		<!--<p class="detailll">Status :  <?php //echo $photo->status;?></p> -->
+		
+		 <div class="detailll">
+			<div style="float: left;width:135px">Status : </div>
+			<div style="margin-left: 194px"><?php echo $photo->status;?></div>
+		</div>
         
+		<br>
+		<div class="detailll">
+			<div style="float: left;width:135px">Cost : </div>
+			<div style="margin-left: 194px"><?php echo $photo->COST;?></div>
+		</div>
+        
+		<br>
+		<br>
+		
+		<div class="detailll">
+			<div style="float: left;width:195px">Last Activity By : </div>
+			<div style="margin-left: 200px"><?php echo $userss->us_name;?> @ <?php echo $photo->update_on;?></div>
+		</div>
+        
+		<br>
 		
 		
 		  <br>Scan document 1 : <a href="JavaScript:newPopup('<?php echo $photo->image_path(); ?>');" ><?php echo $photo->scan_doc1; ?></a>

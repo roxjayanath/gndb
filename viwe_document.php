@@ -36,7 +36,7 @@ $allCats = array(
 	"All" => "All",
 	"CR" => "CR",
 	"BRD" => "BRD",
-	"REPORT" => "REPORT"
+	"RR" => "REPORT"
 );
 
 
@@ -153,12 +153,13 @@ a {
       
       
       <?php echo output_message($message); ?>
-<div id="admin_content">
+<div id="admin_content7">
 	<form method="POST" name="ajax_param" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 		<input type="hidden" name="page" value="1" />
-		<table class="search_tabel" cellpadding="5px">
+		<table class="search_tabel" cellpadding="5px" style="
+    font-size: 13px;">
 			<tr>
-				<th>Reference Name</th>
+				<th>Reference </th>
 				<th><input type="text" name="prod_name"
 					value="<?php echo $reference ?>" /></th>
 					<th><input type="submit" name="sub" value="Search"
@@ -227,14 +228,17 @@ a {
 	   
 	    
 <!--  <<<<<<< HEAD  -->
-	 <center>  <table class="customer" cellpadding="6px" cellspacing="10px">
+	 <center>  <table class="customer" cellpadding="6px" cellspacing="10px"  style="
+    font-size: 13px;">
             <tr class="head_row">
                 <th class="head_toc">ID</th>
                 <th class="head_toc">Core / NonCore</th>
-                <th class="head_toc">CR/BRD/<br>REPORT</th>
+                <th class="head_toc">Type</th>
 		
 		
-		<th class="head_toc">Reference</th>
+		<th class="head_toc" style="
+    padding-right: 34px;
+">Reference</th>
                 <th class="head_toc">Requester</th>
 		<th class="head_toc" style="
     /* margin-left: 45px; */
@@ -259,7 +263,10 @@ a {
 		<th class="head_toc">QA Testing Competed ON</th>
                 <th class="head_toc">Date Hand Over To IT Ops </th>
                 <th class="head_toc">Release Date</th>	 -->	
-                <th class="head_toc">Status</th>
+                <th class="head_toc" >Status</th>
+				 <th class="head_toc" style="
+    padding-right: 16px;
+">Last Activity</th>
 		
 		
                 
@@ -307,11 +314,12 @@ a {
 
 					<td><?php echo $photo->reffull;?></td>
 					<td><?php echo $photo->requester;?></td>
-					<td style="text-transform : uppercase"><?php echo $photo->description;?></td>
+					<td style="text-transform : uppercase" ><?php echo $photo->description;?></td>
 
 					
 					<td><?php echo $photo->date_sub;?></td>
 					<td style="text-transform : capitalize"><?php echo $photo->status;?></td>
+					<td><?php echo $photo->update_on;?></td>
 					
 
 
@@ -338,7 +346,7 @@ a {
 	 
 	 
 	 
-<div id="pagination" style="clear: both;">
+<div id="pagination" style="clear: both; padding-left: 428px;">
     <?php
         if($pagination->total_pages()>1){
             

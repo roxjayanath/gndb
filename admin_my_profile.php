@@ -32,7 +32,7 @@
 		}
 		</script>
       
-      	<p class="line"><p class="detail">Name </p><p class="about_user"><?php echo $photo->us_name; ?></p><p class="command"><a href="JavaScript:newPopup('pending_view.php');" class="edit">Edit</a></p> 
+      	<p class="line"><p class="detail">Name </p><p class="about_user"><?php echo $photo->us_name; ?></p><!--<p class="command"><a href="JavaScript:newPopup('edit_user.php');" class="edit">Edit</a></p>--> 
       	
         <p class="line"><p class="detail">Password </p><p class="about_user">***************</p><p class="command"><a href="JavaScript:newPopup('edit_pass.php');" class="edit">Edit</a></p> 
       

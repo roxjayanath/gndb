@@ -46,7 +46,7 @@ body{
 	margin-top:10px;
 	margin-left:10px;
 	margin-right:0;
-	background-color:#F60;
+	background-color:#003170;
 	float:left;
 }
 
@@ -66,7 +66,7 @@ body{
 	margin-top:10px;
 	margin-left:0px;
 	margin-right:0;
-	background-color:#CCC;
+	background-color:#E7B000;
 	float:left;
 }
 
@@ -76,7 +76,27 @@ body{
 	margin-top:10px;
 	margin-left:10px;
 	margin-right:0;
-	background-color:#F00;
+	background-color:#D30000;
+	float:left;
+}
+
+#add_product1{
+	width:300px;
+	height:200px;
+	margin-top:10px;
+	margin-left:10px;
+	margin-right:0;
+	background-color:#D30065;
+	float:left;
+}
+
+#add_product3{
+	width:300px;
+	height:200px;
+	margin-top:10px;
+	margin-left:10px;
+	margin-right:0;
+	background-color:#41BBAC;
 	float:left;
 }
 
@@ -96,7 +116,7 @@ body{
 	margin-top:10px;
 	margin-left:10px;
 	margin-right:0;
-	background-color:#999966;
+	background-color:#55BEDF;
 	float:left;
 }
 
@@ -134,11 +154,11 @@ body{
 
 .toc{
 	font-family:"DIN";
-	font-size:43px;
+	font-size:49px;
 	color:#FFF;
 	font-weight:200;
 	margin-top:40px;
-	padding-left:30px;
+	padding-left:66px;
 }
 
 .toc:hover{

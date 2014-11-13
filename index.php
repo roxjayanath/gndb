@@ -56,7 +56,8 @@ if (isset ( $_POST ['commit'] )) {
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>NDB Login Form</title>
+<link rel="shortcut icon" href="images/ndblogo.jpg" />
+<title>NDB Bank</title>
 <link rel="stylesheet" href="css/style_login_panel.css">
 <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
@@ -67,7 +68,7 @@ if (isset ( $_POST ['commit'] )) {
 		</center>
 		<br />
 		<div class="login">
-			<h1>Login</h1>
+			<h1>System Change Management</h1>
       
             <?php echo output_message($message);?>
 

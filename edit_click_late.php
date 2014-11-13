@@ -10,7 +10,7 @@ $photo = Product::find_by_id($_REQUEST['id']);
 //$photo = Product::find_by_id();
 
 $user = User::find_by_id($session->user_id);
-
+$userss = User::find_by_id ($photo->edited_by);
 if (!$photo) {
     $session->message("The product could not be located");
     redirect_to('edit_clicknew.php');
@@ -183,6 +183,7 @@ $statusArray = array(
 		"Approval Pending" => "Approval Pending",
 		"Development" => "Development",
 		"Support Team Testing" => "Support Team Testing",
+		"User Testing" => "User Testing",
 		"QA Testing" => "QA Testing",
 		"Rejected" => "Rejected",
 		"Close" => "Close",
@@ -306,7 +307,8 @@ $product->ref3= $_POST['reference'];
     
     
    // $product->contact_p= $_POST['contact_p'];
-    
+    $product->COST= $_POST['cost'];
+	
     $product->date_sub= $_POST['date_req'];
     
     $product->description= $_POST['description'];
@@ -326,6 +328,7 @@ $product->ref3= $_POST['reference'];
     $product->PACK_DATE= $_POST['pack_date'];
      $product->DEV_TESTER= $_POST['dev_ass'];
       $product->TEST_ENV= $_POST['dev_en'];
+	  $product->TEST_MEM=$_POST['test_mem'];
       $product->TEST_C_NO= $_POST['dev_cy'];
        $product->develop_r_date= $_POST['date_ret_date'];
 	  $product->USER_ASS= $_POST['user_ass_date'];
@@ -424,7 +427,7 @@ $product->ref3= $_POST['reference'];
 require_once('layouts/header1.php');
 ?>
 <center>
-	<h1 class="main_toc5">Add New Document</h1>
+	<h1 class="main_toc5">Edit Document</h1>
 </center>
 <?php 
 
@@ -650,7 +653,7 @@ require_once('layouts/header1.php');
 
 
 
-<div id="admin_content">
+<div id="admin_content" style="font-style: normal;">
 	<!--<center><h3>Add Product</h3></center>-->
 	<form name="mine" action="edit_click_late.php?id=<?php echo $doc_id ?>"
 		enctype="multipart/form-data" method="post"
@@ -799,6 +802,53 @@ require_once('layouts/header1.php');
   
            </select>
 						</p>
+						
+						
+						
+						<p class="detailll">
+							Assigned Test Team Member : <select name="test_mem"
+								class="detailindate97" style="
+    margin-left: 87px;
+">
+								<!--              <option value="Name1">Name1</option> -->
+								<!--              <option value="Name2">Name2</option> -->
+								<!--               <option value="Name3">name 3</option> -->
+								<!--                <option value="Name4">name4</option> -->
+								<!--                 <option value="Name5">name5</option> -->
+								<option value="0">-select-</option>
+ 	<?php foreach ($fixCategories as $value){
+							$selected = ($photo->D_FIX_BY == $value->qa_id) ? "selected" : "";
+							?>
+							<option value="<?php echo $value->qa_id ?>"
+									<?php echo $selected ?>><?php echo $value->qa_name; ?></option>
+							<?php
+						} ?>
+ 	
+           </select>
+						</p>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+		
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
 
 						<p class="detailll">
 							Testing Cycle No: <select name="dev_cy" class="detailindate999"
@@ -876,7 +926,7 @@ require_once('layouts/header1.php');
 						<p>
 						
 						
-						<p style="font-family: serif; font-size: 30px;">Document submit
+						<p style="font-family: serif; font-size: 24px;">Document submit
 							for Review/Approval</p>
 
 						<p class="detailll">
@@ -958,13 +1008,19 @@ require_once('layouts/header1.php');
 
 
 					<code>
+                         <p>
 
-
-						<p style="font-family: serif; font-size: 30px;">Details of the
+						<p style="font-family: serif; font-size: 24px;">Details of the
 							Document</p>
+							
+							
+							<div class="detailll">
+			                      <div style="float: left;width:270px">Reference : </div>
+			                      <div style="margin-left: 270px"><?php echo $photo->reffull;?></div>
+		                    </div>
 
 
-						<p class="detailll">Reference : <?php echo $photo->reffull; ?>
+						<!--<p class="detailll">Reference : <?php// echo $photo->reffull; ?> -->
 		   
 		  
 				<input hidden="hidden" type="text" name="reference"
@@ -984,11 +1040,18 @@ require_once('layouts/header1.php');
 								value="<?php echo $photo->date_sub; ?>" />
 						</p>
 						<!--<p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p> -->
-
-						<p class="detailll">
-							Description :
-							<textarea name="description" class="detailindate7"><?php echo $photo->description; ?></textarea>
-						</p>
+                         
+						 <div class="detailll">
+			<div style="float: left;width:138px">Description : </div>
+			<div style="margin-left: 138px"><textarea name="description" class="detailindate7" id="editor1" rows="3" cols="40"><?php echo $photo->description; ?></textarea></div>
+	
+		<script>
+		CKEDITOR.replace('editor1');
+		</script>
+		</div>
+						 
+						 
+						
 
 
 						<p class="detailll">
@@ -1015,14 +1078,22 @@ require_once('layouts/header1.php');
   
            </select>
 						</p>
-						</p>
+						
+						  
+						  
+						  
+						  <div class="detailll">
+			<div style="float: left;width:100px">Remarks : </div>
+			<div style="margin-left: 100px"><textarea name="remarks" class="detailindate101" id="editor1" rows="3" cols="40"><?php echo $photo->remarks; ?></textarea></div>
+	
+		<script>
+		CKEDITOR.replace('editor1');
+		</script>
+		</div>
 
 
 
-						<p class="detailll">
-							Remarks :
-							<textarea name="remarks" class="detailindate101"><?php echo $photo->remarks; ?></textarea>
-						</p>
+						
 
 						<p class="detailll">
 							Status : <select name="status" class="detailindate94">
@@ -1035,12 +1106,28 @@ require_once('layouts/header1.php');
              } ?>
            </select>
 						</p>
-
-						<br>Scan document 1 : <a
+						
+						
+						<p class="detailll">
+							Cost :<input type="text" name="cost"
+								class="detailindate4" value="<?php echo $photo->COST; ?>"  style="
+    /* padding-left: inherit; */
+    margin-left: 208px;
+"/>
+						</p>
+						
+						<div class="detailll">
+			<div style="float: left;width:270px">Last Activity By : </div>
+			<div style="margin-left: 270px"><?php echo $userss->us_name;?> @ <?php echo $photo->update_on;?></div>
+		</div>
+        
+		<br>
+<div class="detailll">
+						<br>Scan Document 1 : <a
 							href="JavaScript:newPopup('<?php echo $photo->image_path(); ?>');"><?php echo $photo->scan_doc1; ?></a>
-						<br>Scan document 2 : <a
+						<br>Scan Document 2 : <a
 							href="JavaScript:newPopup('<?php echo $photo->image_path(2); ?>');"><?php echo $photo->scan_doc2; ?></a>
-						<br>Scan document 3 : <a
+						<br>Scan Document 3 : <a
 							href="JavaScript:newPopup('<?php echo $photo->image_path(3); ?>');"><?php echo $photo->scan_doc3; ?></a>
 
 						<p class="detailll">
@@ -1054,6 +1141,7 @@ require_once('layouts/header1.php');
 						</p>
 
 
+</div>
 
 
 
@@ -1065,9 +1153,8 @@ require_once('layouts/header1.php');
 
 
 
-
-
-						</p>
+</p>
+						
 					</code>
 
 
@@ -1160,7 +1247,7 @@ require_once('layouts/header1.php');
 								value="<?php echo $photo->reference; ?>" />
 						</p>
 						<p class="detailll">
-							Documentation Fix By : <select name="doc_fix"
+							Documentation File By : <select name="doc_fix"
 								class="detailindate97">
 								<!--              <option value="Name1">Name1</option> -->
 								<!--              <option value="Name2">Name2</option> -->
@@ -1180,7 +1267,7 @@ require_once('layouts/header1.php');
 						</p>
 
 						<p class="detailll">
-							Sender User Notification : <select name="user_noty"
+							Send User Notification : <select name="user_noty"
 								class="detailindate96" value="<?php echo $photo->USER_Not; ?>">
 								<option value="0">-select-</option>
 			  <?php foreach ($usernotArray as $key => $USER_Not){
