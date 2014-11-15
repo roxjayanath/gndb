@@ -11,28 +11,29 @@ if (! $session->is_logged_in ()) {
 
 ?>
 
-
 <?php
+
 
 $page = ! empty ( $_GET ['page'] ) ? ( int ) $_GET ['page'] : 1;
 
-$per_page = 25;
+$per_page = 2;
 
 //$total_count = Product::count_all ();
 
 
 //$pagination = new Pagination($page,$per_page,$total_count);
   
-  //$sql = "SELECT * FROM ndb_doc ";
+ // $sql = "SELECT * FROM ndb_doc ";
  // $sql .= "LIMIT {$per_page} ";
-  //$sql .= "OFFSET {$pagination->offset()}";
+ // $sql .= "OFFSET {$pagination->offset()}";
   
-  //$photos = Product::find_by_sql($sql);
+ // $photos = Product::find_by_sql($sql);
+
 //$page = ! empty ( $_GET ['page'] ) ? ( int ) $_GET ['page'] : 1;
 
-//$per_page = 10;
+//$per_page = 3;
 
-//$total_count = Product::count_all ();
+//$total_count = Edithistory::count_all ();
 
 // $photos= Photograph::find_all();
 
@@ -45,54 +46,39 @@ $allCats = array(
 	"RR" => "REPORT"
 );
 
+$reference = $selectedCrr =$assing_to= "";
 
-$statusArray = array(
-"All" => "All",
-	"Pending" => "Pending",
-		"Inprogress" => "Inprogress", 
-		"Approval Pending" => "Approval Pending",
-		"Development" => "Development",
-		"Support Team Testing" => "Support Team Testing",
-		"QA Testing" => "QA Testing",
-		"Rejected" => "Rejected",
-		"Close" => "Close",
-		"Hold" => "Hold",
-		"Pending Temonos" => "Pending Temonos"
-);
+$sql = "SELECT * FROM edit_log";
+$sql2 = "SELECT COUNT(*) FROM edit_log";
 
-$reference = $selectedCrr = $statuscrr=$requester="";
-
-$sql = "SELECT * FROM ndb_doc WHERE d_visible=1 ";
+$sql3 = "SELECT * FROM edit_log";
 
 if (! empty ( $_REQUEST ['prod_name'] )) {
 	$reference = $_REQUEST ['prod_name'];
-	$sql .= " AND lower(reffull) like lower('%{$_REQUEST ['prod_name']}%')";
+	$sql3 .= " AND lower(reffull) like lower('%{$_REQUEST ['prod_name']}%')";
 }
 
 if (! empty ( $_REQUEST ['crr'] ) && $_REQUEST ['crr'] != 'All') {
 	$selectedCrr = $_REQUEST ['crr'];
-	//$sql .= (! empty ( $_REQUEST ['prod_name'] )) ? " AND " : " WHERE ";
-	$sql .= " AND cr_brd = '{$_REQUEST ['crr']}'";
+	$sql3 .= (! empty ( $_REQUEST ['prod_name'] )) ? " AND " : " AND ";
+	$sql3 .= "cr_brd = '{$_REQUEST ['crr']}'";
 }
 
-if (! empty ( $_REQUEST ['statrr'] ) && $_REQUEST ['statrr'] != 'All') {
-	$statuscrr = $_REQUEST ['statrr'];
-	//$sql .= (! empty ( $_REQUEST ['prod_name'] )) ? " AND " : " AND ";
-	$sql .= " AND status = '{$_REQUEST ['statrr']}'";
+if (! empty ( $_REQUEST ['assing_to'] )) {
+	$assing_to = $_REQUEST ['assing_to'];
+	$sql3 .= " AND lower(reffull) like lower('%{$_REQUEST ['assing_to']}%')";
 }
-
-if (! empty ( $_REQUEST ['req_name'] )) {
-	$requester = $_REQUEST ['req_name'];
-	$sql .= " AND lower(requester) like lower('%{$_REQUEST ['req_name']}%')";
-}
-
 
 // $sql .= "LIMIT {$per_page} ";
 // $sql .= "OFFSET {$pagination->offset()}";
 
 //$photos = Product::find_by_sql ( $sql );
 
-$photoCount = Product::find_by_sql ( $sql );
+
+
+//$ $photo->edited_by;
+
+$photoCount = Edithistory::find_by_sql ( $sql );
 
 $total_count = count($photoCount);
 
@@ -102,7 +88,16 @@ $sql2 = $sql;
 $sql2 .= " LIMIT {$per_page} ";
 $sql2 .= " OFFSET {$pagination->offset()}";
 
-$photos = Product::find_by_sql ( $sql2 );
+//$photos = Edithistory::find_by_sql ( $sql2 );
+
+ $edithistory = Edithistory::find_by_sql ( $sql );
+
+
+
+
+
+
+
 
 ?>
 
@@ -143,8 +138,8 @@ a {
 }
 </style>
 
-	<h1 class="main_toc55">Edit Document</h1>
 <center>
+	<h1 class="main_toc5">Document Editing Log History</h1>
 </center>
 <?php require_once('layouts/header2.php'); ?>
       
@@ -154,7 +149,7 @@ a {
       
       
       <?php echo output_message($message); ?>
-<div id="admin_content5">
+<div id="admin_content">
 	<form method="POST" name="ajax_param" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 		<input type="hidden" name="page" value="1" />
 		<table class="search_tabel" cellpadding="5px" style="
@@ -165,6 +160,15 @@ a {
 					value="<?php echo $reference ?>" /></th>
 					<th><input type="submit" name="sub" value="Search"
 					onclick="submitSearch()" /></th>
+					
+					<th>Assing to </th>
+				<th><input type="text" name="assing_to"
+					value="<?php echo $assing_to; ?>" /></th>
+					<th><input type="submit" name="sub2" value="Search"
+					onclick="submitSearch()" /></th>
+					
+					
+					
 				<th>CR/BRD/REPORT : <select name="crr" onchange="submitSearch()">
 						<?php foreach ($allCats as $key => $value){
 							$selected = ($selectedCrr == $key) ? "selected" : "";
@@ -174,25 +178,6 @@ a {
 						} ?>
 
 				</select></th>
-				
-				
-					<th>Status : <select name="statrr" onchange="submitSearch()">
-						<?php foreach ($statusArray as $keys => $values){
-							$selected = ($statuscrr == $keys) ? "selected" : "";
-							?>
-							<option value="<?php echo $keys ?>" <?php echo $selected ?>><?php echo $values ?></option>
-							<?php
-						} ?>
-
-				</select></th>
-				
-				<th>Requester Name</th>
-				<th><input type="text" name="req_name"
-					value="<?php echo $requester ?>" /></th>
-					<th><input type="submit" name="sub" value="Search"
-					onclick="submitSearch()" /></th>
-				
-				
 
 				
 			</tr>
@@ -213,41 +198,33 @@ a {
 	
 	
 	
+
+	   	
 	
-	
-	 <?php echo output_message($message);?>
-	   
+	 
 	    
 <!--  <<<<<<< HEAD  -->
 	 <center>  <table class="customer" cellpadding="6px" cellspacing="10px" style="
-    font-size: 13px;">
+    font-size: 13px; padding-right: 136PX;">
             <tr class="head_row">
-                <th class="head_toc">ID</th>
-                <th class="head_toc">Core / NonCore</th>
-                <th class="head_toc">Type</th>
+                
+                
 		
 		
 		<th class="head_toc" style="
     padding-right: 34px;
 ">Reference</th>
-                <th class="head_toc">Requester</th>
+<th class="head_toc">Action By</th>
 		<th class="head_toc" style="
     /* margin-left: 45px; */
-    padding-right: 150px;
-">Description</th>
-		
-		
-		
-		
-                <th class="head_toc">Date Submit</th>
-				<th class="head_toc">Status</th>
-                
-		
-		
+    /*padding-right: 150px;*/
+">Action Type</th>
+                <th class="head_toc">Time</th>
+				
                 
                 
                 
-               
+                
             </tr>
 <!-- =======
 	<!-- <center>
@@ -280,27 +257,24 @@ a {
 					<th>&nbsp;</th>
 				</tr>
 >>>>>>> origin/master   -->
-           <?php $i=0;?>
-            <?php foreach($photos as $photo):
+            <?php foreach($edithistory as $photo): ?>
+			<?php 
 			
-			$i=$i+1;
+			$product = Product::find_by_id ($photo->doc_id);
+			$user = User::find_by_id ($photo->user_id);
+			
 			
 			?>
-			
             
             <tr>
 
-					<td><?php echo $i; //$photo->d_id;?></td>
-					<td><?php echo $photo->cor_non;?></td>
-					<td><?php echo $photo->cr_brd;?></td>
-
-					<td><?php echo $photo->reffull;?></td>
-					<td><?php echo $photo->requester;?></td>
-					<td style="text-transform : uppercase"><?php echo $photo->description;?></td>
-
 					
-					<td><?php echo $photo->date_sub;?></td>
-					<td style="text-transform : capitalize"><?php echo $photo->status;?></td>
+					<td><?php echo $product->reffull;?></td>
+					<td><?php echo $user->us_name;?></td>
+
+					<td><?php echo $photo->ed_type;?></td>
+					<td><?php echo $photo->ed_time;?></td>
+					
 					
 
 
@@ -312,10 +286,7 @@ a {
 						<!--<a href="comments.php?id=<?php echo $photo->id;?>"> -->
                 <?php //echo count($photo->comments());?></td>
 					</a>
-					<td>
-						<!--<a href="viewcusmore.php?id=<?php //echo $photo->id;?>">View</a>-->
-						<a href="edit_click_late.php?id=<?php echo $photo->d_id; ?>">Edit</a>
-					</td>
+					
 					<!-- <td><a href="delete_admin.php?id=<?php //echo $photo->id;?>">Delete</a></td>
                  -->
 				</tr>
@@ -325,11 +296,9 @@ a {
             
             
            </table>
+		   
+		   <?php echo date("Y-m-d H:i:s "); ?>
 		</center>
-
-
-
-
 
 
 
@@ -338,7 +307,7 @@ a {
         if($pagination->total_pages()>1){
             
             if($pagination->has_previous_page()){
-                echo " <a href=\"edit_document.php?page=";
+                echo " <a href=\"edit_fulllog.php?page=";
                 echo $pagination->previous_page();
                 echo "\">&laquo; Previous</a> ";
             }
@@ -346,20 +315,24 @@ a {
                if($i==$page){
                 echo " <span class=\"selected\">{$i}</span> ";
                }else{
-                echo " <a href=\"edit_document.php?page={$i}\">{$i}</a> ";
+                echo " <a href=\"edit_fulllog.php?page={$i}\">{$i}</a> ";
                }
             }
             
             
             if($pagination->has_next_page()){
-                echo " <a href=\"edit_document.php?page=";
+                echo " <a href=\"edit_log.php?page=";
                 echo $pagination->next_page();
                 echo "\">Next &raquo;</a> ";
             }
-            }    
+            }      
     ?>
     
-</div>	 
+</div>	
+
+
+
+
 
 
 

@@ -28,6 +28,12 @@ require_once('layouts/header1.php');
 		<div id="my_profile3" class="my_style"><a href="edit_log.php" style="
     padding-left: 20PX;
 " class="profile_link"><p class="toc111">Editing Log Hisotry</p></a></div></p>
+
+ <p>
+		<div id="my_profile3" class="my_style"><a href="edit_fulllog.php" style="
+    padding-left: 20PX;
+" class="profile_link"><p class="toc111">Full Action Hisotry</p></a></div></p>
+
       <div id="admin_content">
       	<table class="log_detail" cellpadding="5px" cellspacing="15px">
         <tr class="head_row">

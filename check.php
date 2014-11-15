@@ -16,7 +16,7 @@ $Date = "2010-09-17";
 $time =  date("Y-m-d");
 echo $time;
 
-echo date('Y-m-d', strtotime($time. ' - 356 days'));
+echo date('Y-m-d', strtotime($$oneweektime. ' - 356 days'));
 
 
 

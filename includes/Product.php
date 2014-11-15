@@ -236,7 +236,7 @@ class Product extends DatabaseObject {
 		
 		
 		
-		if($validation->isEmpty($this->date_reciv_it)){
+		if($validation->isEmpty($this->testdate)){
             $this->errors['title'] = "Recive Date must be fill out";
         } 
 		
@@ -445,6 +445,19 @@ class Product extends DatabaseObject {
         return array_shift($row);
     }
     
+	
+	
+	public static function anganelys_serch($sdate='',$enddate = '') {
+	//select * from ndb_doc where CAST(`testdate` as datetime) between '2013/4/4' and '2014/11/30' ORDER BY `reffull` ASC 
+        global $database;
+        $result_array = self::find_by_sql("SELECT * FROM " . self::$table_name . " WHERE CAST(`testdate` as datetime) between '2013/4/4' and '2014/11/30'");
+        return !empty($result_array) ? array_shift($result_array) : false;
+    
+    }
+	
+	
+	
+	
 
     public static function find_all() {
         return self::find_by_sql("SELECT * FROM " . self::$table_name );
@@ -459,6 +472,13 @@ class Product extends DatabaseObject {
     public static function find_by_id($id = 0) {
         global $database;
         $result_array = self::find_by_sql("SELECT * FROM " . self::$table_name . " WHERE d_id=" . $database->escape_value($id) . " LIMIT 1");
+        return !empty($result_array) ? array_shift($result_array) : false;
+    }
+	
+	
+	 public static function find_by_reffull($ref_full = 0) {
+        global $database;
+        $result_array = self::find_by_sql("SELECT * FROM " . self::$table_name . " WHERE reffull=" . $database->escape_value($ref_full) . " LIMIT 1");
         return !empty($result_array) ? array_shift($result_array) : false;
     }
 

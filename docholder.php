@@ -113,8 +113,8 @@ require_once('layouts/header1.php');
   <body>
  
   
-  <p>If you click on the "Hide" button, I will disappear.</p>
-<button id="hide">Hide</button>
+ <!-- <p>If you click on the "Hide" button, I will disappear.</p>
+<button id="hide">Hide</button> -->
   
   
   

@@ -3,6 +3,11 @@
       	<div id="control_set">
         	<p class="toc_control">Document Controls</p>
         </div>
+		
+		<div id="add_product" class="my_style">
+        	<a href="admin_home.php" class="profile_link"><p class="toc">Home</p></a>
+        
+        </div>
 	
 <!--	<?php if(!empty($user->rights)){ ?>
 	<?php if($user->rights[RIGHT_INSERT_DOC]){ ?>
@@ -50,10 +55,7 @@
         
         </div>
                 
-        <div id="add_product" class="my_style">
-        	<a href="admin_home.php" class="profile_link"><p class="toc">Home</p></a>
-        
-        </div><!--
+        <!--
         
         <div id="edit_product" class="my_style">
         	<a href="cms_edit_product.php" class="profile_link"><p class="toc">Edit Product</p></a>

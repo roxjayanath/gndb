@@ -739,7 +739,9 @@ require_once('layouts/header1.php');
 		
 		<div class="detailll">
 			<div style="float: left;width:184px">Date Recived (IT): </div>
-			<div style="margin-left: 194px;  "><?php echo $photo->date_reciv_it;?></div>
+			<div style="margin-left: 194px;  "><?php $time= strtotime($photo->testdate);
+      $newformat = date('m/d/Y',$time);
+      echo $newformat;?></div>
 		</div>
 		
 		<br>
@@ -769,8 +771,8 @@ require_once('layouts/header1.php');
         
 		<br>
 		<div class="detailll">
-			<div style="float: left;width:135px">Cost : </div>
-			<div style="margin-left: 194px"><?php echo $photo->COST;?></div>
+			<div style="float: left;width:135px">Cost ($): </div>
+			<div style="margin-left: 180px"><?php echo $photo->COST;?></div>
 		</div>
         
 		<br>

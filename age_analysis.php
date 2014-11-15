@@ -41,14 +41,14 @@ $allCats = array(
 
 
 $timediff = array(
-    "S" => "Select Time Period",
-	"A" => "Less than Two Weeks",
-	"B" => "Two Weeks to One Month",
-	"C" => "One Months to Two Months",
-	"D" => "Two Months to Three Months",
-	"E" => "Three Months To Six Months",
-	"F" => "Six Months To One Year",
-	"G" => "Over One Year"
+    "All" => "Select Time Period",
+	" - 14 days" => "Less than Two Weeks",
+	" - 30 days" => "Two Weeks to One Month",
+	" - 60 days" => "One Months to Two Months",
+	" - 90 days" => "Two Months to Three Months",
+	" - 180 days" => "Three Months To Six Months",
+	" - 356 days" => "Six Months To One Year",
+	" - 2000 days" => "Over One Year"
 );
 
 
@@ -67,12 +67,53 @@ $statusArray = array(
 		"Pending Temonos" => "Pending Temonos"
 );
 
+if(empty($_REQUEST ['ageana'])){
+$_REQUEST ['ageana']="";
+}
+
+$todaytime =  date("Y-m-d");
+
+if(($_REQUEST ['ageana'])==" - 14 days"){
+$oneweektime =  date('Y-m-d', strtotime($todaytime.' - 14 days'));
+$startdate=$todaytime;
+}
+else if(($_REQUEST ['ageana'])==" - 30 days"){
+$oneweektime =  date('Y-m-d', strtotime($todaytime.' - 30 days'));
+$startdate =  date('Y-m-d', strtotime($todaytime.' - 14 days'));
+
+}
+
+else if(($_REQUEST ['ageana'])==" - 60 days"){
+$oneweektime =  date('Y-m-d', strtotime($todaytime.' - 60 days'));
+$startdate =  date('Y-m-d', strtotime($todaytime.' - 30 days'));
+}
+
+else if(($_REQUEST ['ageana'])==" - 90 days"){
+$oneweektime =  date('Y-m-d', strtotime($todaytime.' - 90 days'));
+$startdate =  date('Y-m-d', strtotime($todaytime.' - 60 days'));
+}
+
+else if(($_REQUEST ['ageana'])==" - 180 days"){
+$oneweektime =  date('Y-m-d', strtotime($todaytime.' - 180 days'));
+$startdate =  date('Y-m-d', strtotime($todaytime.' - 90 days'));
+}
+
+else if(($_REQUEST ['ageana'])==" - 356 days"){
+$oneweektime =  date('Y-m-d', strtotime($todaytime.' - 356 days'));
+$startdate =  date('Y-m-d', strtotime($todaytime.' - 180 days'));
+}
+else if(($_REQUEST ['ageana'])==" - 2000 days"){
+$oneweektime =  date('Y-m-d', strtotime($todaytime.' - 2000 days'));
+$startdate =  date('Y-m-d', strtotime($todaytime.' - 356 days'));
+}
 
 
 
-$reference = $selectedCrr = $statuscrr=$requester="";
+//$oneweektime =  date('Y-m-d', strtotime($todaytime. $_REQUEST ['ageana']));
 
-$sql = "SELECT * FROM ndb_doc WHERE d_visible=1 ";
+$reference = $selectedCrr = $statuscrr=$requester=$timediffcrr="";
+
+$sql = "SELECT * FROM ndb_doc WHERE d_visible=1 AND ( status = 'pending' OR status = 'Pending Temonos'  OR status = 'QA Testing'  OR status = 'Development'  OR status = 'inprogress' OR status = 'Approval Pending' OR status = 'Support Team Testing' OR status = 'User Testing' )";
 
 if (! empty ( $_REQUEST ['prod_name'] )) {
 	$reference = $_REQUEST ['prod_name'];
@@ -98,6 +139,14 @@ if (! empty ( $_REQUEST ['statrr'] ) && $_REQUEST ['statrr'] != 'All') {
 	$statuscrr = $_REQUEST ['statrr'];
 	//$sql .= (! empty ( $_REQUEST ['prod_name'] )) ? " AND " : " AND ";
 	$sql .= " AND status = '{$_REQUEST ['statrr']}'";
+}
+
+
+
+if (! empty ( $_REQUEST ['ageana'] ) && $_REQUEST ['ageana'] != 'All') {
+	$timediffcrr = $_REQUEST ['ageana'];
+	//$sql .= (! empty ( $_REQUEST ['prod_name'] )) ? " AND " : " AND ";
+	$sql .= " AND CAST(`testdate` as datetime) between '{$oneweektime}' and '{$startdate}'";
 }
 
 // $sql .= "LIMIT {$per_page} ";
@@ -215,9 +264,9 @@ a {
 					onclick="submitSearch()" /></th> -->
 					
 					
-					<th>Time Period : <select name="statrr" onchange="submitSearch()">
+					<th>Time Period : <select name="ageana" onchange="submitSearch()">
 						<?php foreach ($timediff as $keys => $value){
-							$selected = ($statuscrr == $keys) ? "selected" : "";
+							$selected = ($timediffcrr == $keys) ? "selected" : "";
 							?>
 							<option value="<?php echo $keys ?>" <?php echo $selected ?>><?php echo $value ?></option>
 							<?php
@@ -271,7 +320,9 @@ a {
 		
 		
 		
-                <th class="head_toc">Date Submit</th>
+                <th class="head_toc" style="
+    padding-right: 23px;
+">Date Recive IT</th>
               <!--  <th class="head_toc">Description</th>
 		<th class="head_toc">Date Recived (IT)</th>
                 <th class="head_toc">SMRC Reviewed Date</th>
@@ -327,11 +378,13 @@ a {
 					<th>&nbsp;</th>
 				</tr>
 >>>>>>> origin/master   -->
-            <?php foreach($photos as $photo): ?>
+<?php $i=0;?>
+            <?php foreach($photos as $photo): 
+			$i=$i+1;?>
             
             <tr>
 
-					<td><?php echo $photo->d_id;?></td>
+					<td><?php echo $i; //$photo->d_id;?></td>
 					<td><?php echo $photo->cor_non;?></td>
 					<td><?php echo $photo->cr_brd;?></td>
 
@@ -340,7 +393,7 @@ a {
 					<td style="text-transform : uppercase" ><?php echo $photo->description;?></td>
 
 					
-					<td><?php echo $photo->date_sub;?></td>
+					<td><?php echo $photo->testdate;?></td>
 					<td style="text-transform : capitalize"><?php echo $photo->status;?></td>
 					<td><?php echo $photo->update_on;?></td>
 					

@@ -304,11 +304,13 @@ a {
 					<th>&nbsp;</th>
 				</tr>
 >>>>>>> origin/master   -->
-            <?php foreach($photos as $photo): ?>
+            <?php $i=0;?>
+            <?php foreach($photos as $photo):
+              $i=$i+1;			?>
             
             <tr>
 
-					<td><?php echo $photo->d_id;?></td>
+					<td><?php echo $i; //$photo->d_id;?></td>
 					<td><?php echo $photo->cor_non;?></td>
 					<td><?php echo $photo->cr_brd;?></td>
 

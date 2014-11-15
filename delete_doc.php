@@ -19,6 +19,15 @@ redirect_to("login.php");
    $photo=Product::find_by_id($_GET['id']);
    if($photo&& $photo->destroy()){
     $session->message("The Document : {$photo->reffull} was deleted by {$user->us_name}");
+	
+	$edithistory = new Edithistory();
+	
+	$edithistory->doc_id=$photo->d_id;
+	$edithistory->user_id= $session->user_id;
+	$edithistory->ed_type="DELETE";
+	$edithistory->ed_time=date("Y-m-d H:i:s ");
+	$edithistory->create();
+	
     redirect_to('delete_document.php');
     
    }else{

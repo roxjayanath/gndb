@@ -235,9 +235,7 @@ $product->ref3= $_POST['reference'];
 	
 	
 	$time = strtotime($_POST['test_req']);
-
     $newformat = date('Y-m-d',$time);
-	
 	$product->testdate= $newformat;
     
     $product->description= $_POST['description'];
@@ -296,6 +294,7 @@ $product->ref3= $_POST['reference'];
     
   //  $product->release_date= $_POST['release_date'];
     $product->status= $_POST['status'];
+	 $product->COST= $_POST['cost'];
 	$product->edited_by= $session->user_id;
      
     
@@ -310,6 +309,12 @@ $product->ref3= $_POST['reference'];
    // $product->type_id = isset($_POST['type_' . $product->cat_id]) ? $_POST['type_' . $product->cat_id] : 0;
   //  $product->price = $_POST['product_price'];
    // $product->quan = $_POST['quan'];
+   $edithistory = new Edithistory();
+	
+	
+	
+   
+   
 
     if ($product->save()) {
         $session->message("Document {$product->reffull} Upload Successfully  by {$user->us_name}");
@@ -319,7 +324,12 @@ $product->ref3= $_POST['reference'];
        // $message = join("<br/>", $photo->errors);
         echo $message;
     }
-
+	$photo=Product::find_by_reffull($product->reffull);
+	$edithistory->doc_id= $product->d_id;
+	$edithistory->user_id= $session->user_id;
+	$edithistory->ed_type="INSERT";
+	$edithistory->ed_time=date("Y-m-d H:i:s ");
+$edithistory->create();
     //var_dump($product->errors);
 }
 
@@ -664,7 +674,7 @@ require_once('layouts/header1.php');
 		
 		<p class="detailll">Request Date :<input type="text" class="datepicker"name="date_req" style="margin-left: 130px;"/></p> 
 		
-		<p class="detailll">Test Date :<input type="text" class="datepicker"name="test_req" style="margin-left: 130px;"/></p> 
+		
 		
 		
 		
@@ -678,8 +688,8 @@ require_once('layouts/header1.php');
 		</script>
 		</div>
 		
-		
-		<p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" style="margin-left: 80px;"/></p>
+		<p class="detailll">Date Recived (IT):<input type="text" class="datepicker"name="test_req" style="margin-left: 90px;"/></p> 
+		<!--<p class="detailll">Date Recived (IT): <input type="text" class="datepicker" name="date_reciv_it" style="margin-left: 80px;"/></p>-->
 		
 		
 		<p class="detailll">Priority : <select name="priority" class="detailindate11">
@@ -728,6 +738,14 @@ require_once('layouts/header1.php');
 				
 				
            </select></p>
+		   
+		   <p class="detailll">
+							Cost ($):<input type="text" name="cost"
+								class="detailindate4"   style="
+    /* padding-left: inherit; */
+    margin-left: 180px;
+"/>
+						</p>
         
 		
 		

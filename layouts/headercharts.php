@@ -4,6 +4,11 @@
         	<p class="toc_control">Navigation</p>
         </div>
 		
+		 <div id="add_product" class="my_style">
+        	<a href="admin_home.php" class="profile_link"><p class="toc">Home </p></a>
+        
+        </div>
+		
 		<div id="my_profile2" class="my_style">
         	<a href="chartsnew.php" class="profile_link"><p class="toc">Reports and Charts</p></a>
         
@@ -19,10 +24,7 @@
         
         </div>
         
-        <div id="add_product" class="my_style">
-        	<a href="admin_home.php" class="profile_link"><p class="toc">Home </p></a>
-        
-        </div>
+       
         
        
         

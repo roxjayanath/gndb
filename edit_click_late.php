@@ -245,6 +245,9 @@ $tempref=2;
 	
 	$conn= new MySQLDatabase();
 	$database= new MySQLDatabase();
+	
+	
+	
     
     $product = new Product();
     $product->attach_file($_FILES['pdf1'], 1);
@@ -288,7 +291,9 @@ $product->ref3= $_POST['reference'];
         
         
         
-        
+   $time = strtotime($_POST['test_req']);
+    $newformat = date('Y-m-d',$time);
+	$product->testdate= $newformat;     
         
         
         
@@ -313,38 +318,148 @@ $product->ref3= $_POST['reference'];
     
     $product->description= $_POST['description'];
     $product->date_reciv_it= $_POST['date_reciv_it'];
-    $product->smrc_date= $_POST['smrc_date'];
-    
-    
-    $product->AVPIT= $_POST['avp_it'];
-    $product->VPIT= $_POST['vp_it'];
-    $product->COST_DATE= $_POST['biss_date'];
-    $product->CFO_DATE= $_POST['cfo_date'];
-    $product->BRP= $_POST['brd_date'];
-    $product->date_develop= $_POST['date_develop'];
+	
+	
+	if(!empty($_POST['smrc_date'])){
+	 $time1 = strtotime($_POST['smrc_date']);
+    $newformat1 = date('Y-m-d',$time1);
+    $product->smrc_date= $newformat1;
+    }else{
+	 $product->smrc_date="";
+	}
+	
+    if(!empty($_POST['avp_it'])){
+    $time2 = strtotime($_POST['avp_it']);
+    $newformat2 = date('Y-m-d',$time2);
+	$product->AVPIT= $newformat2;
+	}else{
+	 $product->AVPIT="";
+	}
+	
+	
+	if(!empty($_POST['vp_it'])){
+	$time4 = strtotime($_POST['vp_it']);
+    $newformat4 = date('Y-m-d',$time4);
+    $product->VPIT= $newformat4;
+	}else{
+	 $product->VPIT="";
+	}
+	
+	
+	
+	if(!empty($_POST['biss_date'])){
+	$time3 = strtotime($_POST['biss_date']);
+    $newformat3 = date('Y-m-d',$time3);
+    $product->COST_DATE= $newformat3;
+	}else{
+	 $product->COST_DATE="";
+	}
+	
+	if(!empty($_POST['cfo_date'])){
+	$time5 = strtotime($_POST['cfo_date']);
+    $newformat5= date('Y-m-d',$time5);
+    $product->CFO_DATE= $newformat5;
+	}else{
+	 $product->CFO_DATE="";
+	}
+	
+	if(!empty($_POST['brd_date'])){
+	$time6 = strtotime($_POST['brd_date']);
+    $newformat6= date('Y-m-d',$time6);
+    $product->BRP= $newformat6;
+	}else{
+	 $product->BRP="";
+	}
+	
+	
+	if(!empty($_POST['date_develop'])){
+	$time7 = strtotime($_POST['date_develop']);
+    $newformat7= date('Y-m-d',$time7);
+    $product->date_develop= $newformat7;
+	}else{
+	 $product->date_develop="";
+	}
+	
+	
     $product->assing_to= $_POST['assing_to'];
     
     
-    $product->PACK_DATE= $_POST['pack_date'];
+	if(!empty($_POST['pack_date'])){
+	$time8 = strtotime($_POST['pack_date']);
+    $newformat8= date('Y-m-d',$time8);
+    $product->PACK_DATE= $newformat8;
+	}else{
+	 $product->PACK_DATE="";
+	}
+	
+	
      $product->DEV_TESTER= $_POST['dev_ass'];
       $product->TEST_ENV= $_POST['dev_en'];
 	  $product->TEST_MEM=$_POST['test_mem'];
       $product->TEST_C_NO= $_POST['dev_cy'];
-       $product->develop_r_date= $_POST['date_ret_date'];
-	  $product->USER_ASS= $_POST['user_ass_date'];
+	  
+	  
+	  if(!empty($_POST['date_ret_date'])){
+	  $time9 = strtotime($_POST['date_ret_date']);
+    $newformat9= date('Y-m-d',$time9);
+       $product->develop_r_date= $newformat9;
+	   }else{
+	 $product->develop_r_date="";
+	}
+	  
+	  if(!empty($_POST['user_ass_date'])){
+	  $time10 = strtotime($_POST['user_ass_date']);
+    $newformat10= date('Y-m-d',$time10);
+	  $product->USER_ASS= $newformat10;
+	  }else{
+	 $product->USER_ASS="";
+	}
+	  
       $product->ded_line= $_POST['ass_user'];
-      $product->TEST_COM_DATE= $_POST['test_com_date'];
-       $product->TEST_STAT= $_POST['test_status'];
+	  
+	  if(!empty($_POST['test_com_date'])){
+	  $time11 = strtotime($_POST['test_com_date']);
+    $newformat11= date('Y-m-d',$time11);
+      $product->TEST_COM_DATE= $newformat11;
+	  }else{
+	 $product->TEST_COM_DATE="";
+	}
+      
+
+	  $product->TEST_STAT= $_POST['test_status'];
     
     
-    $product->date_hand_qa= $_POST['date_hand_qa'];
+	if(!empty($_POST['date_hand_qa'])){
+	$time12 = strtotime($_POST['date_hand_qa']);
+    $newformat12= date('Y-m-d',$time12);
+    $product->date_hand_qa= $newformat12;
+	}else{
+	 $product->date_hand_qa="";
+	}
+	
+	
     $product->QA_REF_N= $_POST['qaref'];
     $product->QA_TEST_N= $_POST['qatestname'];
     $product->QA_STATUS= $_POST['qastatus'];
-    $product->qa_complete= $_POST['qa_complete'];
+	
+	if(!empty($_POST['qa_complete'])){
+	$time13 = strtotime($_POST['qa_complete']);
+    $newformat13= date('Y-m-d',$time13);
+    $product->qa_complete= $newformat13;
+	}else{
+	 $product->qa_complete="";
+	}
     
     
-    $product->date_back_it= $_POST['or_r_date'];
+	if(!empty($_POST['or_r_date'])){
+	$time14 = strtotime($_POST['or_r_date']);
+    $newformat14= date('Y-m-d',$time14);
+    $product->date_back_it= $newformat14;
+	}else{
+	 $product->date_back_it="";
+	}
+	
+	
     $product->D_FIX_BY= $_POST['doc_fix'];
     $product->USER_Not= $_POST['user_noty'];
     $product->remarks= $_POST['remarks'];
@@ -382,6 +497,14 @@ $product->ref3= $_POST['reference'];
    // $product->type_id = isset($_POST['type_' . $product->cat_id]) ? $_POST['type_' . $product->cat_id] : 0;
   //  $product->price = $_POST['product_price'];
    // $product->quan = $_POST['quan'];
+   $edithistory = new Edithistory();
+	
+	$edithistory->doc_id=$product->d_id;
+	$edithistory->user_id= $session->user_id;
+	$edithistory->ed_type="EDIT";
+	$edithistory->ed_time=date("Y-m-d H:i:s ");
+	$edithistory->create();
+   
 
     if ($product->save()) {
         $session->message("Document {$product->reffull} Upload Successfully  by {$user->us_name}");
@@ -391,6 +514,11 @@ $product->ref3= $_POST['reference'];
        // $message = join("<br/>", $photo->errors);
         echo $message;
     }
+	
+	
+	
+	
+	
 
     //var_dump($product->errors);
 }
@@ -721,7 +849,17 @@ require_once('layouts/header1.php');
 						<p class="detailll">
 							PACK Received Date : <input type="text" class="datepicker"
 								name="pack_date" style="margin-left: 160px;"
-								value="<?php echo $photo->PACK_DATE; ?>" />
+								value="<?php //echo $photo->PACK_DATE; 
+								if(!empty($photo->PACK_DATE)){
+									$time= strtotime($photo->PACK_DATE);
+                                    $newformat= date('m/d/Y',$time);
+                                    echo $newformat;
+									
+									}else{
+									}			
+								
+
+								?>" />
 						</p>
 						<!--<p class="detailll">Developer Testing Assinged To :  <select name="dev_ass" class="detailindate9" value="<?php echo $photo->DEV_TESTER; ?>">
              <option value="Name1">Name1</option>
@@ -817,7 +955,7 @@ require_once('layouts/header1.php');
 								<!--                 <option value="Name5">name5</option> -->
 								<option value="0">-select-</option>
  	<?php foreach ($fixCategories as $value){
-							$selected = ($photo->D_FIX_BY == $value->qa_id) ? "selected" : "";
+							$selected = ($photo->TEST_MEM == $value->qa_id) ? "selected" : "";
 							?>
 							<option value="<?php echo $value->qa_id ?>"
 									<?php echo $selected ?>><?php echo $value->qa_name; ?></option>
@@ -871,21 +1009,52 @@ require_once('layouts/header1.php');
 						<p class="detailll">
 							Date Return To Developer : <input type="text" class="datepicker"
 								name="date_ret_date" style="margin-left: 100px;"
-								value="<?php echo $photo->develop_r_date; ?>" />
+								value="<?php //echo $photo->develop_r_date; 
+								if(!empty($photo->develop_r_date)){
+									$time= strtotime($photo->develop_r_date);
+                                    $newformat= date('m/d/Y',$time);
+                                    echo $newformat;
+									
+									}else{
+									}		
+								
+							
+								?>" />
 						</p>
 						<p class="detailll">
 							Assign User : <input type="text" name="ass_user"
-								class="detailindate10" value="<?php echo $photo->USER_ASS; ?>" />
+								class="detailindate10" value="<?php echo $photo->ded_line; ?>" />
 						</p>
 						<p class="detailll">
 							User Assign Date : <input type="text" class="datepicker"
 								name="user_ass_date" style="margin-left: 180px;"
-								value="<?php echo $photo->ded_line; ?>" />
+								value="<?php //echo $photo->USER_ASS; 
+								if(!empty($photo->USER_ASS)){
+									$time= strtotime($photo->USER_ASS);
+                                    $newformat= date('m/d/Y',$time);
+                                    echo $newformat;
+									
+									}else{
+									}			
+								
+								
+								?>" />
 						</p>
 						<p class="detailll">
 							Tested Completed Date : <input type="text" class="datepicker"
 								name="test_com_date" style="margin-left: 130px;"
-								value="<?php echo $photo->TEST_COM_DATE; ?>" />
+								value="<?php //echo $photo->TEST_COM_DATE; 
+								
+								if(!empty($photo->TEST_COM_DATE)){
+									$time= strtotime($photo->TEST_COM_DATE);
+                                    $newformat= date('m/d/Y',$time);
+                                    echo $newformat;
+									
+									}else{
+									}		
+								
+								
+								?>" />
 						</p>
 
 
@@ -932,37 +1101,104 @@ require_once('layouts/header1.php');
 						<p class="detailll">
 							Development Review Date : <input type="text" class="datepicker"
 								name="smrc_date" style="margin-left: 120px;"
-								value="<?php echo $photo->smrc_date; ?>" />
+								value="<?php //echo $photo->smrc_date;
+                                    if(!empty($photo->smrc_date)){
+									//$newformat222="";
+									$time222= strtotime($photo->smrc_date);
+                                    $newformat222 = date('m/d/Y',$time222);
+                                    echo $newformat222;
+									
+									}else{
+									}								
+								
+								?>" />
 						</p>
 						<p class="detailll">
 							AVP-IT Approval Date : <input type="text" class="datepicker"
 								name="avp_it" style="margin-left: 150px;"
-								value="<?php echo $photo->AVPIT; ?>" />
+								value="<?php //echo $photo->AVPIT; 
+								if(!empty($photo->AVPIT)){
+									$time= strtotime($photo->AVPIT);
+                                    $newformat= date('m/d/Y',$time);
+                                    echo $newformat;
+									
+									}else{
+									}			
+								                
+								
+								?>" />
 						</p>
 						<p class="detailll">
 							VP-IT Approval Date : <input type="text" class="datepicker"
 								name="biss_date" style="margin-left: 160px;"
-								value="<?php echo $photo->VPIT; ?>" />
+								value="<?php //echo $photo->VPIT; 
+								
+								if(!empty($photo->VPIT)){
+									$time= strtotime($photo->VPIT);
+                                    $newformat= date('m/d/Y',$time);
+                                    echo $newformat;
+									
+									}else{
+									}			
+								
+								?>" />
 						</p>
 						<p class="detailll">
 							Bussiness Line Cost Approval Date : <input type="text"
 								class="datepicker" name="vp_it" style="margin-left: 20px;"
-								value="<?php echo $photo->COST_DATE; ?>" />
+								value="<?php //echo $photo->COST_DATE; 
+								if(!empty($photo->COST_DATE)){
+									$time= strtotime($photo->COST_DATE);
+                                    $newformat= date('m/d/Y',$time);
+                                    echo $newformat;
+									
+									}else{
+									}			
+	
+								?>" />
 						</p>
 						<p class="detailll">
 							CFO Approval Date : <input type="text" class="datepicker"
 								name="cfo_date" style="margin-left: 180px;"
-								value="<?php echo $photo->CFO_DATE; ?>" />
+								value="<?php //echo $photo->CFO_DATE;
+								if(!empty($photo->CFO_DATE)){
+									$time= strtotime($photo->CFO_DATE);
+                                    $newformat= date('m/d/Y',$time);
+                                    echo $newformat;
+									
+									}else{
+									}			
+
+
+								?>" />
 						</p>
 						<p class="detailll">
 							BRP Approval Date : <input type="text" class="datepicker"
 								name="brd_date" style="margin-left: 180px;"
-								value="<?php echo $photo->BRP; ?>" />
+								value="<?php //echo $photo->BRP; 
+								if(!empty($photo->BRP)){
+									$time= strtotime($photo->BRP);
+                                    $newformat= date('m/d/Y',$time);
+                                    echo $newformat;
+									
+									}else{
+									}		
+								
+								?>" />
 						</p>
 						<p class="detailll">
 							Date Hand Over To Development : <input type="text"
 								class="datepicker" name="date_develop"
-								value="<?php echo $photo->date_develop; ?>"
+								value="<?php //echo $photo->date_develop; 
+								if(!empty($photo->date_develop)){
+									$time= strtotime($photo->date_develop);
+                                    $newformat= date('m/d/Y',$time);
+                                    echo $newformat;
+									
+									}else{
+									}		
+	
+								?>"
 								style="margin-left: 60px;" />
 						</p>
 						<p class="detailll">Document held with previosly : <?php echo $photo->assing_to; ?></p>
@@ -1039,8 +1275,13 @@ require_once('layouts/header1.php');
 								name="date_req" style="margin-left: 130px;"
 								value="<?php echo $photo->date_sub; ?>" />
 						</p>
-						<!--<p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p> -->
-                         
+						
+						
+						
+
+						<!--<p class="detailll"> Unit : <input type="text" name="unit"  class="detailindate5"/></p> 
+						<p class="detailll">Test Date :<input type="text" class="datepicker"name="test_req" style="margin-left: 130px;" value="<?php echo $photo->testdate; ?>"/></p> 
+                         -->
 						 <div class="detailll">
 			<div style="float: left;width:138px">Description : </div>
 			<div style="margin-left: 138px"><textarea name="description" class="detailindate7" id="editor1" rows="3" cols="40"><?php echo $photo->description; ?></textarea></div>
@@ -1052,13 +1293,21 @@ require_once('layouts/header1.php');
 						 
 						 
 						
+<p class="detailll">Date Recived (IT): <input type="text" class="datepicker"name="test_req" style="margin-left: 80px;" value="
+<?php $time= strtotime($photo->testdate);
+      $newformat = date('m/d/Y',$time);
+      echo $newformat;
+ ?>"/></p> 
 
 
-						<p class="detailll">
+
+                         
+
+						<!--<p class="detailll">
 							Date Recived (IT): <input type="text" class="datepicker"
 								name="date_reciv_it" style="margin-left: 80px;"
-								value="<?php echo $photo->date_reciv_it; ?>" />
-						</p>
+								value="<?php //echo $photo->date_reciv_it; ?>" />
+						</p> -->
 
 
 						<p class="detailll">
@@ -1109,10 +1358,10 @@ require_once('layouts/header1.php');
 						
 						
 						<p class="detailll">
-							Cost :<input type="text" name="cost"
+							Cost ($):<input type="text" name="cost"
 								class="detailindate4" value="<?php echo $photo->COST; ?>"  style="
     /* padding-left: inherit; */
-    margin-left: 208px;
+    margin-left: 180px;
 "/>
 						</p>
 						
@@ -1189,7 +1438,18 @@ require_once('layouts/header1.php');
 						<p class="detailll">
 							QA Assign Date : <input type="text" class="datepicker"
 								name="date_hand_qa" style="margin-left: 80px;"
-								value="<?php echo $photo->date_hand_qa; ?>" />
+								value="<?php //echo $photo->date_hand_qa; 
+								
+								if(!empty($photo->date_hand_qa)){
+									$time= strtotime($photo->date_hand_qa);
+                                    $newformat= date('m/d/Y',$time);
+                                    echo $newformat;
+									
+									}else{
+									}		
+								
+								
+								?>" />
 						</p>
 						<p class="detailll">
 							QA Reference Number : <input type="text" name="qaref"
@@ -1220,7 +1480,18 @@ require_once('layouts/header1.php');
 						<p class="detailll">
 							Live Transfer Date : <input type="text" class="datepicker"
 								name="qa_complete" style="margin-left: 40px;"
-								value="<?php echo $photo->qa_complete; ?>" />
+								value="<?php //echo $photo->qa_complete; 
+								
+								if(!empty($photo->qa_complete)){
+									$time= strtotime($photo->qa_complete);
+                                    $newformat= date('m/d/Y',$time);
+                                    echo $newformat;
+									
+									}else{
+									}			
+								
+								
+								?>" />
 						</p>
 
 
@@ -1244,7 +1515,16 @@ require_once('layouts/header1.php');
 						<p class="detailll">
 							Original Document Recived Date : <input type="text"
 								class="datepicker" name="or_r_date" style="margin-left: 45px;"
-								value="<?php echo $photo->reference; ?>" />
+								value="<?php //echo $photo->date_back_it; 
+								
+								if(!empty($photo->date_back_it)){
+									$time= strtotime($photo->date_back_it);
+                                    $newformat= date('m/d/Y',$time);
+                                    echo $newformat;
+									
+									}else{
+									}			
+								?>" />
 						</p>
 						<p class="detailll">
 							Documentation File By : <select name="doc_fix"
