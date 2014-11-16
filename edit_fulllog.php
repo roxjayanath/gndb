@@ -48,20 +48,21 @@ $allCats = array(
 
 $reference = $selectedCrr =$assing_to= "";
 
-$sql = "SELECT * FROM edit_log";
-$sql2 = "SELECT COUNT(*) FROM edit_log";
+//$sql = "SELECT * FROM edit_log";
+//$sql2 = "SELECT COUNT(*) FROM edit_log";
 
-$sql3 = "SELECT * FROM edit_log";
+$sql3 = "SELECT edit_log.* FROM edit_log";
+$sql3 .= " JOIN ndb_doc ON edit_log.doc_id=ndb_doc.d_id ";
 
 if (! empty ( $_REQUEST ['prod_name'] )) {
 	$reference = $_REQUEST ['prod_name'];
-	$sql3 .= " AND lower(reffull) like lower('%{$_REQUEST ['prod_name']}%')";
+	$sql3 .= " WHERE lower(ndb_doc.reffull) like lower('%{$_REQUEST ['prod_name']}%')";
 }
 
 if (! empty ( $_REQUEST ['crr'] ) && $_REQUEST ['crr'] != 'All') {
 	$selectedCrr = $_REQUEST ['crr'];
-	$sql3 .= (! empty ( $_REQUEST ['prod_name'] )) ? " AND " : " AND ";
-	$sql3 .= "cr_brd = '{$_REQUEST ['crr']}'";
+	$sql3 .= (! empty ( $_REQUEST ['prod_name'] )) ? " AND " : "";
+	$sql3 .= " cr_brd = '{$_REQUEST ['crr']}'";
 }
 
 if (! empty ( $_REQUEST ['assing_to'] )) {
@@ -78,19 +79,19 @@ if (! empty ( $_REQUEST ['assing_to'] )) {
 
 //$ $photo->edited_by;
 
-$photoCount = Edithistory::find_by_sql ( $sql );
+$photoCount = Edithistory::find_by_sql ( $sql3 );
 
 $total_count = count($photoCount);
 
 $pagination = new Pagination($page,$per_page,$total_count);
 
-$sql2 = $sql;
+$sql2 = $sql3;
 $sql2 .= " LIMIT {$per_page} ";
 $sql2 .= " OFFSET {$pagination->offset()}";
 
 //$photos = Edithistory::find_by_sql ( $sql2 );
-
- $edithistory = Edithistory::find_by_sql ( $sql );
+//var_dump($sql2);
+ $edithistory = Edithistory::find_by_sql ( $sql2 );
 
 
 
@@ -283,7 +284,7 @@ a {
 
 
 					<td>
-						<!--<a href="comments.php?id=<?php echo $photo->id;?>"> -->
+						<!--<a href="comments.php?id=<?php //echo $photo->id;?>"> -->
                 <?php //echo count($photo->comments());?></td>
 					</a>
 					
@@ -305,9 +306,20 @@ a {
 <div id="pagination" style="clear: both; padding-left: 428px;">
     <?php
         if($pagination->total_pages()>1){
+        	
+        	$params = $_REQUEST;
+        	$pageUrl = '?';
+        	if(!empty($params['page'])){
+        		unset($params['page']);
+        	}
+        	$pageUrl .= http_build_query($params);
+        	$pageUrl .= (count($params) > 0 ? '&' : '') . 'page=';
+        	
+        	//echo "<br>".$pageUrl."<br>";
             
             if($pagination->has_previous_page()){
-                echo " <a href=\"edit_fulllog.php?page=";
+//                 echo " <a href=\"edit_fulllog.php?page=";
+            	echo " <a href=\"edit_fulllog.php{$pageUrl}";
                 echo $pagination->previous_page();
                 echo "\">&laquo; Previous</a> ";
             }
@@ -315,13 +327,15 @@ a {
                if($i==$page){
                 echo " <span class=\"selected\">{$i}</span> ";
                }else{
-                echo " <a href=\"edit_fulllog.php?page={$i}\">{$i}</a> ";
+                //echo " <a href=\"edit_fulllog.php?page={$i}\">{$i}</a> ";
+               	echo " <a href=\"edit_fulllog.php{$pageUrl}{$i}\">{$i}</a> ";
                }
             }
             
             
             if($pagination->has_next_page()){
-                echo " <a href=\"edit_log.php?page=";
+//                 echo " <a href=\"edit_fulllog.php?page=";
+            	echo " <a href=\"edit_fulllog.php{$pageUrl}";
                 echo $pagination->next_page();
                 echo "\">Next &raquo;</a> ";
             }
