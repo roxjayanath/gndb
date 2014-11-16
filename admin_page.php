@@ -319,19 +319,20 @@ $tempref=2;
 
     if ($product->save()) {
         $session->message("Document {$product->reffull} Upload Successfully  by {$user->us_name}");
-        echo $product->reference;
+        //echo $product->reference;
+        $photo=Product::find_by_reffull($product->reffull);
+        $edithistory = new Edithistory();
+	$edithistory->doc_id= $photo->d_id;
+	$edithistory->user_id= $session->user_id;
+	$edithistory->ed_type="INSERT";
+	$edithistory->ed_time=date("Y-m-d H:i:s ");
+        $edithistory->create();
         redirect_to('admin_page.php');
     } else {
        // $message = join("<br/>", $photo->errors);
         echo $message;
     }
-	$photo=Product::find_by_reffull($product->reffull);
-        $edithistory = new Edithistory();
-	$edithistory->doc_id= $product->d_id;
-	$edithistory->user_id= $session->user_id;
-	$edithistory->ed_type="INSERT";
-	$edithistory->ed_time=date("Y-m-d H:i:s ");
-        $edithistory->create();
+	
     //var_dump($product->errors);
 }
 
