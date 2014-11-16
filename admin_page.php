@@ -310,7 +310,7 @@ $tempref=2;
    // $product->type_id = isset($_POST['type_' . $product->cat_id]) ? $_POST['type_' . $product->cat_id] : 0;
   //  $product->price = $_POST['product_price'];
    // $product->quan = $_POST['quan'];
-   $edithistory = new Edithistory();
+   
 	
 	
 	
@@ -326,11 +326,12 @@ $tempref=2;
         echo $message;
     }
 	$photo=Product::find_by_reffull($product->reffull);
+        $edithistory = new Edithistory();
 	$edithistory->doc_id= $product->d_id;
 	$edithistory->user_id= $session->user_id;
 	$edithistory->ed_type="INSERT";
 	$edithistory->ed_time=date("Y-m-d H:i:s ");
-$edithistory->create();
+        $edithistory->create();
     //var_dump($product->errors);
 }
 
