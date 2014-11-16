@@ -195,6 +195,7 @@ require_once('layouts/header1.php');
           ['QA Testing',  <?php echo $total_countqatest; ?>],
           ['Inprogress', <?php echo $total_countin; ?>],
           ['Pending Temonos',    <?php echo $total_countpetem; ?>]
+	  
         ]);
 
         var options = {
@@ -228,7 +229,7 @@ th {
   
   
   <div id="piechart" style="width: 900px; height: 500px;"></div>
-	 
+ 
   
    <div id="tab-container" class='tab-container'>
  <ul class='etabs'>
