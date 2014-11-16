@@ -599,6 +599,10 @@ class Product extends DatabaseObject {
         global $database;
 
         $this->assign_files(); //assign filenames to db_fields
+        
+        $ref3 = self::getLastDocNumber($this->ref1, $this->ref2);
+        $this->ref3 = ++$ref3;
+        $this->reffull .= "-". $this->ref3;
 
         $attributes = $this->sanitized_attributes();
 

@@ -206,7 +206,7 @@ $tempref=2;
         
         
        // $product->ref3= $newnumber;
-$product->ref3= $_POST['reference'];
+//$product->ref3= $_POST['reference'];
         
         
         
@@ -218,7 +218,8 @@ $product->ref3= $_POST['reference'];
         
 	
 	
-	$product->reffull=  $product->ref1 ."-". $product->ref2."-".$product->ref3;
+	//$product->reffull=  $product->ref1 ."-". $product->ref2."-".$product->ref3;
+	$product->reffull=  $product->ref1 ."-". $product->ref2;
 	
 	
 	
@@ -415,24 +416,30 @@ require_once('layouts/header1.php');
 
         $(".datepicker").datepicker();
 
-        coreChange();
+        changeReference();
+    		
+        $("select[name=core], select[name=unit], select[name=crr]").change(function(){
+        	changeReference();
+		});
 
-        unitChange();
+//         coreChange();
+
+//         unitChange();
 		
-		refChange()
+// 		refChange();
 
-		$("select[name=core]").change(function(){
-			coreChange();
-		});
+// 		$("select[name=core]").change(function(){
+// 			coreChange();
+// 		});
 
-		$("select[name=unit]").change(function(){
-			unitChange();
-		});
+// 		$("select[name=unit]").change(function(){
+// 			unitChange();
+// 		});
 
-		$("select[name=crr]").change(function(){
-		refChange()
-			if($("select[name=crr]").val() != 0) ajaxGetDocNumber();
-		});	
+// 		$("select[name=crr]").change(function(){
+// 			refChange();
+// 			//if($("select[name=crr]").val() != 0) ajaxGetDocNumber();
+// 		});	
 		
 		    	
         //myFunction();
@@ -446,6 +453,17 @@ require_once('layouts/header1.php');
 // 			}
 //         });
     });
+
+    function changeReference(){
+    	$("#unit_sec").hide();
+		$("#cr_brd_sec").hide();
+
+		if($("select[name=core]").val() != 0){
+			 $("#unit_sec").show();
+			 if($("select[name=unit]").val() != 0) $("#cr_brd_sec").show();
+		}
+		
+    }
 
     function coreChange(){
     	if($("select[name=core]").val() == 0){
