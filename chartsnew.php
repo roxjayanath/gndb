@@ -207,6 +207,35 @@ require_once('layouts/header1.php');
         chart.draw(data, options);
       }
     </script>
+    
+    
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+	  
+	  
+
+        var data = google.visualization.arrayToDataTable([
+          ['Pending', 'CR/BRD/REPORT'],
+          ['Under Review',     <?php echo $total_count; ?>],
+          ['Development',     <?php echo $total_countdev; ?>],
+          ['QA Testing',  <?php echo $total_countqatest; ?>],
+          ['Inprogress', <?php echo $total_countin; ?>],
+          ['Pending Temonos',    <?php echo $total_countpetem; ?>]
+	  
+        ]);
+
+        var options = {
+          title: ' '
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    
 	
 	<style>
 table, th, td {
@@ -229,6 +258,7 @@ th {
   
   
   <div id="piechart" style="width: 900px; height: 500px;"></div>
+   <div id="piechart2" style="width: 900px; height: 500px;"></div>
  
   
    <div id="tab-container" class='tab-container'>
